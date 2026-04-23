@@ -34,7 +34,7 @@ class ParametersIdempotency:
 class Theory:
     m: int
     n: int
-    Lambda: mp.mpf = mp.mpf(2.9) # cutoff (for later integration)
+    Lambda: mp.mpf = mp.mpf(3) # cutoff (for later integration)
 
     @property
     def b(self):

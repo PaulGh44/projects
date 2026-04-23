@@ -179,7 +179,7 @@
 \newcommand{\OP}[1]{{\green{OP: #1}}} % Olga
 \newcommand{\PG}[1]{{\purple{PG: #1}}} % Paul
 
-\title{Notes on boundary Liouville}
+\title{Notes on Axionic wormholes}
 
 \author[a]{Panos Betzios\orcidlink{0000-0002-5350-9404},}
 \author[b]{Paul Ghiringhelli,}
@@ -208,163 +208,109 @@ Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Notations}
-\paragraph{Central charge} We parametrize the central charge as
-\begin{equation}
-    c=1+6\,Q^2\,, \quad Q=b+b^{-1}\,.
+\section{Action principle and equations of motion}
+Our starting point is the following action
+\begin{equation}\label{eq:startingaction}
+\mathcal{S} = \int d^Dx \sqrt{g}\left[\frac{1}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2(D-1)!}H_{\mu... \nu}H^{\mu...\nu}\right]\,.
 \end{equation}
-We do not assume anything particular range for the central charge. We want to obtain the shift equations as a functions of the momenta and the central charge.
-\paragraph{Bulk conformal dimensions} We parametrize the conformal dimension of bulk primary fields $V_{P}(z,\bar{z})$ as 
-\begin{equation}
-  \Delta = \frac{Q^2}{4} - P^2\,, \quad P\in i \mathbb{R}_+\,.
-\end{equation}
+H is a $(D-1)$-form field strength satisfying the Bianchi identity $dH=0$. Thus, one can always write locally $H=dB$ where $B$ is a $(D-2)$-form field. The equations of motion are simply $d \star H =0$. We can see classically that the dynamics of $H$ is locally governed by a pseudo-scalar field $\chi$ defined as $\star H= i\,d \chi$.
 
-\paragraph{Boundary conformal dimension} We work on the upper half-plane. Boundary primary fields are denoted as $\Psi_{P}(x)^{\sigma_1\,\sigma_2}$ where $P$ is the momentum and $\sigma_{1,2}$ corresponds to the boundary conditions on the two sides of the puncture (in principle the two boundary cosmological constants.) We do not assume any particular rules for $\sigma_{i}$ (like FZZT boundary conditions).
-
-\paragraph{Normalization} We work with normalizations of the two point functions/three point functions which are symmetric. Precisely, we write
-\begin{equation}\label{eq:Normalizations}
-\begin{aligned}
-  \braket{V_{P_1}(0)V_{P_2}(1)}&=B(P)\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
-  \braket{V_{P_1}(0)V_{P_2}(1)V_{P_3}(\infty)}&= C(P_1,P_2,P_3)\,,\\
-  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_1}(1)}&= S_{P_1}^{\sigma_1 \sigma_2}\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
-  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)} &= C_{P_1,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}\,,\\
-\end{aligned}
-\end{equation}
-and also 
-\begin{equation}\label{eq:Normalizationsbis}
-\begin{aligned}
-  \braket{V_{P}(z,\bar{z})}&=\frac{U(P|\,\sigma)}{|z-\bar{z}|^{2\Delta}}\,.\\
-  \braket{V_{P}(z,\bar{z})\Psi_{P'}^{\sigma \sigma}(x)}&=\frac{R(P;P'|\,\sigma)}{|z-\bar{z}|^{2\Delta -\Delta'}|z-x|^{2\Delta'}}
-\end{aligned}
-\end{equation}
-
-\section{Equations from the Teschner trick}
-We would like to write down all the possible equations one can get by insertion of appropriate degenerate fields. There are two things that we can do: either insert a bulk degenerate field $V_{\braket{2,1}}(z,\bar{z})$ which always decouple. This would lead to second order differential equations. We can also insert $\Psi_{\braket{3,1}}^{\sigma \sigma}(x)$ at the boundary. As was pointed out in the FZZT paper, $\Psi_{\braket{2,1}}^{\sigma \sigma}(x)$ decouples only for peculiar values of $\sigma$. The reason is that introducing a boundary modifies the ward identities obeyed by the boundary fields as the stress tensor at the boundary is perturbed by a certain primary operator which corresponds to the "line operator" (see FZZT paper: \PG{Add the expression of the boundary stress tensor in my convention}). In the other hand, there is a comprehensive reason for which $\Psi_{\braket{3,1}}^{\sigma \sigma}(x)$ always decouple. In fact, $V_{\braket{2,1}}(z,\bar{z})$ always decouple and as $\Im (z)\to 0$, the primary bulk operator can be expanded in boundary operators. The expansion should be compatible with the doubling trick\footnote{The origin of the doubling trick is encoded is the property of the stress tensor that satisfies $T(\bar{z})=\bar{T}(z)$} and thus the fusion rule of $V_{\braket{2,1}}(z)$ with itself (at $\bar{z}$ ) from which we obtain
-\begin{equation}
-  V_{\braket{2,1}}\,\times\,V_{\braket{2,1}} = \Psi_{\braket{1,1}}^{\sigma \sigma} + \Psi_{\braket{3,1}}^{\sigma \sigma}
-\end{equation}
-
-\paragraph{Three point function of boundary operators} We first consider the possibility of inserting a the bulk degenarate field $V_{\braket{2,1}}(z,\bar{z})$ in the boundary three point function with $\Re (z) \in(0,1)$
-\begin{equation}
-  \begin{aligned}
-    &\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\\
-    &=\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma_2)}{S_{P_{\braket{1,1}}}^{\sigma_2 \sigma_2}}\,\frac{C_{P_1,P_{\braket{1,1}},P_1}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_1,P_2,P_3}^{\sigma_2 \sigma_2 \sigma_3}}{S_{P_1}^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1)}_{\braket{1,1}}(z,\bar{z})\\
-    &+\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma_2)}{S_{P_{\braket{3,1}}}^{\sigma_2 \sigma_2}}\sum_{\eta\in\{{-1,0,1}\}}\frac{C_{P_1,P_{\braket{3,1}},P_1+\eta}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_1+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_1+\eta b }^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1,\eta)}_{\braket{3,1}}(z,\bar{z})\\
-    &=\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma_2)}{S_{P_{\braket{1,1}}}^{\sigma_2 \sigma_2}}\,\frac{C_{P_{\braket{1,1}},P_{2},P_2}^{\sigma_2 \sigma_2 \sigma_3}\,C_{P_1,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_2}^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2)}_{\braket{1,1}}(z,\bar{z})\\
-    &+\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma_2)}{S_{P_{\braket{3,1}}}^{\sigma_2 \sigma_2}}\sum_{\eta\in\{{-1,0,1}\}}\frac{C_{P_{\braket{1,1}},P_{2},P_2+\eta b}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_2+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_2+\eta b }^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2,\eta)}_{\braket{3,1}}(z,\bar{z})
-  \end{aligned}
-\end{equation}
-The two equalities correspond to the different channel and this is the statement of crossing symmetry. The functions $\mathcal{G}$ correspond to the conformal blocks. I found the expansion \PG{To be checked!}
-\begin{equation}
-\begin{aligned}
-  \mathcal{G}_{\braket{1,1}}^{(i)}(z,\bar{z})&=(z-\bar{z})^{\Delta'_{1,1}-2\Delta_{\braket{2,1}}}\,\left(\frac{z+\bar{z}}{2}\right)^{0} + ...\\
-  \mathcal{G}_{\braket{3,1}}^{(i,\eta)}(z,\bar{z})&=(z-\bar{z})^{\Delta'_{3,1}-2\Delta_{\braket{2,1}}}\,\left(\frac{z+\bar{z}}{2}\right)^{\Delta'_{i+\eta}-\Delta'_{i}-\Delta'_{\braket{3,1}}} + ...
-\end{aligned}
-\end{equation}
-We denoted by $\Delta'$ the conformal dimensions of the boundary primaries. The leading behavior is crucial to map them to the basis of the differential equation arising from the null vector decoupling. This generalized BPZ equation will lead to a second order (\PG{PDE I guess, since they effectively have 5 point by the doubling trick...}).
-
-Alternatively, we can insert $\Psi^{\sigma_2 \sigma_2}_{\braket{3,1}}(x)$ with $x\in(0,1)$. One obtains
-\begin{equation}
-\begin{aligned}
-    &\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}(x)\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\\
-    &=\sum_{\eta\in\{-1,0,1\}}\,\frac{C_{P_1,P_{\braket{3,1}},P_1+\eta b}^{\sigma_1 \sigma_2 \sigma_2}C_{P_1+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3 }}{S_{P_1+\eta b}^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1,\eta)}(x)\\
-    &=\sum_{\eta\in\{-1,0,1\}}\,\frac{C_{P_{\braket{3,1}},P_2,P_2+\eta b}^{\sigma_2 \sigma_2 \sigma_3}C_{P_1,P_2+\eta b,P_3}^{\sigma_1 \sigma_2 \sigma_3 }}{S_{P_2+ \eta b }^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2,\eta)}(x)
-\end{aligned}
-\end{equation}
-The functions $\mathcal{G}$ are the conformal blocks. They have the following leading expansion
-\begin{equation}
-\begin{aligned}
-  \mathcal{G}^{(1,\eta)}(x)\underset{x\to0}{\sim} &x^{\Delta'_{1+\eta}-\Delta'_{1}-\Delta'_{\braket{3,1}}}\\
-  \mathcal{G}^{(2,\eta)}(x)\underset{x\to1}{\sim} &(1-x)^{\Delta'_{2+\eta}-\Delta'_{2}-\Delta'_{\braket{3,1}}}
-\end{aligned}
-\end{equation}
-Unlike the previous case, the decoupling of $\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}$ will produce a third order ODE (This is a ODE but we gain one order...). Let's emphasize this point: In bulk Liouville theory, the structure constants are such that they appropriate encode the connection formulae of a particular hypergeometric equation and also of higher order equations (arising from all the higher order degenerate fields decoupling). Boundary Liouville theory CFT data only encode the connection formulae of this third order equation (and those coming from fusing $\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}$ with itself) while the decoupling of the null vector arise for specific values of the boundary cosmological constants. 
-
-\paragraph{Two point function: 1 boundary operator with 1 bulk operator} It seems more convenient in this case to insert a bulk degenerate field.
+That holds at the quantum level. To see this we introduce $\chi$ as a Lagrangian multiplier in the following 1st class formalism action
 
 \begin{equation}
   \begin{aligned}
-    &\braket{V_{\braket{2,1}}(z,\bar{z})V_{P}(z_1,\bar{z}_1)\Psi_P'^{\sigma \sigma }(x)}\\
-    &=\sum_{\epsilon = \pm} \frac{C(P,P_{2,1},P+\frac{\epsilon b}{2})}{B(P+\frac{\epsilon b}{2})}\,R(P+\frac{\epsilon b }{2};P'|\sigma) \mathcal{G}^{(\epsilon)}(z,z_1,x)\\
-    &=\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma)}{S_{P_{\braket{3,1}}}^{\sigma \sigma}} \sum_{\eta \in \{-1,0,1\}}\frac{C_{P',P_{\braket{3,1},P'+\eta b}}^{\sigma \sigma \sigma }}{S_{P'+\eta b}^{\sigma \sigma}}R(P;P'+\eta b|\sigma)\mathcal{G}_{\braket{3,1}}^{(\eta)}(z,z_1,x)\\
-    &+\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}} \frac{C_{P',P_{\braket{1,1},P'}}^{\sigma \sigma \sigma }}{S_{P'}^{\sigma \sigma}}R(P;P'|\sigma)\mathcal{G}_{\braket{1,1}}(z,z_1,x)\,.
+    \mathcal{S}_{1st} &= \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2}\int H \wedge \star H + i \int\chi \wedge dH\\
+    &= \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2}\int H \wedge \star H - i \int d\chi \wedge H + \mathcal{S}_{\partial M}\,.
   \end{aligned}
 \end{equation}
-\PG{I need to write the conformal blocks in terms of the invariants cross ratios (there should be two invariant cross ratios)}
-The first equality corresponds to fusing the two bulk fields while the second corresponds to expanding the bulk field in terms of boundary operators.
+where
+\begin{equation}
+  \mathcal{S}_{\partial M}= i \int_{\partial M}\chi \wedge H\,.
+\end{equation}
+This rewritting is natural if we impose Dirichlet boundary conditions for $H$ and $\chi$. The path-integral whose action is defined by~\eqref{eq:startingaction} can be recovered by integrating out $\chi$ imposing Bianchi's identity. In the meantime, the action is quadratic in $H$ so we can integrate out $H$ as well by solving its equation of motion
+\begin{equation}
+  H = i \star \,d \chi \Rightarrow \star H = -i (-1)^{D} d \chi\,.
+\end{equation}
+Indeed, inserting back into the action we get
+\begin{equation}
+\mathcal{S}_{\chi} = \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) + \frac{1}{2} \int d \chi \wedge \star d\chi -i \int_{\partial M} \chi \wedge \star d\chi\,.
+\end{equation}
+\PG{This problem could be fixed by removing the factor of $i$ in the original 1st order formalism.}
+Instanton configurations have the effect of modifying the action by mean of a non-perturbative potential $V_{\rm np}(\chi)$ so that the total action in the pseudo-scalar variable reads
+\begin{equation}
+  \mathcal{S}=\int d^Dx \sqrt{g}\left[\frac{1}{2\kappa}\left(-\mathcal{R}+2\Lambda\right)-\frac{1}{2}\partial_\mu\chi \partial^\mu \chi + V_{\rm np}(\chi)\right]+ \mathcal{S}_{GHY} + S_{\partial M}\,.
+\end{equation}
 
-\paragraph{1 point function}
-We again insert a bulk degenerate field.
+We look for homogeneous and isotropic solutions of the form
+\begin{equation}
+  ds^2= N^2(\tau)d\tau^2 + a^2(\tau) d \Sigma_{d}^2\sp \chi=\chi(\tau)\,.
+\end{equation}
+We obtain the following expressions for the determinant of the metric and the Ricci scalar
+\begin{equation}
+  \sqrt{g}=N a^d\sp \mathcal{R}=-\frac{2d}{N} \frac{d}{d\tau}\left(\frac{a'}{aN}\right)+d(d-1)\left(\frac{k}{a^2}-\left(\frac{a'}{aN}\right)^2\right)\,.
+\end{equation}
+Hence the Lagrangian density of the Einstein-Hilbert part of the action reads
 \begin{equation}
   \begin{aligned}
-    \braket{V_{\braket{2,1}(z,\bar{z})}V_{P}(z,\bar{z})}
-    &=\sum_{\epsilon = \pm} \frac{C_{P,P_{\braket{2,1}},P+\frac{\epsilon b }{2}}}{B(P+\frac{\epsilon b}{2})} U(P+\frac{\epsilon b}{2}|\sigma) \mathcal{G}^{(\epsilon)}(z,z_1)\\
-    &=\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma)}{S_{P_{\braket{3,1}}}^{\sigma \sigma}} R(P;P_{\braket{3,1}}|\sigma)\mathcal{G}_{\braket{3,1}}(z,z_1)\\
-    &+\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}}R(P;P_{\braket{1,1}}|\sigma)\mathcal{G}_{\braket{1,1}}(z,z_1)\,.
+    \mathcal{L}_{EH} &= -\frac{N a^d}{2\kappa}\left[-\frac{2d}{N} \frac{d}{d\tau}\left(\frac{a'}{aN}\right)+d(d-1)\left(\frac{k}{a^2}-\left(\frac{a'}{aN}\right)^2\right)+2\Lambda\right]\\
+    &= -\frac{1}{2\kappa}\left[\frac{d(d+1)(a')^2 a^{d-2}}{N} + d(d-1) N k a^{d-2} + 2 N \Lambda a^{d}\right] + \text{total derivative term}\,.
   \end{aligned}
 \end{equation}
-The first channel correspond to fusing the two bulk fields together while the second one correspond to expanding the bulk field in terms of boundary operators. 
+We also have
+\begin{equation}
+  \mathcal{L}_{\chi}=-\frac{a^d}{2N}(\partial_\tau \chi)^2 + N a^{d} V_{\rm np}(\chi)\,.
+\end{equation}
+Also, note that taking the trace of Einstein equation allows one to evaluate the on-shell action as a function of the on-shell solution $\chi$. Indeed,
+\begin{equation}
+\begin{aligned}
+  G &= \kappa T^{\chi} - \Lambda D \Rightarrow \mathcal{R}\left(1-\frac{D}{2}\right)=\kappa T^{\chi} - \Lambda D\,,\\
+  T_{\mu \nu}^{\chi}&= -\partial_\mu \chi \partial_\nu \chi -g_{\mu\nu}\left(-\frac{1}{2}(\partial_\lambda \chi)^2+V_{\rm np}(\chi)\right) \Rightarrow T^{\chi}=\left(\frac{D}{2}-1\right)(\partial_\lambda \chi)^2 - D V_{\rm np}(\chi)\,.
+\end{aligned}
+\end{equation}
+After some manimpulations one obtains
+\begin{equation}
+  \frac{-\mathcal{R}+2\Lambda}{2\kappa}=\frac{1}{2}(\partial_\lambda \chi)^2-\frac{DV_{\rm np}}{D-2}-\frac{2\Lambda}{\kappa(D-2)}\,.
+\end{equation}
+The on-shell action thus takes the simple expression
+\begin{equation}
+  S^{\rm on-shell} = V_{d}\,\int d\tau N a^{d}\left(-\frac{2V_{\rm np}}{D-2}-\frac{2\Lambda}{\kappa(D-2)}\right)\,,
+\end{equation}
+where $V_d$ represents the volume of the transverse slices. This on-shell action is an important quantity since the final question one should answer is how it evolves as a function of the number of bubbles. The flow paramater is $u= N \tau$. Remark that the on-shell action does not depend on the kinitic term and can be easily deduced from this formula once $\chi$ and the scale factor is known. 
 
-\section{BPZ equation}
-\paragraph{Bulk degenerate field}
-The decoupling of the degenerate bulk field reads 
+Let's now derive the equation of motions. The simplest one is obtain by varying wrt to $\chi$ yielding
 \begin{equation}
-  \braket{\left(L_{-2}^{(z)}+\frac{1}{b^2}L_{-1}^{2\,(z)}\right)V_{\braket{2,1}}(z,\bar{z})\,X} = 0\,,
+  \partial_\tau\left(\frac{a^d}{N}\partial_\tau \chi\right)+Na^{d}\partial_{\chi}V_{np}(\chi)=0\,.
 \end{equation}
-where $X$ is a chain of fields inserted at different points (on the boundary or in the bulk).
-\paragraph{Three point function of boundary operators}
-We denote
+Varying with respect to $a$ in $\mathcal{L}_{EH}+\mathcal{L}_{\chi}$ yields
 \begin{equation}
-  \mathcal{V}_{4}(z,\bar{z})=\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\,.
+  \begin{aligned}
+    &\Bigg[-\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2+d N a^{d-1} V_{\rm np}(\chi)-\frac{1}{2\kappa}\Big(\frac{d(d+1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}+2N \Lambda d a^{d-1} \Big)\Bigg]\delta a
+    -\frac{1}{2\kappa}\frac{d(d+1)2a'a^{d-2}}{N}\delta(a')\,.
+  \end{aligned}
 \end{equation}
-The constraint reads
-\begin{equation}\label{eq:3pointfunctionBPZ1}
-  0=\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\left(L_{-2}^{(z)}+\frac{1}{b^2}L_{-1}^{2\,(z)}\right)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\,.
-\end{equation}
-$L_{-1}$ just yields $\partial_z$ while $L_{-2}^{(z)}=\frac{1}{2\pi i}\int_{w \sim z}\frac{dw\,T(w)}{w-z}$. The standard trick is to deform the contour to pick up the residues at the other poles. In the meantime, we want to avoid factor of $\partial_{x_i}$ arising from the fact that 
+Thus, integrating by parts the second term
 \begin{equation}
-  T(w)\Psi_{P}^{\sigma \sigma}(x_i)\sim \frac{\Delta_i'}{(w-x_{i})^2}+\frac{\partial_{x_{i}}}{w-x_{i}}\,.
+  \begin{aligned}
+    &\Bigg[-\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2+d N a^{d-1} V_{\rm np}(\chi)-\frac{1}{2\kappa}\Bigg(\frac{d(d+1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}+2N \Lambda d a^{d-1} -2d(d+1)\frac{d}{d\tau}\Bigg(\frac{a' a^{d-2}}{N}\Bigg)\Bigg)\Bigg]\delta a\,.
+  \end{aligned}
 \end{equation}
-To do that we write
+We thus get the following equation of motion
 \begin{equation}
-  \frac{1}{w-z}=\frac{w(w-1)}{z(z-1)}\frac{1}{w-z}-\frac{w-z}{z(z-1)}-\frac{2z-1}{z(z-1)}\,.
+  \begin{aligned}
+    &\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2-d N a^{d-1} V_{\rm np}(\chi)+\frac{1}{2\kappa}\Bigg(\frac{d(d+1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}+2N \Lambda d a^{d-1} -2d(d+1)\frac{d}{d\tau}\Bigg(\frac{a' a^{d-2}}{N}\Bigg)\Bigg)=0\,.
+  \end{aligned}
 \end{equation}
-This partial fraction decomposition has the benefit of removing one order of the pole at $w\sim0,w\sim1$ regarding the first term. The second term will correspond to the dilation operator $L_0$ while the last one will yield $L_{-1}=\partial_z$. Inserting this back to~\eqref{eq:3pointfunctionBPZ1} produces
+Finally, varying wrt to N we generate a third (non-independent) equations
 \begin{equation}
-\begin{aligned}
-  0&=\frac{1}{b^2}\partial_z^2\,\mathcal{V}_{4}-\frac{\Delta_{2,1}}{z(z-1)}\mathcal{V}_{4}-\frac{2z-1}{z(z-1)}\partial_z \mathcal{V}_{4}\\
-  &+\braket{\Psi_{P_1}^{\sigma 1 \sigma 2}(0)\frac{1}{2\pi i}\int_{w \sim z}\frac{w(w-1)}{z(z-1)}\frac{T(w)}{w-z} V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma 2 \sigma 3}(1)\Psi_{P_3}^{\sigma 3 \sigma 1}(\infty)}\,.
-\end{aligned}
+  \begin{aligned}
+    a^d V_{\rm np}(\chi)+\frac{a^d}{2N^2}(\partial_\tau \chi)^2-\frac{1}{2\kappa}\left[d(d-1)ka^{d-2}+2\Lambda a^d -\frac{d(d+1)a'^2 a^{d-2}}{N^2}\right]=0\,.
+  \end{aligned}
 \end{equation}
-We then deform the contour to pick up the poles at $0,1,\infty$ and $\bar{z}$. It yields
-\begin{equation}
-\begin{aligned}
-  0&=\frac{1}{b^2}\partial_z^2\,\mathcal{V}_{4}-\frac{\Delta_{2,1}}{z(z-1)}\mathcal{V}_{4}-\frac{2z-1}{z(z-1)}\partial_z \mathcal{V}_{4}-\frac{\Delta_1'}{z^2(z-1)}\mathcal{V}_{4}+\frac{\Delta_2'}{z(1-z)^2}\mathcal{V}_{4}-\frac{\Delta'_3}{z(1-z)}\mathcal{V}_{4}\\
-  &-\braket{\Psi_{P_1}^{\sigma 1 \sigma 2}(0)\frac{1}{2\pi i}\int_{w \sim \bar{z}}\frac{w(w-1)}{z(z-1)}\frac{T(w)}{w-z} V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma 2 \sigma 3}(1)\Psi_{P_3}^{\sigma 3 \sigma 1}(\infty)}\,.
-\end{aligned}
-\end{equation}
-As 
-\begin{equation}
-\begin{aligned}
-  T(w)V_{\braket{2,1}}(z,\bar{z}) &\sim \frac{\Delta_{2,1}V_{\braket{2,1}}(z,\bar{z})}{(w-z)^2}+\frac{\partial_zV_{\braket{2,1}}(z,\bar{z})}{w-z}+\frac{\Delta_{2,1}V_{\braket{2,1}}(z,\bar{z})}{(w-\bar{z})^2}+\frac{\partial_{\bar{z}}V_{\braket{2,1}}(z,\bar{z})}{w-\bar{z}}\,,\\
-  \frac{w(w-1)}{z(z-1)(w-z)}&=\frac{\bar{z}(\bar{z}-1)}{z(z-1)}\frac{1}{\bar{z}-z}+\frac{(2\bar{z}-1)(\bar{z}-z)-\bar{z}(\bar{z}-1)}{z(z-1)(\bar{z}-z)^2}\times (w-z)+o(w-z)\,,
-\end{aligned}
-\end{equation}
-I finally obtain after picking up the pole at $\bar{z}$, 
-\begin{equation}
-\begin{aligned}
-  0&=\Bigg[\frac{1}{b^2}\partial_z^2-\frac{\Delta_{2,1}}{z(z-1)}-\frac{2z-1}{z(z-1)}\partial_z -\frac{\Delta_1'}{z^2(z-1)}+\frac{\Delta_2'}{z(1-z)^2}-\frac{\Delta'_3}{z(1-z)}\\
-  &+\frac{\bar{z}(\bar{z}-1)\partial_{\bar{z}}}{z(z-1)(z-\bar{z})}-\frac{(2\bar{z}-1)(\bar{z}-z)-\bar{z}(\bar{z}-1)}{z(z-1)(\bar{z}-z)^2}\Delta_{\braket{2,1}}\Bigg]\mathcal{V}_{4}
-\end{aligned}
-\end{equation}
-which can be rewritten as
-\begin{equation}
-\begin{aligned}
-  0&=\Bigg[\frac{1}{b^2}\partial_z^2-\frac{2\Delta_{2,1}}{z(z-1)}-\frac{2z-1}{z(z-1)}\partial_z -\frac{\Delta_1'}{z^2(z-1)}+\frac{\Delta_2'}{z(1-z)^2}-\frac{\Delta'_3}{z(1-z)}\\
-  &+\frac{\bar{z}(\bar{z}-1)\partial_{\bar{z}}}{z(z-1)(z-\bar{z})}-\frac{\Delta_{2,1}}{(z-\bar{z})^2}\Bigg]\mathcal{V}_{4}
-\end{aligned}
-\end{equation}
-As expected, it yields a second order PDE. This equation should also be obeyed by all the conformal blocks cited above.
+
+
 
 \end{document}
 
