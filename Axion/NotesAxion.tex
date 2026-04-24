@@ -1,0 +1,336 @@
+\documentclass[a4paper]{article}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage{jheppub}
+\usepackage{overpic}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{pdflscape}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings}
+
+\tikzset{
+  mid arrow/.style={
+    postaction={
+      decorate,
+      decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{Stealth[length=6pt,width=6pt]}}
+      }
+    }
+  }
+}
+
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{braket}
+\usepackage{empheq}
+\usepackage{graphicx} % Allows including images
+\usepackage{tikz-3dplot}
+% réglage de la vue 3D : élévation=20°, azimut=110°
+\tdplotsetmaincoords{20}{110}
+\usetikzlibrary{decorations.pathreplacing,calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+\definecolor{blue5}{rgb}{0, 0, 0.66666}
+\definecolor{red4}{rgb}{0.8, 0, 0}
+\definecolor{navyblue}{rgb}{0, 0.2745, 0.67843}
+\definecolor{cornflowerblue}{rgb}{0.388235, 0.6941176, 0.898039}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usetikzlibrary{decorations.text,decorations.pathmorphing}
+
+%Removes Header------------------------------------
+\makeatletter
+\def\@fpheader{\relax}
+\makeatother
+
+
+
+\usepackage{orcidlink}
+
+%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\pf}{pf}
+\DeclareMathOperator{\Ai}{Ai}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\DeclareMathOperator{\cd}{cd}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\sech}{sech}
+% \DeclareMathOperator{\tr}{tr}
+
+\newcommand{\beq}{\begin{eqnarray}}
+\newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+\newcommand{\unit}{1\!\!1}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\no}{\nonumber}
+\def\tb{\tilde{\beta}}
+\newcommand{\mpl}{M_{\rm Pl}}
+\def\k{\kappa}
+
+\newcommand{\bto}{\bar{\tau}^{\textbf{I}}}
+\newcommand{\btt}{\bar{\tau}^{\textbf{II}}}
+
+
+
+
+%%% Other definitions
+
+
+\def\sp{\;\;\;,\;\;\;}
+\def\l{\lambda}
+%\def\z{\zeta}
+\def\lab{\label}
+\def\f{H}
+\def\La{\Lambda}
+\def\z{\zeta}
+\def\t{\tau}
+\def\e{\epsilon}
+\def\o{\omega}
+\def\le{\left}
+\def\ri{\right}
+\def\y{\psi}
+\def\half{\frac12}
+\def\q{\theta}
+\def\cO{{\cal O}}
+\def\m{\mu}
+\def\n{\nu}
+\def\td{\tilde}
+\def\d{\delta}
+\def\6{\partial}
+\def\de{\partial}
+\def\del{\nabla}
+\def\ls{\ell_s}
+\def\a{\alpha}
+\def\b{\beta}
+\def\lab{\label}
+\def\parl{\parallel}
+\def\tom{\tilde{\o}}
+\def\dA{\dot{A}}
+\def\dh{\dot{h}}
+\def\df{\dot{f}}
+\def\dX{\dot{X}}
+\def\bo{\bar{\o}}
+\def\r{x}
+\def\bo{b_0}
+\def\br{\bar{r}}
+\def\dx{\delta X^\parl}
+\def\dxy{\delta X^2}
+\def\dxz{\delta X^3}
+\def\ol{\overline}
+\def\GM#1{\textit{[GM: #1]}}
+\def\g{\gamma}
+\def\s{\sigma}
+\def\tr{{\rm Tr}}
+\def\eps{\epsilon}
+\def\fb{f}
+\def\rd{\rm d}
+\newcommand{\bom}[1]{\fboxsep2mm\fbox{
+           $ \displaystyle{ #1} $}}
+           
+           \newcommand{\rar}{\rightarrow}
+\newcommand{\bb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\mi}{\sqrt{|\mathcal{I}_4|}}
+
+
+\def\lab{\label}
+\def\le{\left}
+\def\ri{\right}
+\def\6{\partial}
+\def\eps{\epsilon}
+
+
+% Color definitions
+\newcommand{\red}[1]{{\color{red} #1 \color{black}}}
+\newcommand{\blue}[1]{{\color{blue} #1 \color{black}}}
+\newcommand{\green}[1]{{\color{green} #1 \color{black}}}
+\newcommand{\yellow}[1]{{\color{yellow} #1 \color{black}}}
+\newcommand{\purple}[1]{{\color{purple} #1 \color{black}}}
+
+
+% Comment Abbreviations
+\newcommand{\IT}[1]{{\red{IG: #1}}} %Ioannis
+\newcommand{\PB}[1]{{\blue{PB: #1}}} % Panos
+\newcommand{\OP}[1]{{\green{OP: #1}}} % Olga
+\newcommand{\PG}[1]{{\purple{PG: #1}}} % Paul
+
+\title{Notes on Axionic wormholes}
+
+\author[a]{Panos Betzios\orcidlink{0000-0002-5350-9404},}
+\author[b]{Paul Ghiringhelli,}
+\author[b]{Olga Papadoulaki\orcidlink{0000-0001-5302-2930}}
+\affiliation[a]{\href{https://www.ugent.be/we/physics-astronomy/en}{Department of Physics and Astronomy},
+Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
+\affiliation[b]{\href{https://www.cpht.polytechnique.fr/?q=en}{CPHT, CNRS, École polytechnique, Institut Polytechnique de Paris},  91120 Palaiseau, France}
+
+\emailAdd{panos.betzios@ugent.be}
+\emailAdd{paul.ghiringhelli@polytechnique.edu}
+\emailAdd{olga.papadoulaki@polytechnique.edu}
+
+
+
+
+
+\abstract{...}
+
+\keywords{...}
+
+
+\begin{document}
+\maketitle
+\flushbottom
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Action principle and equations of motion}
+Our starting point is the following action
+\begin{equation}\label{eq:startingaction}
+\mathcal{S} = \int d^Dx \sqrt{g}\left[\frac{1}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2(D-1)!}H_{\mu... \nu}H^{\mu...\nu}\right]\,.
+\end{equation}
+H is a $(D-1)$-form field strength satisfying the Bianchi identity $dH=0$. Thus, one can always write locally $H=dB$ where $B$ is a $(D-2)$-form field. The equations of motion are simply $d \star H =0$. We can see classically that the dynamics of $H$ is locally governed by a pseudo-scalar field $\chi$ defined as $\star H= i\,d \chi$.
+
+That holds at the quantum level. To see this we introduce $\chi$ as a Lagrangian multiplier in the following 1st class formalism action
+
+\begin{equation}
+  \begin{aligned}
+    \mathcal{S}_{1st} &= \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2}\int H \wedge \star H +  \int\chi \wedge dH\\
+    &= \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) +\frac{1}{2}\int H \wedge \star H -  \int d\chi \wedge H + \mathcal{S}_{\partial M}\,.
+  \end{aligned}
+\end{equation}
+where
+\begin{equation}
+  \mathcal{S}_{\partial M}= \int_{\partial M}\chi \wedge H\,.
+\end{equation}
+The variational principle is well defined if we impose Dirichlet boundary conditions for $\chi$ and for $H$. The path-integral whose action is defined by~\eqref{eq:startingaction} can be recovered by integrating out $\chi$ imposing Bianchi's identity. In the meantime, the action is quadratic in $H$ so we can integrate out $H$ as well by solving its equation of motion
+\begin{equation}
+  H =  \star \,d \chi \Rightarrow \star H = (-1)^{D-1} d \chi\,.
+\end{equation}
+Indeed, inserting back into the action we get
+\begin{equation}
+\mathcal{S}_{\chi} = \int d^Dx \frac{\sqrt{g}}{2\kappa}\left(-\mathcal{R}+2\Lambda\right) - \frac{1}{2} \int d \chi \wedge \star d\chi - \int_{\partial M} \chi \wedge \star d\chi\,.
+\end{equation}
+Instanton configurations have the effect of modifying the action by mean of a non-perturbative potential $V_{\rm np}(\chi)$ so that the total action in the pseudo-scalar variable reads
+\begin{equation}
+  \mathcal{S}=\int d^Dx \sqrt{g}\left[\frac{1}{2\kappa}\left(-\mathcal{R}+2\Lambda\right)-\frac{1}{2}\partial_\mu\chi \partial^\mu \chi + V_{\rm np}(\chi)\right]+ \mathcal{S}_{GHY} + S_{\partial M}\,.
+\end{equation}
+
+We look for homogeneous and isotropic solutions of the form
+\begin{equation}
+  ds^2= N^2(\tau)d\tau^2 + a^2(\tau) d \Sigma_{d}^2\sp \chi=\chi(\tau)\,.
+\end{equation}
+We obtain the following expressions for the determinant of the metric and the Ricci scalar
+\begin{equation}
+  \sqrt{g}=N a^d\sp \mathcal{R}=-\frac{2d}{N} \frac{d}{d\tau}\left(\frac{a'}{aN}\right)+d(d-1)\frac{k}{a^2}-d(d+1)\left(\frac{a'}{aN}\right)^2\,.
+\end{equation}
+Finally, let's also mention the form of the Gibbons-Hawking term
+\begin{equation}\label{eq:GHY}
+  \begin{aligned}
+    \mathcal{S}_{GHY} = -\frac{1}{\kappa}\int_{\partial M} d^d x \sqrt{h} K = -\frac{1}{\kappa}\frac{\partial_\tau}{N}V_d (a^d) = -\frac{d V_d a' a^{d-1}}{\kappa N}\,. 
+  \end{aligned}
+\end{equation}
+Hence the Lagrangian density of the Einstein-Hilbert part of the action reads
+\begin{equation}
+  \begin{aligned}
+    \mathcal{L}_{EH} &= -\frac{N a^d}{2\kappa}\left[-\frac{2d}{N} \frac{d}{d\tau}\left(\frac{a'}{aN}\right)+d(d-1)\frac{k}{a^2}-d(d+1)\left(\frac{a'}{aN}\right)^2+2\Lambda\right]\\
+    &= -\frac{1}{2\kappa}\left[\frac{d(d-1)(a')^2 a^{d-2}}{N} + d(d-1) N k a^{d-2} - 2 N \Lambda a^{d}\right] + \frac{d}{d\tau}\left[\frac{d a^{d-1} a' }{\kappa N}\right]\,.
+  \end{aligned}
+\end{equation}
+The boundary term coming from this total derivative will get exactly canceled by the Gibbons-Hawking term (see ~\eqref{eq:GHY}).
+We also have
+\begin{equation}
+  \mathcal{L}_{\chi}=-\frac{a^d}{2N}(\partial_\tau \chi)^2 + N a^{d} V_{\rm np}(\chi)\,.
+\end{equation}
+Also, note that taking the trace of Einstein equation allows one to evaluate the on-shell action as a function of the on-shell solution $\chi$. Indeed,
+\begin{equation}
+\begin{aligned}
+  G &= \kappa T^{\chi} - \Lambda D \Rightarrow \mathcal{R}\left(1-\frac{D}{2}\right)=\kappa T^{\chi} - \Lambda D\,,\\
+  T_{\mu \nu}^{\chi}&= -\partial_\mu \chi \partial_\nu \chi -g_{\mu\nu}\left(-\frac{1}{2}(\partial_\lambda \chi)^2+V_{\rm np}(\chi)\right) \Rightarrow T^{\chi}=\left(\frac{D}{2}-1\right)(\partial_\lambda \chi)^2 - D V_{\rm np}(\chi)\,.
+\end{aligned}
+\end{equation}
+After some manimpulations one obtains
+\begin{equation}
+  \frac{-\mathcal{R}+2\Lambda}{2\kappa}=\frac{1}{2}(\partial_\lambda \chi)^2-\frac{DV_{\rm np}}{D-2}-\frac{2\Lambda}{\kappa(D-2)}\,.
+\end{equation}
+We also have the additional boundary terms
+\begin{equation}
+  \begin{aligned}
+    \mathcal{S}_{GHY} = -\frac{dV_{d}a'a^{d-1}}{\kappa N}\Bigg|_{\partial M}\sp \mathcal{S}_{\partial M} = -\frac{V_d}{N}\,a^d \chi \partial_\tau \chi \Bigg|_{\partial M}+\mathcal{S}_{GHY}+\,.
+  \end{aligned}
+\end{equation}
+The on-shell action thus takes the simple expression
+\begin{equation}
+  S^{\rm on-shell} = V_{d}\,\int d\tau N a^{d}\left(-\frac{2V_{\rm np}}{D-2}-\frac{2\Lambda}{\kappa(D-2)}\right)+\mathcal{S}_{GHY}+\mathcal{S}_{\partial M}\,.
+\end{equation}
+This on-shell action is an important quantity since the final question one should answer is how it evolves as a function of the number of bubbles. The flow paramater is $u= N \tau$. Remark that the on-shell action does not depend on the kinitic term and can be easily deduced from this formula once $\chi$ and the scale factor is known. 
+
+Let's now derive the equation of motions. The simplest one is obtain by varying wrt to $\chi$ yielding
+\begin{equation}
+  \partial_\tau\left(\frac{a^d}{N}\partial_\tau \chi\right)+Na^{d}\partial_{\chi}V_{np}(\chi)=0\,.
+\end{equation}
+Varying with respect to $a$ in $\mathcal{L}_{EH}+\mathcal{L}_{\chi}$ yields
+\begin{equation}
+  \begin{aligned}
+    &\Bigg[-\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2+d N a^{d-1} V_{\rm np}(\chi)-\frac{1}{2\kappa}\Big(\frac{d(d-1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}-2N \Lambda d a^{d-1} \Big)\Bigg]\delta a
+    -\frac{1}{2\kappa}\frac{d(d-1)2a'a^{d-2}}{N}\delta(a')\,.
+  \end{aligned}
+\end{equation}
+Thus, integrating by parts the second term
+\begin{equation}
+  \begin{aligned}
+    &\Bigg[-\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2+d N a^{d-1} V_{\rm np}(\chi)-\frac{1}{2\kappa}\Bigg(\frac{d(d-1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}-2N \Lambda d a^{d-1} -2d(d-1)\frac{d}{d\tau}\Bigg(\frac{a' a^{d-2}}{N}\Bigg)\Bigg)\Bigg]\delta a\,.
+  \end{aligned}
+\end{equation}
+We thus get the following equation of motion
+\begin{equation}
+  \begin{aligned}
+    &\frac{d a^{d-1}}{2N}(\partial_\tau \chi)^2-d N a^{d-1} V_{\rm np}(\chi)+\frac{1}{2\kappa}\Bigg(\frac{d(d-1)(d-2)}{N}a'^2a^{d-3}\\
+    &+d(d-1)(d-2)kNa^{d-3}-2N \Lambda d a^{d-1} -2d(d-1)\frac{d}{d\tau}\Bigg(\frac{a' a^{d-2}}{N}\Bigg)\Bigg)=0\,.
+  \end{aligned}
+\end{equation}
+Finally, varying wrt to N we generate a third (non-independent) equations
+\begin{equation}
+  \begin{aligned}
+    a^d V_{\rm np}(\chi)+\frac{a^d}{2N^2}(\partial_\tau \chi)^2-\frac{1}{2\kappa}\left[d(d-1)ka^{d-2}-2\Lambda a^d -\frac{d(d-1)a'^2 a^{d-2}}{N^2}\right]=0\,.
+  \end{aligned}
+\end{equation}
+Let's summurize the set of equations here for general ($k,\,\Lambda,\,N$)
+\begin{equation}
+  \begin{aligned}
+    \partial_\tau\left(\frac{a^d}{N}\partial_\tau \chi\right)+Na^{d}\partial_{\chi}V_{np}(\chi)&=0\,.\\
+    \frac{d(d-1)}{a^2}\left(\frac{a'^2}{N^2}-k\right)+2\kappa\left(\frac{(\partial_\tau \chi)^2}{2N^2}+V_{\rm np}(\chi)+\frac{\Lambda}{\kappa}\right)&=0\,,\\
+    \frac{(d-1)(d-2)}{a^2}\left(k+\frac{a'^2}{N^2}\right)-\frac{2d(d-1)}{Na^{d-1}}\frac{d}{d\tau}\left(\frac{a' a^{d-2}}{N}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2N^2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
+  \end{aligned}
+\end{equation}
+\paragraph{Non-running solutions}
+A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will define the vacuum (background) of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$. 
+
+\end{document}
+
