@@ -1,0 +1,342 @@
+\documentclass[a4paper]{article}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage{jheppub}
+\usepackage{overpic}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{pdflscape}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings}
+
+\tikzset{
+  mid arrow/.style={
+    postaction={
+      decorate,
+      decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{Stealth[length=6pt,width=6pt]}}
+      }
+    }
+  }
+}
+
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{braket}
+\usepackage{empheq}
+\usepackage{graphicx} % Allows including images
+\usepackage{tikz-3dplot}
+% réglage de la vue 3D : élévation=20°, azimut=110°
+\tdplotsetmaincoords{20}{110}
+\usetikzlibrary{decorations.pathreplacing,calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+\definecolor{blue5}{rgb}{0, 0, 0.66666}
+\definecolor{red4}{rgb}{0.8, 0, 0}
+\definecolor{navyblue}{rgb}{0, 0.2745, 0.67843}
+\definecolor{cornflowerblue}{rgb}{0.388235, 0.6941176, 0.898039}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usetikzlibrary{decorations.text,decorations.pathmorphing}
+
+%Removes Header------------------------------------
+\makeatletter
+\def\@fpheader{\relax}
+\makeatother
+
+
+
+\usepackage{orcidlink}
+
+%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\pf}{pf}
+\DeclareMathOperator{\Ai}{Ai}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\DeclareMathOperator{\cd}{cd}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\sech}{sech}
+% \DeclareMathOperator{\tr}{tr}
+
+\newcommand{\beq}{\begin{eqnarray}}
+\newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+\newcommand{\unit}{1\!\!1}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\no}{\nonumber}
+\def\tb{\tilde{\beta}}
+\newcommand{\mpl}{M_{\rm Pl}}
+\def\k{\kappa}
+
+\newcommand{\bto}{\bar{\tau}^{\textbf{I}}}
+\newcommand{\btt}{\bar{\tau}^{\textbf{II}}}
+
+
+
+
+%%% Other definitions
+
+
+\def\sp{\;\;\;,\;\;\;}
+\def\l{\lambda}
+%\def\z{\zeta}
+\def\lab{\label}
+\def\f{H}
+\def\La{\Lambda}
+\def\z{\zeta}
+\def\t{\tau}
+\def\e{\epsilon}
+\def\o{\omega}
+\def\le{\left}
+\def\ri{\right}
+\def\y{\psi}
+\def\half{\frac12}
+\def\q{\theta}
+\def\cO{{\cal O}}
+\def\m{\mu}
+\def\n{\nu}
+\def\td{\tilde}
+\def\d{\delta}
+\def\6{\partial}
+\def\de{\partial}
+\def\del{\nabla}
+\def\ls{\ell_s}
+\def\a{\alpha}
+\def\b{\beta}
+\def\lab{\label}
+\def\parl{\parallel}
+\def\tom{\tilde{\o}}
+\def\dA{\dot{A}}
+\def\dh{\dot{h}}
+\def\df{\dot{f}}
+\def\dX{\dot{X}}
+\def\bo{\bar{\o}}
+\def\r{x}
+\def\bo{b_0}
+\def\br{\bar{r}}
+\def\dx{\delta X^\parl}
+\def\dxy{\delta X^2}
+\def\dxz{\delta X^3}
+\def\ol{\overline}
+\def\GM#1{\textit{[GM: #1]}}
+\def\g{\gamma}
+\def\s{\sigma}
+\def\tr{{\rm Tr}}
+\def\eps{\epsilon}
+\def\fb{f}
+\def\rd{\rm d}
+\newcommand{\bom}[1]{\fboxsep2mm\fbox{
+           $ \displaystyle{ #1} $}}
+           
+           \newcommand{\rar}{\rightarrow}
+\newcommand{\bb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\mi}{\sqrt{|\mathcal{I}_4|}}
+
+
+\def\lab{\label}
+\def\le{\left}
+\def\ri{\right}
+\def\6{\partial}
+\def\eps{\epsilon}
+
+
+% Color definitions
+\newcommand{\red}[1]{{\color{red} #1 \color{black}}}
+\newcommand{\blue}[1]{{\color{blue} #1 \color{black}}}
+\newcommand{\green}[1]{{\color{green} #1 \color{black}}}
+\newcommand{\yellow}[1]{{\color{yellow} #1 \color{black}}}
+\newcommand{\purple}[1]{{\color{purple} #1 \color{black}}}
+
+
+% Comment Abbreviations
+\newcommand{\IT}[1]{{\red{IG: #1}}} %Ioannis
+\newcommand{\PB}[1]{{\blue{PB: #1}}} % Panos
+\newcommand{\OP}[1]{{\green{OP: #1}}} % Olga
+\newcommand{\PG}[1]{{\purple{PG: #1}}} % Paul
+
+\title{Notes on c=1 MQM and entanglement entropy}
+
+\author[a]{Panos Betzios\orcidlink{0000-0002-5350-9404},}
+\author[b]{Paul Ghiringhelli,}
+\author[b]{Olga Papadoulaki\orcidlink{0000-0001-5302-2930}}
+\affiliation[a]{\href{https://www.ugent.be/we/physics-astronomy/en}{Department of Physics and Astronomy},
+Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
+\affiliation[b]{\href{https://www.cpht.polytechnique.fr/?q=en}{CPHT, CNRS, École polytechnique, Institut Polytechnique de Paris},  91120 Palaiseau, France}
+
+\emailAdd{panos.betzios@ugent.be}
+\emailAdd{paul.ghiringhelli@polytechnique.edu}
+\emailAdd{olga.papadoulaki@polytechnique.edu}
+
+
+
+
+
+\abstract{...}
+
+\keywords{...}
+
+
+\begin{document}
+\maketitle
+\flushbottom
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Review of c=1 MQM}
+
+\subsection{Continuum theory}
+
+\paragraph{From the sigma model to the gauge fixed action.} We consider a free scalar coupled to two-dimensional Euclidean gravity, with a cosmological constant and a topological Einstein term on a smooth, compact two dimensional manifold $\mathcal{M}_h$ with genus $h$ and metric $g$.
+\begin{equation}
+  \mathcal{S}_{\sigma}^{(h,g,\Phi_0)}=\frac{1}{4\pi}\int_{\mathcal{M}_h} d^2 x \sqrt{g}\left(g^{\mu \nu}\partial_\mu X \partial_\nu X +\Phi_0\mathcal{R}+4 \pi \mu\right)\,.
+\end{equation}
+$\Phi_0$ is a constant and as we will see later is connected to the constant part of the linear dilaton background. The Gauss-Bonnet theorem states that $\frac{1}{4\pi}\int d^2x \sqrt{g}$ is a topological number known as the Euler characteristic $\chi_h=2-2h$. The partition function is defined through the path-integral over all possible metrics on $\mathcal{M}_{h}$ modulo Diffeomorphism and the boson $X$
+\begin{equation}
+  \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \int \frac{[Dg^{(h)}_{\mu \nu}]}{\text{Vol}(\text{Diffeo})} [DX]e^{-\mathcal{S}_{\sigma}^{(h,g)}}\,,
+\end{equation}
+where we introduced the notation $g_0 = e^{\Phi_0}$. Note that we remove the $\Phi_0$ from $\mathcal{S}^{(\sigma,h,\Phi_0)}$ since we have extracted the topological dependent factor from the action. We can gauge fix the metric to the fiducial metric $g_{\mu \nu}=e^{2b\phi}\hat{g}_{\mu \nu}^{(\tau)}$. The price to pay is the introduction of b, c ghost fields. The measure is not invariant under the previous map. Also, the cosmological constant term yields a non trivial $\phi$ dependence (because of the cc term, even classically Weyl symmetry is broken). Combined together, they yield the Liouville action
+\begin{equation}
+  \mathcal{S}^{(\hat{g}_h)}_{L}=\frac{1}{4\pi}\int d^2x \sqrt{\hat{g}_h}\left(\hat{g}^{\mu \nu}_h \partial_\mu \phi \partial_\nu \phi +Q \hat{\mathcal{R}}\phi+4\pi\mu e^{2b\phi}\right)\,.
+\end{equation}
+We emphasize that the term in front of the Ricci scalar term comes from the anomaly of the measure.
+The remaining intergal to perform is an integral over the conformal mode $\phi$ known as the Liouville field and an integral over the moduli space parametrized by $\tau$ introduced previously.
+\begin{equation}
+  M_{h}=\frac{\text{Metrics on }\mathcal{M}_h}{\text{Diffeo} \times \text{Weyl}}\,.
+\end{equation}
+Hence, if modular invariance is satisfied, the partition function finally reads
+\begin{equation}\label{eq:finalgaugefixing}
+  \begin{aligned}
+    \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \int d\tau \int [D\phi][DX][Db][Dc]e^{-(\mathcal{S}_{\sigma}+\mathcal{S}_{b,c}+\mathcal{S}_{L})}\,,
+  \end{aligned}
+\end{equation}
+where $V_{h}$ is the volume of the moduli space of $M_h$. Let's focus on the Liouville sector for a moment. We can exploit that $\phi$ is integrated over to extract the $\mu$ dependence of the Liovuille partition function. In fact, assuming the measure is invariant under $\phi \rightarrow \phi -\frac{\log(\mu)}{2b}$, one obtains
+\begin{equation}\label{eq:KPZ}
+  \mathcal{Z}^{(h)}_L(\mu) = \mu^{-\frac{Q\chi_h}{2b}}\mathcal{Z}^{(h)}_L(\mu = 1)\,.
+\end{equation}
+
+\paragraph{Liouville action and Target space interpretation} The different terms appearing in the Liouville+matter action have a meaning in terms of Target space fields. Let's recall the general form of the generalized non linear sigma model in presence of a dilaton $\Phi(Y)$, a Tachyon condensate $T(Y)$ and non trivial metric $G_{\mu \nu}(Y)$.
+\begin{equation}
+  \mathcal{S} = \frac{1}{4\pi}\int d^2x \sqrt{\hat{g}}\left(T(Y)+Q\hat{\mathcal{R}}\Phi(Y)+g^{ab}G_{\mu \nu}\partial_a Y^\mu \partial_b Y^\nu\right)\,.
+\end{equation}
+We see by comparison to the Liouville + matter action that $Y = (X,\Phi)$ and
+\begin{equation}\label{eq:background}
+  T = \mu e^{2b \phi}\sp G_{\mu \nu} = \delta_{\mu \nu}\sp  \Phi = \frac{\Phi_0}{Q}+\phi\,. 
+\end{equation}
+This is important to note that the background~\eqref{eq:background} is solution of the one-loop vanishing of the $\beta$ functions only for $\mu=0$. For $\mu\neq0$ the Liouville interaction should be interpreted as a tachyon-wall background rather than as a naive linear-dilaton solution of the free beta-function equations.
+
+There is also an easy way that the potential plays the role of a Tachyon condensate. Indeed, the vertex operator reads
+\begin{equation}
+  \mathcal{V}_{T} = e^{i k.Y} := e^{ikX +2\alpha \phi}\,.
+\end{equation}
+The marginality condition fixes $\Delta_X + \Delta_\phi = \Delta_X + \alpha(Q-\alpha)=1$. Solving the previous condition with $\Delta_X=0$ and selecting the state satisfying the Seiberg bound one obtains $\alpha = b$. We denote the integrated vertex operator as
+\begin{equation}
+  V_{T} = \int d^2x \sqrt{\hat{g}} \,\mathcal{V}_T\,.
+\end{equation}
+The Tachyon condensate results in an insertion of the infinite sum of $(\mu \,V_T)^n$
+\begin{equation}
+  \sum_{n=0}^{\infty}\frac{\mu^n}{n!} \int d^2x_1 \sqrt{\hat{g}} ... \int d^2x_n \sqrt{\hat{g}} \,e^{2 b\phi(x_1)}...e^{2 b\phi(x_n)}\,.
+\end{equation}
+Remark that we effectively started with a sigma model with one boson and landed on a theory which has now two bosons $X,\phi$. We say that from the non-decoupling of the conformal mode, a new dimension has emerged. This describes a inhomogeneous 2D space $(\phi,X)$. Such inhomogeneity emerges in the $\phi$ direction due to the Liouville potential. The string coupling depends on the value of the dilaton and thus on the position in the $\phi$ direction as the dilaton and the Liouville conformal mode are related by~\eqref{eq:background}. An observer sitting on the Liouville wall defined by the condition
+\begin{equation}
+  \mu e^{2b\phi_\star} = 1 \Rightarrow \Phi_\star = \frac{\Phi_0}{Q} + \phi_\star = \Phi_0 -\frac{\log(\mu)}{2b}\,.
+\end{equation}
+observes the scattering of states with the string coupling $g_\star = e^{Q\Phi_\star}$. The amplitude of the process should be perturbatively described by a genus expansion in the string coupling at the position of the Liouville wall and this is exactly what the KPZ scaling relation gives (see~\eqref{eq:finalgaugefixing},~\eqref{eq:KPZ}).
+\paragraph{Genus 0 Lagrangian}
+On the sphere $h=0$, we choose a representant of the conformal class $\hat{g}_h$ such that the metric is flat on the complex plane $(z,\bar{z})$ except at one point which is taken at infininity.
+If one writes $ds^2 = 2 dz d\bar{z}$, then the Liouville Lagrangian density on the sphere is 
+\begin{equation}
+  \begin{aligned}
+    L_{\rm bulk.} &= \frac{1}{4\pi}\left(\partial_z\phi \partial_{\bar{z}}\phi+Q \hat{\mathcal{R}}\phi+\mu e^{2b\phi}\right)\\
+    &=\frac{1}{4\pi}\left(-\phi \partial_z\partial_{\bar{z}}\phi+Q \hat{\mathcal{R}}\phi+\mu e^{2b\phi}+\text{total derivative}\right)\,.
+  \end{aligned}
+\end{equation}
+Choosing the representative of the conformal class which is flat on $\mathbb{C}$ trades the bulk curvature coupling for an asymptotic boundary condition at $z = \infty$. Thus the curvature term does not appear explicitly in the local Lagrangian density on the finite plane, but its effect is retained through the background-charge condition on $\phi$ at infinity.
+\begin{equation}
+  \phi(z,\bar{z}) \underset{z \to \infty}{=}  - 2Q \log (z\bar{z})+\mathcal{O}(1)\,.
+\end{equation}
+In fact, $\partial_z\partial_{\bar{z}}\log(z\bar{z}) = 2\pi \delta^2(z,\bar{z})$.
+
+\paragraph{Adding a boundary to the manifold}
+Consider now the possibility of adding a boundary and a non trivial interaction.
+\begin{equation}
+  \mathcal{S}^{\rm bound .}_L = \frac{1}{4\pi}\int d^2x \sqrt{\hat{g}_h}\left(\hat{g}^{\mu \nu}_h \partial_\mu \phi \partial_\nu \phi +Q \hat{\mathcal{R}}\phi+4\pi\mu e^{2b\phi}\right) + \frac{1}{2\pi}\int_{\partial M}ds \sqrt{\hat{h}}\hat{K}\phi + \mu_b\int_{\partial M} ds \sqrt{\hat{h}}e^{b\phi}\,.
+\end{equation}
+$h$ is the physical metric at the boundary and is related to the fiducial metric via $\sqrt{h}=e^{b\phi}\sqrt{\hat{h}}$ and $\hat{K}$ is the extrinsic curvature at the boundary. $\mu_b$ is the boundary cosmological constant but should also be understood as the tension/charge of the associated brane. The variational principle is well defined as long as it satisfies Dirichlet boundary conditions at the boundary. It can also satisfies Neumann boundary conditions if
+\begin{equation}
+  n^{\mu}\partial_\mu\phi + \hat{K} +2\pi b \mu_b =0\,.
+\end{equation}
+
+\appendix
+\section{Boundary states: Ishibashi states vs Cardy states}
+We first introduce Virasoro primary states. Highest-weight representations of the Virasoro algebra are generated from states $\ket{V_P}$ satisfying
+\begin{equation}
+  L_0 \ket{V_P} = \Delta_P \ket{V_P}, 
+  \qquad 
+  L_n \ket{V_P} = 0 \quad (n>0),
+  \qquad 
+  \Delta_P = \frac{Q^2}{4}-P^2 .
+\end{equation}
+We do not impose any normalization condition on the states $\ket{V_P}$.
+
+On a conformal representative of a manifold with boundary, preserving one copy of the conformal symmetry requires the absence of momentum flow through the boundary,
+\begin{equation}
+  n_\mu T^{\mu\nu}=0 .
+\end{equation}
+At the quantum level, this condition translates into the gluing condition
+\begin{equation}
+  \left(L_n-\bar L_{-n}\right)\ket{B}=0,
+  \qquad n\in \mathbb{Z},
+\end{equation}
+where the boundary state $\ket{B}$ is viewed as a closed-string state.
+
+For each Virasoro representation generated by a primary state $\ket{V_P}$, there exists an Ishibashi state, denoted by $\ket{P}$, which solves the gluing condition. It can be written formally as
+\begin{equation}
+  \ket{P}
+  =
+  \sum_{N\geq 0}
+  \sum_{I,J\in \mathcal{P}_N}
+  \left(S^{(N)}\right)^{-1}_{IJ}
+  L_{-I}\ket{V_P}
+  \otimes
+  \overline{L_{-J}\ket{V_P}} ,
+\end{equation}
+where $\mathcal{P}_N$ denotes the set of partitions of the level $N$, 
+$L_{-I}=L_{-i_1}\cdots L_{-i_k}$ for $I=(i_1,\ldots,i_k)$ with $\sum_a i_a=N$, and $S^{(N)}$ is the Shapovalov matrix of Virasoro descendants at level $N$.
+In general, physical boundary states also called Cardy states need not to be Ishibashi states. Physical boundary states $\ket{s_1},\,\ket{s_2}$ satisfy the open/close string duality Cardy condition. Let an annulus of unit width for which the circle has length $\beta$. Then
+\begin{equation}
+\begin{aligned}
+  Z_{s_1\,s_2}(\beta) &= \rm{Tr}[e^{-\beta H_{s_1\,s_2}}] = \sum_{h} n^{s_1\,s_2}_h \chi_h(\beta) \\
+                &= \bra{s_1} e^{-H/\beta} \ket{s_2}\,.
+\end{aligned}
+\end{equation}
+This condition should be understood as determining $n_{h}^{s_1\,s_2}$.
+
+
+\end{document}
+

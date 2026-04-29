@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from mpmath import mp, barnesg
 import numpy as np
 import matplotlib.pyplot as plt
+from cxroots import Rectangle
 
 # -------- Global settings --------
 mp.dps = 20 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
@@ -379,6 +380,7 @@ def Gram_determinantf(Theory: Theory, P1:complex, P2:complex, P3:complex, P4:com
     G = Gram_matrixf(Theory, P1, P2, P3, P4, Ps, Pt)
     return mp.det(G)
 
+    
 def quantum_determinantf(Theory: Theory, P1:complex, P2:complex, P3:complex, P4:complex, Ps:complex, Pt:complex):
     return -4*Gram_determinantf(Theory, P1, P2, P3, P4, Ps, Pt)/(smn(Theory, Ps)**2*smn(Theory, Pt)**2)
 
@@ -391,6 +393,160 @@ def rootsf(Theory: Theory, P1:complex, P2:complex, P3:complex, P4:complex, Ps:co
     z_minus = (-beta_val -2j*smn(Theory, Ps)*smn(Theory, Pt)*mp.sqrt(quantum_determinantf(Theory, P1, P2, P3, P4, Ps, Pt))) / (2 * alpha_val)
 
     return z_plus, z_minus
+
+# =========================================
+# Branch-point candidates of the quantum modular fusion determinant
+# =========================================
+
+# =========================================
+# Fast display of candidate branch points of D^(f)
+# =========================================
+
+def replace_fusion_argument(P1, P2, P3, P4, Ps, Pt, variable: int, z):
+    if variable not in [1, 2, 3, 4, 5, 6]:
+        raise ValueError("variable must be one of 1,2,3,4,5,6")
+
+    args = [P1, P2, P3, P4, Ps, Pt]
+    args[variable - 1] = z
+    return args
+
+
+def detG_variable(
+    Theory: Theory,
+    P1: complex,
+    P2: complex,
+    P3: complex,
+    P4: complex,
+    Ps: complex,
+    Pt: complex,
+    variable: int,
+):
+    def f(z):
+        args = replace_fusion_argument(P1, P2, P3, P4, Ps, Pt, variable, z)
+        return Gram_determinantf(Theory, *args)
+
+    return f
+
+
+def trivial_singularities_quantumdeterminant(
+    Theory: Theory,
+    variable: int,
+    length: float = 5.0,
+):
+    if variable not in [1, 2, 3, 4, 5, 6]:
+        raise ValueError("variable must be one of 1,2,3,4,5,6")
+
+    if variable not in [5, 6]:
+        return np.array([], dtype=complex)
+
+    s = float(Theory.s)
+    kmax = int(np.floor(2 * s * length))
+
+    poles = [k / (2 * s) for k in range(-kmax, kmax + 1)]
+    return np.array(poles, dtype=complex)
+
+
+def plot_fast_branch_candidates_quantumdeterminant(
+    Theory: Theory,
+    P1: complex,
+    P2: complex,
+    P3: complex,
+    P4: complex,
+    Ps: complex,
+    Pt: complex,
+    variable: int,
+    length: float = 5.0,
+    resolution: int = 300,
+    eps_level: float = 1e-3,
+):
+    """
+    Fast visual diagnostic for candidate branch points of sqrt(D^(f)).
+
+    Instead of finding roots with cxroots, this plots log10(|det G^(f)|).
+    Dark valleys / small contours indicate zeros of det G^(f), hence candidate
+    branch points of sqrt(D^(f)).
+
+    This is much faster than contour root finding.
+    """
+
+    f = detG_variable(Theory, P1, P2, P3, P4, Ps, Pt, variable)
+
+    x = np.linspace(-length, length, resolution)
+    y = np.linspace(-length, length, resolution)
+    X, Y = np.meshgrid(x, y)
+
+    Z = np.empty_like(X, dtype=float)
+
+    for i in range(resolution):
+        for j in range(resolution):
+            z = mp.mpc(X[i, j], Y[i, j])
+            val = f(z)
+            Z[i, j] = np.log10(float(abs(val)) + 1e-30)
+
+    variable_names = [
+        r"P_1",
+        r"P_2",
+        r"P_3",
+        r"P_4",
+        r"P_s",
+        r"P_t",
+    ]
+
+    variable_name = variable_names[variable - 1]
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+
+    im = ax.contourf(
+        X,
+        Y,
+        Z,
+        levels=80,
+    )
+
+    plt.colorbar(im, ax=ax, label=r"$\log_{10}|\det G^{(f)}|$")
+
+    # Optional small-level contour for |detG| = eps_level
+    ax.contour(
+        X,
+        Y,
+        np.exp(np.log(10) * Z),
+        levels=[eps_level],
+        linewidths=1.0,
+    )
+
+    trivial_singularities = trivial_singularities_quantumdeterminant(
+        Theory, variable, length
+    )
+
+    if len(trivial_singularities) > 0:
+        ax.scatter(
+            trivial_singularities.real,
+            trivial_singularities.imag,
+            marker="x",
+            s=80,
+            label=r"poles of $D^{(f)}$, not branch points",
+        )
+
+    ax.axhline(0, linewidth=0.8)
+    ax.axvline(0, linewidth=0.8)
+
+    ax.set_xlim(-length, length)
+    ax.set_ylim(-length, length)
+    ax.set_aspect("equal", adjustable="box")
+
+    ax.set_xlabel(rf"$\operatorname{{Re}} {variable_name}$")
+    ax.set_ylabel(rf"$\operatorname{{Im}} {variable_name}$")
+
+    ax.set_title(
+        rf"Fast branch-candidate plot while varying ${variable_name}$"
+    )
+
+    ax.grid(True, alpha=0.25)
+
+    if len(trivial_singularities) > 0:
+        ax.legend()
+
+    plt.show()
 
 # =========================================
 # Fusion Kernels
@@ -1071,6 +1227,16 @@ if DEMO:
     print(f"LHS = {LHSmixingsymmetriesFplus}")
     print(f"RHS = {RHSmixingsymmetriesFplus}")
     print()
+
+    # # #--- Demo 24: Branch points quantumdeterminant
+    plot_fast_branch_candidates_quantumdeterminant(
+    theo,
+    P1, P2, P3, P4, Ps, Pt,
+    variable=6,
+    length=5,
+    resolution=250,
+    eps_level=1e-3,
+)
 
 
     
