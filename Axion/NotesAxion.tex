@@ -280,11 +280,11 @@ After some manimpulations one obtains
 We also have the additional boundary terms
 \begin{equation}
   \begin{aligned}
-    \mathcal{S}_{GHY} = -\frac{dV_{d}a'a^{d-1}}{\kappa N}\Bigg|_{\partial M}\sp \mathcal{S}_{\partial M} = -\frac{V_d}{N}\,a^d \chi \partial_\tau \chi \Bigg|_{\partial M}+\mathcal{S}_{GHY}+\,.
+    \mathcal{S}_{GHY} = -\frac{dV_{d}a'a^{d-1}}{\kappa N}\Bigg|_{\partial M}\sp \mathcal{S}_{\partial M} = -\frac{V_d}{N}\,a^d \chi \partial_\tau \chi \Bigg|_{\partial M}\,.
   \end{aligned}
 \end{equation}
 The on-shell action thus takes the simple expression
-\begin{equation}
+\begin{equation}\label{eq:on-shell_action}
   S^{\rm on-shell} = V_{d}\,\int d\tau N a^{d}\left(-\frac{2V_{\rm np}}{D-2}-\frac{2\Lambda}{\kappa(D-2)}\right)+\mathcal{S}_{GHY}+\mathcal{S}_{\partial M}\,.
 \end{equation}
 This on-shell action is an important quantity since the final question one should answer is how it evolves as a function of the number of bubbles. The flow paramater is $u= N \tau$. Remark that the on-shell action does not depend on the kinitic term and can be easily deduced from this formula once $\chi$ and the scale factor is known. 
@@ -326,11 +326,64 @@ Let's summurize the set of equations here for general ($k,\,\Lambda,\,N$)
   \begin{aligned}
     \partial_\tau\left(\frac{a^d}{N}\partial_\tau \chi\right)+Na^{d}\partial_{\chi}V_{np}(\chi)&=0\,.\\
     \frac{d(d-1)}{a^2}\left(\frac{a'^2}{N^2}-k\right)+2\kappa\left(\frac{(\partial_\tau \chi)^2}{2N^2}+V_{\rm np}(\chi)+\frac{\Lambda}{\kappa}\right)&=0\,,\\
-    \frac{(d-1)(d-2)}{a^2}\left(k+\frac{a'^2}{N^2}\right)-\frac{2d(d-1)}{Na^{d-1}}\frac{d}{d\tau}\left(\frac{a' a^{d-2}}{N}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2N^2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
+    \frac{(d-1)(d-2)}{a^2}\left(k+\frac{a'^2}{N^2}\right)-\frac{2(d-1)}{Na^{d-1}}\frac{d}{d\tau}\left(\frac{a' a^{d-2}}{N}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2N^2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
   \end{aligned}
 \end{equation}
 \paragraph{Non-running solutions}
-A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will define the vacuum (background) of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$. 
+A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will benchmark of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$.
+\begin{itemize}
+  \item If $\Lambda_{\rm eff}>0$
+  \begin{itemize}
+    \item If $k=1\Rightarrow a(\tau)=\frac{1}{H_{dS}}\sin(H_{dS}\tau)\sp \text{with } H_{dS}=\sqrt{\frac{2\Lambda_{\rm eff}}{d(d-1)}}\Rightarrow$ $EdS_{d+1}$ in spherical slices.
+    \item Otherwise, there are no solutions for $a$ real.
+  \end{itemize}
+  \item If $\Lambda_{\rm eff}<0$
+  \begin{itemize}
+    \item If $k=1\Rightarrow a(\tau)=\frac{1}{H_{AdS}}\sinh(H_{AdS}\tau)\sp \text{with } H_{AdS}=\sqrt{-\frac{2\Lambda_{\rm eff}}{d(d-1)}}\Rightarrow$ $EAdS_{d+1}$ in spherical slices.
+    \item If $k=-1\Rightarrow a(\tau)=\frac{1}{H_{AdS}}\cosh(H_{AdS}\tau)\Rightarrow$ $EAdS_{d+1}$ in hyperbolic slices.
+    \item If $k=0\Rightarrow a(\tau)=\frac{1}{H_{AdS}}\exp(H_{AdS}\tau)\Rightarrow$ $EAdS_{d+1}$ in flat slices.
+  \end{itemize}
+  \item If $\Lambda_{\rm eff}=0$
+    \begin{itemize}
+      \item If $k=1\Rightarrow a(\tau)=\tau \Rightarrow \mathbb{R}_{d+1}$. These are cylinder coordinates associated to Euclidean space.
+      \item If $k=0\Rightarrow a(\tau) = \rm{const}$. Upon rescaling the transverse flat slices, these are standard cartesian coordinates.
+    \end{itemize}
+\end{itemize}
+We now focus on compact=spherical slices to obtain a finite action. We could also regulate the infinite volume of the transverse slices but we postpone this issue for latter. In these non-running solutions, the boundary term from the axion part trivially vanishes. We also observe that the bulk on-shell action always take the simple form
+\begin{equation}\label{eq:bulkonshelltrivial}
+  S^{\rm on-shell}_{\rm bulk} =-\frac{2V_d\Lambda_{\rm eff}}{\kappa(D-2)}\int d\tau a^d\,.
+\end{equation}
+\begin{itemize}
+  \item If $\Lambda_{\rm eff}>0$: There is no boundary since the geometry is a sphere and thus the Gibbons-Hawking York term trivially vanishes. One finds
+  \begin{equation}
+    \begin{aligned}
+      S^{\rm on-shell} &= -\frac{V_d\Lambda_{\rm eff}}{\kappa(D-2)H_{dS}^{d+1}}\frac{\sqrt{\pi}\Gamma\left(\frac{1+d}{2}\right)}{\Gamma(1+\frac{d}{2})}\\
+      &= -\frac{d\,V_{d+1}}{\kappa H_{dS}^{d-1}}\,.
+    \end{aligned}
+  \end{equation}
+  This should be seen as the semi-classical contribution to the dS free energy.
+  \item If $\Lambda_{\rm eff}<0$: We have an asymptotically EAdS space and thus the action should diverge when approaching the boundary at $\tau \to \infty$. We thus regulate the action by fixing the radius of the boundary $a(\tau_f)=R$
+  \begin{equation}
+  \begin{aligned}
+    S^{\rm on-shell}_{\rm bulk} &=-\frac{2V_d\Lambda_{\rm eff}}{\kappa(D-2)}\int d\tau a^d = -\frac{2V_d\Lambda_{\rm eff}}{\kappa(D-2)H_{AdS}^{d+1}} \int_0^{H_{AdS}R}du \frac{u^{d}}{\sqrt{1+u^2}}\,.\\
+    &=-\frac{2V_d\Lambda_{\rm eff}}{\kappa(D-2)} \frac{R^{d+1}}{d+1}\,{}_2F_1\left(\frac{1}{2},\frac{1+d}{2},\frac{3+d}{2},-(H_{AdS}R)^2\right)\,.
+  \end{aligned}
+  \end{equation}
+  The Gibbons-Hawking yields
+  \begin{equation}
+    S_{GHY}=-\frac{dV_{d}\sqrt{1+H_{AdS}^2 R^2}R^{d-1}}{\kappa}\,.
+  \end{equation}
+  Combining these two contributions yield
+  \begin{equation}
+    S^{\rm on-shell} = -\frac{2V_d\Lambda_{\rm eff}}{\kappa(D-2)} \frac{R^{d+1}}{d+1}\,{}_2F_1\left(\frac{1}{2},\frac{1+d}{2},\frac{3+d}{2},-(H_{AdS}R)^2\right)-\frac{dV_{d}\sqrt{1+H_{AdS}^2 R^2}R^{d-1}}{\kappa}\,.
+  \end{equation}
+  \item If $\Lambda_{\rm eff}=0$: the bulk on-shell action trivially vanishes. We still need to regularize the integral because the GHY term diverges. We thus obtain
+  \begin{equation}
+    S^{\rm on-shell} = -\frac{dV_{d}R^{d-1}}{\kappa}\,.
+  \end{equation}
+\end{itemize}
+
+
 
 \end{document}
 
