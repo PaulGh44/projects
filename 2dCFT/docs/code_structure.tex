@@ -364,6 +364,138 @@ After checking that we are ready to implement the pentagon identity for the spac
     \end{aligned}\,,
 \end{equation}
 where $\mathbb{F}$ denotes a generic kernel (it could be $\mathbb{F}^{(\pm)}$ or the Teschner-Vartanov one $\mathbb{F}^{(TV)}$ or something else that has the same arguments).
+
+\paragraph{Studying a particular case of the Pentagon identity analytically}
+Let's first discuss the case where all the free momenta are equal to $1/4$ and we take the kernels to be the Teschener-Vartanov one. The RHS reads
+\begin{equation}\label{eq:RHSpentagon}
+    \left(\mathbb{F}^{(TV)}_{1/4, 1/4} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix}\right)^2 = \sin^2(\pi/8) = \frac{2-\sqrt{2}}{4}\,.
+\end{equation}
+The LHS reads
+\begin{equation}
+    \int_{i\mathbb{R}} \frac{dP_s}{i} \, \mathbb{F}^{(TV)}_{1/4, 1/4} 
+    \begin{bmatrix}
+     P_s & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix}
+\mathbb{F}^{(TV)}_{1/4, P_s} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix}
+\mathbb{F}^{(TV)}_{P_s, 1/4} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix}\,.
+\end{equation}
+We would like to show something like
+\begin{equation}
+    \int \frac{dP_s}{i}\mathcal{I}(P_s) = 2\pi \sum_{n\geq 0} c_n = \sin^2\left(\frac{\pi}{8}\right)\,,
+\end{equation}
+where $c_n$ are the residues of $\mathcal{I}(P_s)$ the integrand in the LHS. The two last terms in the integrand can be simplified using the relation~\eqref{eq:RibaultTsiares}
+\begin{equation}\label{eq:intermadiateLHSpentagon}
+    \mathbb{F}^{(TV)}_{1/4, P_s} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix}
+\mathbb{F}^{(TV)}_{P_s, 1/4} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix} = \sin^2\left(\frac{\pi P_s}{2}\right)\,.
+\end{equation}
+We thus observe from~\eqref{eq:RHSpentagon} and~\eqref{eq:intermadiateLHSpentagon} that it suffices that the first term in the integrand imposes a kind of delta function at $P_s=1/4$ for the pentagon identity to be satisfied in this specific case. Let's look at the expression of the first term. We use the mixing property~\eqref{eq:mixingproperty} as well as the symmetry under exchange of external momenta
+\begin{equation}
+    \begin{aligned}
+    \mathbb{F}^{(TV)}_{1/4, 1/4} 
+    \begin{bmatrix}
+     P_s & 1/4 \\
+     1/4 & 1/4
+     \end{bmatrix} &= \mathbb{F}^{(TV)}_{1/4, 1/4} 
+    \begin{bmatrix}
+     1/4 & P_s \\
+     1/4 & 1/4
+     \end{bmatrix} = \mathbb{F}^{(TV)}_{P_s, 1/4} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4
+    \end{bmatrix}\frac{\mathbb{F}^{(TV)}_{\mathbb{I}, 1/4} 
+    \begin{bmatrix}
+     1/4 & P_s \\
+     1/4 & P_s \end{bmatrix}}{\mathbb{F}^{(TV)}_{\mathbb{I}, 1/4} 
+    \begin{bmatrix}
+     1/4 & 1/4 \\
+     1/4 & 1/4 \end{bmatrix}}\\
+    &= -\frac{1}{4P_s}16^{\left(\frac{1}{4}\right)^2-P_s^2}\sin\left(\frac{\pi P_s}{2}\right)\frac{\mathbb{F}^{(TV)}_{\mathbb{I}, 1/4} 
+    \begin{bmatrix}
+     1/4 & P_s \\
+     1/4 & P_s \end{bmatrix}}{-\frac{1}{2Q}16^{\left(\frac{1}{4}\right)^2-\frac{Q^2}{4}}\sin\left(\frac{\pi Q}{4}\right)}\\
+    &= \frac{Q}{2P_s}16^{\frac{Q^2}{4}-P_s^2}\frac{\sin\left(\frac{\pi P_s}{2}\right)}{\sin\left(\frac{\pi Q}{4}\right)}\mathbb{F}^{(TV)}_{\mathbb{I}, 1/4} 
+    \begin{bmatrix}
+     1/4 & P_s \\
+     1/4 & P_s \end{bmatrix}\,.
+    \end{aligned}
+\end{equation}
+Finally, we can use the expression of the Teschner-Vartanov kernel for an identity internal momentum in terms of bulk CFT data
+\begin{equation}\label{eq:identityintermsofCFTdata}
+    \mathbb{F}^{(TV)}_{\mathbb{I}, P_1} 
+    \begin{bmatrix}
+     P_2 & P_3 \\
+     P_2 & P_3 \end{bmatrix} = \frac{1}{2}\rho_0(P_1)C_0(P_1,P_2,P_3)\,,
+\end{equation}
+yielding for our specific case
+\begin{equation}
+    \mathbb{F}^{(TV)}_{\mathbb{I}, 1/4} 
+    \begin{bmatrix}
+     1/4 & P_s \\
+     1/4 & P_s \end{bmatrix} = \frac{1}{2}\rho_0(1/4)C_0(1/4,1/4,P_s) = -2\sqrt{2}\sin\left(\frac{\pi b}{2}\right)\sin\left(\frac{\pi}{2b}\right)C_0(1/4,1/4,P_s)\,.
+\end{equation}
+All in all the integrand of the LHS is esily expressed in terms of the bulk structure constants
+\begin{equation}
+    \mathcal{I}(P_s) = -\frac{Q\sqrt{2}}{P_s}16^{\frac{Q^2}{4}-P_s^2}\frac{\sin^3\left(\frac{\pi P_s}{2}\right)}{\sin\left(\frac{\pi Q}{4}\right)}\sin\left(\frac{\pi b}{2}\right)\sin\left(\frac{\pi}{2b}\right)C_0(1/4,1/4,P_s)\,.
+\end{equation}
+Importantly, this is supposed to hold for $c=25\Rightarrow b=1\,,Q=2$, thus we can further simplify to
+\begin{equation}\label{eq:finalTVintegrand}
+    \mathcal{I}(P_s) = -\frac{2\sqrt{2}}{P_s}16^{1-P_s^2}\sin^3\left(\frac{\pi P_s}{2}\right)C_0(1/4,1/4,P_s)\,.
+\end{equation}
+In order to perform the integral, this is useful to analyse the pole structure of the bulk structure constants. Note first that the integrand is manifestly an even function of $P_s$. We recall here the expression of the bulk structure constants in the specific case where $Q=2$
+\begin{equation}\label{eq:structureconstantsc25}
+    C_0^{(b)}(1/4,1/4,P_s)= \frac{\Gamma_b(4)\Gamma_b(1\pm \frac{1}{4} \pm \frac{1}{4} \pm P_s)}{\sqrt{2} \Gamma_b(2)^3 \prod_{j=1}^{3} \Gamma_b(2\pm 2P_j)}\,.
+\end{equation}
+Recall now that the double Gamma function has no zeroes and simple poles ar $x\in -\mathbb{N}b-\mathbb{N}b^{-1}=-\mathbb{N}$ (in the case $b=1$). From~\eqref{eq:structureconstantsc25}, we thus concluse that the set of poles at the numerator is
+\begin{equation}
+    \mathcal{P} = \pm\frac{1}{4}\pm\frac{1}{4}\pm\mathbb{N}^{\star}\,,
+\end{equation}
+while the set of poles of the denominator is 
+\begin{equation}
+    \mathcal{Z} = \pm\left(1+\frac{\mathbb{N}}{2}\right)\,.
+\end{equation}
+After a bit of algebra (and if you carefully analyse the multiplicity of the poles), one can check that the structure constants have simple poles at
+\begin{equation}
+    P_s \in \frac{\mathbb{N}^\star}{2} \sqcup \left(-\frac{\mathbb{N}^\star}{2}\right)\,.
+\end{equation}
+Let's analyse the residue of~\eqref{eq:finalTVintegrand} at $P_s=1/2$. The prefactor in front of $C_0(1/4,1/4,P_s)$ at $P_s=1/2$ is simply 
+\[
+-4\sqrt{2}\times 8 \times \left(\frac{\sqrt{2}}{2}\right)^3 = -16\,.
+\]
+There is also a prefactor in $C_0(1/4,1/4,P_s)$ which does not contribute to the pole ($b=1$)
+\begin{equation}
+        \frac{\Gamma_b(4)}{\sqrt{2}\Gamma_b(2)^3}\frac{\Gamma_b(1)^2 \Gamma_b(2)\Gamma_b(1/2)^2 \Gamma_b(-1/2)^2}{\Gamma_b(3)\Gamma_b(1)\Gamma_b(3/2)^2 \Gamma_b(5/2)^2}=\frac{1}{64\sqrt{\pi}}\,.
+\end{equation}
+Finally,
+\begin{equation}
+    \underset{P_s=1/2,\,b=1}{\mathrm{Res}}\Gamma_b\left(\frac{1}{2}-P_s\right)=-\frac{1}{\sqrt{2\pi}}\,.
+\end{equation}
+Thus,
+\begin{equation}
+    \underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s) = \frac{1}{4\sqrt{2}\pi}\,.
+\end{equation}
+\paragraph{Idempotency relation}
 Finally, the idemptency relation reads
 \begin{equation}\label{eq:idempotencyf}
     \int_{\mathbb{R}} dp \,\mathbb{F}^{(b)}_{P_s, ip} \begin{bmatrix}
@@ -1464,11 +1596,5 @@ LHSVerlindeformula = (0.0018437816707970328695 - 1.2143930559352561683e-6j)
 RHSVerlindeformula = (0.0018361623980578999904 - 1.2095319899761086453e-6j)
 \end{lstlisting}
 
-
-As you can see, I did a plot of the quantum modular determinant in the complex. As you can observe, a very strong pattern is observed! Exercise: try to understand this very interesting pattern...
-\begin{figure}[t!]
-    \includegraphics[width=0.8\textwidth]{Quantummodulardeterminant.png}
-    \caption{Phase plot of the quantum determinant in the $P_s$ complex plane. The parameters are $P_1=0.2i$, $P_2=0.3i$, $P_3=0.4i$, $P_4=0.5i$, $P_t=0.7i$ and $m=n=1$.}
-\end{figure}
 
 \end{document}
