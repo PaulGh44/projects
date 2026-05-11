@@ -329,8 +329,16 @@ Let's summurize the set of equations here for general ($k,\,\Lambda,\,N$)
     \frac{(d-1)(d-2)}{a^2}\left(k+\frac{a'^2}{N^2}\right)-\frac{2(d-1)}{Na^{d-1}}\frac{d}{d\tau}\left(\frac{a' a^{d-2}}{N}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2N^2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
   \end{aligned}
 \end{equation}
+In the $N=1$ gauge, it yields
+\begin{equation}\label{eq:Nequal1gauge}
+  \begin{aligned}
+    \partial_\tau\left(a^d\partial_\tau \chi\right)+a^{d}\partial_{\chi}V_{np}(\chi)&=0\,.\\
+    \frac{d(d-1)}{a^2}\left(a'^2-k\right)+2\kappa\left(\frac{(\partial_\tau \chi)^2}{2}+V_{\rm np}(\chi)+\frac{\Lambda}{\kappa}\right)&=0\,,\\
+    \frac{(d-1)(d-2)}{a^2}\left(k+a'^2\right)-\frac{2(d-1)}{a^{d-1}}\frac{d}{d\tau}\left(a'a^{d-2}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
+  \end{aligned}
+\end{equation}
 \paragraph{Non-running solutions}
-A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will benchmark of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$.
+A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will benchmark of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$. We work in the $N=1$ gauge. 
 \begin{itemize}
   \item If $\Lambda_{\rm eff}>0$
   \begin{itemize}
@@ -383,7 +391,65 @@ We now focus on compact=spherical slices to obtain a finite action. We could als
   \end{equation}
 \end{itemize}
 
+\paragraph{Perturbative solutions} We focus on the 1-instanton sector and thus assume the potential has the following form 
+\begin{equation}
+  V_{\rm np}(\chi) = \lambda \cos(\chi f_{\alpha})\,,
+\end{equation}
+with $\lambda \ll 1$. We look for perturbative solutions in $\lambda$ of the form
+\begin{equation}
+\begin{aligned}
+  \chi(\tau) &= \chi_{(0)}(\tau) + \lambda \chi_{(1)}(\tau) + \lambda^2 \chi_{(2)}(\tau) + \dots \\
+  \a(\tau) &= a_{(0)}(\tau) + \lambda a_{(1)}(\tau) + \lambda^2 a_{(2)}(\tau) + \dots
+\end{aligned}
+\end{equation}
+We assume charged solution
+\begin{equation}
+\begin{aligned}
+  Q &= \int_{S^d} \star H = \int (\star)^2 d\chi \\
+    &= Q_{(0)} + \lambda Q_{(1)} + \lambda^2 Q_{(2)} + \dots \\
+    &= \int_{S^d} (\star)^2 d\chi_{(0)} + \lambda \int_{S^d} (\star)^2 d\chi_{(1)} + \lambda^2  \int_{S^d} (\star)^2 d\chi_{(2)}\,.
+\end{aligned}
+\end{equation}
+There are two observations. First, the trivial set of solutions discussed previously have vanishing axion charge. Second, these solutions have running charges a priori. This can be seen by integrating the first equation on the compact slices of~\eqref{eq:Nequal1gauge} yielding
+\begin{equation}
+  \partial_\tau Q + (-1)^dV_d\,a^d \partial_\chi V_{\rm np} = 0\,.
+\end{equation}
+As one can observe the non-perturbative potential has the effect of non-conservation of the axionic charge. We now wish to describe a perturbative way to obtain the solution. We still discuss k=1 in the $N=1$ gauge. At order $\lambda^0$, we obtain
+\begin{equation}
+  \begin{aligned}
+    \partial_{\tau}\left(a^d_{(0)}\partial_{\tau}\chi_{(0)}\right)&=0\,,\\
+    \frac{d(d-1)}{a_{(0)}^2}\left(a'^2_{(0)}-1\right)+2\kappa\left(\frac{(\partial_\tau \chi_{(0)})^2}{2}+\frac{\Lambda}{\kappa}\right)&=0\,.\\
+  \end{aligned}
+\end{equation}
+As we can observe the charge is constant at order $\lambda^{0}$ so $Q_{(0)} = \rm const.$
+These equations become
+\begin{equation}
+\begin{aligned}
+  a^d_{(0)}\partial_{\tau}\chi_{(0)} &=(-1)^d Q\,.\\
+  a'^2_{(0)} &=1-\frac{2\kappa}{(a_0)^2 d(d-1)}\left(\frac{Q^2}{(V_d)^2a_{(0)}^{2d}}+\frac{\Lambda}{\kappa}\right)\\
+  &=1-\frac{1}{a_{(0)}^2H_{dS}^2}-\frac{2\kappa}{d(d-1)}\frac{Q^2}{(V_d)^2a_{(0)}^{2d+2}}\,.
+\end{aligned}
+\end{equation}
+Once $a_{(0)}$ is known, $\chi_{(0)}$ is also known.
 
+At order $\lambda^1$, one obtains
+\begin{equation}
+\begin{aligned}
+  \partial_\tau\left(a_{(0)}^d \partial_\tau \chi_{(1)} + a_{(1)}^d \partial_\tau \chi_{(0)} \right)-a_{(0)}^d \lambda f_{\alpha}\sin(\chi_{(0)}) &=0\,.\\
+  \frac{d(d-1)}{a_{(0)}^2}\left(a'_{(0)}a_{(1)}' - \frac{a_{(1)}(a'_{(0)})^2}{a_{(0)}}-\frac{a_{(1)}k}{a_{(0)}}\right)+2\kappa\left(\partial_\tau \chi_{(0)} \partial_\tau \chi_{(1)}+\frac{\cos(\chi_{(0)}f_{\alpha})}{2}\right)&=0\,.
+\end{aligned}
+\end{equation}
+Now the question is whether or not we can solve analytically these set of perturbative equations.
+\paragraph{Numerical implementation}
+In parallel, we can numerically integrate the first two equations of~\eqref{eq:Nequal1gauge} which we recall here
+\begin{equation}
+  \begin{aligned}
+    \partial_\tau\left(a^d\partial_\tau \chi\right)-\lambda f_{\alpha} a^{d}\sin(\chi f_{\alpha})&=0\,.\\
+    \frac{d(d-1)}{a^2}\left(a'^2-k\right)+2\kappa\left(\frac{(\partial_\tau \chi)^2}{2}+\lambda \cos(\chi f_{\alpha})+\frac{\Lambda}{\kappa}\right)&=0\,.
+  \end{aligned}
+\end{equation}
 
+We want to solve for $(\chi,a)$. Note that these equations are unchanged under a time reversal transformation. It should be sufficient to give as initial conditions the value of $\chi$ which we set at a local maximum of the potential at $\chi=0$ WLOG. We also give an initial value for the scale factor $a(\tau=0) = \bf{a}>0$ as well as a velocity of the $\chi'(\tau=0) = \chi_0'$ particle.
+\PG{You cannot consistently impose $\chi'(0)=0=a'(0)$ to obtain non trivial $\mathbb{Z}_2$ even solutions. Indeed, the first equation imposes $\sin(\chi f_{\alpha})=0$ at the initial time so $\chi$ lies at an extremum. Then, the second equation gives the value of the scale factor wrt $\Lambda_{\rm eff}$.}
 \end{document}
 
