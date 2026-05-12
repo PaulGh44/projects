@@ -7,6 +7,8 @@
 \usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb} % or \usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
 
 \title{2dCFT Numerics: Code Structure and Conventions}
 
@@ -459,15 +461,15 @@ All in all the integrand of the LHS is esily expressed in terms of the bulk stru
 \begin{equation}
     \mathcal{I}(P_s) = -\frac{Q\sqrt{2}}{P_s}16^{\frac{Q^2}{4}-P_s^2}\frac{\sin^3\left(\frac{\pi P_s}{2}\right)}{\sin\left(\frac{\pi Q}{4}\right)}\sin\left(\frac{\pi b}{2}\right)\sin\left(\frac{\pi}{2b}\right)C_0(1/4,1/4,P_s)\,.
 \end{equation}
-Importantly, this is supposed to hold for $c=25\Rightarrow b=1\,,Q=2$, thus we can further simplify to
+Importantly, this is supposed to hold for $c=25\Rightarrow b=1\,,Q=2$. We will focus in such a case in what follows. Thus we can further simplify to
 \begin{equation}\label{eq:finalTVintegrand}
-    \mathcal{I}(P_s) = -\frac{2\sqrt{2}}{P_s}16^{1-P_s^2}\sin^3\left(\frac{\pi P_s}{2}\right)C_0(1/4,1/4,P_s)\,.
+\begin{aligned}
+    \mathcal{I}(P_s) &= -\frac{2\sqrt{2}}{P_s}16^{1-P_s^2}\sin^3\left(\frac{\pi P_s}{2}\right)C_0(1/4,1/4,P_s)\\
+    &= -\frac{2\sqrt{2}}{P_s}16^{1-P_s^2}\sin^3\left(\frac{\pi P_s}{2}\right)\\
+    &\times \frac{\Gamma_1(4)}{\sqrt{2}\Gamma_1(2)^3}\frac{\Gamma_1\left(\frac{1}{2}-P_s\right)\Gamma_1\left(\frac{1}{2}+P_s\right)\Gamma_1\left(\frac{3}{2}-P_s\right)\Gamma_1\left(\frac{3}{2}+P_s\right)\left(\Gamma_1\left(1-P_s\right)\right)^2\left(\Gamma_1\left(1+P_s\right)\right)^2}{\Gamma_1\left(2+2P_s\right)\Gamma_1\left(2-2P_s\right)\left(\Gamma_1\left(3/2\right)\right)^2 \left(\Gamma_1\left(5/2\right)\right)^2}\,.
+\end{aligned}
 \end{equation}
-In order to perform the integral, this is useful to analyse the pole structure of the bulk structure constants. Note first that the integrand is manifestly an even function of $P_s$. We recall here the expression of the bulk structure constants in the specific case where $Q=2$
-\begin{equation}\label{eq:structureconstantsc25}
-    C_0^{(b)}(1/4,1/4,P_s)= \frac{\Gamma_b(4)\Gamma_b(1\pm \frac{1}{4} \pm \frac{1}{4} \pm P_s)}{\sqrt{2} \Gamma_b(2)^3 \prod_{j=1}^{3} \Gamma_b(2\pm 2P_j)}\,.
-\end{equation}
-Recall now that the double Gamma function has no zeroes and simple poles ar $x\in -\mathbb{N}b-\mathbb{N}b^{-1}=-\mathbb{N}$ (in the case $b=1$). From~\eqref{eq:structureconstantsc25}, we thus concluse that the set of poles at the numerator is
+In the second equality, we substitute for the bulk structure constants expression for $Q=2$. In order to perform the integral, this is useful to analyse the pole structure of the bulk structure constants. Recall now that the double Gamma function has no zeroes and simple poles ar $x\in -\mathbb{N}b-\mathbb{N}b^{-1}=-\mathbb{N}$ (in the case $b=1$). From~\eqref{eq:finalTVintegrand}, we thus concluse that the set of poles at the numerator of the bulk structure constants is
 \begin{equation}
     \mathcal{P} = \pm\frac{1}{4}\pm\frac{1}{4}\pm\mathbb{N}^{\star}\,,
 \end{equation}
@@ -479,22 +481,115 @@ After a bit of algebra (and if you carefully analyse the multiplicity of the pol
 \begin{equation}
     P_s \in \frac{\mathbb{N}^\star}{2} \sqcup \left(-\frac{\mathbb{N}^\star}{2}\right)\,.
 \end{equation}
+This is not the end of the story since the prefactor has triple zeroes at $P_s \in 2\mathbb{N}$ except at $P_s=0$ where it only has a double zero. All in all, the integrand has the following structure of poles and zeroes:
+\begin{itemize}
+    \item Simple poles for $P_s$ odd or half integer.
+    \item Double zeroes for $P_s$ even.
+\end{itemize}
 Let's analyse the residue of~\eqref{eq:finalTVintegrand} at $P_s=1/2$. The prefactor in front of $C_0(1/4,1/4,P_s)$ at $P_s=1/2$ is simply 
 \[
 -4\sqrt{2}\times 8 \times \left(\frac{\sqrt{2}}{2}\right)^3 = -16\,.
 \]
 There is also a prefactor in $C_0(1/4,1/4,P_s)$ which does not contribute to the pole ($b=1$)
 \begin{equation}
-        \frac{\Gamma_b(4)}{\sqrt{2}\Gamma_b(2)^3}\frac{\Gamma_b(1)^2 \Gamma_b(2)\Gamma_b(1/2)^2 \Gamma_b(-1/2)^2}{\Gamma_b(3)\Gamma_b(1)\Gamma_b(3/2)^2 \Gamma_b(5/2)^2}=\frac{1}{64\sqrt{\pi}}\,.
+        \frac{\Gamma_1(4)}{\sqrt{2}\Gamma_1(2)^3}\frac{\Gamma_1(1)^2 \Gamma_1(2)\Gamma_1(1/2)^2 \Gamma_1(3/2)^2}{\Gamma_1(3)\Gamma_1(1)\Gamma_1(3/2)^2 \Gamma_1(5/2)^2}=\frac{1}{64\sqrt{\pi}}\,.
 \end{equation}
 Finally,
 \begin{equation}
-    \underset{P_s=1/2,\,b=1}{\mathrm{Res}}\Gamma_b\left(\frac{1}{2}-P_s\right)=-\frac{1}{\sqrt{2\pi}}\,.
+    \underset{P_s=1/2,\,b=1}{\mathrm{Res}}\Gamma_1\left(\frac{1}{2}-P_s\right)=-\frac{1}{\sqrt{2\pi}}\,.
 \end{equation}
 Thus,
 \begin{equation}
     \underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s) = \frac{1}{4\sqrt{2}\pi}\,.
 \end{equation}
+Let's now analyse the residue at $P_s =1$. The prefactor in front of $C_0(1/4,1/4,P_s)$ simplifies to
+\[
+-2\sqrt{2}
+\]
+The factor inside $C_0(1/4,1/4,P_s)$ which does not contribute to the pole is
+\begin{equation}
+        \frac{\Gamma_1(4)}{\sqrt{2}\Gamma_1(2)^3}\frac{\Gamma_1(-1/2) \Gamma_1(3/2)\Gamma_1(5/2) \Gamma_1(1/2)\Gamma_1(2)^{2}}{\Gamma_1(4)\Gamma_1(3/2)^2 \Gamma_1(5/2)^2}=-\frac{1}{8\sqrt{\pi}}\,.
+\end{equation} 
+Fianlly, we also have 
+\begin{equation}
+    \frac{\Gamma_1(1-P_s)^2}{\Gamma_1(2-2P_s)} \underset{P_s \to 1}{\sim} \sqrt{\frac{2}{\pi}}\frac{1}{1-P_s}\Rightarrow \underset{P_s=1,\,b=1}{\mathrm{Res}} \frac{\Gamma_1(1-P_s)^2}{\Gamma_1(2-2P_s)} = -\sqrt{\frac{2}{\pi}}\,.
+\end{equation}
+All in all we obtain
+\begin{equation}
+    \underset{P_s=1,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s) = -\frac{1}{2\pi}\,.
+\end{equation}
+Something very peculiar happens. If we were to close the contour on the right half plane so that we pick up the poles at $P_s=1/2,1$, we would obtain
+\begin{equation}
+    -2\pi \frac{i}{i} \times \left(\underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s)+\underset{P_s=1,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s) \right) = \frac{4-\sqrt{2}}{4}
+\end{equation}
+Remark in particular that
+\begin{equation}
+    \sin^2(\pi/8) = -2\pi \frac{i}{i} \times \left(\underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s)+\frac{1}{2}\underset{P_s=1,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s) \right)
+\end{equation}
+The fact that we have to take only half of the residue at $P_s=1$ is reminiscent of a variant of the Sokhotski-Plemelj formula. Let's suppose we close the contour on the right half plane with a rectangle shape avoiding the pole at $P_s=1$ via a small semi-circle~\ref{fig:contourdeformation}. We also suppose that the top and bottom contributions vanish. We thus obtain
+\begin{equation}
+\begin{aligned}
+        \int_{i\mathbb{R}} \frac{dP_s}{i} \mathcal{I}(P_s) &= -2\pi \left(\underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s)\right) + \int_{\mathcal{C}_\epsilon \sqcup i\mathbb{R}+1} \frac{dP_s}{i} \mathcal{I}(P_s)\,.\\
+        &= -2\pi \left(\underset{P_s=1/2,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s)\right) + \rm{PV} \int_{i\mathbb{R}+1} \frac{dP_s}{i} \mathcal{I}(P_s) - \pi \left(\underset{P_s=1,\,b=1}{\mathrm{Res}}\mathcal{I}(P_s)\right)\,.
+\end{aligned}
+\end{equation}
+Hence, providing the symmetric principal value of the integral at $P_s=1$ vanishes, we obtain the desired result. There remains two things to bec checked.
+\begin{itemize}
+    \item The contribution of the top and bottom parts of the contour vanish.
+    \item The symmetric principal value of the integral at $P_s=1$ vanishes. This could be a consequence of a symmetry\footnote{This is a kind of oddness property: recall that the symmetric principal value of $1/x$ at $0$ vanishes because the function is odd.}
+    \begin{equation}
+    \mathcal{I}(1+i x) = -\mathcal{I}(1-ix)\,.
+    \end{equation}
+\end{itemize}
+To show the first point, we can use the asymptotics of the Barnes G function and the relation between the double Gamma function and the Barnes G function for $b=1$
+\begin{equation}
+\begin{aligned}
+     \log(G(z+1))&=\frac{z^2}{2}\log(z)-\frac{3z^2}{4}+\frac{z}{2}\log(2\pi)+\mathcal{O}(\log|z|)\,,\\
+     \Gamma_1(z) &= \frac{(2\pi)^{\frac{z-1}{2}}}{G(z)}\,.
+\end{aligned}
+\end{equation}
+I found 
+\begin{equation}
+    |\Gamma_1(x+iy)|=\exp\left[\frac{y^2}{2}\log|y| -\frac{3y^2}{4}+\frac{\pi}{2}(x-1)|y|+\mathcal{O}(\log|y|)\right]\,.
+\end{equation}
+We then write $P_s = \tilde{x}+ip_s$ with $\tilde{x}\in[0,1]$. Remembering the complete expression of the integrand, we find that the integrand behaves as (independently of the values of $\tilde{x}$)
+\begin{equation}
+\begin{aligned}
+    \mathcal{I}(P_s) \sim K \times \frac{e^{\frac{3\pi}{2}|p_s|}}{p_s}\times e^{-4\pi|p_s|} \underset{p_s\to \pm \infty}{\to} 0\,,
+\end{aligned}
+\end{equation}
+where $K$ is just an irrelevant prefactor independent of $P_s$. This concludes the part regarding the vanishing of the top and bottom parts of the contour.
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[scale=2]
+  % Axes
+  \draw[->,thick] (-0.5,0) -- (2.5,0) node[right] {$\Re$};
+  \draw[->,thick] (0,-1.5) -- (0,1.5) node[above] {$\Im$};
+
+  % Arc rouge avec flèche
+    \draw[red,->,thick] (0,-1.3) -- (0.0,1.3);
+    \draw[red,->,dashed] (0,1.3) -- (1,1.3);
+    \draw[red,->,thick] (1,1.3) -- (1,0.2);
+    \draw[red,->,thick] (1,-0.2) -- (1,-1.3);
+    \draw[red,thick,->,>=stealth] (1,0.2) 
+    arc[start angle=90,end angle=270,radius=0.2];
+    \draw[red,->,dashed] (0,1.3) -- (1,1.3);
+    \draw[red,->,dashed] (1,-1.3) -- (0,-1.3);
+
+
+  % Points 0.5 et 1
+  \filldraw[blue] (0.5,0) circle (1pt) node[below] {$1/2$};
+  \filldraw[blue] (1,0) circle (1pt) node[below] {$1$};
+  \node at (2,1.5) {$P_s$};
+  \draw[thick] (1.85,1.35) -- (2.1,1.35);
+  \draw[thick] (1.85,1.35) -- (1.85,1.6);
+
+\end{tikzpicture}
+\caption{Contour deformation for the integral in the pentagon identity. In blue, the relevant residues. The dashed red lines are supposed to be pushed at $\infty$ where the integrand vanishes.}
+\label{fig:contourdeformation}
+\end{figure}
+
+
 \paragraph{Idempotency relation}
 Finally, the idemptency relation reads
 \begin{equation}\label{eq:idempotencyf}

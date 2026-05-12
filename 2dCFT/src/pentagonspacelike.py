@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 # -------- Global settings --------
-mp.dps = 25 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
+mp.dps = 20 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
 DEMO = True  # True for Demo mode
 
 # -------- Parameters container --------
@@ -1015,12 +1015,12 @@ if DEMO:
     # Integrand = lambda p: (KernelsM(theo,P0,P1,1j*(p+0.0000001j),0)*KernelsM(theo,ident,P2,1j*(p+0.0000001j),0)*KernelsM(theo,P0,1j*(p+0.0000001j),P3,0)/(-2*mp.sqrt(2)*mp.sin(2*mp.pi*b*1j*(p+0.0000001j))*mp.sin(2*mp.pi*1j*(p+0.0000001j)/b)))
     # plot_module1D(Integrand, name="Integrand in the non rational Verlinde formula")
 
-    # # # #--- Demo 19: Check the torus 2 point relation
-    print("=== Demo: Check the torus 2 point relation ===")
-    LHS, RHS = Torus2pointrelation(theo, P0, P0prime, P1, P2, P3, P5, 0)
-    print(f"LHSTorus2pt = {LHS}")
-    print(f"RHSTorus2pt = {RHS}")
-    print()
+    # # # # #--- Demo 19: Check the torus 2 point relation
+    # print("=== Demo: Check the torus 2 point relation ===")
+    # LHS, RHS = Torus2pointrelation(theo, P0, P0prime, P1, P2, P3, P5, 0)
+    # print(f"LHSTorus2pt = {LHS}")
+    # print(f"RHSTorus2pt = {RHS}")
+    # print()
 
     # #--- Demo 19bis : Plot the integrand in the LHS and RHS of the torus 2 point relation
     # IntegrandLHS = lambda p4: Kernelsf(theo, P0, P0prime, P2, P2, P3, 1j*(p4+0.000001j),0)*Kernelsf(theo, P2, P0prime, P0, P2, 1j*(p4+0.000001j), P5, 0)*mp.exp(1j*(2*conformaldimension(theo, 1j*(p4+0.000001j))-2*conformaldimension(theo,P2)+conformaldimension(theo,P3)/2)*mp.pi)
@@ -1073,6 +1073,18 @@ if DEMO:
     print(f"LHS = {LHSmixingsymmetriesFplus}")
     print(f"RHS = {RHSmixingsymmetriesFplus}")
     print()
+
+    # IntegrandlHS = lambda p: 2*mp.sqrt(2)*16**(1+(p+0.00000001j)**2)*(mp.sinh(mp.pi*(p+0.00000001j)/2))**3*spacelikeC_b(theo, 1/4,1/4, 1j*(p+0.00000001j))/(p+0.00000001j)
+    # LHS = mp.quad(IntegrandlHS, [-Theory.Lambda, Theory.Lambda])
+    # RHS = mp.sin(mp.pi/8)**2
+    # print(f"LHS = {LHS}")
+    # print(f"RHS = {RHS}")
+    # print()
+    
+    IntegrandbislHS = lambda P: -2*mp.sqrt(2)*16**(1-P**2)*(mp.sin(mp.pi*P/2))**3*spacelikeC_b(theo, 1/4,1/4, P)/P
+    print(f"specificUHP = {IntegrandbislHS(1+0.8j)}")
+    print(f"specificLHP = {IntegrandbislHS(1-0.8j)}")
+    print(f"specificLHP = {IntegrandbislHS(8j)}")
 
 
 
