@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 # -------- Global settings --------
-mp.dps = 20 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
+mp.dps = 30 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
 DEMO = True  # True for Demo mode
 
 # -------- Parameters container --------
@@ -1082,8 +1082,8 @@ if DEMO:
     # print()
     
     IntegrandbislHS = lambda P: -2*mp.sqrt(2)*16**(1-P**2)*(mp.sin(mp.pi*P/2))**3*spacelikeC_b(theo, 1/4,1/4, P)/P
-    print(f"specificUHP = {IntegrandbislHS(1+0.8j)}")
-    print(f"specificLHP = {IntegrandbislHS(1-0.8j)}")
+    print(f"specificUHP = {IntegrandbislHS(0.6+3j)}")
+    print(f"specificLHP = {IntegrandbislHS(0.6-3j)}")
     print(f"specificLHP = {IntegrandbislHS(8j)}")
 
 

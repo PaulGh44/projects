@@ -293,25 +293,29 @@ $h$ is the physical metric at the boundary and is related to the fiducial metric
 \end{equation}
 
 \section{c=1 MQM}
+\paragraph{From the continuum formulation to a discretize model}
+In two dimensions, the Einstein–Hilbert term is topological. Therefore,it is natural to replace the continuum sum over geometries by a sum over discretized random surfaces, such as triangulations, because the discretization can correctly organize the sum over topologies. This is a special feature of two dimensions. Of course, for the continuum limit to be well defined, it should not matter the way we discretize the surface. All the descritized versions should flow to the same continuum limit. This is a crucial feature of the continuum description. The argument showed in what follows should not be taken as a rigorous proof but rather as a motivation.
+
+\paragraph{The matrix model}
 Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also supppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
   \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-\alpha\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ U(M)\right]}\,.
 \end{equation}
 This partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
 \begin{equation}
-  \mathcal{Z} = \rm{Tr}_{\mathcal{H}}\left[e^{-\beta H_{\alpha}}\right]\,.
+  \mathcal{Z} = \rm{Tr}_{\mathcal{H}}\left[e^{-\beta \alpha H}\right]\,.
 \end{equation}  
-Here $\mathcal{H}$ denotes the Hilbert space of the theory and $H_{\alpha}$ corresponds to the haniltonian. Setting the inverse temperature to infinity, the partition function reduces to the vacuum amplitude
+Here $\mathcal{H}$ denotes the Hilbert space of the theory and $H$ corresponds to the haniltonian. Setting the inverse temperature to infinity, the partition function reduces to the vacuum amplitude
 \begin{equation}
-  \mathcal{Z} \underset{\beta\to\infty}{\sim} e^{-\beta E_{\rm vac}(\alpha)}\,.
+  \mathcal{Z} \underset{\beta\to\infty}{\sim} e^{-\beta \alpha E_{\rm vac}}\,.
 \end{equation}
 In particular, one finds
 \begin{equation}
-  \frac{\log(Z)}{\beta} \underset{\beta\to\infty}{\to} - E_{\rm vac}(\alpha)\,.
+  \frac{\log(Z)}{\beta} \underset{\beta\to\infty}{\to} - \alpha E_{\rm vac}\,.
 \end{equation}
-The objective is to compute exactly such quantity. 
+The objective is to compute exactly such quantity.
 
-Now, we wish to use the symmetry under conjugation by a unitary matrix to diagonalize the matrix $M$. If we consider such symmetry as a gauge symmetry, this crucially alters the boundary condition we shall impose since configurations of M related by a unitary belong to the same gauge orbit. We postpose such subtlety for latter and consider such symmetry as a global symmetry. We diagonalize $M = \Omega_M \Lambda_M \Omega_M^\dagger$, where $\Lambda_M$ is the diagonal matrix of eigenvalues and $\Omega_M$ is a unitary matrix\PG{What is the difference between using SU(N) and U(N) ? I guess you should add the identity as a generator?}. The measure is not invariant under such change of variables and one obtains
+Now, we wish to use the symmetry under conjugation by a unitary matrix to diagonalize the matrix $M$. If we consider such symmetry as a gauge symmetry, this crucially alters the boundary condition we shall impose since configurations of M related by a unitary belong to the same gauge orbit. We postpone such subtlety for latter and consider such symmetry as a global symmetry. We diagonalize $M = \Omega_M \Lambda_M \Omega_M^\dagger$, where $\Lambda_M$ is the diagonal matrix of eigenvalues and $\Omega_M$ is a unitary matrix\PG{What is the difference between using SU(N) and U(N) ? I guess you should add the identity as a generator?}. The measure is not invariant under such change of variables and one obtains
 \begin{equation}
   \begin{aligned}
     DM(\tau) &= \prod_{I=1}^N D\lambda_I(\tau)D\Omega(t) \, \Delta^2(\lambda)\,,\\
@@ -330,24 +334,24 @@ Discarding the volume of $SU(N)$, the partition function reads
 \begin{equation}
 \begin{aligned}
   \mathcal{Z}&=\int_{\lambda_{I}(-\beta/2)=\lambda_{I}(\beta/2)} \prod_{I=1}^{N}d\lambda_{I}(\tau) \Delta^2(\lambda(\tau)) \\
-  &\exp\Bigg[-\alpha\int_{-\beta/2}^{\beta/2} d\tau \sum_{I=1}^N \frac{\dot{\lambda}^2_I}{2}+U(\lambda_I)+\sum_{I<J}(\lambda_I-\lambda_J)^2(\dot{\alpha}_{ij}^2 + \dot{\beta}_{ij}^2)\Bigg]\,.
+  &\exp\Bigg[-\alpha\int_{-\beta/2}^{\beta/2} d\tau \sum_{I=1}^N \frac{\dot{\lambda}^2_I}{2}+U(\lambda_I)+\frac{1}{2}\sum_{I<J}(\lambda_I-\lambda_J)^2(\dot{\alpha}_{ij}^2 + \dot{\beta}_{ij}^2)\Bigg]\,.
 \end{aligned}
 \end{equation}
 Importantly, there is a remnant symmetry which is the permutation of the eigenvalues. The wavefunction should thus be symmetric under such permutation so we effectively describe bosonic particles. The important observation is that the system can be mapped to a system of $N$ fermions. Remark first that the operator 
 \begin{equation}
-  \mathcal{O}_{\alpha}=\sum_{I=1}^N \frac{\pi_I^2}{2\alpha} + \alpha U(\lambda_I) +\sum_{I<J}\frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{4\alpha^2(\lambda_I-\lambda_J)^2}
+  \mathcal{O}=\sum_{I=1}^N \frac{\pi_I^2}{2} + U(\lambda_I) +\sum_{I<J}\frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{2(\lambda_I-\lambda_J)^2}
 \end{equation}
-is not hermitian with respect to the non-flat measure. The $\pi$'s denote the momenta. But it is hermitian with respect to the flat measure. Nevertheless, the operator can be modifed to produce a hermitian operator with respect to the non-flat measure. In fact, if we define $H = \Delta(\lambda)^{-1} \mathcal{O}_{\alpha}\Delta(\lambda)$ then $H$ is hermitian with respect to the non-flat measure i.e
+is not hermitian with respect to the non-flat measure. The $\pi$'s denote the momenta. But it is hermitian with respect to the flat measure. Nevertheless, the operator can be modifed to produce a hermitian operator with respect to the non-flat measure. In fact, if we define $H = \Delta(\lambda)^{-1} \mathcal{O}\,\Delta(\lambda)$ then $H$ is hermitian with respect to the non-flat measure i.e
 \begin{equation}
   \int \prod D\lambda_I \, \Delta^2(\lambda) \, \psi_1^* H \psi_2 =  \int \prod D\lambda_I \, \Delta^2(\lambda) \,\psi_2 H \psi_1^*\,.
 \end{equation}
 The eigenvalue problem can thus be written as 
 \begin{equation}
-  \left[\sum_{I} -\frac{1}{2\alpha \Delta(\lambda)} \frac{\partial^2}{\partial_{\lambda_I}^2}\Delta(\lambda) + \alpha U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{4\alpha (\lambda_I-\lambda_J)^2}\right] \psi(\lambda_1,...,\lambda_N) = E\,\psi(\lambda_1,...,\lambda_N)\,.
+  \left[\sum_{I} -\frac{1}{2\alpha^2 \Delta(\lambda)} \frac{\partial^2}{\partial_{\lambda_I}^2}\Delta(\lambda) + U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{2(\lambda_I-\lambda_J)^2}\right] \psi(\lambda_1,...,\lambda_N) = E\,\psi(\lambda_1,...,\lambda_N)\,.
 \end{equation}
 Solving the eigenvalue problem yields an orthonormal basis with respect to the non-flat measure. Setting $\Psi = \psi \Delta(\lambda)$ produces a fermionic wavefunction. We can put in one to one correspondence to a theory of $N$ free fermions. The lowest energy configurations do not interact as the interaction is manifestly positive. The eigenvalue problem for the fermions reads
 \begin{equation}
-  \left[\sum_{I} -\frac{1}{2\alpha} \frac{\partial^2}{\partial_{\lambda_I}^2} + \alpha U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{4\alpha (\lambda_I-\lambda_J)^2}\right] \Psi(\lambda_1,...,\lambda_N) = E\,\Psi(\lambda_1,...,\lambda_N)\,.
+  \left[\sum_{I} -\frac{1}{2\alpha^2} \frac{\partial^2}{\partial_{\lambda_I}^2} + U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{2(\lambda_I-\lambda_J)^2}\right] \Psi(\lambda_1,...,\lambda_N) = E\,\Psi(\lambda_1,...,\lambda_N)\,.
 \end{equation}
 The ground state is obtained by filling the N first lowest energy levels
 \begin{equation}
@@ -357,7 +361,15 @@ In the limit where the inverse planck coupling $\alpha$ goes to infinity, we can
 \begin{equation}
   \int_{\lambda_-}^{\lambda_+} d\lambda \sqrt{2\left(\epsilon_n-U(\lambda)\right)} = \frac{\pi n}{\alpha}\,.
 \end{equation}
-In particular, denoting the level of the fermi sea as $\mu_F$, we obtain
+In other words, in the semi-classical limit, the number of fermions is equal to the area of the phase space filled by the fermions
+\begin{equation}
+  n = \int \frac{dp d\lambda \alpha}{2\pi} \,\Theta\left(\epsilon_n-\epsilon(p,\lambda)\right)\,,
+\end{equation}
+with $\epsilon(p,\lambda)=\frac{p^2}{2}+U(\lambda)$. In particular, denoting the level of the fermi sea as $\mu_F$, we obtain
+\begin{equation}
+  \int_{\lambda_-}^{\lambda_+} d\lambda \sqrt{2\left(\mu_F-U(\lambda)\right)} = \frac{\pi N}{\alpha}=\pi \kappa^2(\mu_F)\,.
+\end{equation}
+$\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a non analytic behavior.
 
 \appendix
 \section{Boundary states: Ishibashi states vs Cardy states}
