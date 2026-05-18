@@ -295,13 +295,35 @@ $h$ is the physical metric at the boundary and is related to the fiducial metric
 \section{c=1 MQM}
 \paragraph{From the continuum formulation to a discretize model}
 In two dimensions, the Einstein–Hilbert term is topological. Therefore,it is natural to replace the continuum sum over geometries by a sum over discretized random surfaces, such as triangulations, because the discretization can correctly organize the sum over topologies. This is a special feature of two dimensions. Of course, for the continuum limit to be well defined, it should not matter the way we discretize the surface. All the descritized versions should flow to the same continuum limit. This is a crucial feature of the continuum description. The argument showed in what follows should not be taken as a rigorous proof but rather as a motivation.
-
+For instance, we describe a two dimensional discretized connected and compact surface as a simplex of equilateral triangles, where at each vertex is attached a delta function of curvature depending on the number of triangles meeting at the vertex. The conical singularity is proportional to the deficit angle $\Delta = 2\pi - n\frac{\pi}{3}$. We may assume the following correspondence
+\begin{equation}
+   \int Dg^{(h)}_{\mu \nu } \rightarrow \sum_{\rm \Lambda_{h}}\,,
+\end{equation}
+and then the integral over the matter field $X$ in an sum over all the embedding on the real line at each vertex. Finally, denoting $a$ the size of the sides of the triangles, we may assume the following dictionnary
+\begin{equation}
+\begin{aligned}
+    \int_{\mathcal{M}_h} d^2 x \sqrt{g}g^{\mu \nu}\partial_\mu X \partial_\nu X &\rightarrow \sum_{\braket{ij}} \left(\frac{X_i-X_j}{a}\right)^2\,.\\
+    \int_{\mathcal{M}_h} d^2 x \sqrt{g} \mu &\rightarrow \frac{\sqrt{3}}{4}a^2 \mu V\,.
+\end{aligned}
+\end{equation}
+where $V$ denotes the number of vertices. We call $\kappa = \exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right)$ The partition function can thus be written as 
+\begin{equation}
+  \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \sum_{\rm \Lambda_{h}} \kappa^V \prod_{i=1}^{V} \int dX_i \prod_{\braket{ij}}G(|X_i-X_j|)\,.
+\end{equation}
+We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi} a}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following.
 \paragraph{The matrix model}
 Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also supppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
   \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-\alpha\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ U(M)\right]}\,.
 \end{equation}
-This partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
+\paragraph{Dictionnary with the discretized sigma model}
+By rescaling of the matrix we can rewrite the partition function as up to an irrelevant prefactor\PG{Is this really irrelevant because I found that the Jacobian makes appear a factor of $\tilde{\kappa}^N$ ?}
+\begin{equation}
+  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,.
+\end{equation}
+Sending $\beta \to \infty$
+\paragraph{Solving the matrix model}
+Also, thes partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
 \begin{equation}
   \mathcal{Z} = \rm{Tr}_{\mathcal{H}}\left[e^{-\beta \alpha H}\right]\,.
 \end{equation}  
