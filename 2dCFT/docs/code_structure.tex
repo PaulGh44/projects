@@ -554,11 +554,20 @@ I found
 \end{equation}
 We then write $P_s = \tilde{x}+ip_s$ with $\tilde{x}\in[0,1]$. Remembering the complete expression of the integrand, we find that the integrand behaves as (independently of the values of $\tilde{x}$)
 \begin{equation}
-\begin{aligned}
     \mathcal{I}(P_s) \sim K \times \frac{e^{\frac{3\pi}{2}|p_s|}}{p_s}\times e^{-4\pi|p_s|} \underset{p_s\to \pm \infty}{\to} 0\,,
-\end{aligned}
 \end{equation}
-where $K$ is just an irrelevant prefactor independent of $P_s$. This concludes the part regarding the vanishing of the top and bottom parts of the contour.
+where $K$ is just an irrelevant prefactor independent of $P_s$. This concludes the part regarding the vanishing of the top and bottom parts of the contour.\\
+
+We now turn to the second point. We will actually prove a stronger statement
+\begin{equation}
+    \mathcal{I}(2-P_s) = -\mathcal{I}(P_s) \quad  \forall P_s \in \mathbb{C}\,.
+\end{equation}
+This is an immediate consequence of the following shift relation of the structure constants
+\begin{equation}
+    \frac{C_0\left(\frac{1}{4},\frac{1}{4}, 2-P\right)}{C_0\left(\frac{1}{4},\frac{1}{4}, P\right)} = -\frac{2-P}{P}16^{4(1-P)}\,.
+\end{equation}
+This can be easily checked using Gamma function identities (shift relation of double Gamma function, Euler reflection formula, and Legendre duplication formula).
+
 \begin{figure}[!t]
 \centering
 \begin{tikzpicture}[scale=2]
