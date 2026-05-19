@@ -310,7 +310,7 @@ where $V$ denotes the number of vertices. We call $\kappa = \exp\left(-\frac{\sq
 \begin{equation}
   \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \sum_{\rm \Lambda_{h}} \kappa^V \prod_{i=1}^{V} \int dX_i \prod_{\braket{ij}}G(|X_i-X_j|)\,.
 \end{equation}
-We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi} a}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following.
+We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi} a}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right) $.
 \paragraph{The matrix model}
 Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also supppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
@@ -319,9 +319,13 @@ Here we start with the matrix quantum mechanics defined as a euclidean path-inte
 \paragraph{Dictionnary with the discretized sigma model}
 By rescaling of the matrix we can rewrite the partition function as up to an irrelevant prefactor\PG{Is this really irrelevant because I found that the Jacobian makes appear a factor of $\tilde{\kappa}^N$ ?}
 \begin{equation}
-  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,.
+  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,,
 \end{equation}
-Sending $\beta \to \infty$
+with $\tilde{\kappa}=\sqrt{\frac{N}{\alpha}}$. Sending $\beta \to \infty$, the partition function can be formally written as an infinite sum over all Feynman diagrams (connected and disconnected)
+\begin{equation}
+  \lim_{\beta\to\infty}\log(Z) =\sum_{h=0}^{\infty}N^{2-2h}\sum_{\Lambda}\tilde{\kappa}^V \prod_{i=1}^V \int_{-\infty}^{+\infty} d\tau_i \prod_{\braket{ij}} e^{-|\tau_i-\tau_j|}\,.
+\end{equation}
+We highlight that to recover the partition function of the gravitational model we shall consider the generating functional of the connected diagrams i.e $\log(Z)$. The first complain is that the link factor is different from the matrix model compared to the discretized gravitational model. This is part of the universality statement that in the continuum limit, multiple link factors can describe the same continumm theory. We may associate the following dictionnary between the discretized gravitational model and the 
 \paragraph{Solving the matrix model}
 Also, thes partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
 \begin{equation}

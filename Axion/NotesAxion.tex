@@ -440,16 +440,102 @@ At order $\lambda^1$, one obtains
 \end{aligned}
 \end{equation}
 Now the question is whether or not we can solve analytically these set of perturbative equations.
-\paragraph{Numerical implementation}
-In parallel, we can numerically integrate the first two equations of~\eqref{eq:Nequal1gauge} which we recall here
+\paragraph{Numerical implementation/First order autonomous equations}
+Recall the system of differential equations in the $N=1$ gauge \eqref{eq:Nequal1gauge}. We would like to write it as a first order autonomous system.\PG{Actually, in litterature, such problem is common and the usual thing to do is to view the Fridmann equation as a constraint equation and to use EN (Expansion normalized) variables. The following references will be useful in our setup:\\
+https://arxiv.org/abs/1712.03107\\
+https://arxiv.org/pdf/0906.0396\\
+https://arxiv.org/pdf/astro-ph/0004138\\
+https://arxiv.org/pdf/1108.4712\\
+https://arxiv.org/pdf/1401.1959\\
+The difference being that they work in Lorentzian spacetimes while we work in euclidean spacetimes
+}
+We define the EN variables
+\begin{equation}
+   x = \sqrt{\frac{\kappa}{d(d-1)}}\frac{\chi'}{H}\sp y = \sqrt{\frac{2\kappa V_{\rm{eff}}}{d(d-1)}}\frac{1}{H}\,,
+\end{equation}
+H is the Hubble constant defined as $H =\frac{a'}{a}$. This needs to assume that $V_{\rm{eff}}(\chi) = V_{np(\chi)}+\frac{\Lambda}{\kappa}$ is positive. The Friedman equation i.e the second equation of~\eqref{eq:Nequal1gauge} becomes simply a constraint
+\begin{equation}
+  1-\frac{k}{H^2 a^2}+x^2+y^2=0\,.
+\end{equation}
+\PG{In the litterature, this is usually the inverse$1 = x^2+y^2+...$. This is due to the fact that we work in euclidean time.} We denote $\Omega_k=\frac{k}{H^2 a^2}$ and $\Omega_{\chi}=x^2+y^2$. The former should be viewed as a Casimir energy of the slices and the latter corresponds to the euclidean total energy density of the axion field. The constraint becomes
+\begin{equation}\label{eq:euclideanenergydensity}
+  1 -\Omega_k + \Omega_\chi =0\,.
+\end{equation}
+This is already interesting to remark that this constraint cannot be satisfied in the case where the universe is open i.e $k\in\{0,-1\}$ as the euclidean energy density of the axion is manifestly positive (of course providing that $x,y$ are real and well defined)! The conclusion would have been crucially different in Lorenztian times. In fact, we can retrieve such a case by Wick rotating the Hubble constant and the euclidean time $H\rightarrow i H, \tau = i t$. In Lorentzian, the system would have been
+\begin{equation}
+  1 = \Omega_k +y^2 -x^2\, \longrightarrow \text{Lorentzian constraint\,.}
+\end{equation}
+The fact that the sign of $x$ is opposite to what we usually see is due to the fact that we deal with an axion field which has a negative kinetic term.
+
+Let us comeback to~\eqref{eq:euclideanenergydensity}. This equation describes an hyperboloid in the $\left(\sqrt{\Omega_\chi},\sqrt{\Omega_k}\right)$ plane. (In Lorentzian, it describes a circle!). This determines algebraically $\Omega_k$ as a function of $(x,y)$.
+\begin{equation}
+  \Omega_k(x,y) = 1+ x^2 + y^2\,.
+\end{equation}
+Dividing by $d(d-1)H^2$ the third equation of~\eqref{eq:Nequal1gauge} which is known to be the accelerating equation, one obtains
+\begin{equation}
+  (d-1)(d-2)\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}\frac{a''}{a}\frac{1}{H^2}+x^2-y^2=0\,.
+\end{equation}
+We also have the identity $\frac{H'}{H^2} =\frac{a a''-a'^2}{H^2 a^2} = \frac{a''}{aH^2} -1$ which plugging back into the previous equation determines $\frac{H'}{H^2}$ in terms of the rest 
+\begin{equation}
+  (d-1)(d-2)\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}-\frac{2}{d}\frac{H'}{H^2}+x^2-y^2=0\,.
+\end{equation}
+Hence,
+\begin{equation}
+  \frac{H'}{H^2} = \frac{d}{2}\left(x^2-y^2-1+(d-1)(d-2)\Omega_k(x,y)\right)\,.
+\end{equation}
+From the eom of the axion, we obtain
+\begin{equation}
+  \frac{\chi''}{H^2} + \frac{d\chi'}{H}+\frac{\partial_\chi V_{\rm eff}}{H^2}=0\,.
+\end{equation} 
+Now we will express the equations of $x$ and $y$ in terms of the conformal time $d\eta = H d\tau = d(\log a)$. It suffices to take derivatives wrt the conformal time of the first order variables $x,y$.
 \begin{equation}
   \begin{aligned}
-    \partial_\tau\left(a^d\partial_\tau \chi\right)-\lambda f_{\alpha} a^{d}\sin(\chi f_{\alpha})&=0\,.\\
-    \frac{d(d-1)}{a^2}\left(a'^2-k\right)+2\kappa\left(\frac{(\partial_\tau \chi)^2}{2}+\lambda \cos(\chi f_{\alpha})+\frac{\Lambda}{\kappa}\right)&=0\,.
+    \frac{dx}{d\eta}&=\frac{1}{H}\frac{dx}{d\tau} = -\frac{H'}{H^2}x+\frac{\chi''}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\\
+    &=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-\sqrt{\frac{\kappa}{d(d-1)}}\frac{d\chi'}{H}-\frac{\partial_\chi V_{\rm eff}}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\,.
   \end{aligned}
 \end{equation}
-
-We want to solve for $(\chi,a)$. Note that these equations are unchanged under a time reversal transformation. It should be sufficient to give as initial conditions the value of $\chi$ which we set at a local maximum of the potential at $\chi=0$ WLOG. We also give an initial value for the scale factor $a(\tau=0) = \bf{a}>0$ as well as a velocity of the $\chi'(\tau=0) = \chi_0'$ particle.
-\PG{You cannot consistently impose $\chi'(0)=0=a'(0)$ to obtain non trivial $\mathbb{Z}_2$ even solutions. Indeed, the first equation imposes $\sin(\chi f_{\alpha})=0$ at the initial time so $\chi$ lies at an extremum. Then, the second equation gives the value of the scale factor wrt $\Lambda_{\rm eff}$.}
+Observe that it is not an autonomous system as in our specific case $\partial_\chi V_{\rm eff}$ depends on $\chi$. A convenient way to deal with that is to define a third variable $\lambda = \frac{\partial_\chi V_{\rm eff}}{\sqrt{\kappa}V_{\rm eff}}$. The previous equation can be defined in terms of $y,\lambda$
+\begin{equation}
+  \frac{dx}{d\eta}=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,.
+\end{equation}
+There is a historical reason why $\lambda$ was introduced in cosmology. Initially, people were dealing with exponential potential for the inflaton for which $\lambda$ is trivially a constant. In our case, $\lambda$ is not a constant but there is a trick. It solves the following equation
+\begin{equation}
+  \frac{d\lambda}{d\eta} = -\sqrt{d(d-1)}(\Gamma-1)\lambda^2 x\,,
+\end{equation}
+where $\Gamma=\frac{V_{\rm eff}\partial_\chi^2 V_{\rm eff}}{(\partial_\chi V_{\rm eff})^2}$. In general, it is still a non autonomous system but in our specific case for which we have a cos potential we can actually try to express $\Gamma$ in terms of $\lambda$ so that to obtain a first order autonomous system of dimension 3. We will comeback to this equation latter. Let's now derive the equation for y. We use the same strategy i.e taking derivatives wrt the conformal time $\eta$
+\begin{equation}
+  \begin{aligned}
+    \frac{dy}{d\eta}&=\frac{1}{H}\frac{dy}{d\tau} = -\frac{H'}{H^2}y+\frac{1}{H^2}\sqrt{\frac{2\kappa}{d(d-1)}}\frac{\chi' \,\partial_\chi V_{\rm eff}}{2 \sqrt{V_{\rm eff}}}\,.\\
+    &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,.
+  \end{aligned}
+\end{equation}
+The three dimensional autonomous system reads simply
+\begin{equation}\label{eq:thirdorderautonomousystem}
+  \begin{aligned}
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{d\lambda}{d\eta} &= -\sqrt{d(d-1)}(\Gamma(\lambda)-1)\lambda^2 x\,.
+  \end{aligned}
+\end{equation}
+We now give specific examples for the potential for which we have $\Gamma(\lambda)$ which can easily be expressed in terms of the other variables. An interesting form of the potential is
+\begin{equation}
+  V_{\rm eff}(\chi) = V_0\cos^2(\chi f_\chi)\,.
+\end{equation}
+We subsequently find
+\begin{equation}
+  \begin{aligned}
+    \lambda = -2 \frac{f_\chi}{\sqrt{\kappa}}\tan(\chi f_\chi)\,,\\
+    \Gamma(\lambda) = 1-\frac{2f_\chi^2}{\kappa}\frac{1}{\lambda^2}\,.
+  \end{aligned}
+\end{equation}
+Then the system becomes
+\begin{equation}\label{eq:thirdorderautonomousystem}
+  \begin{aligned}
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{d\lambda}{d\eta}  &= \frac{\sqrt{d(d-1)}f_\chi^2}{\kappa}\,x\,.
+  \end{aligned}
+\end{equation}
+In particular, critical points have to satisfy $x_\star=0$ from the third equation. From the second equation, we have two possibilities. Either, $y_\star =0$ or $y^2+1-(d-1)(d-2)\Omega_k(x,y)=0\Rightarrow y^2=-1$. So the only possibility is $y_\star=0$ and this is compatible with the first equation. What about $\lambda_\star$ ?
 \end{document}
 
