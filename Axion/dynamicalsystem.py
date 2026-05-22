@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 # ---------- GLOBAL PARAMS ----------
-alpha = 1.2
+alpha = 2
 d = 3
 v0 = 0.5
 ufinal = 10
@@ -44,6 +44,7 @@ def solve_system(X0: np.ndarray, u_span: tuple = (0, ufinal), N: int = N):
     )
     return sol.t, sol.y, sol
 
+# We now wish to draw the phase portrait of the system.
 
 # ---------- Main ----------
 if __name__ == "__main__":

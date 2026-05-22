@@ -631,5 +631,26 @@ We will first focus in such a case. We first run a solution for $\alpha=0.1,\,v_
 \label{figanexample}
 \end{figure}
 
+One can analytically derive that the critical points correspond to EAdS fixed points
+\begin{equation}
+  \mathcal{J}_\star =0 \sp I_\star = (2n+1)\pi \sp \mathcal{H}_\star = \pm \sqrt{\frac{2}{d(d-1)}\left(1-v_0\right)}\,.
+\end{equation}
+Let's look at the linear stability. Denoting $\delta X = (\delta I, \delta \mathcal{J}, \delta \mathcal{H})$ One finds the following system
+\begin{equation}
+  \frac{d\delta X}{d\eta} = \begin{pmatrix}
+    0 && \frac{1}{\alpha} && 0 \\
+    -\frac{1}{\alpha} && -d\mathcal{H}_{\star} && 0 \\
+    0 && 0 && -2\mathcal{H}_\star 
+  \end{pmatrix} \delta X \,,
+\end{equation}
+We first observe that $\lambda = -2\mathcal{H}_\star$ is an eigenvalue. First, requiring stability imposes the sign of $\mathcal{H}_\star>0$. We thus focus in such case. The remaining two eigenvalues solve a second order equation
+\begin{equation}
+  \lambda^2+d \mathcal{H}_ \star\lambda + \frac{1}{\alpha^2} = 0\,.
+\end{equation}
+We can observe that the system is always stable. The product of the eigenvalues is positive and the sum is negative which imposes that both eigenvalues are negative. Nevertheless, the phase portrait is affected by the value of the parameters. If 
+\begin{equation}
+  \Delta < 0 \quad \text{i.e} \quad \frac{d}{(d-1)}(1-v_0)< \frac{2}{\alpha^2}\,,
+\end{equation}
+the orbits will circle around the fixed point before reaching it. Otherwise, the orbits will directly flow to the fixed point. We can check that numerically by displaying the two type of solutions. The next step is to draw the phase portrait. Note that the $\chi$ particle describes a motion similar to a disspative pendulum whose friction/anti-friction coefficient is time-dependent. This is natural to project the phase portrait into the $(I,\mathcal{J}) \sim (\chi, \Pi_{\chi})$.
 \end{document}
 
