@@ -628,7 +628,7 @@ We will first focus in such a case. We first run a solution for $\alpha=0.1,\,v_
 \centering
 \includegraphics[width=0.72\textwidth]{d3v05alpha01.png}
 \caption{The autonomous system with initial conditions: $\mathcal{J}=0,\,I = \frac{\pi}{2}\Rightarrow V(0) = V_1 v_0,\,\mathcal{H}=0$}
-\label{figanexample}
+\label{fig:anexample}
 \end{figure}
 
 One can analytically derive that the critical points correspond to EAdS fixed points
@@ -651,6 +651,17 @@ We can observe that the system is always stable. The product of the eigenvalues 
 \begin{equation}
   \Delta < 0 \quad \text{i.e} \quad \frac{d}{(d-1)}(1-v_0)< \frac{2}{\alpha^2}\,,
 \end{equation}
-the orbits will circle around the fixed point before reaching it. Otherwise, the orbits will directly flow to the fixed point. We can check that numerically by displaying the two type of solutions. The next step is to draw the phase portrait. Note that the $\chi$ particle describes a motion similar to a disspative pendulum whose friction/anti-friction coefficient is time-dependent. This is natural to project the phase portrait into the $(I,\mathcal{J}) \sim (\chi, \Pi_{\chi})$.
+the orbits will circle around the fixed point before reaching it. Otherwise, the orbits will directly flow to the fixed point. We can check that numerically by displaying the two type of solutions. The next step is to draw the phase portrait. Note that the $\chi$ particle describes a motion similar to a dissipative pendulum whose friction/anti-friction coefficient is time-dependent. This is natural to project the phase portrait into the plane $(I,\mathcal{J}) \sim (\chi, \Pi_{\chi})$. We display the phase portrait in the two distinct regimes.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.72\textwidth]{projectedphaseportraitv05d3alpha02.png}
+\caption{Phase portrait with parameter $v_0=0.5,\,\alpha = 0.2,\,d=3$ and initial conditions $\mathcal{H}(0)=0$. $\sim65$ orbits are displayed.}
+\label{fig:phaseportrait1}
+\end{figure}
+As expected, in such regime, the motion of the $\chi$ is described by circular orbits in the phase portrait. This phase portrait is similar to the one we know for a pendulum. Nevertheless, it should be noted that it presents strking differences. Look at the orange curve to the right. It starts at a value of $I$ in $[3\pi,5\pi]$ but it ends in the critical point $\mathcal{I}_\star =7\pi$. This hints toward the fact that the system is dominated by friction than anti-friction. If it was not the case, trajectories could flow away to infinity.\\
+
+\textbf{Conjecture:} All the trajectories end at a critical point.
+
+
 \end{document}
 
