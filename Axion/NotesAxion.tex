@@ -440,7 +440,8 @@ At order $\lambda^1$, one obtains
 \end{aligned}
 \end{equation}
 Now the question is whether or not we can solve analytically these set of perturbative equations.
-\paragraph{Numerical implementation/First order autonomous equations}
+\section{Dynamical system analysis}
+\subsection{First order formalism in expansion normalized variables}
 Recall the system of differential equations in the $N=1$ gauge \eqref{eq:Nequal1gauge}. We would like to write it as a first order autonomous system.\PG{Actually, in litterature, such problem is common and the usual thing to do is to view the Fridmann equation as a constraint equation and to use EN (Expansion normalized) variables. The following references will be useful in our setup:\\
 https://arxiv.org/abs/1712.03107\\
 https://arxiv.org/pdf/0906.0396\\
@@ -473,30 +474,30 @@ Let us comeback to~\eqref{eq:euclideanenergydensity}. This equation describes an
 \end{equation}
 Dividing by $d(d-1)H^2$ the third equation of~\eqref{eq:Nequal1gauge} which is known to be the accelerating equation, one obtains
 \begin{equation}
-  (d-1)(d-2)\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}\frac{a''}{a}\frac{1}{H^2}+x^2-y^2=0\,.
+  \frac{(d-2)}{d}\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}\frac{a''}{a}\frac{1}{H^2}+x^2-y^2=0\,.
 \end{equation}
 We also have the identity $\frac{H'}{H^2} =\frac{a a''-a'^2}{H^2 a^2} = \frac{a''}{aH^2} -1$ which plugging back into the previous equation determines $\frac{H'}{H^2}$ in terms of the rest 
 \begin{equation}
-  (d-1)(d-2)\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}-\frac{2}{d}\frac{H'}{H^2}+x^2-y^2=0\,.
+  \frac{(d-2)}{d}\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}-\frac{2}{d}\frac{H'}{H^2}+x^2-y^2=0\,.
 \end{equation}
 Hence,
 \begin{equation}
-  \frac{H'}{H^2} = \frac{d}{2}\left(x^2-y^2-1+(d-1)(d-2)\Omega_k(x,y)\right)\,.
+  \frac{H'}{H^2} = \frac{d}{2}\left(x^2-y^2-1+\frac{(d-2)}{d}\Omega_k(x,y)\right)\,.
 \end{equation}
 From the eom of the axion, we obtain
 \begin{equation}
   \frac{\chi''}{H^2} + \frac{d\chi'}{H}+\frac{\partial_\chi V_{\rm eff}}{H^2}=0\,.
 \end{equation} 
-Now we will express the equations of $x$ and $y$ in terms of the conformal time $d\eta = H d\tau = d(\log a)$. It suffices to take derivatives wrt the conformal time of the first order variables $x,y$.
+Now we will express the equations of $x$ and $y$ in terms of the flow parameter $d\eta = H d\tau = d(\log a)$. It suffices to take derivatives wrt the conformal time of the first order variables $x,y$.
 \begin{equation}
   \begin{aligned}
     \frac{dx}{d\eta}&=\frac{1}{H}\frac{dx}{d\tau} = -\frac{H'}{H^2}x+\frac{\chi''}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\\
-    &=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-\sqrt{\frac{\kappa}{d(d-1)}}\frac{d\chi'}{H}-\frac{\partial_\chi V_{\rm eff}}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\,.
+    &=x \frac{d}{2}\left(y^2+1-x^2-\frac{d-2}{d}\Omega_k(x,y)\right)-\sqrt{\frac{\kappa}{d(d-1)}}\frac{d\chi'}{H}-\frac{\partial_\chi V_{\rm eff}}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\,.
   \end{aligned}
 \end{equation}
-Observe that it is not an autonomous system as in our specific case $\partial_\chi V_{\rm eff}$ depends on $\chi$. A convenient way to deal with that is to define a third variable $\lambda = \frac{\partial_\chi V_{\rm eff}}{\sqrt{\kappa}V_{\rm eff}}$. The previous equation can be defined in terms of $y,\lambda$
+Observe that it is not an autonomous system as in our specific case $\partial_\chi V_{\rm eff}$ depends on $\chi$. A convenient way to deal with that is to define a third variable $\lambda = -\frac{\partial_\chi V_{\rm eff}}{\sqrt{\kappa}V_{\rm eff}}$. The previous equation can be defined in terms of $y,\lambda$
 \begin{equation}
-  \frac{dx}{d\eta}=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,.
+  \frac{dx}{d\eta}=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,.
 \end{equation}
 There is a historical reason why $\lambda$ was introduced in cosmology. Initially, people were dealing with exponential potential for the inflaton for which $\lambda$ is trivially a constant. In our case, $\lambda$ is not a constant but there is a trick. It solves the following equation
 \begin{equation}
@@ -506,14 +507,14 @@ where $\Gamma=\frac{V_{\rm eff}\partial_\chi^2 V_{\rm eff}}{(\partial_\chi V_{\r
 \begin{equation}
   \begin{aligned}
     \frac{dy}{d\eta}&=\frac{1}{H}\frac{dy}{d\tau} = -\frac{H'}{H^2}y+\frac{1}{H^2}\sqrt{\frac{2\kappa}{d(d-1)}}\frac{\chi' \,\partial_\chi V_{\rm eff}}{2 \sqrt{V_{\rm eff}}}\,.\\
-    &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,.
+    &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,.
   \end{aligned}
 \end{equation}
 The three dimensional autonomous system reads simply
 \begin{equation}\label{eq:thirdorderautonomousystem}
   \begin{aligned}
-    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
-    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
     \frac{d\lambda}{d\eta} &= -\sqrt{d(d-1)}(\Gamma(\lambda)-1)\lambda^2 x\,.
   \end{aligned}
 \end{equation}
@@ -524,18 +525,111 @@ We now give specific examples for the potential for which we have $\Gamma(\lambd
 We subsequently find
 \begin{equation}
   \begin{aligned}
-    \lambda = -2 \frac{f_\chi}{\sqrt{\kappa}}\tan(\chi f_\chi)\,,\\
-    \Gamma(\lambda) = 1-\frac{2f_\chi^2}{\kappa}\frac{1}{\lambda^2}\,.
+    \lambda = 2 \frac{f_\chi}{\sqrt{\kappa}}\tan(\chi f_\chi)\,,\\
+    \Gamma(\lambda) = \frac{1}{2}-\frac{2f_\chi^2}{\kappa}\frac{1}{\lambda^2}\,.
   \end{aligned}
 \end{equation}
 Then the system becomes
 \begin{equation}\label{eq:thirdorderautonomousystem}
   \begin{aligned}
-    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)-dx-\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
-    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-(d-1)(d-2)\Omega_k(x,y)\right)+\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
-    \frac{d\lambda}{d\eta}  &= \frac{\sqrt{d(d-1)}f_\chi^2}{\kappa}\,x\,.
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{d\lambda}{d\eta}  &= \sqrt{d(d-1)}\left(\frac{2f_\chi^2}{\kappa}+\frac{\lambda^2}{2}\right)\,x\,.
   \end{aligned}
 \end{equation}
-In particular, critical points have to satisfy $x_\star=0$ from the third equation. From the second equation, we have two possibilities. Either, $y_\star =0$ or $y^2+1-(d-1)(d-2)\Omega_k(x,y)=0\Rightarrow y^2=-1$. So the only possibility is $y_\star=0$ and this is compatible with the first equation. What about $\lambda_\star$ ?
+In this case, it is relatively easy to discuss critical points. From the third equation, $x_\star = 0$ and then $y_\star =0$. $\lambda_\star$ is arbitrary so the critical points correspond to the line $x=y=0$. This needs nuances as when $y_\star=0$, $V_{\rm eff} =0$ for which tan blows up at such a point so $\lambda_\star \to \infty$ is the only physical critical point that you can reach. They correspond exactly to the non-running flat solutions found discussed previously. This is very simple to see the line of critical points is unstable. We look at the linearized system $\lambda = \lambda_\star +\delta \lambda,\, x = \delta x,\, y =\delta y$, and one obtains
+\begin{equation}
+  \frac{d\delta X}{d\eta} = \begin{pmatrix}
+    -(d-1) && 0 && 0 \\
+    0 && 1 && 0 \\
+    A_\star && 0 && 0 
+  \end{pmatrix} \delta X \,,
+\end{equation}
+where $A_{\star}$ is a constant depending on the parameters. (This does not apply if $\lambda_\star=\infty$). We see that for $d>1$, these are unstable critical points.\\
+
+The problem of the EN variables introduced earlier is that they generically do not allow for wormhole solutions which are supposed to be $\mathbb{Z}_2$ so with initial conditions $\chi'(0) = a'(0) = 0,\,a(0)\neq 0$. Indeed, the change of variables $x,y$ are singular at that point. We thus look for other variables which support wormhole solutions.
+
+\subsection{First order formalism in "wormhole" variables}
+Note that we can't use the first order formalism introduced in https://arxiv.org/pdf/2505.10703 for instance. In fact, they use $\phi' = i\chi'$ as the natural flow variable which breaks down in our case because precisely at the $\mathbb{Z}_2$ symmetric point for instance, the flow parameter degenerates. A convenient way to introduce wormhole-type of variables is to modify the EN variables by removing their singular part by removing $H$. We thus define
+\begin{equation}
+  p =\sqrt{\frac{\kappa}{d(d-1)}}a\chi' \sp q = \sqrt{\frac{2\kappa V_{\rm eff}}{d(d-1)}}a \sp u = aH = a'\,.
+\end{equation}
+The constraint equation now becomes
+\begin{equation}
+  u^2 + p^2 + q^2 =k=1\,.
+\end{equation}
+This is an algebraic system which defines $S^3$. The phase space is submanifold of $S^3$. Wormhole solutions are initially located at the north pole $q=0$. Actually, this is important to notice that there are two branches $u = \sigma\sqrt{1-p^2-q^2}$ with $\sigma = \pm$. Performing the same steps as before but with the flow parameter $ds=\frac{d\tau}{a}$, one obtains
+\begin{equation}
+  \begin{aligned}
+    \frac{dp}{ds}&=\sigma\sqrt{1-p^2-q^2} \,p (1-d)+\frac{\sqrt{d(d-1)}}{2}\lambda q^2\,\\
+    \frac{dq}{ds}&=\sigma\sqrt{1-p^2-q^2}\,q -p q \lambda \frac{\sqrt{d(d-1)}}{2}\,\\
+    \frac{d\lambda}{ds}&=-\sqrt{d(d-1)}\left(\Gamma-1\right)\lambda^2 x\,.
+  \end{aligned}
+\end{equation}
+The sigma sign defines contracting or expanding branches. The system is branchwise autonomous. Also, note that the square root has the bad behavior of breaking the Lipschitz assumption. This signals potential non uniqueness of the solution even for fixed branch. (This was actually to be expected as even in the abscence of a potential for $V_{\rm eff}=\rm const.$, wormholes with infinite number of bubbles where found.) To obtain a wormhole solution, you shall glue a contracting branch for $s<0$ to an expanding branch at $s>0$. It might be possible to generate by this gluing procedure wormholes that are not $\mathbb{Z}_2$ symmetric.
+
+\paragraph{Frieman Vaga variables} For the conventions, we refer to https://arxiv.org/pdf/astro-ph/0004138. We assume our potential+cosmological constant is given by $V(\chi) = V_0 + V_1 \cos(\chi f_\chi)$. There are five possibilities:
+\begin{itemize}
+    \item $V_1>V_0>0$ and this potentially describes solutions interpolating between AdS and dS saddles.
+    \item $V_0>V_1>0$ and this describes dS saddles.
+    \item $V_0<V_1<0$ and this describes AdS saddles.
+    \item $V_0=V_1<0$ and this describes solutions interpolating between AdS and flat saddles.
+    \item $V_0=V_1>0$ and this describes solutions interpolating between dS and flat saddles.
+\end{itemize}
+We introduce the variables 
+\begin{equation}
+        J=\sqrt{\kappa}\chi' \sp I=f_\chi \chi \sp H =\frac{a'}{a}\,. \sp '=\frac{d}{d\tau}
+\end{equation}
+The equations of motion for the $\chi$ particle(see~\eqref{eq:Nequal1gauge}) gives the first order equation for $J$
+\begin{equation}
+    J'=-dJH+V_1\sqrt{\kappa}f_\chi \sin(I)\,.
+\end{equation}
+By definition of $J$ and $I$, we have the relation
+\begin{equation}
+    I' =\frac{f_\chi}{\sqrt{\kappa}}J\,.
+\end{equation}
+The accelerating equation of~\eqref{eq:Nequal1gauge} can be recast in the form
+\begin{equation}
+    -(d-1)(d-2)H^2+\frac{k}{a^2}(d-1)(d-2)-2\frac{a''}{a}(d-1)+J^2-2\kappa\left[V_0+V_1\cos(I)\right]=0\,.
+\end{equation}
+Then, observe that $\frac{a''}{a}=H'+H^2$ so
+\begin{equation}
+    -d(d-1)H^2+\frac{k}{a^2}(d-1)(d-2)-2H'(d-1)+J^2-2\kappa\left[V_0+V_1\cos(I)\right]=0\,.
+\end{equation}
+To eliminate a, we then use the Friedman equation which states that 
+\begin{equation}
+    \frac{d(d-1)}{a^2}k=d(d-1)H^2+J^2+2\kappa\left[V_0+V_1\cos(I)\right]\,.
+\end{equation}
+Injecting it into the previous equation and re-arranging, the final first order system reads
+\begin{equation}
+\begin{aligned}
+    J'&=-dJH+V_1\sqrt{\kappa}f_\chi \sin(I)\,,\\
+    I' &=\frac{f_\chi}{\sqrt{\kappa}}J\,,\\
+    H'&=-H^2+\frac{J^2}{d}-\frac{2\kappa}{d(d-1)}\left[V_0+V_1\cos(I)\right]\,.
+\end{aligned}
+\end{equation}
+To only deal with dimensionless quantities, we first introduce $M^2=\kappa V_1$ which has dimension inverse length scare. $\alpha=\frac{\sqrt{\kappa}}{f_\chi}$ is dimensionless. We define rescaled dimensionless quantities
+\begin{equation}
+    v_0=\frac{V_0}{M^2},\, \mathcal{J}=\frac{J}{M},\,\mathcal{H}=\frac{H}{M},\,du = Md\tau\,.
+\end{equation}
+Then, we easily find
+\begin{equation}
+\begin{aligned}
+    \frac{d\mathcal{J}}{du}&=-d\mathcal{J}\mathcal{H}+\frac{\sin(I)}{\alpha}\,,\\
+    \frac{dI}{du} &=\frac{\mathcal{J}}{\alpha}\,,\\
+    \frac{d\mathcal{H}}{du}&=-\mathcal{H}^2+\frac{\mathcal{J}^2}{d}-\frac{2}{d(d-1)}\left[v_0+\cos(I)\right]\,.
+\end{aligned}
+\end{equation}
+\PG{I guess, there could be some cosmological bounds on the $\alpha$. Ioannis, what is your thought on that ?}
+Assuming $d>1$ and that the Planck length-scale is much smaller than the axion length scale $\alpha\ll1$.
+\paragraph{Case 1: $v_0<1$.}
+We will first focus in such a case. We first run a solution for $\alpha=0.1,\,v_0=0.5,\,d=3$.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.72\textwidth]{d3v05alpha01.png}
+\caption{The autonomous system with initial conditions: $\mathcal{J}=0,\,I = \frac{\pi}{2}\Rightarrow V(0) = V_1 v_0,\,\mathcal{H}=0$}
+\label{figanexample}
+\end{figure}
+
 \end{document}
 
