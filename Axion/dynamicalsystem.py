@@ -3,19 +3,19 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 # ---------- PARAMETERS ----------
-alpha = 2
+alpha = 0.2
 d = 3.0
-v0 = 0.5
+v0 = 1.5
 ufinal = 10.0
 N = 1000
-nI = 8
-nJ = 8
+nI = 20
+nJ = 20
 # Window for initial conditions in the projected (I, J) plane
-IC_I_WINDOW = (0, 15)
-IC_J_WINDOW = (-1.5, 1.5)
+IC_I_WINDOW = (0, 20)
+IC_J_WINDOW = (-10, 10)
 # Window used to display the final plot
-PLOT_I_WINDOW = (0.0, 13)
-PLOT_J_WINDOW = (-10, 8)
+PLOT_I_WINDOW = (-5, 25)
+PLOT_J_WINDOW = (-25, 25)
 
 
 # ---------- ODE SYSTEM ----------
@@ -161,7 +161,7 @@ def plot_projected_phase_portrait(
     return fig, ax
 
 
-def plot_time_series(X0=np.array([np.pi / 2.0, 0.0, 0.0]), filename=None):
+def plot_time_series(X0=np.array([0, 5, 0.0]), filename=None):
     """Plot I(u), J(u), and H(u) for one initial condition."""
     u, sol, full_sol = solve_system(X0)
 
@@ -190,5 +190,5 @@ def plot_time_series(X0=np.array([np.pi / 2.0, 0.0, 0.0]), filename=None):
 # ---------- MAIN ----------
 if __name__ == "__main__":
     plot_time_series(filename="time_series.png")
-    plot_projected_phase_portrait(H0=0.0, filename="phase_portrait_IJ.png")
+    # plot_projected_phase_portrait(H0=0.0, filename="phase_portrait_IJ.png")
     plt.show()
