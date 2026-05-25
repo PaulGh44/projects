@@ -568,7 +568,7 @@ This is an algebraic system which defines $S^3$. The phase space is submanifold 
 \end{equation}
 The sigma sign defines contracting or expanding branches. The system is branchwise autonomous. Also, note that the square root has the bad behavior of breaking the Lipschitz assumption. This signals potential non uniqueness of the solution even for fixed branch. (This was actually to be expected as even in the abscence of a potential for $V_{\rm eff}=\rm const.$, wormholes with infinite number of bubbles where found.) To obtain a wormhole solution, you shall glue a contracting branch for $s<0$ to an expanding branch at $s>0$. It might be possible to generate by this gluing procedure wormholes that are not $\mathbb{Z}_2$ symmetric.
 
-\paragraph{Frieman Vaga variables} For the conventions, we refer to https://arxiv.org/pdf/astro-ph/0004138. We assume our potential+cosmological constant is given by $V(\chi) = V_0 + V_1 \cos(\chi f_\chi)$. There are five possibilities:
+\paragraph{Frieman Vaga variables} For the conventions, we refer to https://arxiv.org/pdf/astro-ph/0004138. We assume our potential+cosmological constant is given by $V(\chi) = V_0 + V_1 \cos\left(\frac{\chi} {f_\chi}\right)$. There are five possibilities:
 \begin{itemize}
     \item $V_1>V_0>0$ and this potentially describes solutions interpolating between AdS and dS saddles.
     \item $V_0>V_1>0$ and this describes dS saddles.
@@ -578,15 +578,15 @@ The sigma sign defines contracting or expanding branches. The system is branchwi
 \end{itemize}
 We introduce the variables 
 \begin{equation}
-        J=\sqrt{\kappa}\chi' \sp I=f_\chi \chi \sp H =\frac{a'}{a}\,. \sp '=\frac{d}{d\tau}
+        J=\sqrt{\kappa}\chi' \sp I=\frac{\chi}{f_{\chi}} \sp H =\frac{a'}{a}\,. \sp '=\frac{d}{d\tau}\,.
 \end{equation}
 The equations of motion for the $\chi$ particle(see~\eqref{eq:Nequal1gauge}) gives the first order equation for $J$
 \begin{equation}
-    J'=-dJH+V_1\sqrt{\kappa}f_\chi \sin(I)\,.
+    J'=-dJH+V_1\frac{\sqrt{\kappa}}{f_\chi }\sin(I)\,.
 \end{equation}
 By definition of $J$ and $I$, we have the relation
 \begin{equation}
-    I' =\frac{f_\chi}{\sqrt{\kappa}}J\,.
+    I' =\frac{1}{f_\chi\sqrt{\kappa}}J\,.
 \end{equation}
 The accelerating equation of~\eqref{eq:Nequal1gauge} can be recast in the form
 \begin{equation}
@@ -603,12 +603,12 @@ To eliminate a, we then use the Friedman equation which states that
 Injecting it into the previous equation and re-arranging, the final first order system reads
 \begin{equation}
 \begin{aligned}
-    J'&=-dJH+V_1\sqrt{\kappa}f_\chi \sin(I)\,,\\
-    I' &=\frac{f_\chi}{\sqrt{\kappa}}J\,,\\
+    J'&=-dJH+V_1\frac{\sqrt{\kappa}}{f_\chi }\sin(I)\,,\\
+    I' &=\frac{1}{f_\chi \sqrt{\kappa}}J\,,\\
     H'&=-H^2+\frac{J^2}{d}-\frac{2\kappa}{d(d-1)}\left[V_0+V_1\cos(I)\right]\,.
 \end{aligned}
 \end{equation}
-To only deal with dimensionless quantities, we first introduce $M^2=\kappa V_1$ which has dimension inverse length scare. $\alpha=\frac{\sqrt{\kappa}}{f_\chi}$ is dimensionless. We define rescaled dimensionless quantities
+To only deal with dimensionless quantities, we first introduce $M^2=\kappa V_1$ which has dimension inverse length scare. $\alpha=f_\chi \sqrt{\kappa}$ is dimensionless. We define rescaled dimensionless quantities
 \begin{equation}
     v_0=\frac{V_0}{M^2},\, \mathcal{J}=\frac{J}{M},\,\mathcal{H}=\frac{H}{M},\,du = Md\tau\,.
 \end{equation}
@@ -662,6 +662,22 @@ As expected, in such regime, the motion of the $\chi$ is described by circular o
 
 \textbf{Conjecture:} All the trajectories end at a critical point.
 
-
+\paragraph{Holographic properties of the solutions} In this paragraph, we describe the holographic properties of the domain-wall solutions which asymptotes to the EAdS fixed point. First note that near the AdS fixed point
+\begin{equation}
+  V(\chi)\to V_0 -V_1 <0\,.
+\end{equation}
+The spacetime asymptotes to an AdS geometry with length $L_{\rm AdS}$ defined by 
+\begin{equation}
+  L_{\rm AdS} = \frac{1}{M|\mathcal{H}_\star|} = \sqrt{\frac{1}{\kappa V_1}\frac{d(d-1)}{2(1-v_0)}}\,.
+\end{equation}
+Expanding at second order, one obtains
+\begin{equation}
+  V(\chi) = V_0-V_1 - \frac{V_1}{2}\left(\frac{\delta\chi}{f_\chi}\right)^2\cos(\mathcal{I}_\star)= V_0-V_1 + \frac{V_1}{2 f_\chi^2} (\delta\chi)^2 + \mathcal{O}((\delta\chi)^4)\,.
+\end{equation}
+This describes a massive deformation of mass
+\begin{equation}
+  m_{\rm holo}^2 =-m^2_{\rm axion} = - \frac{V_1}{f_\chi^2} = -\frac{M^2}{\alpha^2} \Rightarrow m_{\rm holo}^2L_{AdS}^2 = -\frac{d(d-1)}{2\alpha^2}\frac{1}{1-v_0}<0\,.
+\end{equation}
+From the point of view of the dual theory, choosing the standard quantization picture, it describes an relevant deformation as $\Delta_+ <d$. This potentiall breaks the BF-bound. If it satisfies the BF-bound, both modes are normalizable.
 \end{document}
 
