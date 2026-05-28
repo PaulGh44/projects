@@ -179,7 +179,7 @@
 \newcommand{\OP}[1]{{\green{OP: #1}}} % Olga
 \newcommand{\PG}[1]{{\purple{PG: #1}}} % Paul
 
-\title{Notes on c=1 MQM and entanglement entropy}
+\title{Notes on c=1/Liouville theory}
 
 \author[a]{Panos Betzios\orcidlink{0000-0002-5350-9404},}
 \author[b]{Paul Ghiringhelli,}
@@ -208,15 +208,14 @@ Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Review of c=1 MQM}
 
-\subsection{Continuum theory}
+\section{Continuum theory}
 
-\paragraph{From the sigma model to the gauge fixed action.} We consider a free scalar coupled to two-dimensional Euclidean gravity, with a cosmological constant and a topological Einstein term on a smooth, compact two dimensional manifold $\mathcal{M}_h$ with genus $h$ and metric $g$.
+\subsection{From the sigma model to the gauge fixed action.} We consider a free scalar coupled to two-dimensional Euclidean gravity, with a cosmological constant and a topological Einstein term on a smooth, compact two dimensional manifold $\mathcal{M}_h$ with genus $h$ and metric $g$.
 \begin{equation}
   \mathcal{S}_{\sigma}^{(h,g,\Phi_0)}=\frac{1}{4\pi}\int_{\mathcal{M}_h} d^2 x \sqrt{g}\left(g^{\mu \nu}\partial_\mu X \partial_\nu X +\Phi_0\mathcal{R}+4 \pi \mu\right)\,.
 \end{equation}
-$\Phi_0$ is a constant and as we will see later is connected to the constant part of the linear dilaton background. The Gauss-Bonnet theorem states that $\frac{1}{4\pi}\int d^2x \sqrt{g}$ is a topological number known as the Euler characteristic $\chi_h=2-2h$. The partition function is defined through the path-integral over all possible metrics on $\mathcal{M}_{h}$ modulo Diffeomorphism and the boson $X$
+$\Phi_0$ is a constant and as we will see later is connected to the constant part of the linear dilaton background. The Gauss-Bonnet theorem states that $\frac{1}{4\pi}\int d^2x \sqrt{g}\mathcal{R}$ is a topological number known as the Euler characteristic $\chi_h=2-2h$. The partition function is defined through the path-integral over all possible metrics on $\mathcal{M}_{h}$ modulo Diffeomorphism and the boson $X$
 \begin{equation}
   \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \int \frac{[Dg^{(h)}_{\mu \nu}]}{\text{Vol}(\text{Diffeo})} [DX]e^{-\mathcal{S}_{\sigma}^{(h,g)}}\,,
 \end{equation}
@@ -224,8 +223,7 @@ where we introduced the notation $g_0 = e^{\Phi_0}$. Note that we remove the $\P
 \begin{equation}
   \mathcal{S}^{(\hat{g}_h)}_{L}=\frac{1}{4\pi}\int d^2x \sqrt{\hat{g}_h}\left(\hat{g}^{\mu \nu}_h \partial_\mu \phi \partial_\nu \phi +Q \hat{\mathcal{R}}\phi+4\pi\mu e^{2b\phi}\right)\,.
 \end{equation}
-We emphasize that the term in front of the Ricci scalar term comes from the anomaly of the measure.
-The remaining intergal to perform is an integral over the conformal mode $\phi$ known as the Liouville field and an integral over the moduli space parametrized by $\tau$ introduced previously.
+In the case of $c=1$ matter boson $c_L=25,\,b=1,\,Q=2$ but we keep the general form of the Liouville action. We emphasize that the term in front of the Ricci scalar term comes from the anomaly of the measure. The remaining integral to perform is an integral over the conformal mode $\phi$ known as the Liouville field and an integral over the moduli space parametrized by $\tau$ introduced previously.
 \begin{equation}
   M_{h}=\frac{\text{Metrics on }\mathcal{M}_h}{\text{Diffeo} \times \text{Weyl}}\,.
 \end{equation}
@@ -235,18 +233,18 @@ Hence, if modular invariance is satisfied, the partition function finally reads
     \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \int d\tau \int [D\phi][DX][Db][Dc]e^{-(\mathcal{S}_{\sigma}+\mathcal{S}_{b,c}+\mathcal{S}_{L})}\,,
   \end{aligned}
 \end{equation}
-where $V_{h}$ is the volume of the moduli space of $M_h$. Let's focus on the Liouville sector for a moment. We can exploit that $\phi$ is integrated over to extract the $\mu$ dependence of the Liovuille partition function. In fact, assuming the measure is invariant under $\phi \rightarrow \phi -\frac{\log(\mu)}{2b}$, one obtains
+where $V_{h}$ is the volume of the moduli space of $M_h$. Let's focus on the Liouville sector for a moment. We can exploit that $\phi$ is integrated over to extract the $\mu$ dependence of the Liouville partition function. In fact, assuming the measure is invariant under $\phi \rightarrow \phi -\frac{\log(\mu)}{2b}$, one obtains
 \begin{equation}\label{eq:KPZ}
   \mathcal{Z}^{(h)}_L(\mu) = \mu^{-\frac{Q\chi_h}{2b}}\mathcal{Z}^{(h)}_L(\mu = 1)\,.
 \end{equation}
 
-\paragraph{Liouville action and Target space interpretation} The different terms appearing in the Liouville+matter action have a meaning in terms of Target space fields. Let's recall the general form of the generalized non linear sigma model in presence of a dilaton $\Phi(Y)$, a Tachyon condensate $T(Y)$ and non trivial metric $G_{\mu \nu}(Y)$.
+\subsection{Liouville action and Target space interpretation} The different terms appearing in the Liouville+matter action have a meaning in terms of Target space fields. Let's recall the general form of the generalized non linear sigma model in presence of a dilaton $\Phi(Y)$, a Tachyon condensate $T(Y)$ and non trivial metric $G_{\mu \nu}(Y)$.
 \begin{equation}
-  \mathcal{S} = \frac{1}{4\pi}\int d^2x \sqrt{\hat{g}}\left(T(Y)+Q\hat{\mathcal{R}}\Phi(Y)+g^{ab}G_{\mu \nu}\partial_a Y^\mu \partial_b Y^\nu\right)\,.
+  \mathcal{S} = \frac{1}{4\pi}\int d^2x \sqrt{\hat{g}}\left(T(Y)+\hat{\mathcal{R}}\Phi(Y)+g^{ab}G_{\mu \nu}\partial_a Y^\mu \partial_b Y^\nu\right)\,.
 \end{equation}
-We see by comparison to the Liouville + matter action that $Y = (X,\Phi)$ and
+We see by comparison to the Liouville + matter action that $Y = (X,\phi)$ and
 \begin{equation}\label{eq:background}
-  T = \mu e^{2b \phi}\sp G_{\mu \nu} = \delta_{\mu \nu}\sp  \Phi = \frac{\Phi_0}{Q}+\phi\,. 
+  T = 4\pi \mu e^{2b \phi}\sp G_{\mu \nu} = \delta_{\mu \nu}\sp  \Phi = \Phi_0+Q\phi\,. 
 \end{equation}
 This is important to note that the background~\eqref{eq:background} is solution of the one-loop vanishing of the $\beta$ functions only for $\mu=0$. For $\mu\neq0$ the Liouville interaction should be interpreted as a tachyon-wall background rather than as a naive linear-dilaton solution of the free beta-function equations.
 
@@ -260,14 +258,14 @@ The marginality condition fixes $\Delta_X + \Delta_\phi = \Delta_X + \alpha(Q-\a
 \end{equation}
 The Tachyon condensate results in an insertion of the infinite sum of $(\mu \,V_T)^n$
 \begin{equation}
-  \sum_{n=0}^{\infty}\frac{\mu^n}{n!} \int d^2x_1 \sqrt{\hat{g}} ... \int d^2x_n \sqrt{\hat{g}} \,e^{2 b\phi(x_1)}...e^{2 b\phi(x_n)}\,.
+  \sum_{n=0}^{\infty}\frac{(-\mu)^n}{n!} \int d^2x_1 \sqrt{\hat{g}} ... \int d^2x_n \sqrt{\hat{g}} \,e^{2 b\phi(x_1)}...e^{2 b\phi(x_n)}\,.
 \end{equation}
 Remark that we effectively started with a sigma model with one boson and landed on a theory which has now two bosons $X,\phi$. We say that from the non-decoupling of the conformal mode, a new dimension has emerged. This describes a inhomogeneous 2D space $(\phi,X)$. Such inhomogeneity emerges in the $\phi$ direction due to the Liouville potential. The string coupling depends on the value of the dilaton and thus on the position in the $\phi$ direction as the dilaton and the Liouville conformal mode are related by~\eqref{eq:background}. An observer sitting on the Liouville wall defined by the condition
-\begin{equation}
-  \mu e^{2b\phi_\star} = 1 \Rightarrow \Phi_\star = \frac{\Phi_0}{Q} + \phi_\star = \Phi_0 -\frac{\log(\mu)}{2b}\,.
+\begin{equation}\label{eq:relationLiouvillewallcosmologicalconstant}
+  4\pi\mu e^{2b\phi_\star} = 1 \Rightarrow \Phi_\star = \Phi_0 + Q\phi_\star = \Phi_0 -Q\frac{\log(4\pi\mu)}{2b}\,.
 \end{equation}
-observes the scattering of states with the string coupling $g_\star = e^{Q\Phi_\star}$. The amplitude of the process should be perturbatively described by a genus expansion in the string coupling at the position of the Liouville wall and this is exactly what the KPZ scaling relation gives (see~\eqref{eq:finalgaugefixing},~\eqref{eq:KPZ}).
-\paragraph{Genus 0 Lagrangian}
+observes the scattering of states with the string coupling $g_\star = e^{\Phi_\star}$. The amplitude of the process should be perturbatively described by a genus expansion in the string coupling at the position of the Liouville wall and this is exactly what the KPZ scaling relation gives (see~\eqref{eq:finalgaugefixing},~\eqref{eq:KPZ}).
+\subsection{Genus 0 Lagrangian}
 On the sphere $h=0$, we choose a representant of the conformal class $\hat{g}_h$ such that the metric is flat on the complex plane $(z,\bar{z})$ except at one point which is taken at infininity.
 If one writes $ds^2 = 2 dz d\bar{z}$, then the Liouville Lagrangian density on the sphere is 
 \begin{equation}
@@ -280,8 +278,95 @@ Choosing the representative of the conformal class which is flat on $\mathbb{C}$
 \begin{equation}
   \phi(z,\bar{z}) \underset{z \to \infty}{=}  - 2Q \log (z\bar{z})+\mathcal{O}(1)\,.
 \end{equation}
-In fact, $\partial_z\partial_{\bar{z}}\log(z\bar{z}) = 2\pi \delta^2(z,\bar{z})$.
+In fact, $\partial_z\partial_{\bar{z}}\log(z\bar{z}) = 2\pi \delta^2(z,\bar{z})$. \\
+\subsection{Wheeler De Witt constraint and physical states}
+Let a theory of gravity constructed as a tensor product $M=\mathcal{H}_L \otimes \mathcal{H}_X $. We take the matter theory to be $c$ X bosons so that $c+c_L=26$. We consider the theory at genus 0 on the Riemann sphere. The X states are thus described by closed string states.  We consider a state that takes the following form 
+\begin{equation}\label{eq:primarystates}
+  \ket{\Psi} = \ket{\Psi_L} \otimes \ket{\Psi_X}\,,
+\end{equation}
+where both $\ket{\Psi_L},\,\ket{\Psi_X}$ are primary states. Upon acting with Virasoro generators, such states span the hilbert space of the gravitational theory. Nevertheless, the Hilbert space is the truncation of this bigger space by the Wheeler-De Witt constraint
+\begin{equation}
+  \left(L_0^{(\phi +X)}+\bar{L}_0^{(\phi+X)}-2\right)\ket{\Psi}=0\,,
+\end{equation}
+where $L_0^{(\phi +X)}$ is the Virasoro generator on the plane. This condition applied on the tensor product of primary states~\eqref{eq:primarystates} imposes the marginality condition $\Delta_L +\Delta_X =1$. To inspect the form of the Wheeler-De-Witt equation, we first note that there is no interaction between the matter theory and the Liouville by assumption so that the total Hamiltonian is a tensor product. We focus on the Liouville side which is the non-trivial side (\PG{The other side tells you that $\ket{\Psi_X}$ is represented by a vertex operator in $X$-space, right ?}). On genus $0$, we can inspect the Wheeler De Witt equation by truncating to minisuperspace that is truncating to zero mode on the cylinder $\phi(\tau,\sigma) = \phi_0(\tau),\, \sigma \in [0,2\pi)$. The lagrangian density becomes a lagrangian
+\begin{equation}
+  L_{\rm zero-mode} = \frac{1}{2}\left((\partial_\tau \phi_0)^2 + 4\pi \mu e^{2b \phi_0}\right)\,.
+\end{equation}
+Applying canonical quantization and working in the $\phi_0$ space, one immediatly finds the associated Schrodinger equation
+\begin{equation}\label{eq:Schrodinger}
+ \left[-\frac{1}{2}\frac{\partial^2}{\partial{\phi_0}^2}+2\pi \mu e^{2b\phi_0}\right]\Psi_L(\phi_0)=E^{(\rm cyl)}_L \Psi_L(\phi_0)\,.
+\end{equation}
+This equation should be equivalent to the Wheeler-De-Witt equation on the Liouville sector on the cylinder. We know $E^{\rm plane}_X+E^{\rm plane}_L =2$ by the Wheeler-De-Witt equation so one might identified $E_X^{\rm plane}\to2\Delta_X,\,E^{\rm plane}_L\to 2\Delta_L$ but of course the identification between $E_X,E_L$ and $\Delta_X,\Delta_L$ is not one to one, one can shift $E^{\rm plane}_L \to E^{\rm plane}_L +a,\, E^{\rm plane}_X \to E^{\rm plane}_X -a$. The Schwarzian term has also the effect to shift the Virasoro generators
+\begin{equation}
+  L_0^{\rm{L,cylinder}}\to L_0^{\rm{L,plane}} -\frac{c_L}{24}\,.
+\end{equation}
+This fixes $E^{(\rm plane)}_L-E^{(\rm cyl)}_L = \frac{c_L}{12}$: the energy on the cylinder is shifted by the casimir energy $\frac{c_L}{12}$. Now, it appears to be convenient in the context of conformal bootstrap to parametrized
+\begin{equation}
+\begin{aligned}
+  \Delta_L &= \frac{c_L-1}{24}-P^2 = \frac{c_L-1}{24}+p^2\,,\\
+  c_L &= 1+ 6Q^2\,.
+\end{aligned}
+\end{equation}
+The Hilbert space of Liouville theory $\mathcal{H}_L$ known as the spectrum consists of diagonal operators with $p\in \mathbb{R}(+\epsilon)$(in both spacelike and timelike case with an $\epsilon$ prescription). This means from the bootstrap perspective that the OPE rules are defined consistently with respect to the spectrum that is we have to sum over primaries with their momenta in the spectrum. If we take crossing symmetry as a requirement, we can't negociate on that. Of course, this does not mean that we can not compute expectation values of operators for which their momentum is outside the spectrum. In practice, we can access such states and such quantities by analytic continuation.
+In order to identify $p$ with the momentum of the asymptotic states far from the Liouville wall , it is convenient to write $E^{(\rm cyl)}_L=2p^2=2\Delta_L-\frac{c}{12}+\frac{1}{12}$. Hence, the Wheeler-De-Witt equation on the Liouville sector yields
+\begin{equation}
+  \left[-\frac{1}{2}\frac{\partial^2}{\partial{\phi_0}^2}+2\pi \mu e^{2b\phi_0}-2p^2\right]\Psi_L(\phi_0)=0\,.
+\end{equation}
+Introducing the loop parameter $\ell = e^{b\phi_0}$, this becomes a modified Bessel equation
+\begin{equation}\label{eq:Wheeler-De-Witt-spacelike}
+  \ell^2\frac{\partial^2}{\partial{\ell}^2}\Psi_L(\ell)+\ell\frac{\partial}{\partial{\ell}}\Psi_L(\ell)-\left(\frac{4\pi\mu}{b^2}\ell^2-\frac{4p^2}{b^2}\right)\Psi_L(\ell)=0\,.
+\end{equation}
+States that decay in the strong coupling region $\phi_0\to \infty$ correspond to Bessel-K functions(\textbf{if $b\in \mathbb{R}$}!!). So,
+\begin{equation}
+  \Psi^{(p)}_L(\ell) \propto K_{\frac{2ip}{b}}\left(\frac{2\sqrt{\pi\mu}}{b}\ell\right)\,.
+\end{equation}
+As it should be, this is even in $p$ so that $\Delta_L$ or ($E_L$) is indeed the correct physical parameter. By definition,
+\begin{equation}
+  K_{\nu}(z)=\frac{I_{\nu}(z)-I_{-\nu}(z)}{\sin(\pi \nu)}\,,
+\end{equation}
+and we have the asymptotics $I_{\nu}(z)\underset{z\to 0}{\sim} \left(\frac{z}{2}\right)^\nu$. We further define the reflection coefficient such that asymptotically in the weak coupling region
+\begin{equation}
+  \Psi^{(p)}_L(\ell) \underset{\ell \to 0}{\propto} e^{2ip\phi_0}+ R(p)e^{-2ip\phi_0}\,.
+\end{equation}
+Due to the expression of $K_\nu$ and the asymptotic expansion of $I_\nu$, we find
+\begin{equation}
+  R(p)=-\sin\left(\pi\frac{2ip}{b}\right)\times \left(\frac{\pi \mu}{b^2}\right)^{2ip/b}\,.
+\end{equation}
+We highlight that what we described here is crystal clear in the context of spacelike Liouville theory $c_L\geq 25 \Rightarrow b\in \mathbb{R}$. In the case $c_L\leq 1\Rightarrow b \in i\mathbb{R}$, one has to analytically continue $\phi_0 \to i\phi_0,\,b\to -i\phi_0$ and the modified Bessel equation becomes a simple Bessel equation
+\begin{equation}\label{eq:Wheeler-De-Witt-spacelike}
+  \ell^2\frac{\partial^2}{\partial{\ell}^2}\Psi_L(\ell)+\ell\frac{\partial}{\partial{\ell}}\Psi_L(\ell)+\left(\frac{4\pi\mu}{b^2}\ell^2-\frac{4p^2}{b^2}\right)\Psi_L(\ell)=0\,.
+\end{equation}
+In such a case, it is still an ongoing puzzle on which boundary conditions fix the reflection coefficient.
+\paragraph{Third quantized description in genus 0 minisuperspace}
+We focus in the case $c_L \geq 25$. The closed string Liouville states that we discussed earlier should be viewed as wavefunction of the universe: precisely, they describe the amplitude of a universe to be nucleated from a vertex insertion of momentum $p$. We consider a second quantized description of the minisuperspace theory which was already a second quantized description therefore defining a so-called third quantized description. Remembering that the Hamiltonian acting on $X$ is simply $\mathcal{H}_X = -\frac{\partial^2}{\partial X^2}$, the third quantized description should be
+\begin{equation}
+  \mathcal{S}_{\rm third} = \int \rm{d}\phi \rm{d}X \frac{1}{2}\left(\left(\partial_\phi \Psi\right)^2+ \left(\partial_X \Psi\right)^2+4\pi \mu e^{2b\phi}\Psi^2\right)\,.
+\end{equation}
+We shall view this as a massive field theory whose mass is expressed in terms of the string coupling $m^2 \sim g_s(\phi)$ which depends on the position in the $\phi$ space. In particular, in the weak coupling region, it describes a massless scalar field theory in 1+1d. We therefore immediatly obtain that the entanglement entropy of a cut $A=[\phi_1,\phi_2]$ in the weak coupling region is given by Cardy-Calabrese universal law
+\begin{equation}
+  S_A = \frac{1}{3}\log\left(\frac{\phi_2-\phi_1}{\epsilon_{\rm UV}}\right)+c\,,
+\end{equation}
+where $c$ is a non universal constant and $\epsilon_{\rm UV}$ is a UV-cutoff. From this strategy, this is hopeless to find the UV cutoff which was found by Hartnoll and Mazenc from the matrix model computation namely $g_s$. The physical cutoff they found arised because of the non-perturbative effects (so-called "wiggles" effects) provided by the matrix model. Those effects are actually tied to non-perturbative corrections to the Wheeler-De-Witt equation. Still, this computation tells you that Hartnoll-Mazenc results correspond to genus $0$ approximation in the weakly coupled region + addition of non-perturbative results. Note that their computation was perform in the time of flight variable and the time of flight is one to one with the $\phi$ variable in the asymptotic region $\phi \sim \tau$. That's why we retrieve the same results. Still, this is conceptually interesting to see that the non perturbative effects of the corrected Wheeler-De-Witt equation can be related to the UV cutoff of the entanglement structure. You can actually think of extracting the non perturbative corrections from the entanglement structure. Typically, perturbative corrections to the Wheeler-De-Witt equations beyond genus $0$ should come as powers of the string coupling. Actually note that for $c_m=1$, $b=1,\,Q=2$, thus the cosmological constant term in Liouville theory can be written as $4\pi \mu e^{2b\phi} = 4\pi \mu g_s(\phi)$ in our convention. In general, the form of the corrected Wheeler-De-Witt equation should be
+\begin{equation}
+  \left(-\partial_\phi^2+2p^2+\sum_{n=1}^{\infty}a_n g_s^{n}+\rm{non-perturbative~effects}\right)\Psi_L^{(p)}(\phi)=0\,.
+\end{equation}
 
+An other interesting observation is that such theory can be mapped to a Klein-Gordon theory by the map $w = \exp\left[b\left(\phi+iX\right)\right]$ from which we obtain
+\begin{equation}
+  \mathcal{S}_{\rm third} = \int \rm{d}^2w \left(2 \partial_w\Psi\partial_{\bar{w}}\Psi + \frac{2\pi \mu}{b^2} \Psi^2\right)\,.
+\end{equation}
+Curiously, it describes a massive scalar theory in 2D for which the mass is exactly determinded by the string coupling at the position of the Liouville wall! 
+\begin{equation}
+  m^2 = g_s(\Phi_\star)\,.
+\end{equation}
+This correspondence is not anecdotic because it is well known that the problem of defining an Hilbert in canonical quantum gravity is somewhat similar to the one faced for a Klein-Gordon theory. In two dimensions, this correspondence is explicit. Unfortunately, this correspondence does not help you making progress in corrections to Cardy-Calabrese universal law. To see that one could think of discretizing the $\phi$-space and the density matrix associated to the cut $[\phi_1,\phi_2]$ correspond to a state where we trace over the boundary conditions outside the cut.
+\begin{equation}
+  \rho_A=Z(\beta)^{-1}\sum_{\{\Psi(\phi)\},\phi \in \bar{A}}\int_{\Psi(\phi,0)=\Psi(\phi)}^{\Psi(\phi,\beta)=\Psi(\phi)} ... \int_{\Psi(\phi_{\rm end},0)=\Psi(\phi_{\rm end})}^{\Psi(\phi_{\rm end},\beta)=\Psi(\phi_{\rm end})} D\Psi(\phi \in A, X) e^{-S_{\rm third}}\,.
+\end{equation}
+This density matrix corresponds to a thermal density matrix and the pure state is obtained by taking $\beta\to0$. When going from the $\phi,X$-space to the $w$-space there is a non trivial jacobian arising from such a transformation. Clearly, this jacobian will spoil the fact that
+\begin{equation}
+  S^{\rm{EE},\,\phi}_{[\phi_1,\phi_2]} \neq S^{\rm{EE},\,w}_{{[e^{\phi_1},e^{\phi_2}]}}\,.
+\end{equation}
 \paragraph{Adding a boundary to the manifold}
 Consider now the possibility of adding a boundary and a non trivial interaction.
 \begin{equation}
@@ -299,35 +384,53 @@ For instance, we describe a two dimensional discretized connected and compact su
 \begin{equation}
    \int Dg^{(h)}_{\mu \nu } \rightarrow \sum_{\rm \Lambda_{h}}\,,
 \end{equation}
-and then the integral over the matter field $X$ in an sum over all the embedding on the real line at each vertex. Finally, denoting $a$ the size of the sides of the triangles, we may assume the following dictionnary
+and then the integral over the matter field $X$ in an sum over all the embedding on the real line at each vertex. Finally, denoting $a$ the size of the sides of the triangles, we may assume the following dictionary
 \begin{equation}
 \begin{aligned}
-    \int_{\mathcal{M}_h} d^2 x \sqrt{g}g^{\mu \nu}\partial_\mu X \partial_\nu X &\rightarrow \sum_{\braket{ij}} \left(\frac{X_i-X_j}{a}\right)^2\,.\\
-    \int_{\mathcal{M}_h} d^2 x \sqrt{g} \mu &\rightarrow \frac{\sqrt{3}}{4}a^2 \mu V\,.
+    \int_{\mathcal{M}_h} d^2 x \sqrt{g}g^{\mu \nu}\partial_\mu X \partial_\nu X &\rightarrow \sum_{\braket{ij}} \left(X_i-X_j\right)^2\,.\\
+    \int_{\mathcal{M}_h} d^2 x \sqrt{g} \mu &\rightarrow \frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare} V\,.
 \end{aligned}
 \end{equation}
-where $V$ denotes the number of vertices. We call $\kappa = \exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right)$ The partition function can thus be written as 
+where $V$ denotes the number of vertices. We also introduced $\lambda_{\rm bare}$ because in going from the discretize model to the continuum, some lattice variables might be renormalized. We call $\kappa = \exp\left(-\frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare}\right)$ The partition function can thus be written as 
 \begin{equation}
   \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \sum_{\rm \Lambda_{h}} \kappa^V \prod_{i=1}^{V} \int dX_i \prod_{\braket{ij}}G(|X_i-X_j|)\,.
 \end{equation}
-We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi} a}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right) $.
+We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi}}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare}\right) $.
 \paragraph{The matrix model}
-Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also supppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
+Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[-\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also suppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
   \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-\alpha\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ U(M)\right]}\,.
 \end{equation}
-\paragraph{Dictionnary with the discretized sigma model}
-By rescaling of the matrix we can rewrite the partition function as up to an irrelevant prefactor\PG{Is this really irrelevant because I found that the Jacobian makes appear a factor of $\tilde{\kappa}^N$ ?}
+\paragraph{Dictionary with the discretized sigma model}
+By rescaling of the matrix we can rewrite the partition function as up to an irrelevant prefactor\footnote{The Jacobian from the field rescaling is a local normalization of the matrix path-integral measure. It contributes only analytic, scheme-dependent terms to $\log (Z)$, and is discarded when extracting the double-scaled nonanalytic free energy.}
 \begin{equation}
-  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,,
+  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2} - \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,,
 \end{equation}
-with $\tilde{\kappa}=\sqrt{\frac{N}{\alpha}}$. Sending $\beta \to \infty$, the partition function can be formally written as an infinite sum over all Feynman diagrams (connected and disconnected)
+with $\tilde{\kappa}=\sqrt{\frac{N}{\alpha}}$. Sending $\beta \to \infty$, the partition function can be formally written as an infinite sum over all  connected Feynman diagrams (t'Hooft expansion)
 \begin{equation}
-  \lim_{\beta\to\infty}\log(Z) =\sum_{h=0}^{\infty}N^{2-2h}\sum_{\Lambda}\tilde{\kappa}^V \prod_{i=1}^V \int_{-\infty}^{+\infty} d\tau_i \prod_{\braket{ij}} e^{-|\tau_i-\tau_j|}\,.
+  \lim_{\beta\to\infty}\frac{\log(Z)}{\beta} =\sum_{h=0}^{\infty}N^{2-2h}\sum_{\Lambda}\tilde{\kappa}^V \prod_{i=1}^V \int_{-\infty}^{+\infty} d\tau_i \prod_{\braket{ij}} e^{-|\tau_i-\tau_j|}\,.
 \end{equation}
-We highlight that to recover the partition function of the gravitational model we shall consider the generating functional of the connected diagrams i.e $\log(Z)$. The first complain is that the link factor is different from the matrix model compared to the discretized gravitational model. This is part of the universality statement that in the continuum limit, multiple link factors can describe the same continumm theory. We may associate the following dictionnary between the discretized gravitational model and the 
+The first complain is that the link factor is different from the matrix model compared to the discretized gravitational model. The equality is not microscopic; it is a universality statement about the continuum limit. We may associate the following dictionary between the discretized gravitational model and the matrix model
+\begin{equation}
+  \begin{aligned}
+    \tilde{\kappa} &= \sqrt{\frac{N}{\alpha}} = \kappa\,,\\
+    \frac{1}{N} &\sim g_0\,. 
+  \end{aligned}
+\end{equation}
+From the discretized gravitational model, the continuum limit is obtained by sending the lattice spacing $a\to 0$. Equivalently, one tunes the bare lattice fugacity $\kappa$ to its critical value $\kappa_c$, so that the number (V) of triangles diverges while the physical area is kept fixed.
+
+From the matrix-model perspective, it would seem that, in order to define a theory with a finite string coupling, it is necessary to consider finite $N$. This naive expectation is false: in the continuum limit the string coupling $g_0\sim 1/N$ becomes infinitely multiplicatively renormalized as $a\to0$. Thus, if $N\to \infty$ is taken simulatenously with the worldsheet continuum limit, we might obtain a theory with finite string coupling. To reach finite $\kappa_c$ while taking $N\to \infty$, $\alpha\to \infty$ which means that semi-classical WKB should be exact at the double scaled limit. While from the discretized gravitational limit, $a\to0$ corresponds to the continuum limit, there is no such thing as the size of the triangles in the Feynman diagram expansion. The remaining question is thus: what is the counter part of the continuum limit from the matrix model perspective ? We will answer this question soon.
+
+From the KPZ relation~\eqref{eq:KPZ}, we expect that the final expansion should be expressed in terms of the cosmological constant of the continuum Liouville theory $\mu$ after taking the continuum limit. We thus expect the following relation 
+\begin{equation}
+  \mu =  \left(\kappa_c^2-\kappa^2\right)\,,
+\end{equation}
+and the continuum cosmological constant is related to the lattice cosmological constant by
+\begin{equation}
+  \lambda_{\rm bare} \sim \frac{\mu}{a^2}\,.
+\end{equation}
 \paragraph{Solving the matrix model}
-Also, thes partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
+Also, the partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
 \begin{equation}
   \mathcal{Z} = \rm{Tr}_{\mathcal{H}}\left[e^{-\beta \alpha H}\right]\,.
 \end{equation}  
@@ -396,6 +499,165 @@ with $\epsilon(p,\lambda)=\frac{p^2}{2}+U(\lambda)$. In particular, denoting the
   \int_{\lambda_-}^{\lambda_+} d\lambda \sqrt{2\left(\mu_F-U(\lambda)\right)} = \frac{\pi N}{\alpha}=\pi \kappa^2(\mu_F)\,.
 \end{equation}
 $\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a non analytic behavior.
+
+\section{Conformal bootstrap of boundary Liouville theory}
+\subsection{Notations}
+\paragraph{Central charge} We parametrize the central charge as
+\begin{equation}
+    c=1+6\,Q^2\,, \quad Q=b+b^{-1}\,.
+\end{equation}
+We do not assume anything particular range for the central charge. We want to obtain the shift equations as a functions of the momenta and the central charge.
+\paragraph{Bulk conformal dimensions} We parametrize the conformal dimension of bulk primary fields $V_{P}(z,\bar{z})$ as 
+\begin{equation}
+  \Delta = \frac{Q^2}{4} - P^2\,, \quad P\in i \mathbb{R}_+\,.
+\end{equation}
+
+\paragraph{Boundary conformal dimension} We work on the upper half-plane. Boundary primary fields are denoted as $\Psi_{P}(x)^{\sigma_1\,\sigma_2}$ where $P$ is the momentum and $\sigma_{1,2}$ corresponds to the boundary conditions on the two sides of the puncture (in principle the two boundary cosmological constants.) We do not assume any particular rules for $\sigma_{i}$ (like FZZT boundary conditions).
+
+\paragraph{Normalization} We work with normalizations of the two point functions/three point functions which are symmetric. Precisely, we write
+\begin{equation}\label{eq:Normalizations}
+\begin{aligned}
+  \braket{V_{P_1}(0)V_{P_2}(1)}&=B(P)\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
+  \braket{V_{P_1}(0)V_{P_2}(1)V_{P_3}(\infty)}&= C(P_1,P_2,P_3)\,,\\
+  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_1}(1)}&= S_{P_1}^{\sigma_1 \sigma_2}\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
+  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)} &= C_{P_1,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}\,,\\
+\end{aligned}
+\end{equation}
+and also 
+\begin{equation}\label{eq:Normalizationsbis}
+\begin{aligned}
+  \braket{V_{P}(z,\bar{z})}&=\frac{U(P|\,\sigma)}{|z-\bar{z}|^{2\Delta}}\,.\\
+  \braket{V_{P}(z,\bar{z})\Psi_{P'}^{\sigma \sigma}(x)}&=\frac{R(P;P'|\,\sigma)}{|z-\bar{z}|^{2\Delta -\Delta'}|z-x|^{2\Delta'}}
+\end{aligned}
+\end{equation}
+
+\subsection{Equations from the Teschner trick}
+We would like to write down all the possible equations one can get by insertion of appropriate degenerate fields. There are two things that we can do: either insert a bulk degenerate field $V_{\braket{2,1}}(z,\bar{z})$ which always decouple. This would lead to second order differential equations. We can also insert $\Psi_{\braket{3,1}}^{\sigma \sigma}(x)$ at the boundary. As was pointed out in the FZZT paper, $\Psi_{\braket{2,1}}^{\sigma \sigma}(x)$ decouples only for peculiar values of $\sigma$. The reason is that introducing a boundary modifies the ward identities obeyed by the boundary fields as the stress tensor at the boundary is perturbed by a certain primary operator which corresponds to the "line operator" (see FZZT paper: \PG{Add the expression of the boundary stress tensor in my convention}). In the other hand, there is a comprehensive reason for which $\Psi_{\braket{3,1}}^{\sigma \sigma}(x)$ always decouple. In fact, $V_{\braket{2,1}}(z,\bar{z})$ always decouple and as $\Im (z)\to 0$, the primary bulk operator can be expanded in boundary operators. The expansion should be compatible with the doubling trick\footnote{The origin of the doubling trick is encoded is the property of the stress tensor that satisfies $T(\bar{z})=\bar{T}(z)$} and thus the fusion rule of $V_{\braket{2,1}}(z)$ with itself (at $\bar{z}$ ) from which we obtain
+\begin{equation}
+  V_{\braket{2,1}}\,\times\,V_{\braket{2,1}} = \Psi_{\braket{1,1}}^{\sigma \sigma} + \Psi_{\braket{3,1}}^{\sigma \sigma}
+\end{equation}
+
+\paragraph{Three point function of boundary operators} We first consider the possibility of inserting a the bulk degenarate field $V_{\braket{2,1}}(z,\bar{z})$ in the boundary three point function with $\Re (z) \in(0,1)$
+\begin{equation}
+  \begin{aligned}
+    &\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\\
+    &=\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma_2)}{S_{P_{\braket{1,1}}}^{\sigma_2 \sigma_2}}\,\frac{C_{P_1,P_{\braket{1,1}},P_1}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_1,P_2,P_3}^{\sigma_2 \sigma_2 \sigma_3}}{S_{P_1}^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1)}_{\braket{1,1}}(z,\bar{z})\\
+    &+\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma_2)}{S_{P_{\braket{3,1}}}^{\sigma_2 \sigma_2}}\sum_{\eta\in\{{-1,0,1}\}}\frac{C_{P_1,P_{\braket{3,1}},P_1+\eta}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_1+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_1+\eta b }^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1,\eta)}_{\braket{3,1}}(z,\bar{z})\\
+    &=\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma_2)}{S_{P_{\braket{1,1}}}^{\sigma_2 \sigma_2}}\,\frac{C_{P_{\braket{1,1}},P_{2},P_2}^{\sigma_2 \sigma_2 \sigma_3}\,C_{P_1,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_2}^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2)}_{\braket{1,1}}(z,\bar{z})\\
+    &+\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma_2)}{S_{P_{\braket{3,1}}}^{\sigma_2 \sigma_2}}\sum_{\eta\in\{{-1,0,1}\}}\frac{C_{P_{\braket{1,1}},P_{2},P_2+\eta b}^{\sigma_1 \sigma_2 \sigma_2}\,C_{P_2+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}}{S_{P_2+\eta b }^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2,\eta)}_{\braket{3,1}}(z,\bar{z})
+  \end{aligned}
+\end{equation}
+The two equalities correspond to the different channel and this is the statement of crossing symmetry. The functions $\mathcal{G}$ correspond to the conformal blocks. I found the expansion \PG{To be checked!}
+\begin{equation}
+\begin{aligned}
+  \mathcal{G}_{\braket{1,1}}^{(i)}(z,\bar{z})&=(z-\bar{z})^{\Delta'_{1,1}-2\Delta_{\braket{2,1}}}\,\left(\frac{z+\bar{z}}{2}\right)^{0} + ...\\
+  \mathcal{G}_{\braket{3,1}}^{(i,\eta)}(z,\bar{z})&=(z-\bar{z})^{\Delta'_{3,1}-2\Delta_{\braket{2,1}}}\,\left(\frac{z+\bar{z}}{2}\right)^{\Delta'_{i+\eta}-\Delta'_{i}-\Delta'_{\braket{3,1}}} + ...
+\end{aligned}
+\end{equation}
+We denoted by $\Delta'$ the conformal dimensions of the boundary primaries. The leading behavior is crucial to map them to the basis of the differential equation arising from the null vector decoupling. This generalized BPZ equation will lead to a second order (\PG{PDE I guess, since they effectively have 5 point by the doubling trick...}).
+
+Alternatively, we can insert $\Psi^{\sigma_2 \sigma_2}_{\braket{3,1}}(x)$ with $x\in(0,1)$. One obtains
+\begin{equation}
+\begin{aligned}
+    &\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}(x)\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\\
+    &=\sum_{\eta\in\{-1,0,1\}}\,\frac{C_{P_1,P_{\braket{3,1}},P_1+\eta b}^{\sigma_1 \sigma_2 \sigma_2}C_{P_1+\eta b,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3 }}{S_{P_1+\eta b}^{\sigma_1 \sigma_2}}\,\mathcal{G}^{(1,\eta)}(x)\\
+    &=\sum_{\eta\in\{-1,0,1\}}\,\frac{C_{P_{\braket{3,1}},P_2,P_2+\eta b}^{\sigma_2 \sigma_2 \sigma_3}C_{P_1,P_2+\eta b,P_3}^{\sigma_1 \sigma_2 \sigma_3 }}{S_{P_2+ \eta b }^{\sigma_2 \sigma_3}}\,\mathcal{G}^{(2,\eta)}(x)
+\end{aligned}
+\end{equation}
+The functions $\mathcal{G}$ are the conformal blocks. They have the following leading expansion
+\begin{equation}
+\begin{aligned}
+  \mathcal{G}^{(1,\eta)}(x)\underset{x\to0}{\sim} &x^{\Delta'_{1+\eta}-\Delta'_{1}-\Delta'_{\braket{3,1}}}\\
+  \mathcal{G}^{(2,\eta)}(x)\underset{x\to1}{\sim} &(1-x)^{\Delta'_{2+\eta}-\Delta'_{2}-\Delta'_{\braket{3,1}}}
+\end{aligned}
+\end{equation}
+Unlike the previous case, the decoupling of $\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}$ will produce a third order ODE (This is a ODE but we gain one order...). Let's emphasize this point: In bulk Liouville theory, the structure constants are such that they appropriate encode the connection formulae of a particular hypergeometric equation and also of higher order equations (arising from all the higher order degenerate fields decoupling). Boundary Liouville theory CFT data only encode the connection formulae of this third order equation (and those coming from fusing $\Psi^{\sigma_2\sigma_2}_{\braket{3,1}}$ with itself) while the decoupling of the null vector arise for specific values of the boundary cosmological constants. 
+
+\paragraph{Two point function: 1 boundary operator with 1 bulk operator} It seems more convenient in this case to insert a bulk degenerate field.
+
+\begin{equation}
+  \begin{aligned}
+    &\braket{V_{\braket{2,1}}(z,\bar{z})V_{P}(z_1,\bar{z}_1)\Psi_P'^{\sigma \sigma }(x)}\\
+    &=\sum_{\epsilon = \pm} \frac{C(P,P_{2,1},P+\frac{\epsilon b}{2})}{B(P+\frac{\epsilon b}{2})}\,R(P+\frac{\epsilon b }{2};P'|\sigma) \mathcal{G}^{(\epsilon)}(z,z_1,x)\\
+    &=\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma)}{S_{P_{\braket{3,1}}}^{\sigma \sigma}} \sum_{\eta \in \{-1,0,1\}}\frac{C_{P',P_{\braket{3,1},P'+\eta b}}^{\sigma \sigma \sigma }}{S_{P'+\eta b}^{\sigma \sigma}}R(P;P'+\eta b|\sigma)\mathcal{G}_{\braket{3,1}}^{(\eta)}(z,z_1,x)\\
+    &+\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}} \frac{C_{P',P_{\braket{1,1},P'}}^{\sigma \sigma \sigma }}{S_{P'}^{\sigma \sigma}}R(P;P'|\sigma)\mathcal{G}_{\braket{1,1}}(z,z_1,x)\,.
+  \end{aligned}
+\end{equation}
+\PG{I need to write the conformal blocks in terms of the invariants cross ratios (there should be two invariant cross ratios)}
+The first equality corresponds to fusing the two bulk fields while the second corresponds to expanding the bulk field in terms of boundary operators.
+
+\paragraph{1 point function}
+We again insert a bulk degenerate field.
+\begin{equation}
+  \begin{aligned}
+    \braket{V_{\braket{2,1}(z,\bar{z})}V_{P}(z,\bar{z})}
+    &=\sum_{\epsilon = \pm} \frac{C_{P,P_{\braket{2,1}},P+\frac{\epsilon b }{2}}}{B(P+\frac{\epsilon b}{2})} U(P+\frac{\epsilon b}{2}|\sigma) \mathcal{G}^{(\epsilon)}(z,z_1)\\
+    &=\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma)}{S_{P_{\braket{3,1}}}^{\sigma \sigma}} R(P;P_{\braket{3,1}}|\sigma)\mathcal{G}_{\braket{3,1}}(z,z_1)\\
+    &+\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}}R(P;P_{\braket{1,1}}|\sigma)\mathcal{G}_{\braket{1,1}}(z,z_1)\,.
+  \end{aligned}
+\end{equation}
+The first channel correspond to fusing the two bulk fields together while the second one correspond to expanding the bulk field in terms of boundary operators. 
+
+\subsection{BPZ equation}
+\paragraph{Bulk degenerate field}
+The decoupling of the degenerate bulk field reads 
+\begin{equation}
+  \braket{\left(L_{-2}^{(z)}+\frac{1}{b^2}L_{-1}^{2\,(z)}\right)V_{\braket{2,1}}(z,\bar{z})\,X} = 0\,,
+\end{equation}
+where $X$ is a chain of fields inserted at different points (on the boundary or in the bulk).
+\paragraph{Three point function of boundary operators}
+We denote
+\begin{equation}
+  \mathcal{V}_{4}(z,\bar{z})=\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\,.
+\end{equation}
+The constraint reads
+\begin{equation}\label{eq:3pointfunctionBPZ1}
+  0=\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\left(L_{-2}^{(z)}+\frac{1}{b^2}L_{-1}^{2\,(z)}\right)V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)}\,.
+\end{equation}
+$L_{-1}$ just yields $\partial_z$ while $L_{-2}^{(z)}=\frac{1}{2\pi i}\int_{w \sim z}\frac{dw\,T(w)}{w-z}$. The standard trick is to deform the contour to pick up the residues at the other poles. In the meantime, we want to avoid factor of $\partial_{x_i}$ arising from the fact that 
+\begin{equation}
+  T(w)\Psi_{P}^{\sigma \sigma}(x_i)\sim \frac{\Delta_i'}{(w-x_{i})^2}+\frac{\partial_{x_{i}}}{w-x_{i}}\,.
+\end{equation}
+To do that we write
+\begin{equation}
+  \frac{1}{w-z}=\frac{w(w-1)}{z(z-1)}\frac{1}{w-z}-\frac{w-z}{z(z-1)}-\frac{2z-1}{z(z-1)}\,.
+\end{equation}
+This partial fraction decomposition has the benefit of removing one order of the pole at $w\sim0,w\sim1$ regarding the first term. The second term will correspond to the dilation operator $L_0$ while the last one will yield $L_{-1}=\partial_z$. Inserting this back to~\eqref{eq:3pointfunctionBPZ1} produces
+\begin{equation}
+\begin{aligned}
+  0&=\frac{1}{b^2}\partial_z^2\,\mathcal{V}_{4}-\frac{\Delta_{2,1}}{z(z-1)}\mathcal{V}_{4}-\frac{2z-1}{z(z-1)}\partial_z \mathcal{V}_{4}\\
+  &+\braket{\Psi_{P_1}^{\sigma 1 \sigma 2}(0)\frac{1}{2\pi i}\int_{w \sim z}\frac{w(w-1)}{z(z-1)}\frac{T(w)}{w-z} V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma 2 \sigma 3}(1)\Psi_{P_3}^{\sigma 3 \sigma 1}(\infty)}\,.
+\end{aligned}
+\end{equation}
+We then deform the contour to pick up the poles at $0,1,\infty$ and $\bar{z}$. It yields
+\begin{equation}
+\begin{aligned}
+  0&=\frac{1}{b^2}\partial_z^2\,\mathcal{V}_{4}-\frac{\Delta_{2,1}}{z(z-1)}\mathcal{V}_{4}-\frac{2z-1}{z(z-1)}\partial_z \mathcal{V}_{4}-\frac{\Delta_1'}{z^2(z-1)}\mathcal{V}_{4}+\frac{\Delta_2'}{z(1-z)^2}\mathcal{V}_{4}-\frac{\Delta'_3}{z(1-z)}\mathcal{V}_{4}\\
+  &-\braket{\Psi_{P_1}^{\sigma 1 \sigma 2}(0)\frac{1}{2\pi i}\int_{w \sim \bar{z}}\frac{w(w-1)}{z(z-1)}\frac{T(w)}{w-z} V_{\braket{2,1}}(z,\bar{z})\Psi_{P_2}^{\sigma 2 \sigma 3}(1)\Psi_{P_3}^{\sigma 3 \sigma 1}(\infty)}\,.
+\end{aligned}
+\end{equation}
+As 
+\begin{equation}
+\begin{aligned}
+  T(w)V_{\braket{2,1}}(z,\bar{z}) &\sim \frac{\Delta_{2,1}V_{\braket{2,1}}(z,\bar{z})}{(w-z)^2}+\frac{\partial_zV_{\braket{2,1}}(z,\bar{z})}{w-z}+\frac{\Delta_{2,1}V_{\braket{2,1}}(z,\bar{z})}{(w-\bar{z})^2}+\frac{\partial_{\bar{z}}V_{\braket{2,1}}(z,\bar{z})}{w-\bar{z}}\,,\\
+  \frac{w(w-1)}{z(z-1)(w-z)}&=\frac{\bar{z}(\bar{z}-1)}{z(z-1)}\frac{1}{\bar{z}-z}+\frac{(2\bar{z}-1)(\bar{z}-z)-\bar{z}(\bar{z}-1)}{z(z-1)(\bar{z}-z)^2}\times (w-z)+o(w-z)\,,
+\end{aligned}
+\end{equation}
+I finally obtain after picking up the pole at $\bar{z}$, 
+\begin{equation}
+\begin{aligned}
+  0&=\Bigg[\frac{1}{b^2}\partial_z^2-\frac{\Delta_{2,1}}{z(z-1)}-\frac{2z-1}{z(z-1)}\partial_z -\frac{\Delta_1'}{z^2(z-1)}+\frac{\Delta_2'}{z(1-z)^2}-\frac{\Delta'_3}{z(1-z)}\\
+  &+\frac{\bar{z}(\bar{z}-1)\partial_{\bar{z}}}{z(z-1)(z-\bar{z})}-\frac{(2\bar{z}-1)(\bar{z}-z)-\bar{z}(\bar{z}-1)}{z(z-1)(\bar{z}-z)^2}\Delta_{\braket{2,1}}\Bigg]\mathcal{V}_{4}
+\end{aligned}
+\end{equation}
+which can be rewritten as
+\begin{equation}
+\begin{aligned}
+  0&=\Bigg[\frac{1}{b^2}\partial_z^2-\frac{2\Delta_{2,1}}{z(z-1)}-\frac{2z-1}{z(z-1)}\partial_z -\frac{\Delta_1'}{z^2(z-1)}+\frac{\Delta_2'}{z(1-z)^2}-\frac{\Delta'_3}{z(1-z)}\\
+  &+\frac{\bar{z}(\bar{z}-1)\partial_{\bar{z}}}{z(z-1)(z-\bar{z})}-\frac{\Delta_{2,1}}{(z-\bar{z})^2}\Bigg]\mathcal{V}_{4}
+\end{aligned}
+\end{equation}
+As expected, it yields a second order PDE. This equation should also be obeyed by all the conformal blocks cited above.
 
 \appendix
 \section{Boundary states: Ishibashi states vs Cardy states}
