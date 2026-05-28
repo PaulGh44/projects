@@ -161,7 +161,7 @@ def plot_projected_phase_portrait(
     return fig, ax
 
 
-def plot_time_series(X0=np.array([0, 5, 0.0]), filename=None):
+def plot_time_series(X0=np.array([0, 10, 0.0]), filename=None):
     """Plot I(u), J(u), and H(u) for one initial condition."""
     u, sol, full_sol = solve_system(X0)
 

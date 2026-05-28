@@ -388,14 +388,14 @@ and then the integral over the matter field $X$ in an sum over all the embedding
 \begin{equation}
 \begin{aligned}
     \int_{\mathcal{M}_h} d^2 x \sqrt{g}g^{\mu \nu}\partial_\mu X \partial_\nu X &\rightarrow \sum_{\braket{ij}} \left(X_i-X_j\right)^2\,.\\
-    \int_{\mathcal{M}_h} d^2 x \sqrt{g} \mu &\rightarrow \frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare} V\,.
+    \int_{\mathcal{M}_h} d^2 x \sqrt{g} \mu &\rightarrow \frac{\sqrt{3}}{4}a^2 \mu V\,.
 \end{aligned}
 \end{equation}
-where $V$ denotes the number of vertices. We also introduced $\lambda_{\rm bare}$ because in going from the discretize model to the continuum, some lattice variables might be renormalized. We call $\kappa = \exp\left(-\frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare}\right)$ The partition function can thus be written as 
+where $V$ denotes the number of vertices. We call $\kappa = \exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right)$ The partition function can thus be written as 
 \begin{equation}
   \mathcal{Z} = \sum _{h\geq0} (g_0)^{-\chi_h} \sum_{\rm \Lambda_{h}} \kappa^V \prod_{i=1}^{V} \int dX_i \prod_{\braket{ij}}G(|X_i-X_j|)\,.
 \end{equation}
-We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi}}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \lambda_{\rm bare}\right) $.
+We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi}}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right) $.
 \paragraph{The matrix model}
 Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[-\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also suppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
@@ -419,16 +419,13 @@ The first complain is that the link factor is different from the matrix model co
 \end{equation}
 From the discretized gravitational model, the continuum limit is obtained by sending the lattice spacing $a\to 0$. Equivalently, one tunes the bare lattice fugacity $\kappa$ to its critical value $\kappa_c$, so that the number (V) of triangles diverges while the physical area is kept fixed.
 
-From the matrix-model perspective, it would seem that, in order to define a theory with a finite string coupling, it is necessary to consider finite $N$. This naive expectation is false: in the continuum limit the string coupling $g_0\sim 1/N$ becomes infinitely multiplicatively renormalized as $a\to0$. Thus, if $N\to \infty$ is taken simulatenously with the worldsheet continuum limit, we might obtain a theory with finite string coupling. To reach finite $\kappa_c$ while taking $N\to \infty$, $\alpha\to \infty$ which means that semi-classical WKB should be exact at the double scaled limit. While from the discretized gravitational limit, $a\to0$ corresponds to the continuum limit, there is no such thing as the size of the triangles in the Feynman diagram expansion. The remaining question is thus: what is the counter part of the continuum limit from the matrix model perspective ? We will answer this question soon.
+From the matrix-model perspective, it would seem that, in order to define a theory with a finite string coupling, it is necessary to consider finite $N$. This naive expectation is false: in the continuum limit the string coupling $g_0\sim 1/N$ becomes infinitely multiplicatively renormalized as $a\to0$. Thus, if $N\to \infty$ is taken simulatenously with the worldsheet continuum limit, we might obtain a theory with finite string coupling. To reach finite $\kappa_c$ while taking $N\to \infty$, $\alpha\to \infty$ which means that semi-classical WKB should be exact at the double scaled limit. While from the discretized gravitational limit, $a\to0$ corresponds to the continuum limit, there is no such thing as the size of the triangles in the Feynman diagram expansion. The remaining question is thus: what is the counter part of the continuum limit from the matrix model perspective ? We will answer this question soon. 
 
-From the KPZ relation~\eqref{eq:KPZ}, we expect that the final expansion should be expressed in terms of the cosmological constant of the continuum Liouville theory $\mu$ after taking the continuum limit. We thus expect the following relation 
+A useful quantity to define is the bare lattice cosmological constant $\Delta$. It should be defined as the fugacity associated to the area so
 \begin{equation}
-  \mu =  \left(\kappa_c^2-\kappa^2\right)\,,
+  \Delta = \kappa_c^2 - \kappa^2\,.
 \end{equation}
-and the continuum cosmological constant is related to the lattice cosmological constant by
-\begin{equation}
-  \lambda_{\rm bare} \sim \frac{\mu}{a^2}\,.
-\end{equation}
+In the continuum limit, it is related to the physical cosmological constant by $\mu \sim \frac{\Delta}{a^2}<\infty$.
 \paragraph{Solving the matrix model}
 Also, the partition function can be interpreted as a thermal partition of inverse temperature and thus we can write
 \begin{equation}
@@ -498,7 +495,18 @@ with $\epsilon(p,\lambda)=\frac{p^2}{2}+U(\lambda)$. In particular, denoting the
 \begin{equation}
   \int_{\lambda_-}^{\lambda_+} d\lambda \sqrt{2\left(\mu_F-U(\lambda)\right)} = \frac{\pi N}{\alpha}=\pi \kappa^2(\mu_F)\,.
 \end{equation}
-$\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a non analytic behavior.
+$\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a singular behavior. This is the counter part of the continuum limit from the matrix model perspective. It is obtained by magnificing the local quadratic maximum of the potential. Let us denote $\delta \mu_F = U_{c} -  \mu_F$ where $U_c$ is the local maximum of the potential at $\lambda =0$. We also introduce the density of eigenvalues
+\begin{equation}
+  \rho (\epsilon) = \frac{1}{\alpha}\sum \delta(\epsilon - \epsilon_i)\,.
+\end{equation}
+from which we also obtain
+\begin{equation}
+  \kappa^2(\mu_F) = \int_{0}^{\mu_F} \rho(\epsilon) d\epsilon\,.
+\end{equation}
+Differentiating wrt to $\delta \mu_F$, we obtain
+\begin{equation}
+  \frac{\partial \Delta}{\partial \delta \mu_F} = \rho(\mu_F)\,.
+\end{equation}
 
 \section{Conformal bootstrap of boundary Liouville theory}
 \subsection{Notations}
