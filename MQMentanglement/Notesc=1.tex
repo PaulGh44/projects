@@ -279,16 +279,18 @@ Choosing the representative of the conformal class which is flat on $\mathbb{C}$
   \phi(z,\bar{z}) \underset{z \to \infty}{=}  - 2Q \log (z\bar{z})+\mathcal{O}(1)\,.
 \end{equation}
 In fact, $\partial_z\partial_{\bar{z}}\log(z\bar{z}) = 2\pi \delta^2(z,\bar{z})$. \\
-\subsection{Wheeler De Witt constraint and physical states}
+\subsection{BRST constraint/Wheeler De Witt equation and physical states}
+\paragraph{BRST constraint and the Wheeler de Witt equation}
 Let a theory of gravity constructed as a tensor product $M=\mathcal{H}_L \otimes \mathcal{H}_X $. We take the matter theory to be $c$ X bosons so that $c+c_L=26$. We consider the theory at genus 0 on the Riemann sphere. The X states are thus described by closed string states.  We consider a state that takes the following form 
 \begin{equation}\label{eq:primarystates}
   \ket{\Psi} = \ket{\Psi_L} \otimes \ket{\Psi_X}\,,
 \end{equation}
-where both $\ket{\Psi_L},\,\ket{\Psi_X}$ are primary states. Upon acting with Virasoro generators, such states span the hilbert space of the gravitational theory. Nevertheless, the Hilbert space is the truncation of this bigger space by the Wheeler-De Witt constraint
+where both $\ket{\Psi_L},\,\ket{\Psi_X}$ are primary states. Upon acting with Virasoro generators, such states span the hilbert space of the gravitational theory. Nevertheless, the Hilbert space is the truncation of this bigger space by the BRST constraint
 \begin{equation}
   \left(L_0^{(\phi +X)}+\bar{L}_0^{(\phi+X)}-2\right)\ket{\Psi}=0\,,
 \end{equation}
-where $L_0^{(\phi +X)}$ is the Virasoro generator on the plane. This condition applied on the tensor product of primary states~\eqref{eq:primarystates} imposes the marginality condition $\Delta_L +\Delta_X =1$. To inspect the form of the Wheeler-De-Witt equation, we first note that there is no interaction between the matter theory and the Liouville by assumption so that the total Hamiltonian is a tensor product. We focus on the Liouville side which is the non-trivial side (\PG{The other side tells you that $\ket{\Psi_X}$ is represented by a vertex operator in $X$-space, right ?}). On genus $0$, we can inspect the Wheeler De Witt equation by truncating to minisuperspace that is truncating to zero mode on the cylinder $\phi(\tau,\sigma) = \phi_0(\tau),\, \sigma \in [0,2\pi)$. The lagrangian density becomes a lagrangian
+where $L_0^{(\phi +X)}$ is the Virasoro generator on the plane. This condition applied on the tensor product of primary states~\eqref{eq:primarystates} imposes the marginality condition $\Delta_L +\Delta_X =1$.
+We define the Wheeler-De-Witt equation as the reduction of the BRST constraint to genus $0$ minisuperspace. Violations to Wheeler-De-Witt are associated to topology changing processes and we might view the BRST constraint as incorporating all of these processes. Truncating to zero mode on the cylinder $\phi(\tau,\sigma) = \phi_0(\tau),\, \sigma \in [0,2\pi)$. The lagrangian density becomes a lagrangian
 \begin{equation}
   L_{\rm zero-mode} = \frac{1}{2}\left((\partial_\tau \phi_0)^2 + 4\pi \mu e^{2b \phi_0}\right)\,.
 \end{equation}
@@ -296,7 +298,7 @@ Applying canonical quantization and working in the $\phi_0$ space, one immediatl
 \begin{equation}\label{eq:Schrodinger}
  \left[-\frac{1}{2}\frac{\partial^2}{\partial{\phi_0}^2}+2\pi \mu e^{2b\phi_0}\right]\Psi_L(\phi_0)=E^{(\rm cyl)}_L \Psi_L(\phi_0)\,.
 \end{equation}
-This equation should be equivalent to the Wheeler-De-Witt equation on the Liouville sector on the cylinder. We know $E^{\rm plane}_X+E^{\rm plane}_L =2$ by the Wheeler-De-Witt equation so one might identified $E_X^{\rm plane}\to2\Delta_X,\,E^{\rm plane}_L\to 2\Delta_L$ but of course the identification between $E_X,E_L$ and $\Delta_X,\Delta_L$ is not one to one, one can shift $E^{\rm plane}_L \to E^{\rm plane}_L +a,\, E^{\rm plane}_X \to E^{\rm plane}_X -a$. The Schwarzian term has also the effect to shift the Virasoro generators
+We know $E^{\rm plane}_X+E^{\rm plane}_L =2$ by the BRST constraint so one might identified $E_X^{\rm plane}\to2\Delta_X,\,E^{\rm plane}_L\to 2\Delta_L$ but of course the identification between $E_X,E_L$ and $\Delta_X,\Delta_L$ is not one to one, one can shift $E^{\rm plane}_L \to E^{\rm plane}_L +a,\, E^{\rm plane}_X \to E^{\rm plane}_X -a$. The Schwarzian term has also the effect to shift the Virasoro generators
 \begin{equation}
   L_0^{\rm{L,cylinder}}\to L_0^{\rm{L,plane}} -\frac{c_L}{24}\,.
 \end{equation}
@@ -307,7 +309,7 @@ This fixes $E^{(\rm plane)}_L-E^{(\rm cyl)}_L = \frac{c_L}{12}$: the energy on t
   c_L &= 1+ 6Q^2\,.
 \end{aligned}
 \end{equation}
-The Hilbert space of Liouville theory $\mathcal{H}_L$ known as the spectrum consists of diagonal operators with $p\in \mathbb{R}(+\epsilon)$(in both spacelike and timelike case with an $\epsilon$ prescription). This means from the bootstrap perspective that the OPE rules are defined consistently with respect to the spectrum that is we have to sum over primaries with their momenta in the spectrum. If we take crossing symmetry as a requirement, we can't negociate on that. Of course, this does not mean that we can not compute expectation values of operators for which their momentum is outside the spectrum. In practice, we can access such states and such quantities by analytic continuation.
+The Hilbert space of Liouville theory $\mathcal{H}_L$ known as the spectrum consists of diagonal operators with $p\in \mathbb{R}(+\epsilon)$(in both spacelike and timelike case with an $\epsilon$ prescription). This means from the bootstrap perspective that the OPE rules are defined consistently with respect to the spectrum that is we have to sum over primaries with their momenta in the spectrum. If we take crossing symmetry as a requirement, we can't negociate on that. Of course, this does not mean that we can not compute expectation values of operators for which their momentum is outside the spectrum. In practice, we can access such states and such quantities by analytic continuation from the bootstrap perspective.
 In order to identify $p$ with the momentum of the asymptotic states far from the Liouville wall , it is convenient to write $E^{(\rm cyl)}_L=2p^2=2\Delta_L-\frac{c}{12}+\frac{1}{12}$. Hence, the Wheeler-De-Witt equation on the Liouville sector yields
 \begin{equation}
   \left[-\frac{1}{2}\frac{\partial^2}{\partial{\phi_0}^2}+2\pi \mu e^{2b\phi_0}-2p^2\right]\Psi_L(\phi_0)=0\,.
@@ -337,12 +339,40 @@ We highlight that what we described here is crystal clear in the context of spac
   \ell^2\frac{\partial^2}{\partial{\ell}^2}\Psi_L(\ell)+\ell\frac{\partial}{\partial{\ell}}\Psi_L(\ell)+\left(\frac{4\pi\mu}{b^2}\ell^2-\frac{4p^2}{b^2}\right)\Psi_L(\ell)=0\,.
 \end{equation}
 In such a case, it is still an ongoing puzzle on which boundary conditions fix the reflection coefficient.
-\paragraph{Third quantized description in genus 0 minisuperspace}
-We focus in the case $c_L \geq 25$. The closed string Liouville states that we discussed earlier should be viewed as wavefunction of the universe: precisely, they describe the amplitude of a universe to be nucleated from a vertex insertion of momentum $p$. We consider a second quantized description of the minisuperspace theory which was already a second quantized description therefore defining a so-called third quantized description. Remembering that the Hamiltonian acting on $X$ is simply $\mathcal{H}_X = -\frac{\partial^2}{\partial X^2}$, the third quantized description should be
+
+\paragraph{Third quantized description}
+
+The BRST constraint is the on-shell condition for states in the first quantized picture. In view of constructing a string field theory, the Green functions/propagators are the inverse of the BRST constraint operator denoted $\mathcal{K}$. The free action is constructed from the BRST constraint operator as 
+\begin{equation}
+  \mathcal{S}_{\rm third} = \int dY W(Y) \mathcal{K} W(Y)\,.
+\end{equation}  
+In non-critical bosonic string theory $Y = (X^a,\phi)$ where $X^a$ are the $c$ associated bosons and $\phi$ is the non-decoupling conformal mode of the metric while in critical string theory $c=D=26$, $\phi$ disappears. In practice, extracting $\mathcal{K}$ might be very complicated (\PG{say something about that}) but in non-critical models dual to matrix models, this operator can be infered by the euclidean propagator = two loop correlation functions. For the specific case of the $c=1$ matrix model, it was obtained that
+\begin{equation}
+  \mathcal{S}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_{-\infty}^{+\infty} dx \,W(\ell,x) \frac{\sinh(\pi \sqrt{-\mathcal{H}_{\ell}})}{\sqrt{-\mathcal{H}_{\ell}}} W(\ell,x)\,,
+\end{equation}
+where $\mathcal{H}_{\ell} = \left(\ell \frac{\partial}{\partial \ell}\right)^2 - 4\mu \ell^2$ is the Wheeler-De Witt operator obtained just above. This action is non local but locality can be retrieved by switching to the $\tau$-space. It is interesting to note that the non-locality can also be written as a bilocal action. We would like to write
+\begin{equation}
+  \mathcal{K}W(\ell,x) = \int_{0}^{\infty}\frac{d\ell'}{\ell'} \mathcal{F}(\ell,\ell')W(\ell',x)\,.
+\end{equation}
+We can take advantage of the fact that $\mathcal{K}$ is easily expressed in terms of the Wheeler-De-Witt operator and that we know the eigenvector of such operator. We use delta-function normalized eigenvectors with eigenvalues $E^2$
+\begin{equation}
+  \psi_E(\ell)=\frac{1}{\pi}\sqrt{E\sinh(\pi E)}K_{iE}(2\sqrt{\mu}\ell)\,.
+\end{equation}
+The operator $\mathcal{F}$ takes formally the expression
+\begin{equation}
+  \mathcal{F}(\ell,\ell') =\int_{0}^{\infty}\psi_E(\ell) \frac{\sinh(\pi E)}{E}\psi_E(\ell')\,, 
+\end{equation}
+so that
+\begin{equation}
+  \mathcal{S}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_0^{\infty}\frac{d\ell'}{\ell'} \int_{-\infty}^{+\infty} dx \,W(\ell,x) \mathcal{F}(\ell,\ell') W(\ell',x)\,.
+\end{equation}
+This bilocality signals a lack of factorization and an effective description in terms wormholes. Note that interaction terms deduced from higher order loop correlators are also expected to be important and should compete with these wormholes effects. It is unclear \PG{at least to me...} that the interacting terms give higher order corrections compared to the wormholes and that there is hierarchy of these effects.
+\paragraph{Reduction of the third quantized description in genus 0 minisuperspace}
+In the limit of low energy, the BRST operator exacty reduces to the Wheeler-De-Witt operator. The low energy limit restricts attention to region of the $\phi$ space before the Liouville wall. Topology changing processes and wormhole effects are thus expected to become important in the high energy regime. In the weak coupling region $\phi\to\infty$, the BRST constraint reduces to the Wheeler-De-Witt operator and locality is recovered
 \begin{equation}
   \mathcal{S}_{\rm third} = \int \rm{d}\phi \rm{d}X \frac{1}{2}\left(\left(\partial_\phi \Psi\right)^2+ \left(\partial_X \Psi\right)^2+4\pi \mu e^{2b\phi}\Psi^2\right)\,.
 \end{equation}
-We shall view this as a massive field theory whose mass is expressed in terms of the string coupling $m^2 \sim g_s(\phi)$ which depends on the position in the $\phi$ space. In particular, in the weak coupling region, it describes a massless scalar field theory in 1+1d. We therefore immediatly obtain that the entanglement entropy of a cut $A=[\phi_1,\phi_2]$ in the weak coupling region is given by Cardy-Calabrese universal law
+We shall view this as a massive field theory whose mass is expressed in terms of the string coupling $m^2 \sim g_s(\phi)$ which depends on the position in the $\phi$ space. In particular, in the strict weak coupling region, it describes a massless scalar field theory in 1+1d. We therefore immediatly obtain that the entanglement entropy of a cut $A=[\phi_1,\phi_2]$ in the weak coupling region is given by Cardy-Calabrese universal law
 \begin{equation}
   S_A = \frac{1}{3}\log\left(\frac{\phi_2-\phi_1}{\epsilon_{\rm UV}}\right)+c\,,
 \end{equation}
@@ -397,14 +427,14 @@ where $V$ denotes the number of vertices. We call $\kappa = \exp\left(-\frac{\sq
 \end{equation}
 We introduced $G(|X_i-X_j|)=\exp\left[-\left(\frac{X_i-X_j}{\sqrt{4\pi}}\right)^2\right]$\,. We may define the continuum limit as the double scaled limit where $a\to0$ and the number of vertices to infinity so that to keep the physical area fixed. At the level of the partition function this is obtained by taking $a\to0$ and $\kappa$ to a critical value $\kappa_c$ where the infinite sum shows a singular behavior. Progress can be made in evaluating such a sum by identifying it with the Feynman diagram expansion of a certain matrix model as it will be described in the following. Up to irrelevant prefactors we rewrite $\kappa = \kappa_c\exp\left(-\frac{\sqrt{3}}{4}a^2 \mu\right) $.
 \paragraph{The matrix model}
-Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[-\frac{M^2}{2}+\frac{M^3}{3!}\right]$. We also suppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
+Here we start with the matrix quantum mechanics defined as a euclidean path-integral over $N\times N$ hermitian matrices $M$ with cubic potential $U(M) = \rm{Tr}\left[\frac{M^2}{2}-\frac{M^3}{3!}\right]$. We also suppose that the action is defined on the compact slice of euclidean time $[-T,T]$. All in all, the partition function reads
 \begin{equation}
   \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-\alpha\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2}+ U(M)\right]}\,.
 \end{equation}
 \paragraph{Dictionary with the discretized sigma model}
 By rescaling of the matrix we can rewrite the partition function as up to an irrelevant prefactor\footnote{The Jacobian from the field rescaling is a local normalization of the matrix path-integral measure. It contributes only analytic, scheme-dependent terms to $\log (Z)$, and is discarded when extracting the double-scaled nonanalytic free energy.}
 \begin{equation}
-  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2} - \frac{M^2}{2}+\tilde{\kappa}\frac{M^3}{3!}\right]}\,,
+  \mathcal{Z}(\alpha,\beta) = \int_{M(-\beta/2)=M(\beta/2)} DM(\tau) e^{-N\int_{-\beta/2}^{\beta/2} d\tau \rm{Tr}\left[\frac{\dot{M}^2}{2} + \frac{M^2}{2}-\tilde{\kappa}\frac{M^3}{3!}\right]}\,,
 \end{equation}
 with $\tilde{\kappa}=\sqrt{\frac{N}{\alpha}}$. Sending $\beta \to \infty$, the partition function can be formally written as an infinite sum over all  connected Feynman diagrams (t'Hooft expansion)
 \begin{equation}
@@ -475,13 +505,17 @@ The eigenvalue problem can thus be written as
 \begin{equation}
   \left[\sum_{I} -\frac{1}{2\alpha^2 \Delta(\lambda)} \frac{\partial^2}{\partial_{\lambda_I}^2}\Delta(\lambda) + U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{2(\lambda_I-\lambda_J)^2}\right] \psi(\lambda_1,...,\lambda_N) = E\,\psi(\lambda_1,...,\lambda_N)\,.
 \end{equation}
-Solving the eigenvalue problem yields an orthonormal basis with respect to the non-flat measure. Setting $\Psi = \psi \Delta(\lambda)$ produces a fermionic wavefunction. We can put in one to one correspondence to a theory of $N$ free fermions. The lowest energy configurations do not interact as the interaction is manifestly positive. The eigenvalue problem for the fermions reads
+Solving the eigenvalue problem yields an orthonormal basis with respect to the non-flat measure. Setting $\Psi = \psi \Delta(\lambda)$ produces a fermionic wavefunction. We can put in one to one correspondence to a theory of $N$ free fermions. The eigenvalue problem for the fermions reads
 \begin{equation}
   \left[\sum_{I} -\frac{1}{2\alpha^2} \frac{\partial^2}{\partial_{\lambda_I}^2} + U(\lambda_I) + \sum_{I<J} \frac{(\pi_{IJ}^2+\tilde{\pi}^2_{IJ})}{2(\lambda_I-\lambda_J)^2}\right] \Psi(\lambda_1,...,\lambda_N) = E\,\Psi(\lambda_1,...,\lambda_N)\,.
 \end{equation}
-The ground state is obtained by filling the N first lowest energy levels
+The lowest energy configurations do not interact as the interaction is manifestly positive. The ground state is obtained by filling the N first lowest energy levels
 \begin{equation}
-  E_{\rm vac} = \sum_{n=1}^N \epsilon_n\,.
+  E_{\rm vac} = \sum_{n=1}^N \epsilon_n\,,
+\end{equation}
+where $\epsilon_n$ is the $n$-th eigen-energy of
+\begin{equation}
+  h = -\frac{1}{2\alpha^2}\frac{\partial^2}{\partial_{\lambda}^2} + U(\lambda)\,.
 \end{equation}
 In the limit where the inverse planck coupling $\alpha$ goes to infinity, we can resort to a semi-classical approximation using Bohr-Sommerfeld quantization condition
 \begin{equation}
@@ -495,7 +529,7 @@ with $\epsilon(p,\lambda)=\frac{p^2}{2}+U(\lambda)$. In particular, denoting the
 \begin{equation}
   \int_{\lambda_-}^{\lambda_+} d\lambda \sqrt{2\left(\mu_F-U(\lambda)\right)} = \frac{\pi N}{\alpha}=\pi \kappa^2(\mu_F)\,.
 \end{equation}
-$\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a singular behavior. This is the counter part of the continuum limit from the matrix model perspective. It is obtained by magnificing the local quadratic maximum of the potential. Let us denote $\delta \mu_F = U_{c} -  \mu_F$ where $U_c$ is the local maximum of the potential at $\lambda =0$. We also introduce the density of eigenvalues
+$\lambda_\pm$ are the turning points of the classical orbits. Clearly, if one tunes $\mu_F$ close to the quadratic local maximum of the potential, $\kappa(\mu_F)$ develops a singular behavior. This is the counter part of the continuum limit from the matrix model perspective. It is obtained by magnificing the local quadratic maximum of the potential. Let us denote $\delta \mu_F = U_{c} -  \mu_F >0$ where $U_c=0$ is the local maximum of the potential at $\lambda =2$. The double scaled limit is obtained by $N\to \infty$ and $\delta \mu_F\to 0$ keeping the conbination finite which is the renormalized $g_s$ in the continuum or the cosmological constant $\mu := N\delta \mu_F$\footnote{The renormalized string coupling at the Liouville wall is related to the cosmological constant see~\eqref{eq:relationLiouvillewallcosmologicalconstant}}. We also introduce the density of eigenvalues
 \begin{equation}
   \rho (\epsilon) = \frac{1}{\alpha}\sum \delta(\epsilon - \epsilon_i)\,.
 \end{equation}
@@ -505,9 +539,40 @@ from which we also obtain
 \end{equation}
 Differentiating wrt to $\delta \mu_F$, we obtain
 \begin{equation}
-  \frac{\partial \Delta}{\partial \delta \mu_F} = \rho(\mu_F)\,.
+  \frac{\partial \Delta}{\partial \delta \mu_F} = \rho(\mu_F)=\int_{\lambda_-}^{\lambda_+} \frac{d\lambda}{\sqrt{2\left(\mu_F-U(\lambda)\right)}}\,.
 \end{equation}
-
+We also have by definition 
+\begin{equation}
+  \alpha E_{\rm vac} = \alpha^2 \int_{0}^{\mu_F}  \rm{d}\epsilon\, \epsilon\rho(\epsilon)\,.
+\end{equation}
+Differentiating wrt to $\Delta$, using the chain rule and the relation obtained before yields
+\begin{equation}
+  \frac{\partial E_{\rm vac}}{\partial \Delta} = -\alpha \mu_F = \alpha \delta \mu_F + \text{irrelevant analytic term}\,.
+\end{equation}
+Tuning $\delta \mu_F\to 0$ to exhibit the singular behavior of $\rho(\mu_F)$, it was found that 
+\begin{equation}
+  \rho(\mu_F) = -\log(\delta \mu_F)+\mathcal{O}\left(\frac{1}{\alpha^2}\right)\,.
+\end{equation}
+We thus obtain
+\begin{equation}
+  \Delta = -\delta \mu_F \log(\delta \mu_F)+\mathcal{O}\left(\frac{1}{\alpha^2}\right)\,.
+\end{equation}
+We thus find at leading order in the WKB expansion
+\begin{equation}
+\begin{aligned}
+  \alpha E_{\rm vac} &= \frac{\alpha^2 \delta \mu_F^2 \log(\delta \mu_F)}{2} +o\left(\alpha^2 \delta \mu_F^2 \log(\delta \mu_F)\right) +\mathcal{O}\left(\frac{1}{\alpha^2}\right) \\
+  &= \frac{\alpha^2 \Delta^2}{2\log(\Delta)} +o\left(\frac{\alpha^2\Delta^2}{\log(\Delta)}\right) +\mathcal{O}\left(\frac{1}{\alpha^2}\right)\,.
+\end{aligned}
+\end{equation}
+The remarkable feature of the double-scaled limit is that we can actually obtain all the terms of the partition function. The first observation is that upon rescaling the eigenvalues $\lambda \to \sqrt{\alpha}\lambda$, the eigenvalue energy problem for $h$
+\begin{equation}
+  \left[\frac{1}{2}\frac{\partial^2}{\partial \lambda^2}+\frac{\lambda^2}{2}-\frac{1}{\sqrt{\alpha}\frac{\lambda^3}{3!}}\right]\chi = \alpha e \chi\,,
+\end{equation}
+where $e = U_c - \epsilon$. First, in the limit $\alpha \to \infty$ all the higher order terms in the potential are infinitely suppressed. This is the universality property of the double-scaled limit. We could have started with a quartic potential, nothing would have changed since terms beyond the quadratic would have been infinitely suppressed. In the double-scaled limit, the hamiltonian we are interested in is
+\begin{equation}
+  h_{\rm DS} = -\frac{1}{2}\frac{\partial^2}{\partial \lambda^2}-\frac{\lambda^2}{2}\,,
+\end{equation}
+which is an inverted harmonic oscillator.
 \section{Conformal bootstrap of boundary Liouville theory}
 \subsection{Notations}
 \paragraph{Central charge} We parametrize the central charge as
