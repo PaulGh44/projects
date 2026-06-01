@@ -322,7 +322,7 @@ States that decay in the strong coupling region $\phi_0\to \infty$ correspond to
 \begin{equation}
   \Psi^{(p)}_L(\ell) \propto K_{\frac{2ip}{b}}\left(\frac{2\sqrt{\pi\mu}}{b}\ell\right)\,.
 \end{equation}
-As it should be, this is even in $p$ so that $\Delta_L$ or ($E_L$) is indeed the correct physical parameter. By definition,
+At this stage, this is common to define $E = 2p_L$ so that in the weak coupling region for $c=1 \Rightarrow b=1$, we have a superposition of incoming and outgoing plane waves $e^{\pm i\phi E}$. As it should be, this is even in $p$ (or $E$) so that $\Delta_L$ is indeed the correct physical parameter. By definition,
 \begin{equation}
   K_{\nu}(z)=\frac{I_{\nu}(z)-I_{-\nu}(z)}{\sin(\pi \nu)}\,,
 \end{equation}
@@ -348,9 +348,22 @@ The BRST constraint is the on-shell condition for states in the first quantized 
 \end{equation}  
 In non-critical bosonic string theory $Y = (X^a,\phi)$ where $X^a$ are the $c$ associated bosons and $\phi$ is the non-decoupling conformal mode of the metric while in critical string theory $c=D=26$, $\phi$ disappears. In practice, extracting $\mathcal{K}$ might be very complicated (\PG{say something about that}) but in non-critical models dual to matrix models, this operator can be infered by the euclidean propagator = two loop correlation functions. For the specific case of the $c=1$ matrix model, it was obtained that
 \begin{equation}
-  \mathcal{S}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_{-\infty}^{+\infty} dx \,W(\ell,x) \frac{\sinh(\pi \sqrt{-\mathcal{H}_{\ell}})}{\sqrt{-\mathcal{H}_{\ell}}} W(\ell,x)\,,
+  \mathcal{S}^{\rm c=1}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_{-\infty}^{+\infty} dx \,W(\ell,x)(-\mathcal{H}_\ell^2-\partial_x^2) \frac{\sinh(\pi \sqrt{-\mathcal{H}_{\ell}})}{\sqrt{-\mathcal{H}_{\ell}}} W(\ell,x)\,,
 \end{equation}
-where $\mathcal{H}_{\ell} = \left(\ell \frac{\partial}{\partial \ell}\right)^2 - 4\mu \ell^2$ is the Wheeler-De Witt operator obtained just above. This action is non local but locality can be retrieved by switching to the $\tau$-space. It is interesting to note that the non-locality can also be written as a bilocal action. We would like to write
+where $\mathcal{H}_{\ell} = \left(\ell \frac{\partial}{\partial \ell}\right)^2 - 4\mu \ell^2$ is the Wheeler-De Witt operator obtained just above. This is constructed from the Euclidean propagator
+\begin{equation}
+  G(E,p) = \frac{E}{\sinh(\pi E)} \frac{1}{E^2 + p^2}\,.
+\end{equation}
+This is interesting to obsere the pole structure. There are poles corresponding the marginality condition
+\begin{equation}
+  \Delta_L + \Delta_X = \frac{c_L-1}{24}+4E^2 + \frac{c_X -1}{24} + 4p^2 = 1 \Rightarrow E^2 + p^2 = 0\,.
+\end{equation}
+$E$ is related to the Liouville momentum by $E = 2\,p_L$ and $p$ is the momemtum associated to the $X$ close-string vertex operator. The other set of poles is due to the degenerescence of Virasoro primaries for $c_L=25 \Rightarrow b =1$. Indeed,
+\begin{equation}
+  E \in i \mathbb{Z} \Leftrightarrow p_L \in i \frac{\mathbb{Z}}{2}\,.
+\end{equation}
+This is the standard condition $p_L = i\frac{rb + s b^{-1}}{2}$ with $b=1$.
+This action is non local but locality can be retrieved by switching to the $\tau$-space. It is interesting to note that the non-locality can also be written as a bilocal action. We would like to write
 \begin{equation}
   \mathcal{K}W(\ell,x) = \int_{0}^{\infty}\frac{d\ell'}{\ell'} \mathcal{F}(\ell,\ell')W(\ell',x)\,.
 \end{equation}
@@ -364,22 +377,26 @@ The operator $\mathcal{F}$ takes formally the expression
 \end{equation}
 so that
 \begin{equation}
-  \mathcal{S}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_0^{\infty}\frac{d\ell'}{\ell'} \int_{-\infty}^{+\infty} dx \,W(\ell,x) \mathcal{F}(\ell,\ell') W(\ell',x)\,.
+  \mathcal{S}^{\rm c=1}_{\rm third} = \int_0^{\infty}\frac{d\ell}{\ell} \int_0^{\infty}\frac{d\ell'}{\ell'} \int_{-\infty}^{+\infty} dx \,W(\ell,x)(-\mathcal{H}_\ell^2-\partial_x^2) \mathcal{F}(\ell,\ell') W(\ell',x)\,.
 \end{equation}
 This bilocality signals a lack of factorization and an effective description in terms wormholes. Note that interaction terms deduced from higher order loop correlators are also expected to be important and should compete with these wormholes effects. It is unclear \PG{at least to me...} that the interacting terms give higher order corrections compared to the wormholes and that there is hierarchy of these effects.
 \paragraph{Reduction of the third quantized description in genus 0 minisuperspace}
 In the limit of low energy, the BRST operator exacty reduces to the Wheeler-De-Witt operator. The low energy limit restricts attention to region of the $\phi$ space before the Liouville wall. Topology changing processes and wormhole effects are thus expected to become important in the high energy regime. In the weak coupling region $\phi\to\infty$, the BRST constraint reduces to the Wheeler-De-Witt operator and locality is recovered
-\begin{equation}
-  \mathcal{S}_{\rm third} = \int \rm{d}\phi \rm{d}X \frac{1}{2}\left(\left(\partial_\phi \Psi\right)^2+ \left(\partial_X \Psi\right)^2+4\pi \mu e^{2b\phi}\Psi^2\right)\,.
+\begin{equation}\label{eq:simpleentanglemententropy}
+  \mathcal{S}_{\rm third} = \int \rm{d}\phi \rm{d}^d X \frac{1}{2}\left(\left(\partial_\phi \Psi\right)^2+ \left(\partial_X \Psi\right)^2+4\pi \mu e^{2b\phi}\Psi^2\right)\,.
 \end{equation}
-We shall view this as a massive field theory whose mass is expressed in terms of the string coupling $m^2 \sim g_s(\phi)$ which depends on the position in the $\phi$ space. In particular, in the strict weak coupling region, it describes a massless scalar field theory in 1+1d. We therefore immediatly obtain that the entanglement entropy of a cut $A=[\phi_1,\phi_2]$ in the weak coupling region is given by Cardy-Calabrese universal law
+\PG{If we consider a finite size systen $[\phi_1,\phi_2]$, it actually becomes important whether we impose Neumann or Dirichlet boundary conditions at the endpoints! What shall we choose ?}
+We shall view this as a massive field theory whose mass is expressed in terms of the string coupling $m^2 = 2\sqrt{\pi \mu}e^{b\phi} \sim g_s(\phi)$ which depends on the position in the $\phi$ space. In particular, in the strict weak coupling region, it describes a massless scalar field theory in d+1 dimension. For the specific case of $c=1$ i.e 1+1 dimension, we therefore immediatly obtain that the entanglement entropy of a cut $A=[\phi_1,\phi_2]$ in the weak coupling region is given by Cardy-Calabrese universal law
 \begin{equation}
-  S_A = \frac{1}{3}\log\left(\frac{\phi_2-\phi_1}{\epsilon_{\rm UV}}\right)+c\,,
+  S^{\rm c=1}_A = \frac{1}{3}\log\left(\frac{\phi_2-\phi_1}{\epsilon_{\rm UV}}\right)+c\,,
 \end{equation}
-where $c$ is a non universal constant and $\epsilon_{\rm UV}$ is a UV-cutoff. From this strategy, this is hopeless to find the UV cutoff which was found by Hartnoll and Mazenc from the matrix model computation namely $g_s$. The physical cutoff they found arised because of the non-perturbative effects (so-called "wiggles" effects) provided by the matrix model. Those effects are actually tied to non-perturbative corrections to the Wheeler-De-Witt equation. Still, this computation tells you that Hartnoll-Mazenc results correspond to genus $0$ approximation in the weakly coupled region + addition of non-perturbative results. Note that their computation was perform in the time of flight variable and the time of flight is one to one with the $\phi$ variable in the asymptotic region $\phi \sim \tau$. That's why we retrieve the same results. Still, this is conceptually interesting to see that the non perturbative effects of the corrected Wheeler-De-Witt equation can be related to the UV cutoff of the entanglement structure. You can actually think of extracting the non perturbative corrections from the entanglement structure. Typically, perturbative corrections to the Wheeler-De-Witt equations beyond genus $0$ should come as powers of the string coupling. Actually note that for $c_m=1$, $b=1,\,Q=2$, thus the cosmological constant term in Liouville theory can be written as $4\pi \mu e^{2b\phi} = 4\pi \mu g_s(\phi)$ in our convention. In general, the form of the corrected Wheeler-De-Witt equation should be
+where $c$ is a non universal constant and $\epsilon_{\rm UV}$ is a UV-cutoff. Since the $\phi$-position sets the energy scale of the problem, the Liouville potential can naturally be expressed as a RG flow equation for the mass
 \begin{equation}
-  \left(-\partial_\phi^2+2p^2+\sum_{n=1}^{\infty}a_n g_s^{n}+\rm{non-perturbative~effects}\right)\Psi_L^{(p)}(\phi)=0\,.
+  \frac{d m(\phi)}{d\phi} = b\, m(\phi)\,.
 \end{equation}
+In particular in the semi-classical limit, $b\to 0$, we have $\frac{d m(\phi)}{d\phi}\ll m(\phi)$ and the EE entropy should be exactly given by a massive Klein-Gordon theory in d+1 dimension.
+
+Outside the strict weak coupling regime, as we will demonstrate below, the natural UV cutoff found by Hartnoll and Mazenc is naturally maped to the effect of the mass term. The mass term induces a $\mathcal{O}(1)$ effect near the Liouville wall. At such a point, it is expected that high energy effects lead to important corrections. Among them, we expect through Zamolodchikov c-theorem the central charge to converge to the Liouville central charge $c_L = 1 +6Q^2 = 25$. It is clear from~\eqref{eq:simpleentanglemententropy} that such a third quantized description can't reproduce the content of Zamolodchikov c-theorem as it breaks the famous $b\to 1/b$ duality which leaves invariant the central charge.
 
 An other interesting observation is that such theory can be mapped to a Klein-Gordon theory by the map $w = \exp\left[b\left(\phi+iX\right)\right]$ from which we obtain
 \begin{equation}
@@ -397,6 +414,12 @@ This density matrix corresponds to a thermal density matrix and the pure state i
 \begin{equation}
   S^{\rm{EE},\,\phi}_{[\phi_1,\phi_2]} \neq S^{\rm{EE},\,w}_{{[e^{\phi_1},e^{\phi_2}]}}\,.
 \end{equation}
+
+\paragraph{Numerical method for computing the EE}
+Consider the action~\eqref{eq:simpleentanglemententropy} and a cut in $\phi$ space. We further consider a discretize version of the model in $\phi$-space and view $X\to iX$ as the time direction.
+\begin{equation}
+  H = \frac{1}{2a}\sum_{i=1}^{N} \pi_i^2 + \left(\phi_i -\phi_{i+1}\right)^2 + 4 \pi \tilde{\mu} e^{b \phi_i} \phi_i^2\,.
+\end{equation} 
 \paragraph{Adding a boundary to the manifold}
 Consider now the possibility of adding a boundary and a non trivial interaction.
 \begin{equation}
