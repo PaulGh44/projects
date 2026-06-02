@@ -338,11 +338,7 @@ In the $N=1$ gauge, it yields
     \frac{(d-1)(d-2)}{a^2}\left(k+a'^2\right)-\frac{2(d-1)}{a^{d-1}}\frac{d}{d\tau}\left(a'a^{d-2}\right)+2\kappa \left(\frac{(\partial_\tau \chi)^2}{2}-V_{\rm np}(\chi)-\frac{\Lambda}{\kappa}\right)&=0\,.
   \end{aligned}
 \end{equation}
-We note that the action~\eqref{eq:startingaction} defines a variational problem adapted to Dirichlet boundary conditions for $B$ while the dual action~\eqref{eq:liftnonperturbative} defines a variational problem adapted to Neumann boundary conditions. Let's discuss the perspective where the effective potential presents a negative minimum. In the specific case for which the action is not lifted by non perturbative effects, this describes a massless pseudo-scalar field for which $\Delta_+=d\,,\Delta_- = 0$. In Neumann quantization scheme, the conformal dimension of the dual operator is $\Delta_-=0$ so this describes a relevant deformation from the dual CFT perspective. In such a case, the charge $Q\sim a^d \partial_\tau \chi$ is a constant of motion and is related to the source parameter in Neumann quantization scheme (there is no VEV in this case). Once non-perturbative effects are included, the shift symmetry is broken and the bulk quantity
-\(Q(\tau)\sim a^d \partial_\tau\chi\) is no longer conserved along the radial flow. The dual
-formulation is still naturally of Neumann type, but the boundary datum should be understood as
-the renormalized canonical momentum at the boundary, not as a conserved charge throughout
-the bulk.
+We note that the action~\eqref{eq:startingaction} defines a variational problem adapted to Dirichlet boundary conditions for $B$ while the dual action~\eqref{eq:liftnonperturbative} defines a variational problem adapted to Neumann boundary conditions. In the specific case for which the action is not lifted by non perturbative effects, this describes a massless pseudo-scalar field for which $\Delta_+=d\,,\Delta_- = 0$. In Neumann quantization scheme, the conformal dimension of the dual operator is $\Delta_-=0$ so this describes a relevant deformation from the dual CFT perspective. In such a case, the charge $Q\sim a^d \partial_\tau \chi$ is a constant of motion and is related to the source parameter in Neumann quantization scheme (there is no VEV in this case). Once included non-perturbative effects, the charge is no longer a constant of motion and the variational problem does not correspond to fixing the charge at the boundary.
 \paragraph{Non-running solutions}
 A trivial set of solutions can be obtained by setting $\chi$ to a extremum of the potential. These solutions will benchmark of the more general solutions. Let $V_{\rm np}^{\rm ext}$ an extremum of the non-perturbative potential. The geometry of the solution depends crucially on the sign of $\Lambda_{\rm eff}=\kappa V_{\rm np}^{\rm ext}+\Lambda$. We work in the $N=1$ gauge. 
 \begin{itemize}
@@ -397,7 +393,184 @@ We now focus on compact=spherical slices to obtain a finite action. We could als
   \end{equation}
 \end{itemize}
 
-\paragraph{Frieman Vaga variables} For the conventions, we refer to https://arxiv.org/pdf/astro-ph/0004138. We assume our potential+cosmological constant is given by $V(\chi) = V_0 + V_1 \cos\left(\frac{\chi} {f_\chi}\right)$. There are five possibilities:
+\paragraph{Perturbative solutions} We focus on the 1-instanton sector and thus assume the potential has the following form 
+\begin{equation}
+  V_{\rm np}(\chi) = \lambda \cos(\chi f_{\alpha})\,,
+\end{equation}
+with $\lambda \ll 1$. We look for perturbative solutions in $\lambda$ of the form
+\begin{equation}
+\begin{aligned}
+  \chi(\tau) &= \chi_{(0)}(\tau) + \lambda \chi_{(1)}(\tau) + \lambda^2 \chi_{(2)}(\tau) + \dots \\
+  \a(\tau) &= a_{(0)}(\tau) + \lambda a_{(1)}(\tau) + \lambda^2 a_{(2)}(\tau) + \dots
+\end{aligned}
+\end{equation}
+We assume charged solution
+\begin{equation}
+\begin{aligned}
+  Q &= \int_{S^d} \star H = \int (\star)^2 d\chi \\
+    &= Q_{(0)} + \lambda Q_{(1)} + \lambda^2 Q_{(2)} + \dots \\
+    &= \int_{S^d} (\star)^2 d\chi_{(0)} + \lambda \int_{S^d} (\star)^2 d\chi_{(1)} + \lambda^2  \int_{S^d} (\star)^2 d\chi_{(2)}\,.
+\end{aligned}
+\end{equation}
+There are two observations. First, the trivial set of solutions discussed previously have vanishing axion charge. Second, these solutions have running charges a priori. This can be seen by integrating the first equation on the compact slices of~\eqref{eq:Nequal1gauge} yielding
+\begin{equation}
+  \partial_\tau Q + (-1)^dV_d\,a^d \partial_\chi V_{\rm np} = 0\,.
+\end{equation}
+As one can observe the non-perturbative potential has the effect of non-conservation of the axionic charge. We now wish to describe a perturbative way to obtain the solution. We still discuss k=1 in the $N=1$ gauge. At order $\lambda^0$, we obtain
+\begin{equation}
+  \begin{aligned}
+    \partial_{\tau}\left(a^d_{(0)}\partial_{\tau}\chi_{(0)}\right)&=0\,,\\
+    \frac{d(d-1)}{a_{(0)}^2}\left(a'^2_{(0)}-1\right)+2\kappa\left(\frac{(\partial_\tau \chi_{(0)})^2}{2}+\frac{\Lambda}{\kappa}\right)&=0\,.\\
+  \end{aligned}
+\end{equation}
+As we can observe the charge is constant at order $\lambda^{0}$ so $Q_{(0)} = \rm const.$
+These equations become
+\begin{equation}
+\begin{aligned}
+  a^d_{(0)}\partial_{\tau}\chi_{(0)} &=(-1)^d Q\,.\\
+  a'^2_{(0)} &=1-\frac{2\kappa}{(a_0)^2 d(d-1)}\left(\frac{Q^2}{(V_d)^2a_{(0)}^{2d}}+\frac{\Lambda}{\kappa}\right)\\
+  &=1-\frac{1}{a_{(0)}^2H_{dS}^2}-\frac{2\kappa}{d(d-1)}\frac{Q^2}{(V_d)^2a_{(0)}^{2d+2}}\,.
+\end{aligned}
+\end{equation}
+Once $a_{(0)}$ is known, $\chi_{(0)}$ is also known.
+
+At order $\lambda^1$, one obtains
+\begin{equation}
+\begin{aligned}
+  \partial_\tau\left(a_{(0)}^d \partial_\tau \chi_{(1)} + a_{(1)}^d \partial_\tau \chi_{(0)} \right)-a_{(0)}^d \lambda f_{\alpha}\sin(\chi_{(0)}) &=0\,.\\
+  \frac{d(d-1)}{a_{(0)}^2}\left(a'_{(0)}a_{(1)}' - \frac{a_{(1)}(a'_{(0)})^2}{a_{(0)}}-\frac{a_{(1)}k}{a_{(0)}}\right)+2\kappa\left(\partial_\tau \chi_{(0)} \partial_\tau \chi_{(1)}+\frac{\cos(\chi_{(0)}f_{\alpha})}{2}\right)&=0\,.
+\end{aligned}
+\end{equation}
+Now the question is whether or not we can solve analytically these set of perturbative equations.
+\section{Dynamical system analysis}
+\subsection{First order formalism in expansion normalized variables}
+Recall the system of differential equations in the $N=1$ gauge \eqref{eq:Nequal1gauge}. We would like to write it as a first order autonomous system.\PG{Actually, in litterature, such problem is common and the usual thing to do is to view the Fridmann equation as a constraint equation and to use EN (Expansion normalized) variables. The following references will be useful in our setup:\\
+https://arxiv.org/abs/1712.03107\\
+https://arxiv.org/pdf/0906.0396\\
+https://arxiv.org/pdf/astro-ph/0004138\\
+https://arxiv.org/pdf/1108.4712\\
+https://arxiv.org/pdf/1401.1959\\
+The difference being that they work in Lorentzian spacetimes while we work in euclidean spacetimes
+}
+We define the EN variables
+\begin{equation}
+   x = \sqrt{\frac{\kappa}{d(d-1)}}\frac{\chi'}{H}\sp y = \sqrt{\frac{2\kappa V_{\rm{eff}}}{d(d-1)}}\frac{1}{H}\,,
+\end{equation}
+H is the Hubble constant defined as $H =\frac{a'}{a}$. This needs to assume that $V_{\rm{eff}}(\chi) = V_{np(\chi)}+\frac{\Lambda}{\kappa}$ is positive. The Friedman equation i.e the second equation of~\eqref{eq:Nequal1gauge} becomes simply a constraint
+\begin{equation}
+  1-\frac{k}{H^2 a^2}+x^2+y^2=0\,.
+\end{equation}
+\PG{In the litterature, this is usually the inverse$1 = x^2+y^2+...$. This is due to the fact that we work in euclidean time.} We denote $\Omega_k=\frac{k}{H^2 a^2}$ and $\Omega_{\chi}=x^2+y^2$. The former should be viewed as a Casimir energy of the slices and the latter corresponds to the euclidean total energy density of the axion field. The constraint becomes
+\begin{equation}\label{eq:euclideanenergydensity}
+  1 -\Omega_k + \Omega_\chi =0\,.
+\end{equation}
+This is already interesting to remark that this constraint cannot be satisfied in the case where the universe is open i.e $k\in\{0,-1\}$ as the euclidean energy density of the axion is manifestly positive (of course providing that $x,y$ are real and well defined)! The conclusion would have been crucially different in Lorenztian times. In fact, we can retrieve such a case by Wick rotating the Hubble constant and the euclidean time $H\rightarrow i H, \tau = i t$. In Lorentzian, the system would have been
+\begin{equation}
+  1 = \Omega_k +y^2 -x^2\, \longrightarrow \text{Lorentzian constraint\,.}
+\end{equation}
+The fact that the sign of $x$ is opposite to what we usually see is due to the fact that we deal with an axion field which has a negative kinetic term.
+
+Let us comeback to~\eqref{eq:euclideanenergydensity}. This equation describes an hyperboloid in the $\left(\sqrt{\Omega_\chi},\sqrt{\Omega_k}\right)$ plane. (In Lorentzian, it describes a circle!). This determines algebraically $\Omega_k$ as a function of $(x,y)$.
+\begin{equation}
+  \Omega_k(x,y) = 1+ x^2 + y^2\,.
+\end{equation}
+Dividing by $d(d-1)H^2$ the third equation of~\eqref{eq:Nequal1gauge} which is known to be the accelerating equation, one obtains
+\begin{equation}
+  \frac{(d-2)}{d}\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}\frac{a''}{a}\frac{1}{H^2}+x^2-y^2=0\,.
+\end{equation}
+We also have the identity $\frac{H'}{H^2} =\frac{a a''-a'^2}{H^2 a^2} = \frac{a''}{aH^2} -1$ which plugging back into the previous equation determines $\frac{H'}{H^2}$ in terms of the rest 
+\begin{equation}
+  \frac{(d-2)}{d}\Omega_k - \frac{(d-2)}{d}-\frac{2}{d}-\frac{2}{d}\frac{H'}{H^2}+x^2-y^2=0\,.
+\end{equation}
+Hence,
+\begin{equation}
+  \frac{H'}{H^2} = \frac{d}{2}\left(x^2-y^2-1+\frac{(d-2)}{d}\Omega_k(x,y)\right)\,.
+\end{equation}
+From the eom of the axion, we obtain
+\begin{equation}
+  \frac{\chi''}{H^2} + \frac{d\chi'}{H}+\frac{\partial_\chi V_{\rm eff}}{H^2}=0\,.
+\end{equation} 
+Now we will express the equations of $x$ and $y$ in terms of the flow parameter $d\eta = H d\tau = d(\log a)$. It suffices to take derivatives wrt the conformal time of the first order variables $x,y$.
+\begin{equation}
+  \begin{aligned}
+    \frac{dx}{d\eta}&=\frac{1}{H}\frac{dx}{d\tau} = -\frac{H'}{H^2}x+\frac{\chi''}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\\
+    &=x \frac{d}{2}\left(y^2+1-x^2-\frac{d-2}{d}\Omega_k(x,y)\right)-\sqrt{\frac{\kappa}{d(d-1)}}\frac{d\chi'}{H}-\frac{\partial_\chi V_{\rm eff}}{H^2}\sqrt{\frac{\kappa}{d(d-1)}}\,.
+  \end{aligned}
+\end{equation}
+Observe that it is not an autonomous system as in our specific case $\partial_\chi V_{\rm eff}$ depends on $\chi$. A convenient way to deal with that is to define a third variable $\lambda = -\frac{\partial_\chi V_{\rm eff}}{\sqrt{\kappa}V_{\rm eff}}$. The previous equation can be defined in terms of $y,\lambda$
+\begin{equation}
+  \frac{dx}{d\eta}=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,.
+\end{equation}
+There is a historical reason why $\lambda$ was introduced in cosmology. Initially, people were dealing with exponential potential for the inflaton for which $\lambda$ is trivially a constant. In our case, $\lambda$ is not a constant but there is a trick. It solves the following equation
+\begin{equation}
+  \frac{d\lambda}{d\eta} = -\sqrt{d(d-1)}(\Gamma-1)\lambda^2 x\,,
+\end{equation}
+where $\Gamma=\frac{V_{\rm eff}\partial_\chi^2 V_{\rm eff}}{(\partial_\chi V_{\rm eff})^2}$. In general, it is still a non autonomous system but in our specific case for which we have a cos potential we can actually try to express $\Gamma$ in terms of $\lambda$ so that to obtain a first order autonomous system of dimension 3. We will comeback to this equation latter. Let's now derive the equation for y. We use the same strategy i.e taking derivatives wrt the conformal time $\eta$
+\begin{equation}
+  \begin{aligned}
+    \frac{dy}{d\eta}&=\frac{1}{H}\frac{dy}{d\tau} = -\frac{H'}{H^2}y+\frac{1}{H^2}\sqrt{\frac{2\kappa}{d(d-1)}}\frac{\chi' \,\partial_\chi V_{\rm eff}}{2 \sqrt{V_{\rm eff}}}\,.\\
+    &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,.
+  \end{aligned}
+\end{equation}
+The three dimensional autonomous system reads simply
+\begin{equation}\label{eq:thirdorderautonomousystem}
+  \begin{aligned}
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{d\lambda}{d\eta} &= -\sqrt{d(d-1)}(\Gamma(\lambda)-1)\lambda^2 x\,.
+  \end{aligned}
+\end{equation}
+We now give specific examples for the potential for which we have $\Gamma(\lambda)$ which can easily be expressed in terms of the other variables. An interesting form of the potential is
+\begin{equation}
+  V_{\rm eff}(\chi) = V_0\cos^2(\chi f_\chi)\,.
+\end{equation}
+We subsequently find
+\begin{equation}
+  \begin{aligned}
+    \lambda = 2 \frac{f_\chi}{\sqrt{\kappa}}\tan(\chi f_\chi)\,,\\
+    \Gamma(\lambda) = \frac{1}{2}-\frac{2f_\chi^2}{\kappa}\frac{1}{\lambda^2}\,.
+  \end{aligned}
+\end{equation}
+Then the system becomes
+\begin{equation}\label{eq:thirdorderautonomousystem}
+  \begin{aligned}
+    \frac{dx}{d\eta}&=x \frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-dx+\frac{\sqrt{d(d-1)}}{2}\lambda y^2\,,\\
+    \frac{dy}{d\eta} &=y\frac{d}{2}\left(y^2+1-x^2-\frac{(d-2)}{d}\Omega_k(x,y)\right)-\frac{\sqrt{d(d-1)}}{2} x y \lambda\,\\
+    \frac{d\lambda}{d\eta}  &= \sqrt{d(d-1)}\left(\frac{2f_\chi^2}{\kappa}+\frac{\lambda^2}{2}\right)\,x\,.
+  \end{aligned}
+\end{equation}
+In this case, it is relatively easy to discuss critical points. From the third equation, $x_\star = 0$ and then $y_\star =0$. $\lambda_\star$ is arbitrary so the critical points correspond to the line $x=y=0$. This needs nuances as when $y_\star=0$, $V_{\rm eff} =0$ for which tan blows up at such a point so $\lambda_\star \to \infty$ is the only physical critical point that you can reach. They correspond exactly to the non-running flat solutions found discussed previously. This is very simple to see the line of critical points is unstable. We look at the linearized system $\lambda = \lambda_\star +\delta \lambda,\, x = \delta x,\, y =\delta y$, and one obtains
+\begin{equation}
+  \frac{d\delta X}{d\eta} = \begin{pmatrix}
+    -(d-1) && 0 && 0 \\
+    0 && 1 && 0 \\
+    A_\star && 0 && 0 
+  \end{pmatrix} \delta X \,,
+\end{equation}
+where $A_{\star}$ is a constant depending on the parameters. (This does not apply if $\lambda_\star=\infty$). We see that for $d>1$, these are unstable critical points.\\
+
+The problem of the EN variables introduced earlier is that they generically do not allow for wormhole solutions which are supposed to be $\mathbb{Z}_2$ so with initial conditions $\chi'(0) = a'(0) = 0,\,a(0)\neq 0$. Indeed, the change of variables $x,y$ are singular at that point. We thus look for other variables which support wormhole solutions.
+
+\subsection{First order formalism in "wormhole" variables}
+Note that we can't use the first order formalism introduced in https://arxiv.org/pdf/2505.10703 for instance. In fact, they use $\phi' = i\chi'$ as the natural flow variable which breaks down in our case because precisely at the $\mathbb{Z}_2$ symmetric point for instance, the flow parameter degenerates. A convenient way to introduce wormhole-type of variables is to modify the EN variables by removing their singular part by removing $H$. We thus define
+\begin{equation}
+  p =\sqrt{\frac{\kappa}{d(d-1)}}a\chi' \sp q = \sqrt{\frac{2\kappa V_{\rm eff}}{d(d-1)}}a \sp u = aH = a'\,.
+\end{equation}
+The constraint equation now becomes
+\begin{equation}
+  u^2 + p^2 + q^2 =k=1\,.
+\end{equation}
+This is an algebraic system which defines $S^3$. The phase space is submanifold of $S^3$. Wormhole solutions are initially located at the north pole $q=0$. Actually, this is important to notice that there are two branches $u = \sigma\sqrt{1-p^2-q^2}$ with $\sigma = \pm$. Performing the same steps as before but with the flow parameter $ds=\frac{d\tau}{a}$, one obtains
+\begin{equation}
+  \begin{aligned}
+    \frac{dp}{ds}&=\sigma\sqrt{1-p^2-q^2} \,p (1-d)+\frac{\sqrt{d(d-1)}}{2}\lambda q^2\,\\
+    \frac{dq}{ds}&=\sigma\sqrt{1-p^2-q^2}\,q -p q \lambda \frac{\sqrt{d(d-1)}}{2}\,\\
+    \frac{d\lambda}{ds}&=-\sqrt{d(d-1)}\left(\Gamma-1\right)\lambda^2 x\,.
+  \end{aligned}
+\end{equation}
+The sigma sign defines contracting or expanding branches. The system is branchwise autonomous. Also, note that the square root has the bad behavior of breaking the Lipschitz assumption. This signals potential non uniqueness of the solution even for fixed branch. (This was actually to be expected as even in the abscence of a potential for $V_{\rm eff}=\rm const.$, wormholes with infinite number of bubbles where found.) To obtain a wormhole solution, you shall glue a contracting branch for $s<0$ to an expanding branch at $s>0$. It might be possible to generate by this gluing procedure wormholes that are not $\mathbb{Z}_2$ symmetric.
+
+\paragraph{Frieman Vaga variables} \paragraph{Frieman Vaga variables} For the conventions, we refer to https://arxiv.org/pdf/astro-ph/0004138. We assume our potential+cosmological constant is given by $V(\chi) = V_0 + V_1 \cos\left(\frac{\chi} {f_\chi}\right)$. There are five possibilities:
 \begin{itemize}
     \item $V_1>V_0>0$ and this potentially describes solutions interpolating between AdS and dS saddles.
     \item $V_0>V_1>0$ and this describes dS saddles.
@@ -477,7 +650,7 @@ We first observe that $\lambda = -2\mathcal{H}_\star$ is an eigenvalue. First, r
   \lambda^2+d \mathcal{H}_ \star\lambda + \frac{1}{\alpha^2} = 0\,.
 \end{equation}
 We can observe that the system is always stable. The product of the eigenvalues is positive and the sum is negative which imposes that both eigenvalues have real negative part. Nevertheless, the phase portrait is affected by the value of the parameters. If 
-\begin{equation}\label{eq:onsetspirals}
+\begin{equation}
   \Delta < 0 \quad \text{i.e} \quad \frac{d}{(d-1)}(1-v_0)< \frac{2}{\alpha^2}\,,
 \end{equation}
 the orbits will be spiraling trajectories around the fixed point before reaching it. Otherwise, the orbits will directly flow to the fixed point. We can check that by drawing the phase portrait. Note that the $\chi$ particle describes a motion similar to a dissipative pendulum whose friction/anti-friction coefficient is time-dependent. This is natural to project the phase portrait into the plane $(I,\mathcal{J}) \sim (\chi, \Pi_{\chi})$. We display the phase portrait in the two distinct regimes.
@@ -567,33 +740,15 @@ deformation with $\Delta_+<d$. The BF bound requires
 \begin{equation}
   m_{\rm holo}^2L_{\rm AdS}^2\geq -\frac{d^2}{4}.
 \end{equation}
-For sufficiently small $\alpha^2(1-v_0)$, the BF bound is violated. Interestingly, this bound has also been infered previously at the onset for which the orbits are spiraling trajectories~\eqref{eq:onsetspirals}. Therefore the onset of spiralling in the linearized phase portrait coincides with the violation of the BF bound of the asymptotic EAdS fixed point. If the fixed point is to define a stable holographic UV/IR endpoint, the spiralling regime should be excluded. In particular, none of the solutions satisfying the BF bound can pass through the minimum of the potential without vanishing velocity. Consider now the case where the BF bound is satisfied. Let us show that the charge of the axion blows up at the AdS boundary. To see why, first observe that the scale factor behaves (in units of AdS length) as $a(\tau)\sim e^{\tau}$. We then expand the axion field as
+For sufficiently small $\alpha^2(1-v_0)$, the BF bound is violated. Consider the case where the BF bound is satisfied.  Let us show that the charge of the axion blows up at the AdS boundary. To see why, first observe that the scale factor behaves (in units of AdS length) as $a(\tau)\sim e^{\tau}$. We then expand the axion field as
 \begin{equation}
   \chi(\tau) = \chi_{(-)} e^{-\Delta_- \tau} + \chi_{(1)}e^{-\left(\Delta_- + 1\right)\tau} + \cdots + \chi_{(+)} e^{-\Delta_+ \tau} + \cdots\,,
 \end{equation}
-where in Neumann quantization shceme, $\chi_-$ corresponds to the VEV of the dual operator and $\chi_{(+)}$ corresponds to the source. We first remark that the finiteness of the charge $Q(\tau)\sim a^d \partial_\tau \chi$ of the boundary imposes the vev to vanish. Then, since the deformation is relevant, we have $\Delta_+ \leq d$ (where in the equal case we are eventually back to the non-running solutions). We conclude that the charge of the axion blows up at the AdS boundary for running solutions. The solutions describe infinite flux at the AdS boundary. We thus conclude with a very general theorem\\
-\textbf{Theorem}: For asymptotically EAdS running solutions satisfying the BF bound and with a relevant Neumann source, finite boundary flux forces both asymptotic coefficients to vanish. Hence any non-trivial running solution carries infinite axionic flux at the AdS boundary.
-(\textit{In our specific setup, the holographic mass is always negative and thus the deformation is always relevant.})
+where in Neumann quantization shceme, $\chi_-$ corresponds to the VEV of the dual operator and $\chi_{(+)}$ corresponds to the source. We first remark that the finiteness of the charge $Q(\tau)\sim a^d \partial_\tau \chi$ of the boundary imposes the vev to vanish. Then, since the deformation is relevant $\Delta_+ \leq d$ where the equality turns off the potential and we are eventually back to the non-running solutions. We conclude that the charge of the axion blows up at the AdS boundary for running solutions. The solutions describe infinite flux at the AdS boundary.
 \paragraph{Finite action and counter-terms}
 We consider the case where the BF bound is satisfied. We would like to find a way numerically to regulate the action and compute it numerically as a function of the UV parameters. It actually highly depends on the the dimension of the axion dual operator $\Delta_+$ and thus on the dimension and the parameters $\alpha,v_0$. Consider the case where the boundary dimension is $d=3$ and $\Delta_+=2$. In such a case, the relevant counter-terms to render the action finite are
 \begin{equation}
-  \begin{aligned}
-S_{\rm ct}
-&=
-\frac{1}{\kappa}
-\int_{\partial M} d^3x\sqrt{\gamma}
-\left(
-2H_{\rm AdS}
-+
-\frac{1}{2H_{\rm AdS}}R[\gamma]
-- 2 H_{\rm AdS}(\delta\chi)^2
-\right)\\
-&=
-\frac{{\rm Vol}(S^3)}{\kappa}
-\left(
-2H_{\rm AdS}a_R^3+\frac{3a_R}{H_{\rm AdS}} - 2 H_{\rm AdS}a_R^3(\delta\chi)^2(\tau_R)
-\right)\,.
-\end{aligned}
+  \mathcal{S}_{\rm ct} = \frac{1}{\kappa}
 \end{equation}
 
 \end{document}
