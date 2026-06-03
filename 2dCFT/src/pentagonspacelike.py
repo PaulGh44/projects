@@ -1082,8 +1082,8 @@ if DEMO:
     # print()
     
     IntegrandbislHS = lambda P: -2*mp.sqrt(2)*16**(1-P**2)*(mp.sin(mp.pi*P/2))**3*spacelikeC_b(theo, 1/4,1/4, P)/P
-    print(f"specificUHP = {IntegrandbislHS(0.6+3j+1)*IntegrandbislHS(0.6+3j-1)}")
-    print(f"specificLHP = {IntegrandbislHS(0.6+3j)**2}")
+    print(f"specificUHP = {IntegrandbislHS(0.6+0.2j+1)*IntegrandbislHS(0.6+0.2j-1)}")
+    print(f"specificLHP = {IntegrandbislHS(0.6+0.2j)**2}")
 
 
 
