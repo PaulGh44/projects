@@ -109,5 +109,5 @@ def plot_entropy(Lmin=1, Lmax=100, m=0.5, N=1000):
 
 
 if __name__ == "__main__":
-    fig, ax = plot_entropy(Lmin=1, Lmax=50, m=1.5, N=1000)
+    fig, ax = plot_entropy(Lmin=1, Lmax=50, m=0, N=1000)
     plt.show()
