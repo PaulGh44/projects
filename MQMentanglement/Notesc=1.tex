@@ -207,7 +207,7 @@ Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\cite{boutivas2025numericalcalculationentanglemententropy}\cite{Boutivas_2023}\cite{Boutivas_2024}\cite{ginsparg1993lectures2dgravity2d}\cite{Bombelli:1986rw}\cite{Bombelli:1986rw}
 
 \section{Continuum theory}
 
@@ -416,10 +416,38 @@ This density matrix corresponds to a thermal density matrix and the pure state i
 \end{equation}
 
 \paragraph{Numerical method for computing the EE}
-Consider the action~\eqref{eq:simpleentanglemententropy} and a cut in $\phi$ space. We further consider a discretize version of the model in $\phi$-space and view $X\to iX$ as the time direction.
+\paragraph{A first exercise to benchmark our numerical analysis: Entanglement entropy of a massive scalar field in 1+1d.}
+We consider a massive scalar field $\phi$ in 1+1d. The hamiltonian of such system is
 \begin{equation}
-  H = \frac{1}{2a}\sum_{i=1}^{N} \pi_i^2 + \left(\phi_i -\phi_{i+1}\right)^2 + 4 \pi \tilde{\mu} e^{b \phi_i} \phi_i^2\,.
-\end{equation} 
+\begin{aligned}
+     H &= \frac{1}{2}\int \rm{d}x \,\pi_\phi^2 + (\partial_x \phi)^2 + m^2 \phi^2 \\
+       &= \frac{1}{2}\int \rm{d}x \pi_\phi^2 - \phi \partial^2_x \phi + m^2 \phi^2\,.
+\end{aligned}
+\end{equation}
+The second line holds if there is no boundary or if we impose Dirichlet boundary conditions at the boundary. The entanglement entropy of a quantum field theory is not well defined as the entanglement entropy between adjoining spacetime regions is UV divergent~\cite{Witten_2018}. To circumvulate such problem, we consider a discretize/lattice version of the previous model. Let $a$ be the lattice spacing in the x-direction. Note that
+\begin{equation}
+  \phi(x+a)+\phi(x-a)-2\phi(x) = a^2 \frac{\partial^2 \phi}{\partial x^2}+o(a^2)\,.
+\end{equation}
+We can thus associate to the afforementionned QFT the following lattice model.
+\begin{equation}
+  H = \frac{1}{2a^2}\sum_n \pi_n^2 + (2+m^2 a^2)\phi_n^2 -(\phi_n\phi_{n+1}+\phi_n \phi_{n-1})\,.
+\end{equation}
+This describe a chain of nearest neighbour coupled harmonic oscillators. A method first described by Srednicky~\cite{Srednicki_1993} and Bombelli and al.~\cite{Bombelli:1986rw} can be systematically applied to such lattice system. For a recent review, see for instance~\cite{Casini_2009}\cite{bellucci2026entanglemententropymassivescalar}\cite{Boutivas_2023}\cite{Boutivas_2024}. In these preliminary works, they show that the entanglement entropy of the vacuum state for a massless scalar field in flat space is proportional to the area. The method consists in writting the Hamiltonian as
+\begin{equation}
+  \tilde{H} = \frac{1}{2}\sum_m \pi_n^2 + \frac{1}{2}\sum_{i\,j}\phi_i K_{ij}\phi_j\,,
+\end{equation}
+with
+\begin{equation}
+  K_{ij}= \delta_{ij}\left(\tilde{m}^2 + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)\,.
+\end{equation}
+To simplify notations, we droped the lattice prefactor in front of the hamiltonian and we define the lattice mass $\tilde{m}^2=m^2 a^2$. The matrix $K$ is a positive definite symmetric matrix (provided $m^2>0$). The method consists in taking its square-root on a finite but large size interval (large compared to the entanglement subregion in order to prevent side effects) compared to the subregion of the entanglement entropy. Then, the Entropy is easily computed from the eigenvalues of the $C$ matrix on the spatial subregion $A$ where $C$ is defined as
+\begin{equation}
+  C_{|A} = \sqrt{\braket{\phi \phi}_{|A} \braket{\pi \pi}_{|A}}  = \frac{1}{2}\sqrt{\left(K^{-1/2}\right)_{|A} \left(K^{1/2}\right)_{|A}}\,.
+\end{equation}
+For numerical stability, it is easier to determine the eigenvalues of $C^2_{|A}$ and then to diagonalize. Denoting $\nu_k$ the eigenvalues of $C_{|A}$, the entanglement entropy of the vacuum state reads
+\begin{equation}
+  S = \sum_k \left(\nu_k+\frac{1}{2}\right)\log\left(\nu_k +\frac{1}{2}\right) - \left(\nu_k-\frac{1}{2}\right)\log\left(\nu_k -\frac{1}{2}\right)
+\end{equation}
 \paragraph{Adding a boundary to the manifold}
 Consider now the possibility of adding a boundary and a non trivial interaction.
 \begin{equation}
@@ -800,6 +828,8 @@ In general, physical boundary states also called Cardy states need not to be Ish
 \end{equation}
 This condition should be understood as determining $n_{h}^{s_1\,s_2}$.
 
+\bibliographystyle{JHEP}
+\bibliography{biblio}
 
 \end{document}
 
