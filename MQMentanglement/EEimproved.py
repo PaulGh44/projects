@@ -95,7 +95,7 @@ def entropy_as_function_of_cut(Lmin=1, Lmax=100, m=0.5, N=1000):
 
 
 
-def plot_entropy(Lmin=1, Lmax=100, m=0.5, N=1000):
+def plot_entropy(Lmin=1, Lmax=50, m=0.5, N=1000):
     L_values, S_values = entropy_as_function_of_cut(Lmin, Lmax, m, N)
 
     fig, ax = plt.subplots(figsize=(8, 5))

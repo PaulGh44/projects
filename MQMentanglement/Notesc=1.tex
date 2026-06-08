@@ -448,6 +448,25 @@ For numerical stability, it is easier to determine the eigenvalues of $C^2_{|A}$
 \begin{equation}
   S = \sum_k \left(\nu_k+\frac{1}{2}\right)\log\left(\nu_k +\frac{1}{2}\right) - \left(\nu_k-\frac{1}{2}\right)\log\left(\nu_k -\frac{1}{2}\right)
 \end{equation}
+\paragraph{EE in minisuperspace genus $0$ approximation.}
+A discretized version of the action~\eqref{eq:simpleentanglemententropy} is simply given by ($\phi_n=n a$ is the lattice coordinate)
+\begin{equation}
+  H = \frac{1}{2a^2}\sum_n \pi_n^2 +(2+m_n^2 a^2)\Psi_n^2 -(\Psi_n\Psi_{n+1}+\Psi_n\Psi_{n-1})\,,
+\end{equation}
+with $m_n^2 = 4\pi \mu e^{2 n a b}$. For the $c=1$, after dropping the lattice prefactor, this yields
+\begin{equation}
+  \tilde{H} = \frac{1}{2}\sum_m \pi_n^2 + \frac{1}{2}\sum_{i\,j}\phi_i K^{L}_{ij}\phi_j\,,
+\end{equation}
+with
+\begin{equation}
+  K^{L}_{ij}= \delta_{ij}\left(4\pi \tilde{\mu} e^{2 a i} + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)\,.
+\end{equation}
+We introduced the lattice bare cosmological constant $\tilde{\mu} = \mu a^2$. Two things are important to notice. First, this is no more translation invariant. Second, the mass aspect depends on the lattice spacing and we can't get rid of it.
+\paragraph{A note regarding Zamolodchikov c-theorem}
+Zamolodchikov c-theorem states that for any local unitary QFT in 1+1d translationnaly and rotationnaly invariant the $c$ function is increasing~\cite{Zamolodchikov:1986gt}\cite{Casini_2007}. We emphasize here that translation in $\phi$ space is explicitly broken by the presence of this exponential factor and thus we do not expect the c-theorem to apply for the function
+\begin{equation}
+  c(\phi_L,\phi_R) = 3(\phi_R-\phi_L)\frac{\rm{d} S}{\rm{d}(\phi_R -\phi_L)}\,.
+\end{equation}
 \paragraph{Adding a boundary to the manifold}
 Consider now the possibility of adding a boundary and a non trivial interaction.
 \begin{equation}
