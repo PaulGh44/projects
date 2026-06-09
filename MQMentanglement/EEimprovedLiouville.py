@@ -219,12 +219,12 @@ def entropy_as_function_of_right_endpoint(
 
 def plot_entropy(
     phi_left: float = -15,
-    phi_right_min: float = -14.5,
+    phi_right_min: float = -14.95,
     phi_right_max: float = 5,
     mu: float = 0.7,
-    phi_min: float = -50,
+    phi_min: float = -70,
     phi_max: float = 8,
-    a: float = 0.05,
+    a: float = 0.1,
     b: float = 1.0,
 ):
     phi_right_values, S_values = entropy_as_function_of_right_endpoint(

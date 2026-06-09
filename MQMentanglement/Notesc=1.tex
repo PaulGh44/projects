@@ -462,11 +462,40 @@ with
   K^{L}_{ij}= \delta_{ij}\left(4\pi \tilde{\mu} e^{2 a i} + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)\,.
 \end{equation}
 We introduced the lattice bare cosmological constant $\tilde{\mu} = \mu a^2$. Two things are important to notice. First, this is no more translation invariant. Second, the mass aspect depends on the lattice spacing and we can't get rid of it.
-\paragraph{A note regarding Zamolodchikov c-theorem}
+\paragraph{A note regarding Zamolodchikov c-theorem and subadditivity}
 Zamolodchikov c-theorem states that for any local unitary QFT in 1+1d translationnaly and rotationnaly invariant the $c$ function is increasing~\cite{Zamolodchikov:1986gt}\cite{Casini_2007}. We emphasize here that translation in $\phi$ space is explicitly broken by the presence of this exponential factor and thus we do not expect the c-theorem to apply for the function
 \begin{equation}
   c(\phi_L,\phi_R) = 3(\phi_R-\phi_L)\frac{\rm{d} S}{\rm{d}(\phi_R -\phi_L)}\,.
 \end{equation}
+In particular, as is it clear from the numerics, such a function would be negative at some point ruining the interpretation of the c-function as capturing the number of degrees of freedom.
+\paragraph{Dependence on the choice of state.}
+The Von Neumann entropy we numerically compute is associated to the vacuum and pure state $\rho = \ket{0}\bra{0}$ uniquely defined to be the state annihilated by the hamiltonian with flow parameter $t=iX$ of the third quantized action. Let us detail such procedure. We introduce an orthonormal basis of the WdW using the Kontorovich-Lebelev transform
+\begin{equation}
+  \begin{aligned}
+    \psi_E(\ell) &= \frac{1}{\pi}\sqrt{\pi \sinh(\pi E)}K_{iE}(2\sqrt{\pi \mu}\ell)\,,\\
+    \int_{0}^{+\infty} &\frac{\rm{d}\ell}{\ell}\psi_E(\ell)\psi_{E'}(\ell) = \delta(E-E')\,.
+  \end{aligned}
+\end{equation}
+We then decompose the third quantized fields in terms of the elements of the basis
+\begin{equation}
+  \Psi(\phi=\log(\ell),t=iX)=\int_0^{+\infty}\frac{dE}{\sqrt{2E}} \,\psi_E(\ell) \left(a_{E}e^{-i\omega(E) t }+a^{\dagger}_{E}e^{i\omega(E) t }\right)\,.
+\end{equation}
+The dispersion relation is given by the WdW and yields $\omega(E)^2=E^2$. Even though the action is not translation invariant in $\phi$, it remains translation invariant in $X$. Thus, the Hamiltonian
+\begin{equation}
+\begin{aligned}
+    H &= \int_0^{+\infty} \frac{\rm{d}\ell}{\ell} \left[\frac{1}{2}\left(\partial_t \Psi\right)^2 + \frac{\ell^2}{2}\left(\partial_\ell \Psi\right)^2 + 2\pi \mu e^{2 \phi} \Psi^2\right]\\
+    &=\int_0^{+\infty} \frac{\rm{d}\ell}{\ell} \left[\frac{1}{2}\left(\partial_t \Psi\right)^2 + \frac{1}{2}\Psi\left(-\mathcal{H}_\ell \right)\Psi\right]\,.
+\end{aligned}
+\end{equation}
+is a conserved quantity. We then rewrite the Hamiltonian in terms of the oscillator modes and we normal order to obtain
+\begin{equation}
+  H = \int_0^{\infty} dE E a^{\dagger}_{E} a_{E}\,.
+\end{equation}
+The vacuum $\ket{0}$ is uniquely defined (up to a phase) to be the state annihilated by the hamiltonian equivalently by all the oscillators. Only in this case does the point function reads
+\begin{equation}
+  \bra{0}\Psi(\ell,t)\Psi(\ell',t)\ket{0} =\int_0^{+\infty} \frac{dE}{2E} \Psi_E(\ell) \Psi_E'(\ell') = \frac{1}{2}\left(-\mathcal{H}_\ell\right)^{-1/2} (\ell,\ell')\,.
+\end{equation}
+If one describes the system in angular variable $w=e^{\phi +i X}$, define $T = \frac{w+\bar{w}}{2}, Y = \frac{w - \bar{w}}{2}$ so that to rewrite the action in the form of a KG action and subsequently define the new vacuum by asking the Haniltonian with flow parameter T to annihilated such a state, you compute EE of a different state.
 \paragraph{Adding a boundary to the manifold}
 Consider now the possibility of adding a boundary and a non trivial interaction.
 \begin{equation}
