@@ -18,6 +18,7 @@
 \usepackage{latexsym}
 \usepackage{pdflscape}
 \usepackage{color}
+\usepackage{stmaryrd}
 \usepackage{slashed}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,decorations.markings}
@@ -830,8 +831,102 @@ which can be rewritten as
 \end{aligned}
 \end{equation}
 As expected, it yields a second order PDE. This equation should also be obeyed by all the conformal blocks cited above.
+\paragraph{Boundary degenate field}
+The decoupling equation of the null vector associated to $\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z)$ can be written as~\cite{Belavin:1984vu}
+\begin{equation}
+  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(z_1)\chi_{\braket{3,1}}^{\sigma_2 \sigma_3}(z)\Psi_{P_2}^{\sigma_3 \sigma_4}(z_2)\Psi_{P_3}^{\sigma_4 \sigma_1}(z_3)}=0\,,
+\end{equation}
+where
+\begin{equation}
+  \chi_{\braket{3,1}}^{\sigma_2 \sigma_3}(z) = (\Delta_{3,1}+2)L_{-3}^{(z)}\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z) -2 L^{(z)}_{-1}L^{(z)}_{-2}\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z)+\frac{1}{\Delta_{3,1}+1}\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z)\,,
+\end{equation}
+with $\Delta_{3,1}=-1-2b^2$. The decoupling of $\chi_{\braket{3,1}}^{\sigma_2 \sigma_3}(z)$ takes the form~\cite{Belavin:1984vu}
+\begin{equation}
+\begin{aligned}
+  0&=\Bigg[\frac{1}{\Delta_{3,1}}\frac{\partial^3}{\partial z^3}-\sum_{i=1}^3 \frac{2\Delta_{3,1}\Delta_i}{(z-z_i)}-\sum_{i=1}^3\frac{\Delta_{3,1}}{(z-z_i)^2}\frac{\partial}{\partial z_i}\\
+  &-\sum_{i=1}^3 \frac{2\Delta_i}{(z-z_i)^2}-\sum_{i=1}^3 \frac{2}{(z-z_i)}\frac{\partial^2}{\partial z \partial z_i}\Bigg]\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(z_1)\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z)\Psi_{P_2}^{\sigma_3 \sigma_4}(z_2)\Psi_{P_3}^{\sigma_4 \sigma_1}(z_3)}\,.
+\end{aligned}
+\end{equation}
+We can eliminate $\partial_{z_i}$ using global ward identities and then set $z_1=0,\,z_2=1,\,z_3=\infty$ to obtain\PG{I believe the derivation of~\cite{Belavin:1984vu} is wrong, there are factors of two differences...}
+\begin{equation}
+\begin{aligned}
+  0&=\Bigg[\frac{1}{\Delta_{3,1}}\frac{\partial^3}{\partial z^3}+2\left[\frac{1}{z}+\frac{1}{z-1}\right]\frac{\partial}{\partial z^2}+\sum_{i=1}^3 \frac{\Delta_{3,1}-2\Delta_i}{z^2}
+  -\sum_{i=1}^3 \frac{2\Delta_{3,1}\Delta_i}{(z-z_i)}-\sum_{i=1}^3\frac{\Delta_{3,1}}{(z-z_i)^2}\frac{\partial}{\partial z_i}\\
+  &-\sum_{i=1}^3 \frac{2\Delta_i}{(z-z_i)^2}-\sum_{i=1}^3 \frac{2}{(z-z_i)}\frac{\partial^2}{\partial z \partial z_i}\Bigg]\braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(z_1)\Psi^{\sigma_2 \sigma_3}_{\braket{3,1}}(z)\Psi_{P_2}^{\sigma_3 \sigma_4}(z_2)\Psi_{P_3}^{\sigma_4 \sigma_1}(z_3)}\,.
+\end{aligned}
+\end{equation}
 
 \appendix
+\section{Derivations of the BPZ equation}
+\paragraph{Notations and useful}
+Let $\mathcal{Q}_i(z_i),\mathcal{Q}(z)$ a set of quasi-primary fields inserted at the points $z_i,z$. Additionnaly we introduce the useful relations 
+\begin{equation}
+  z_{\shortrightarrow i} :=z-z_i \qquad \Delta_{\rm TOT} = \Delta + \sum_{i=1}^{N} \Delta_i\,.
+\end{equation}
+The correlation function $\mathcal{V}_{N+1}:=\braket{\mathcal{Q}(z)\prod_{i=1}^{N}\mathcal{Q}_i(z_i)}$ satisfies the global conformal ward identities. The global ward identities can be written in a matrix form as
+\begin{equation}
+  \begin{pmatrix}
+  1 & 1 & 1 & \dots \\
+  z_{\shortrightarrow 1} & z_{\shortrightarrow 2} & z_{\shortrightarrow 3} & \dots \\
+  z_{\shortrightarrow 1}^2 & z_{\shortrightarrow 2}^2 & z_{\shortrightarrow 3}^2 & \dots \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \partial_{z_{\shortrightarrow 1}} \\
+    \partial_{z_{\shortrightarrow 2}} \\
+    \partial_{z_{\shortrightarrow 3}} \\
+    \dots
+  \end{pmatrix}
+  \mathcal{V}_{N+1}
+  = \begin{pmatrix}
+    \partial_z \\
+    -\Delta_{\rm TOT} \\
+    -2\sum_{i=1}^N \Delta_i z_{\shortrightarrow i} \\
+    \dots
+  \end{pmatrix}
+  \mathcal{V}_{N+1}
+  \,.
+\end{equation}
+In the case $N=3$ we recognize the Vandermonde matrix which can be inverted as long as the $z_{\shortrightarrow i}$ are different. In such a case, we can invert the matrix to eliminate the $ \partial_{z_{\shortrightarrow i}}$ in terms of $\partial_z$. One obtains
+\begin{equation}
+  \partial_{z_{\shortrightarrow i}}=\frac{1}{\prod_{j\neq i} (z_j-z_i)}\left[\left(\prod_{j \neq i }z_{\shortrightarrow j}\right)\partial_z +\left(\sum_{j\neq i}z_{\shortrightarrow j}\right)\Delta_{\rm TOT}-2\sum_{j=1}^{3}\Delta_j z_{\shortrightarrow j}\right]\,.
+\end{equation}
+This holds when acting on $\mathcal{V}_{4}$ (i.e 4 point correlation function constituted of quasi-primaries). In deriving the BPZ equation of order $2,3$, it appears to be useful to rewrite the following operators in terms of $\partial_z$
+\begin{equation}
+  \mathcal{O}_1 :=-\sum_{i=1}^{3}\frac{\partial_{z_{\shortrightarrow i}}}{z_{\shortrightarrow i}}  \qquad \mathcal{O}_2  :=-\sum_{i=1}^{3}\frac{\partial_{z_{\shortrightarrow i}}}{z^2_{\shortrightarrow i}} \,.
+\end{equation}
+We find
+\begin{equation}
+  \begin{aligned}
+    \mathcal{O}_1  &= -\left(\sum_{i=1}^{3}\frac{1}{z_{\shortrightarrow i}}\right)\partial_z + \sum_{i=1}^{3}\frac{2\Delta_i -\Delta_{\rm TOT}}{\prod_{j\neq i}z_{\shortrightarrow j}}\,,\\
+    \mathcal{O}_2  &= -\left(\sum_{i=1}^3 \frac{1}{z_{\shortrightarrow i}^2} +\sum_{i=1}^3 \prod_{j \neq i}\frac{1}{z_{\shortrightarrow j}}\right)\partial_z-\frac{\Delta_{\rm TOT}\prod_{i=1}^{3}(\sum_{j \neq i} z_{\shortrightarrow j})- 2\left(\sum_{i=1}^{3}\Delta_i z_{\shortrightarrow i}\right)\sum_{i=1}^{3}(\prod_{j \neq i} z_{\shortrightarrow j})}{\prod_{i=1}^{3}z_{\shortrightarrow i}^2}\,.
+  \end{aligned}
+\end{equation}
+In particular case of interest $z_{\shortrightarrow 1}=z,\,z_{\shortrightarrow 2}=z-1,\,z_{\shortrightarrow 3} = z-z_{\infty}$ with $z_{\infty}\to \infty$, this greatly simplifies leaving
+\begin{equation}\label{eq:veryuseful}
+  \begin{aligned}
+    \mathcal{O}^{(\infty)}_1  &= -\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty} -\Delta_{\rm TOT}}{z(z-1)}\,,\\
+    \mathcal{O}^{(\infty)}_2  &= -\left(\frac{1}{z^2}+\frac{1}{(z-1)^2}+\frac{1}{z(z-1)}\right)\partial_z+\frac{\left(2\Delta_{\infty}-\Delta_{\rm TOT}\right)(2z-1)}{z^2(z-1)^2}\,.
+  \end{aligned}
+\end{equation}
+\paragraph{Second order BPZ equation}
+The decoupling of the null vector associated to $V_{\braket{2,1}}(z)$ yields the following equation
+for $\mathcal{V}_{4}(z,z_1,z_2,z_3)=\braket{V_{\braket{2,1}}(z)V_{\Delta_1}(z_1)V_{\Delta_2}(z_2)V_{\Delta_3}(z_3)}$
+\begin{equation}
+\begin{aligned}
+  0 &=\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\braket{L_{-2}^{(z)}V_{\braket{2,1}}(z)V_{\Delta_1}(z_1)V_{\Delta_2}(z_2)V_{\Delta_3}(z_3)}\,\\
+  &=\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\sum_{i=1}^{3}\frac{\Delta_i}{z_{\shortrightarrow i}^2}+\frac{\partial_{z_i}}{z_{\shortrightarrow i}}\right]\mathcal{V}_{4}\,\\
+  &=\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\sum_{i=1}^{3}\frac{\Delta_i}{z_{\shortrightarrow i}^2}-\frac{\partial_{z_{\shortrightarrow i}}}{z_{\shortrightarrow i}}\right]\mathcal{V}_{4}\,\\
+  &=\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\sum_{i=1}^{3}\frac{\Delta_i}{z_{\shortrightarrow i}^2}+ \mathcal{O}_1\right]\mathcal{V}_{4}.\\
+\end{aligned}
+\end{equation}
+In the second line, we deform the contour sitting at $z$ ($L_{-2}^{(z)}=\frac{1}{2\pi i}\int_{w \sim z}\frac{dw T(w)}{w-z}$) to pick up the poles at the other positions. In the third line, we used $\partial_{z_i}=-\partial_{z_{\shortrightarrow i}}$. Sending the insertion points to $0,1,\infty$ and defining the rescaled correlation function, we obtain from~\eqref{eq:veryuseful}
+\begin{equation}
+  0 =\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\frac{\Delta_1}{z^2}+\frac{\Delta_2}{(z-1)^2}-\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty} -\Delta_{\rm TOT}}{z(z-1)}\right]\mathcal{V}_{4}.\\
+\end{equation}
+After massaging the last equation, this yields
+\begin{equation}
+  0 =\frac{z(1-z)}{b^2}\partial_z^2 \mathcal{V}_{4} +(2z-1) \partial_z \mathcal{V}_{4} + \left[\Delta_{2,1}-\Delta_{\infty}+\frac{\Delta_1}{z}+\frac{\Delta_2}{1-z}\right]\mathcal{V}_{4}.
+\end{equation}
 \section{Boundary states: Ishibashi states vs Cardy states}
 We first introduce Virasoro primary states. Highest-weight representations of the Virasoro algebra are generated from states $\ket{V_P}$ satisfying
 \begin{equation}
