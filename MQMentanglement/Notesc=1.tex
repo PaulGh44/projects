@@ -901,7 +901,7 @@ We find
     \mathcal{O}_2  &= -\left(\sum_{i=1}^3 \frac{1}{z_{\shortrightarrow i}^2} +\sum_{i=1}^3 \prod_{j \neq i}\frac{1}{z_{\shortrightarrow j}}\right)\partial_z-\frac{\Delta_{\rm TOT}\prod_{i=1}^{3}(\sum_{j \neq i} z_{\shortrightarrow j})- 2\left(\sum_{i=1}^{3}\Delta_i z_{\shortrightarrow i}\right)\sum_{i=1}^{3}(\prod_{j \neq i} z_{\shortrightarrow j})}{\prod_{i=1}^{3}z_{\shortrightarrow i}^2}\,.
   \end{aligned}
 \end{equation}
-In particular case of interest $z_{\shortrightarrow 1}=z,\,z_{\shortrightarrow 2}=z-1,\,z_{\shortrightarrow 3} = z-z_{\infty}$ with $z_{\infty}\to \infty$, this greatly simplifies leaving
+In particular case of interest $z_{\shortrightarrow 1}=z,\,z_{\shortrightarrow 2}=z-1,\,z_{\shortrightarrow 3} = z-z_{\infty}$ with $z_{\infty}\to \infty$ and rewritting $\Delta_3 = \Delta_{\infty}$, this greatly simplifies leaving
 \begin{equation}\label{eq:veryuseful}
   \begin{aligned}
     \mathcal{O}^{(\infty)}_1  &= -\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty} -\Delta_{\rm TOT}}{z(z-1)}\,,\\
@@ -919,14 +919,92 @@ for $\mathcal{V}_{4}(z,z_1,z_2,z_3)=\braket{V_{\braket{2,1}}(z)V_{\Delta_1}(z_1)
   &=\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\sum_{i=1}^{3}\frac{\Delta_i}{z_{\shortrightarrow i}^2}+ \mathcal{O}_1\right]\mathcal{V}_{4}.\\
 \end{aligned}
 \end{equation}
-In the second line, we deform the contour sitting at $z$ ($L_{-2}^{(z)}=\frac{1}{2\pi i}\int_{w \sim z}\frac{dw T(w)}{w-z}$) to pick up the poles at the other positions. In the third line, we used $\partial_{z_i}=-\partial_{z_{\shortrightarrow i}}$. Sending the insertion points to $0,1,\infty$ and defining the rescaled correlation function, we obtain from~\eqref{eq:veryuseful}
+In the second line, we deform the contour sitting at $z$ ($L_{-2}^{(z)}=\frac{1}{2\pi i}\int_{w \sim z}\frac{dw T(w)}{w-z}$) to pick up the poles at the other positions. In the third line, we used $\partial_{z_i}=-\partial_{z_{\shortrightarrow i}}$. Sending the insertion points to $0,1,\infty$ and defining the rescaled correlation function
 \begin{equation}
-  0 =\frac{1}{b^2}\partial_z^2 \mathcal{V}_{4} +\left[\frac{\Delta_1}{z^2}+\frac{\Delta_2}{(z-1)^2}-\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty} -\Delta_{\rm TOT}}{z(z-1)}\right]\mathcal{V}_{4}.\\
+  \mathcal{F}(z) := \underset{z_1 \to 0}{\lim} \,\underset{z_2 \to 1}{\lim}\, \underset{z_3 \to \infty}{\lim} \left(z_3^{2\Delta_{\infty}}\mathcal{V}_{4}(z,z_1,z_2,z_3)\right)\,,
+\end{equation}
+we obtain
+\begin{equation}
+  0 =\frac{1}{b^2}\partial_z^2 \mathcal{F}(z) +\left[\frac{\Delta_1}{z^2}+\frac{\Delta_2}{(z-1)^2}-\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty} -\Delta_{\rm TOT}}{z(z-1)}\right]\mathcal{F}(z).\\
 \end{equation}
 After massaging the last equation, this yields
 \begin{equation}
-  0 =\frac{z(1-z)}{b^2}\partial_z^2 \mathcal{V}_{4} +(2z-1) \partial_z \mathcal{V}_{4} + \left[\Delta_{2,1}-\Delta_{\infty}+\frac{\Delta_1}{z}+\frac{\Delta_2}{1-z}\right]\mathcal{V}_{4}.
+  0 =\frac{z(1-z)}{b^2}\partial_z^2 \mathcal{F}(z) +(2z-1) \partial_z \mathcal{V}_{4} + \left[\Delta_{2,1}-\Delta_{\infty}+\frac{\Delta_1}{z}+\frac{\Delta_2}{1-z}\right]\mathcal{F}(z)\,.
 \end{equation}
+\paragraph{Third order BPZ equation}
+The null vector is given by 
+\begin{equation}\label{eq:decoupling3}
+  \chi_{3,1}(z)=(\Delta_{3,1}+2)L_{-3} V_{3,1}(z) -2 L_{-1} L_{-2}V_{3,1}(z)+\frac{L_{-1}^3}{\Delta_{3,1}+1}V_{3,1}(z)\,.
+\end{equation}
+We already know from the previous paragraph that upon sending $z_1 \to 0, z_2 \to 1, z_{3}\to \infty$, the action of $L_{-2}$ reduces to
+\begin{equation}\label{eq:l-2}
+  \frac{\Delta_1}{z^2}+\frac{\Delta_2}{(z-1)^2}-\left(\frac{1}{z}+\frac{1}{z-1}\right)\partial_z +\frac{2\Delta_{\infty}-\Delta_{\rm TOT}}{z(z-1)}\,.
+\end{equation}
+It remains to know the action of $L_{-3}$. We have
+\begin{equation}
+  \begin{aligned}
+    &\braket{L_{-3}^{(z)}V_{\braket{3,1}}(z)V_{\Delta_1}(z_1)V_{\Delta_2}(z_2)V_{\Delta_3}(z_3)}\\
+    &=\braket{\frac{1}{2\pi i}\int _{w \sim z} \frac{T(w)}{(w-z)^2}V_{\braket{3,1}}(z)V_{\Delta_1}(z_1)V_{\Delta_2}(z_2)V_{\Delta_3}(z_3)}\\
+    &=-\sum_{i=1}^3 \braket{V_{\braket{3,1}}(z) \frac{1}{2\pi i}\int _{w \sim z_i} \frac{T(w)}{(w-z)^2}V_{\Delta_i}(z_i) \dots}\\
+    &=\sum_{i=1}^3 \braket{V_{\braket{3,1}}(z) \left[\frac{2\Delta_i}{(z_i-z)^3}-\frac{\partial_{z_i}}{(z_i-z)^2}\right]V_{\Delta_i}(z_i) \dots}\\
+    &=-\sum_{i=1}^3 \braket{V_{\braket{3,1}}(z) \left[\frac{2\Delta_i}{z_{\shortrightarrow i}^3}-\frac{\partial_{z_{\shortrightarrow i}}}{z_{\shortrightarrow i}^2}\right]V_{\Delta_i}(z_i) \dots}\\
+    &=-\left(\sum_{i=1}^3 \frac{2\Delta_i}{z_{\shortrightarrow i}^3}\mathcal{V}_{4}\right)-\mathcal{O}_{2} \mathcal{V}_{4}\,.
+  \end{aligned}
+\end{equation}
+Sending $z_1 \to 0, z_2 \to 1, z_{3}\to \infty$ and using~\eqref{eq:veryuseful}, we obtain that the action of $L_{-3}$ on $\mathcal{F}(z)$ is
+\begin{equation}\label{eq:l-3}
+  -\frac{2\Delta_1}{z^3}-\frac{2\Delta_2}{(z-1)^3}+\left(\frac{1}{z^2}+\frac{1}{(z-1)^2}+\frac{1}{z(z-1)}\right)\partial_z -\frac{(2\Delta_{\infty}-\Delta_{\rm TOT})(2z-1)}{z^2(z-1)^2}\,.
+\end{equation}
+Combining~\eqref{eq:l-2}\,\eqref{eq:l-3} with~\eqref{eq:decoupling3}, we obtain
+\begin{equation}
+  \begin{aligned}
+    0 &= \Bigg[\frac{\partial_z^3}{\Delta_{3,1}+1} + 2 \left[\frac{1}{z}+\frac{1}{z-1}\right]\partial^2_z \\
+    +&\left[\frac{\Delta_{3,1}-2\Delta_1}{z^2} + \frac{\Delta_{3,1}-2\Delta_2}{(z-1)^2}+\frac{\Delta_{3,1}+2-2(2\Delta_{\infty}-\Delta_{\rm TOT})}{z(z-1)}\right]\partial_z \\
+    -&\left[\frac{2\Delta_{3,1}\Delta_1}{z^3}+\frac{2\Delta_{3,1}\Delta_2}{(z-1)^3}+\frac{\Delta_{3,1}(2\Delta_{\infty}-\Delta_{\rm TOT})(2z-1)}{z^2(z-1)^2}\right]
+    \Bigg] \mathcal{F}(z)\,.
+  \end{aligned}
+\end{equation}
+The key check is the indicial equations at $0,1,\infty$ which should reproduce the results of the fusion rules. At $0,1$ the indicial equation is easily obtained by inserting a power ansatz $z^\alpha$/$(z-1)^\alpha$ and we easily find
+\begin{equation}
+  \alpha(\alpha-1)(\alpha-2)+2\alpha(\alpha-1)(\Delta_{3,1}+1)+\alpha(\Delta_{3,1}-2\Delta_i)(\Delta_{3,1}+1)-2\Delta_{3,1}\Delta_i(\Delta_{3,1}+1)=0\,,i\in\{1,2\}\,.
+\end{equation}
+It is then a matter of algebra to check that the solutions of this equation are
+\begin{equation}
+  \begin{aligned}
+    \alpha_{0} &= \Delta_{i} - \Delta_{3,1} - \Delta_{i} = -\Delta_{3,1} \\
+    \alpha_{i , \pm} &= \Delta_{i \pm b} - \Delta_{3,1} - \Delta_{i}\,,
+  \end{aligned}
+\end{equation}
+$\Delta = \frac{(b+b^{-1})^2}{4}-P^2$ and $\pm$ means we shift the momentum by b. Recall $P_{r,s} = \frac{rb+sb^{-1}}{2}$. We then check the exponent at infinity. We first perform the substitution $u=\frac{1}{z}$. We have
+\begin{equation}
+\begin{aligned}
+   \partial_z &= -u^2 \partial_u \\
+   \partial_z^2 &= 2u^3 \partial_u +u^4 \partial_u^2 \\
+   \partial_z^3 &= -6u^4 \partial_u -6u^5 \partial^2_u -u^6 \partial_u^3\,.\\
+\end{aligned}
+\end{equation}
+After some algebra we obtain the equation
+\begin{equation}
+  \begin{aligned}
+    0 &= \frac{\partial_u^3}{\Delta_{3,1}+1} + \frac{6}{u(\Delta_{3,1}+1)}\partial_u^2 +\frac{6}{u^2(\Delta_{3,1}+1)}\partial_u\\
+    -&2\left[\frac{2}{u}+\frac{1}{1-u}\right]\left[\frac{2}{u}\partial_u +\partial_u^2\right] \\
+    +&\left[\frac{\Delta_{3,1}-2\Delta_1}{u^2}+\frac{\Delta_{3,1}-2\Delta_2}{u^2(1-u)^2}+\frac{\Delta_{3,1}+2-2(2\Delta_{\infty}-\Delta_{\rm TOT})}{u^2(1-u)}\right]\partial_u\\
+    +&\left[\frac{2\Delta_{3,1}\Delta_1}{u^3}+\frac{2\Delta_{3,1}\Delta_2}{u^3(1-u)^3}+\frac{\Delta_{3,1}(2\Delta_{\infty}-\Delta_{\rm TOT})(2-u)}{u^3(1-u)^2}\right]\,.
+  \end{aligned}
+\end{equation}
+By looking to a power law ansatz $u^{\alpha}$, we find the indicial equation
+\begin{equation}
+  \alpha(\alpha+1)(\alpha+2)-4(\Delta_{3,1}+1)\alpha(\alpha+1)+\alpha(\Delta_{3,1}+1)(5\Delta_{3,1}+2 -2\Delta_{\infty})+2(\Delta_{3,1}+1)(\Delta_{\infty}-\Delta_{3,1}) =0\,.
+\end{equation}
+This equation should give the following exponents
+\begin{equation}
+  \begin{aligned}
+    \alpha_{0} &= \Delta_{\infty} + \Delta_{3,1} - \Delta_{\infty} = \Delta_{3,1}\\
+    \alpha_{+} &=  \Delta_{\infty +b} + \Delta_{3,1} - \Delta_{\infty} \\
+    \alpha_{-} &=  \Delta_{\infty -b} + \Delta_{3,1} - \Delta_{\infty}\,.
+  \end{aligned}
+\end{equation}
+Again, this is a simple matter of algebra that it is indeed the case.
 \section{Boundary states: Ishibashi states vs Cardy states}
 We first introduce Virasoro primary states. Highest-weight representations of the Virasoro algebra are generated from states $\ket{V_P}$ satisfying
 \begin{equation}
