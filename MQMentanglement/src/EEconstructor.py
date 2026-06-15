@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.linalg import eigh, eigvalsh, cholesky
-import matplotlib.pyplot as plt
+
 
 
 # ============================================================
@@ -182,15 +182,48 @@ def entropy_for_interval(phi_left: float, phi_right: float, X, P, phi_sites):
 
     return np.sum(entropy_terms)
 
+def entropy_as_function_of_left_endpoint(
+    phi_right: float = 5,
+    phi_left_min: float = -15,
+    phi_left_max: float = 4.95,
+    mu: float = 0.1,
+    phi_min: float = -70,
+    phi_max: float = 15,
+    a: float = 0.1,
+    b: float = 1.0,
+):
+    """
+    Computes S([phi_left, phi_right]) as a function of phi_right.
+
+    Since Liouville is not translation invariant in phi, the absolute
+    position of the interval matters.
+    """
+    X, P, phi_sites = full_correlators(
+        mu=mu,
+        phi_min=phi_min,
+        phi_max=phi_max,
+        a=a,
+        b=b,
+    )
+
+    phi_left_values = np.arange(phi_left_min - 0.5*a, phi_left_max, a)
+    
+
+    S_values = np.array([
+        (entropy_for_interval(phi_left, phi_right, X, P, phi_sites))
+        for phi_left in phi_left_values
+    ])
+
+    return phi_left_values, S_values
 
 def entropy_as_function_of_right_endpoint(
-    phi_left: float = -15.0,
-    phi_right_min: float = -14.5,
-    phi_right_max: float = 2.0,
-    mu: float = 0.5,
-    phi_min: float = -20.0,
-    phi_max: float = 5.0,
-    a: float = 0.05,
+    phi_left: float = -15,
+    phi_right_min: float = -14.999999,
+    phi_right_max: float = 5,
+    mu: float = 0.1,
+    phi_min: float = -70,
+    phi_max: float = 15,
+    a: float = 0.1,
     b: float = 1.0,
 ):
     """
@@ -208,29 +241,32 @@ def entropy_as_function_of_right_endpoint(
     )
 
     phi_right_values = np.arange(phi_right_min, phi_right_max + 0.5 * a, a)
+    
 
     S_values = np.array([
-        entropy_for_interval(phi_left, phi_right, X, P, phi_sites)
+        (entropy_for_interval(phi_left, phi_right, X, P, phi_sites))
         for phi_right in phi_right_values
     ])
 
     return phi_right_values, S_values
 
-
-def plot_entropy(
-    phi_left: float = -15,
-    phi_right_min: float = -14.95,
-    phi_right_max: float = 5,
-    mu: float = 0.7,
+def entropy_as_function_of_center_point(
+    phi_center_min: float = -15,
+    phi_center_max: float = 5,
+    Length: float = 0.5,
+    mu: float = 0.1,
     phi_min: float = -70,
-    phi_max: float = 8,
+    phi_max: float = 20,
     a: float = 0.1,
     b: float = 1.0,
 ):
-    phi_right_values, S_values = entropy_as_function_of_right_endpoint(
-        phi_left=phi_left,
-        phi_right_min=phi_right_min,
-        phi_right_max=phi_right_max,
+    """
+    Computes S([phi_center]) as a function of phi_center for fixed Length L
+
+    Since Liouville is not translation invariant in phi, the absolute
+    position of the interval matters.
+    """
+    X, P, phi_sites = full_correlators(
         mu=mu,
         phi_min=phi_min,
         phi_max=phi_max,
@@ -238,19 +274,13 @@ def plot_entropy(
         b=b,
     )
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    ax.plot(phi_right_values, S_values)
-
-    ax.set_xlabel(r"$\phi_{\mathrm{right}}$")
-    ax.set_ylabel(r"$S_{\mathrm{VN}}$")
-    ax.set_title(
-        rf"Liouville minisuperspace EE, $\mu={mu}$, $a={a}$, $\phi_L={phi_left}$"
-    )
-
-    fig.tight_layout()
-    return fig, ax
+    phi_center_values = np.arange(phi_center_min, phi_center_max + 0.5 * a, a)
+    
 
 
-if __name__ == "__main__":
-    fig, ax = plot_entropy()
-    plt.show()
+    S_values = np.array([
+        (entropy_for_interval(phi_center - Length/2, phi_center + Length/2, X, P, phi_sites))
+        for phi_center in phi_center_values
+    ])
+
+    return phi_center_values, S_values
