@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from MQMentanglement.src.EEconstructor import entropy_as_function_of_left_endpoint, entropy_as_function_of_right_endpoint, entropy_as_function_of_center_point
+from EEconstructor import entropy_as_function_of_left_endpoint, entropy_as_function_of_right_endpoint, entropy_as_function_of_center_point
 
 
 def plot_entropy_left(

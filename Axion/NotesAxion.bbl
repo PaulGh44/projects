@@ -1,0 +1,19 @@
+\providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}%
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+
+\bibitem{Alonso:2017avz}
+R.~Alonso and A.~Urbano, \emph{{Wormholes and masses for Goldstone bosons}}, \href{http://dx.doi.org/10.1007/JHEP02(2019)136}{\emph{JHEP} {\bf 02} (2019) 136}, [\href{https://arxiv.org/abs/1706.07415}{{\tt 1706.07415}}].
+
+\bibitem{Hebecker:2018ofv}
+A.~Hebecker, T.~Mikhail and P.~Soler, \emph{{Euclidean wormholes, baby universes, and their impact on particle physics and cosmology}}, \href{http://dx.doi.org/10.3389/fspas.2018.00035}{\emph{Front. Astron. Space Sci.} {\bf 5} (2018) 35}, [\href{https://arxiv.org/abs/1807.00824}{{\tt 1807.00824}}].
+
+\bibitem{Aguilar-Gutierrez:2023ril}
+S.~E. Aguilar-Gutierrez, T.~Hertog, R.~Tielemans, J.~P. van~der Schaar and T.~Van~Riet, \emph{{Axion-de Sitter wormholes}}, \href{http://dx.doi.org/10.1007/JHEP11(2023)225}{\emph{JHEP} {\bf 11} (2023) 225}, [\href{https://arxiv.org/abs/2306.13951}{{\tt 2306.13951}}].
+
+\bibitem{Blommaert:2025bgd}
+A.~Blommaert, J.~Kudler-Flam and E.~Y. Urbach, \emph{{Absolute entropy and the observer{\textquoteright}s no-boundary state}}, \href{http://dx.doi.org/10.1007/JHEP11(2025)113}{\emph{JHEP} {\bf 11} (2025) 113}, [\href{https://arxiv.org/abs/2505.14771}{{\tt 2505.14771}}].
+
+\bibitem{Ivo:2026ijv}
+V.~Ivo and H.~Tang, \emph{{One-loop aspects of de Sitter axion wormholes}},  \href{https://arxiv.org/abs/2603.02335}{{\tt 2603.02335}}.
+
+\end{thebibliography}\endgroup
