@@ -35,7 +35,7 @@ def plot_entropy_left(
     return fig, ax
 
 def plot_entropy_right(
-    phi_left: float = -30,
+    phi_left: float = -15,
     phi_right_min: float = -14.95,
     phi_right_max: float = 5,
     mu: float = 0.1,
@@ -102,5 +102,5 @@ def plot_entropy_center(
 
 
 if __name__ == "__main__":
-    fig, ax = plot_entropy_left()
+    fig, ax = plot_entropy_center()
     plt.show()
