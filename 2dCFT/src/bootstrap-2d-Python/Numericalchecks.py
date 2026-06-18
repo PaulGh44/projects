@@ -3,6 +3,9 @@ from dataclasses import dataclass
 from mpmath import mp, barnesg
 import numpy as np
 import matplotlib.pyplot as plt
+from Blocks import Block, HypergeometricBlock, BlockNum
+from CFT import Charge, Dimension
+import cmath, math
 
 
 # -------- Global settings --------
@@ -35,7 +38,7 @@ class ParametersIdempotency:
 class Theory:
     m: int
     n: int
-    Lambda: mp.mpf = mp.mpf(3) # cutoff (for later integration)
+    Lambda: mp.mpf = mp.mpf(2.8) # cutoff (for later integration)
 
     @property
     def b(self):
@@ -137,6 +140,7 @@ def plot_real1D(func, name: str, x_min=-3, x_max=3, resolution=200):
 def conformaldimension(Theory: Theory, P:complex):
     Q = Theory.b + 1/ Theory.b
     return Q**2/4 - P**2
+
 
 # =========================================
 # Special functions: Barnes G products and double gamma function for rational b^2
@@ -249,6 +253,7 @@ def spacelikeC_b(Theory: Theory, P1:complex, P2:complex, P3:complex):
     )
 
     return Numerator / Denominator
+
 
 # =========================================
 # Special functions: Structure constants
@@ -480,6 +485,10 @@ def Kernelsf(Theory: Theory, P1: complex, P2: complex, P3: complex, P4: complex,
             Ps, Pt,-1))/2
     else:
         raise ValueError("epsilon must be either 0,1 or -1")
+
+# The boundary OPE data is given by the fusion kernel in our normalization scheme. The convention is C_{P3 P2 P1}^{\sigma_3 \sigma_2 \sigma_1}! Be careful because our function takes argument in the order P1, P2, P3, Psigma1, Psigma2, Psigma3.
+def OPEdata_spacelikeC_b(Theory: Theory, P1:complex, P2:complex, P3:complex, Psigma1:complex, Psigma2:complex, Psigma3:complex):
+    return 2*Kernelsf(Theory, Psigma3, P2, P1, Psigma1, Psigma2, P3,0)
 
 
 # =========================================
@@ -761,6 +770,113 @@ def mixingsymmetriestimelikekernelsf(Theory: Theory, P1: complex, P2: complex, P
     return LHS, RHS
 
 # =========================================
+# Merging the blocks with the Kernels
+# =========================================
+
+def four_point_block_crossing(
+    Theory: Theory,
+    P1: complex,
+    P2: complex,
+    P3: complex,
+    P4: complex,
+    Ps: complex,
+    q: complex = 0.05,
+    N: int = 10,
+    eps_b = 1e-5
+    # It should not be too small, otherwise it blows up near b=1
+):
+
+    b_block = complex(Theory.b)+1j*eps_b
+    charge = Charge("b", b_block)
+
+    P1, P2, P3, P4, Ps = map(complex, [P1, P2, P3, P4, Ps])
+    q = complex(q)
+    delta_s = -Ps**2 # There is a thing in Sylvain's code which is $\delta = -P**2$ which is an important parameter
+
+    dims_momenta_s = [
+        Dimension("P", 1j * P, charge)
+        for P in [P1, P2, P3, P4]
+    ]
+
+    q_rhs = cmath.exp(math.pi**2 / cmath.log(q))
+    dims_momenta_rhs = [
+    Dimension("P", 1j * P, charge)
+    for P in [P1, P4, P3, P2]
+    ]
+
+
+
+    block_s = Block(dims_momenta_s, N, t_channel=False)
+    block_t = Block(dims_momenta_rhs, N, t_channel=False)
+
+    num_s = BlockNum(block_s, q)
+    num_t = BlockNum(block_t,q_rhs)
+
+    #This is the s-channel conformal block
+    val_s = num_s.value(-Ps**2, True)
+    # There is a thing in Sylvain's code which is $\delta = -P**2$ which is an important parameter
+
+    Integrand = lambda pt: mp.mpc(num_t.value((pt+0.000001j)**2, True))*Kernelsf(Theory, P1, P2, P3, P4, Ps, 1j*(pt+0.000001j),0)
+
+    RHS = mp.quad(Integrand, [-Theory.Lambda, Theory.Lambda])
+
+    return val_s, RHS, num_s.x, num_t.x
+
+def four_point_block_crossing_bdy(
+    Theory: Theory,
+    P1: complex,
+    P2: complex,
+    P3: complex,
+    P4: complex,
+    Psigma1: complex,
+    Psigma2: complex,
+    Psigma3: complex,
+    Psigma4: complex,
+    q: complex = 0.05,
+    N: int = 10,
+    eps_b = 1e-5
+    # It should not be too small, otherwise it blows up near b=1
+):
+
+    b_block = complex(Theory.b)+1j*eps_b
+    charge = Charge("b", b_block)
+
+    P1, P2, P3, P4 = map(complex, [P1, P2, P3, P4])
+    q = complex(q)
+
+    dims_momenta_s = [
+        Dimension("P", 1j * P, charge)
+        for P in [P1, P2, P3, P4]
+    ]
+
+    q_rhs = cmath.exp(math.pi**2 / cmath.log(q))
+    dims_momenta_rhs = [
+    Dimension("P", 1j * P, charge)
+    for P in [P1, P4, P3, P2]
+    ]
+
+
+
+    block_s = Block(dims_momenta_s, N, t_channel=False)
+    block_t = Block(dims_momenta_rhs, N, t_channel=False)
+
+    num_s = BlockNum(block_s, q)
+    num_t = BlockNum(block_t,q_rhs)
+
+
+    IntegrandLHS = lambda ps: mp.mpc(num_s.value((ps+0.000001j)**2, True))*OPEdata_spacelikeC_b(Theory, P1, P2, 1j*(ps+0.000001j), Psigma1, Psigma2, Psigma3)*OPEdata_spacelikeC_b(Theory, 1j*(ps+0.000001j), P3, P4, Psigma1, Psigma3, Psigma4)
+
+    IntegrandRHS = lambda pt: mp.mpc(num_t.value((pt+0.000001j)**2, True))*OPEdata_spacelikeC_b(Theory, P2, P3, 1j*(pt+0.000001j), Psigma2, Psigma3, Psigma4)*OPEdata_spacelikeC_b(Theory, P1, 1j*(pt+0.000001j), P4, Psigma1, Psigma2, Psigma4)
+
+    LHS = mp.quad(IntegrandLHS, [-Theory.Lambda, Theory.Lambda])
+    RHS = mp.quad(IntegrandRHS, [-Theory.Lambda, Theory.Lambda])
+
+    return LHS, RHS
+    
+
+
+
+# =========================================
 # Demo tests
 # =========================================
 
@@ -775,6 +891,10 @@ if DEMO:
     Pt=0.00001+0.06j
     P0=0.00001+0.07j
     P0prime = 0.00001+0.08j
+    Psigma1 = 0.00001+0.42j
+    Psigma2 = 0.00001+0.64j
+    Psigma3 = 0.00001+0.12j
+    Psigma4 = 0.00001+0.85j
 
     #Consistency checks for the special functions
     print("=== Demo I: Consistency checks for the special functions ===")
@@ -1048,17 +1168,17 @@ if DEMO:
     print(f"FminusTimelikereflected   = {FminusTimelikereflected}")
     print()
 
-    #---Demo21: Check Ioannis/Sylvain relation for the timelike kernels
-    Fplusatonefourthj=TimelikeKernelsf(theo,0.25j,0.25j,0.25j,0.25j,Ps,Pt,1)
-    Fminusatonefourthj=TimelikeKernelsf(theo,0.25j,0.25j,0.25j,0.25j,Ps,Pt,-1)
-    Fplusfromrelation=RibaultTsiarestimelikef(theo,Ps,Pt,1)
-    Fminusfromrelation=RibaultTsiarestimelikef(theo,Ps,Pt,-1)
-    print("=== Demo: Ioannis/Sylvain relation for the timelike kernels at c=1 ===")
-    print(f"Fplusatonefourthj = {Fplusatonefourthj}")
-    print(f"Fplusfromrelation = {Fplusfromrelation}")
-    print(f"Fminusatonefourthj = {Fminusatonefourthj}")
-    print(f"Fminusfromrelation = {Fminusfromrelation}")
-    print()
+    # #---Demo21: Check Ioannis/Sylvain relation for the timelike kernels
+    # Fplusatonefourthj=TimelikeKernelsf(theo,0.25j,0.25j,0.25j,0.25j,Ps,Pt,1)
+    # Fminusatonefourthj=TimelikeKernelsf(theo,0.25j,0.25j,0.25j,0.25j,Ps,Pt,-1)
+    # Fplusfromrelation=RibaultTsiarestimelikef(theo,Ps,Pt,1)
+    # Fminusfromrelation=RibaultTsiarestimelikef(theo,Ps,Pt,-1)
+    # print("=== Demo: Ioannis/Sylvain relation for the timelike kernels at c=1 ===")
+    # print(f"Fplusatonefourthj = {Fplusatonefourthj}")
+    # print(f"Fplusfromrelation = {Fplusfromrelation}")
+    # print(f"Fminusatonefourthj = {Fminusatonefourthj}")
+    # print(f"Fminusfromrelation = {Fminusfromrelation}")
+    # print()
 
     # # ---Demo22: Check pentagon for the Timelike kernel
     # print("=== Demo: Testing the pentagon for timelike kernel===")
@@ -1081,11 +1201,25 @@ if DEMO:
     # print(f"RHS = {RHS}")
     # print()
     
-    IntegrandbislHS = lambda P: -2*mp.sqrt(2)*16**(1-P**2)*(mp.sin(mp.pi*P/2))**3*spacelikeC_b(theo, 1/4,1/4, P)/P
-    print(f"specificUHP = {IntegrandbislHS(0.6+0.2j+1)*IntegrandbislHS(0.6+0.2j-1)}")
-    print(f"specificLHP = {IntegrandbislHS(0.6+0.2j)**2}")
+    # IntegrandbislHS = lambda P: -2*mp.sqrt(2)*16**(1-P**2)*(mp.sin(mp.pi*P/2))**3*spacelikeC_b(theo, 1/4,1/4, P)/P
+    # print(f"specificUHP = {IntegrandbislHS(0.6+0.2j+1)*IntegrandbislHS(0.6+0.2j-1)}")
+    # print(f"specificLHP = {IntegrandbislHS(0.6+0.2j)**2}")
 
+    # # # #--- Demo 24: Check crossing blocks
+    # print("=== Demo: Check crossing blocks ===")
+    # LHS, RHS, eta, one_minus_eta = four_point_block_crossing(theo, P1, P2, P3, P4, Ps)
+    # print(f"Block_s = {LHS}")
+    # print(f"RHS = {RHS}")
+    # print(f"cross-ratio_s = {eta}")
+    # print(f"cross-ratio_s = {one_minus_eta}")
+    # print()
 
+    # # #--- Demo 25: Check crossing blocks boundary
+    print("=== Demo: Check crossing blocks boundary ===")
+    LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
+    print(f"LHS = {LHS}")
+    print(f"RHS = {RHS}")
+    print()
 
     
     

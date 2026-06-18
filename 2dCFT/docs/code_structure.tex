@@ -1006,7 +1006,39 @@ Finally, the idemptency relation reads
     = \frac{1}{2} \left(\delta(P_s - P_s')+\delta(P_s+P_s')\right)\,.
 \end{equation}
 
+\subsection{Merging the blocks with the kernels}
 
+We use the very nice code done by Sylvain for the implementation of the blocks Blocks.py with all the other relevant classes. I passed all the tests in Sylvain's code regarding the blocks so we are ready to merge the blocks with the Kernels. The first relation we would like to check is crossing of the 4-point conformal blocks in the spacelike case which reads
+\begin{equation}
+\begin{aligned}
+    \mathcal{V}_{\eta}^{(b)}(P_s,P_{1234}) &= \int_{i\mathbb{R}} \frac{\rm{d}P_t}{i}\, \mathbb{F}^{(TV,b)}_{P_s, P_t} \begin{bmatrix}
+     P_2 & P_3 \\
+     P_1 & P_4
+    \end{bmatrix}
+    \mathcal{V}^{(b)}_{1-\eta}(P_t,P_{1432})\\
+    &= \int_{\mathbb{R}} \rm{d}p_t\, \mathbb{F}^{(TV,b)}_{P_s, ip_t} \begin{bmatrix}
+     P_2 & P_3 \\
+     P_1 & P_4
+    \end{bmatrix}
+    \mathcal{V}^{(b)}_{1-\eta}(ip_t,P_{1432})\,.
+\end{aligned}
+\end{equation}
+The conformal blocks are evaluated using Zamolodchikov's recursion relation. Note that in order to compute the blocks, this involes dividing by a specific factor which generically vanishes for $b^2$ rational. (see https://github.com/ribault/bootstrap-2d-Python/blob/master/Blocks.ipynb) I bet this is a fake pole in the sense that this get compensated by a zero at the numerator. Anyway, numerically, to handle that, we will move slightly from $b^2$ rational by shifting a bit the value. Curiously, shifting it by a very small, you start getting unstabilities numerically. 
+
+After having checked crossing of the bulk 4-point conformal blocks, we now check the relation arising from the crossing of the boundary 4-point conformal blocs. Denoting $\mathbb{C}_{P_3 P_2 P_1}^{\sigma_3 \sigma_2 \sigma_1}$ the OPE data, the relation reads
+\begin{equation}
+\begin{aligned}
+    &\int_{i\mathbb{R}} \frac{\rm{d}P_s}{i}\,\mathbb{C}_{P_4 P_3 P_s}^{\sigma_4 \sigma_3 \sigma_1} \mathbb{C}_{P_s P_2 P_1}^{\sigma_3 \sigma_2 \sigma_1} \mathcal{V}_{\eta}^{(b)}(P_s,P_{1234})\\
+    =&\int_{i\mathbb{R}} \frac{\rm{d}P_t}{i}\,\mathbb{C}_{P_4 P_t P_1}^{\sigma_4 \sigma_2 \sigma_1} \mathbb{C}_{P_t P_3 P_2}^{\sigma_4 \sigma_3 \sigma_2} \mathcal{V}_{1-\eta}^{(b)}(P_s,P_{1432})\,.
+\end{aligned}
+\end{equation}
+There exists a normalization scheme for which the OPE data reads
+\begin{equation}
+    \mathbb{C}_{P_3 P_2 P_1}^{\sigma_3 \sigma_2 \sigma_1} = 2\mathbb{F}^{(TV,b)}_{P_{\sigma_2},P_3}\begin{bmatrix}
+        P_2 & P_1 \\
+        P_{\sigma_3} & P_{\sigma_1}
+    \end{bmatrix}\,.
+\end{equation}
 \section{Numerical Packages/conventions}
 Since the only library that I found that does implement Barnes G-function is mpmath, we will use mpmath for the special functions.
 \begin{itemize}[leftmargin=*]
