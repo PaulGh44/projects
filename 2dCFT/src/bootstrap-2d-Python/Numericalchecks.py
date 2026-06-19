@@ -9,7 +9,7 @@ import cmath, math
 
 
 # -------- Global settings --------
-mp.dps = 15 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
+mp.dps = 20 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
 DEMO = True  # True for Demo mode
 
 # -------- Parameters container --------
@@ -38,7 +38,7 @@ class ParametersIdempotency:
 class Theory:
     m: int
     n: int
-    Lambda: mp.mpf = mp.mpf(2.8) # cutoff (for later integration)
+    Lambda: mp.mpf = mp.mpf(3) # cutoff (for later integration)
 
     @property
     def b(self):
@@ -52,11 +52,11 @@ class Theory:
 # -------- Demo / main params --------
 if DEMO:
     parPenta = ParametersPentagon(
-        Po=mp.mpc(0.001+0.1j), Pq=mp.mpc(0.001-0.5j), 
-        P1=mp.mpc(0.001+0.2j), P2=mp.mpc(0.001+0.6j), 
-        P3=mp.mpc(0.001+0.3j), P4=mp.mpc(0.001+0.7j), 
-        P5=mp.mpc(0.001-0.4j), Pt=mp.mpc(0.001-0.8j),
-        Pu=mp.mpc(0.001+0.9j)
+        Po=mp.mpc(0.001+0.01j), Pq=mp.mpc(0.001-0.05j), 
+        P1=mp.mpc(0.001+0.02j), P2=mp.mpc(0.001+0.06j), 
+        P3=mp.mpc(0.001+0.03j), P4=mp.mpc(0.001+0.07j), 
+        P5=mp.mpc(0.001-0.04j), Pt=mp.mpc(0.001-0.08j),
+        Pu=mp.mpc(0.001+0.09j)
     )
     parIdem = ParametersIdempotency(
         Ps=mp.mpc(0.001+0.1j), Psprime=mp.mpc(0.001+3j), 
@@ -523,16 +523,16 @@ def Pentagon(Theory: Theory, Param: ParametersPentagon, epsilon: int):
     )
 
     IntegrandLHS = lambda ps: (
-        Kernelsf(Theory, Pu, 1j*(ps+0.0001j), P3, P5, Pq, P4, epsilon)
-        * Kernelsf(Theory, Pu, P1, P2, Pq, Po, 1j*(ps+0.0001j), epsilon)
-        * Kernelsf(Theory, P1, P2, P3, P4, 1j*(ps+0.0001j), Pt, 0)
+        Kernelsf(Theory, Pu, 1j*(ps+0.0001j), P3, P5, Pq, P4, 0)
+        * Kernelsf(Theory, Pu, P1, P2, Pq, Po, 1j*(ps+0.0001j), 0)
+        * Kernelsf(Theory, P1, P2, P3, P4, 1j*(ps+0.0001j), Pt, epsilon)
     )
 
     LHS = mp.quad(IntegrandLHS, [-Theory.Lambda, Theory.Lambda])
 
     RHS = (
-        Kernelsf(Theory, Pu, P1, Pt, P5, Po, P4, epsilon)
-        * Kernelsf(Theory, Po, P2, P3, P5, Pq, Pt, epsilon)
+        Kernelsf(Theory, Pu, P1, Pt, P5, Po, P4, 0)
+        * Kernelsf(Theory, Po, P2, P3, P5, Pq, Pt,0)
     )
 
     return LHS, RHS
@@ -1042,12 +1042,15 @@ if DEMO:
     # print(f"Fminusfromrelation = {Fminusfromrelation}")
     # print()
 
-    # # ---Demo11: Check pentagon for the TV kernel
-    # print("=== Demo: Testing the pentagon for the TeschnerVartanov kernel ===")
-    # LHS, RHS = Pentagon(theo, parPenta, 0)
-    # print(f"LHSPentagon = {LHS}")
-    # print(f"RHSPentagon = {RHS}")
-    # print()
+    # ---Demo11: Check pentagon for the TV kernel
+    print("=== Demo: Testing the pentagon for the + kernel ===")
+    LHSplus, RHSplus = Pentagon(theo, parPenta, 1)
+    print(f"LHSPentagonplus = {LHSplus}")
+    print(f"RHSPentagonplus = {RHSplus}")
+    LHSminus, RHSminus = Pentagon(theo, parPenta, -1)
+    print(f"LHSPentagonminus = {LHSminus}")
+    print(f"RHSPentagonminus = {RHSminus}")
+    print()
 
     # # ---Demo12: Check Idempotency for the TV kernel
     # print("=== Demo: Testing the Idempotency for the TeschnerVartanov kernel ===")
@@ -1214,12 +1217,12 @@ if DEMO:
     # print(f"cross-ratio_s = {one_minus_eta}")
     # print()
 
-    # # #--- Demo 25: Check crossing blocks boundary
-    print("=== Demo: Check crossing blocks boundary ===")
-    LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
-    print(f"LHS = {LHS}")
-    print(f"RHS = {RHS}")
-    print()
+    # # # #--- Demo 25: Check crossing blocks boundary
+    # print("=== Demo: Check crossing blocks boundary ===")
+    # LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
+    # print(f"LHS = {LHS}")
+    # print(f"RHS = {RHS}")
+    # print()
 
     
     

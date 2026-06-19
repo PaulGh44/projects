@@ -4,7 +4,7 @@ from EEconstructor import entropy_as_function_of_left_endpoint, entropy_as_funct
 
 def plot_entropy_left(
     phi_right: float = 5,
-    phi_left_min: float = -15,
+    phi_left_min: float = -25,
     phi_left_max: float = 4.95,
     mu: float = 0.1,
     phi_min: float = -100,
@@ -102,5 +102,5 @@ def plot_entropy_center(
 
 
 if __name__ == "__main__":
-    fig, ax = plot_entropy_center()
+    fig, ax = plot_entropy_left()
     plt.show()
