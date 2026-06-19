@@ -1217,12 +1217,12 @@ if DEMO:
     # print(f"cross-ratio_s = {one_minus_eta}")
     # print()
 
-    # # # #--- Demo 25: Check crossing blocks boundary
-    # print("=== Demo: Check crossing blocks boundary ===")
-    # LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
-    # print(f"LHS = {LHS}")
-    # print(f"RHS = {RHS}")
-    # print()
+    # # #--- Demo 25: Check crossing blocks boundary
+    print("=== Demo: Check crossing blocks boundary ===")
+    LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
+    print(f"LHS = {LHS}")
+    print(f"RHS = {RHS}")
+    print()
 
     
     
