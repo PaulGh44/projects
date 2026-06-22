@@ -155,7 +155,8 @@ class fkernel:
         Denominator = term1den*term2den*term3den*term4den
 
         return Numerator/Denominator
-        
+    
+    @staticmethod
     def F(Theory: Theory, P1:complex, P2:complex, P3:complex, P4:complex, Ps:complex, Pt:complex):
         P1, P2, P3, P4, Ps, Pt = mp.mpc(P1), mp.mpc(P2), mp.mpc(P3), mp.mpc(P4), mp.mpc(Ps), mp.mpc(Pt)
         m, n = Theory.m, Theory.n
@@ -185,6 +186,7 @@ class fkernel:
 
         return Numerator/Denominator
 
+    @staticmethod
     #These are the plus/minus kernels/TV kernels/RF kernels
     def Kernelsf(Theory: Theory, P1: complex, P2: complex, P3: complex, P4: complex, Ps: complex, Pt: complex, kernel_code: int):
 
@@ -222,7 +224,19 @@ class fkernel:
                 Ps, Pt,-1))/2
         else:
             raise ValueError("The Kernel code must be either 0, 1, -1 or 2")
-
+        
+    @staticmethod
+    def TimelikeKernelsf(Theory: Theory, P1:complex, P2:complex, P3:complex, P4:complex, Ps:complex, Pt:complex, kernel_code: int):
+        if (kernel_code ==-1 or kernel_code ==1):
+            return -kernel_code*1j*(Pt/Ps)*fkernel.Kernelsf(Theory, 1j*P3, 1j*P2, 1j*P1, 1j*P4, 1j*Pt, 1j*Ps, kernel_code)
+        elif (kernel_code == 0):
+            # This is the non meromorphic kernel solving the shift equation, analog of the Teschner-Vartanov kernel.
+            return (fkernel.TimelikeKernelsf(Theory, P1, P2, P3, P4, Ps, Pt,1)+fkernel.TimelikeKernelsf(Theory, P1, P2, P3, P4, Ps, Pt,-1))/2
+        elif (kernel_code == 2):
+            # This is the meromorphic kernel which does not satisfy crossing
+            return (fkernel.TimelikeKernelsf(Theory, P1, P2, P3, P4, Ps, Pt,1)-fkernel.TimelikeKernelsf(Theory, P1, P2, P3, P4, Ps, Pt,-1))/2
+        else:
+            raise ValueError("The Kernel code must be either 0, 1, -1 or 2")
 
 
 # =========================================
@@ -340,6 +354,18 @@ class mkernel:
             return (mkernel.KernelsM(Theory, P0, Ps, Pt,1)-mkernel.KernelsM(Theory, P0, Ps, Pt,-1))/2
         else:
             raise ValueError("The Kernel code must be either 0,1 ,-1 or 2")
+        
+    def TimelikeKernelsM(Theory: Theory, P0:complex, Ps:complex, Pt:complex, kernel_code:int):
+        if (kernel_code==1 or kernel_code==-1):
+            return -kernel_code*1j*(Pt/Ps)*mkernel.KernelsM(Theory, 1j*P0, 1j*Pt, 1j*Ps, kernel_code)
+        elif(kernel_code==0):
+            # This is the non meromorphic kernel solving the shift equation, analog of the Teschner-Vartanov kernel.
+            return (fkernel.TimelikeKernelsM(Theory, P0, Ps, Pt,1)+fkernel.TimelikeKernelsM(Theory, P0, Ps, Pt,-1))/2
+        elif(kernel_code==2):
+            # This is the meromorphic kernel
+            return (fkernel.TimelikeKernelsM(Theory, P0, Ps, Pt,1)-fkernel.TimelikeKernelsM(Theory, P0, Ps, Pt,-1))/2
+        else:
+            raise ValueError("The Kernel code must be either 0,1 ,-1 or 2")
 
 
 class kernel_rational:
@@ -367,49 +393,84 @@ class kernel_rational:
             self.value = value
             return
 
-        self.value = self.compute_spacelike_kernel()
+        self.value = self.compute_kernel()
 
-    def compute_spacelike_kernel(self):
-        if self.kernel_type == "fusion":
-            if len(self.internal_momenta) != 2:
-                raise ValueError(
-                    "Invalid number of internal momenta for the fusion kernel."
+    def compute_kernel(self):
+        if self.Liouville_type == "timelike":
+            if self.kernel_type == "fusion":
+                if len(self.internal_momenta) != 2:
+                    raise ValueError(
+                        "Invalid number of internal momenta for the fusion kernel."
+                    )
+
+                if len(self.external_momenta) != 4:
+                    raise ValueError(
+                        "Invalid number of external momenta for the fusion kernel."
+                    )
+
+                return fkernel.TimelikeKernelsf(
+                    self.Theory,
+                    self.external_momenta[0],
+                    self.external_momenta[1],
+                    self.external_momenta[2],
+                    self.external_momenta[3],
+                    self.internal_momenta[0],
+                    self.internal_momenta[1],
+                    self.kernel_code
                 )
-
-            if len(self.external_momenta) != 4:
-                raise ValueError(
-                    "Invalid number of external momenta for the fusion kernel."
+            else:
+                if len(self.internal_momenta) != 2:
+                    raise ValueError(
+                        "Invalid number of internal momenta for the modular kernel."
+                    )
+                if len(self.external_momenta) != 1:
+                    raise ValueError(
+                        "Invalid number of external momenta for the modular kernel."
+                    )
+                return mkernel.TimelikeKernelsM(
+                    self.Theory,
+                    self.external_momenta[0],
+                    self.internal_momenta[0],
+                    self.internal_momenta[1],
                 )
+        else:
+            if self.kernel_type == "fusion":
+                if len(self.internal_momenta) != 2:
+                    raise ValueError(
+                        "Invalid number of internal momenta for the fusion kernel."
+                    )
 
-            return fkernel.Kernelsf(
-                self.Theory,
-                self.external_momenta[0],
-                self.external_momenta[1],
-                self.external_momenta[2],
-                self.external_momenta[3],
-                self.internal_momenta[0],
-                self.internal_momenta[1],
-                self.kernel_code
-            )
+                if len(self.external_momenta) != 4:
+                    raise ValueError(
+                        "Invalid number of external momenta for the fusion kernel."
+                    )
 
-        elif self.kernel_type == "modular":
-            if len(self.internal_momenta) != 2:
-                raise ValueError(
-                    "Invalid number of internal momenta for the modular kernel."
+                return fkernel.Kernelsf(
+                    self.Theory,
+                    self.external_momenta[0],
+                    self.external_momenta[1],
+                    self.external_momenta[2],
+                    self.external_momenta[3],
+                    self.internal_momenta[0],
+                    self.internal_momenta[1],
+                    self.kernel_code
                 )
-
-            if len(self.external_momenta) != 1:
-                raise ValueError(
-                    "Invalid number of external momenta for the modular kernel."
+            else:
+                if len(self.internal_momenta) != 2:
+                    raise ValueError(
+                        "Invalid number of internal momenta for the modular kernel."
+                    )
+                if len(self.external_momenta) != 1:
+                    raise ValueError(
+                        "Invalid number of external momenta for the modular kernel."
+                    )
+                return mkernel.KernelsM(
+                    self.Theory,
+                    self.external_momenta[0],
+                    self.internal_momenta[0],
+                    self.internal_momenta[1],
+                    self.kernel_code
                 )
-
-            return mkernel.KernelsM(
-                self.Theory,
-                self.external_momenta[0],
-                self.internal_momenta[0],
-                self.internal_momenta[1],
-                self.kernel_code
-            )
     
     def getTheory(self):
         return self.Theory
@@ -451,18 +512,18 @@ class kernel_rational:
 if __name__ == '__main__':
 
     z = 0.1+0.86j
-    P1 = 0.032j
-    P2 = 0.76j
-    P3 = 0.0084j
-    P4 = 0.0023j
-    Ps = 0.097j
-    Pt = 0.012j
+    P1 = 0.1001+0.032j
+    P2 = 0.02+0.76j
+    P3 = 0.04+0.0084j
+    P4 = 0.00776+0.0023j
+    Ps = 0.125+0.097j
+    Pt = 0.00942+0.012j
     theo = Theory(m=2,n=1)
     internal_momenta = [Ps,Pt]
     internal_momenta_reflected = [-Ps,Pt]
     external_momenta = [P1,P2,P3,P4]
     #Consistency checks for the quantum modular fusion polynomial
-    print("=== Demo II: Consistency checks for the quantum modular fusion polynomial ===")
+    print("=== Demo I: Consistency checks for the quantum modular fusion polynomial ===")
     print()
     # --- Demo 1: alpha at zero point ---
     # It should be 0 for b=1
@@ -486,7 +547,7 @@ if __name__ == '__main__':
     print()
 
     #Consistency checks spacelike fusion kernels
-    print("=== Demo III: Consistency checks for the spacelike fusion kernels ===")
+    print("=== Demo II: Consistency checks for the spacelike fusion kernels ===")
     print()
     #--- Demo 3: Check the symmetry of CurlyF under the transformation P_s\rightarrow P_3,P_3\rightarrow P_s,P_t\rightarrow P_1,P_1\rightarrow P_t ---
     CurlyF_original = fkernel.CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z)
@@ -495,7 +556,7 @@ if __name__ == '__main__':
     print(f"CurlyF original     = {CurlyF_original  }")
     print(f"CurlyF transformed  = {CurlyF_transformed}")
     print()
-    # --- Demo 6: Check the single-valuedness of the sum in the Kernels function ---
+    # --- Demo 4: Check the single-valuedness of the sum in the Kernels function ---
     z_plus, z_minus = Quantummodularfusion.rootsf(theo, P1, P2, P3, P4, Ps, Pt)
 
     N = theo.m * theo.n
@@ -517,7 +578,7 @@ if __name__ == '__main__':
     print(f"sum unshifted = {res1}")
     print(f"sum shifted   = {res2}")
     print()
-    #--- Demo7: Check the reflection property of the spacelike fusion kernels.
+    #--- Demo5: Check the reflection property of the spacelike fusion kernels.
     Fplus= kernel_rational(theo,"spacelike", "fusion", external_momenta, internal_momenta, 1).getvalue()
     Fminus= kernel_rational(theo,"spacelike", "fusion", external_momenta, internal_momenta, -1).getvalue()
     Fplusreflected=kernel_rational(theo,"spacelike", "fusion", external_momenta, internal_momenta_reflected, 1).getvalue()
@@ -531,6 +592,65 @@ if __name__ == '__main__':
     print(f"Fminusreflected   = {Fminusreflected}")
     print(f"FTeschnerVartanov = {F_TV}")
     print(f"FTeschnerVartanovreflected = {FTVreflected}")
+    print()
+
+    #Consistency checks spacelike modular kernels
+    print("=== Demo III: Consistency checks for the spacelike modular kernels ===")
+    print()
+    # --- Demo 6: Check the single-valuedness of the sum in the modular Kernels function ---
+    z_plus, z_minus = Quantummodularmodular.rootsm(theo, P1, Ps, Pt)
+
+    N = theo.m * theo.n
+    s = theo.s
+    ell = 3
+
+    res1 = mp.mpc(0)
+    res2 = mp.mpc(0)
+
+    u0 = mp.log(z_plus) / (2j * mp.pi * s**2)
+
+    for k in range(N):
+        z1 = u0 + mp.mpf(k) / N
+        z2 = u0 + mp.mpf(k + ell) / N
+        res1 += mkernel.CurlyM(theo, P1, Ps, Pt, z1)
+        res2 += mkernel.CurlyM(theo, P1, Ps, Pt, z2)
+
+    print("=== Demo: CurlyM single-valuedness check ===")
+    print(f"sum unshifted = {res1}")
+    print(f"sum shifted   = {res2}")
+    print()
+
+    # #--- Demo 7: Check reflection properties under reflection of the external momenta
+    print("=== Demo: Reflection property of Modular kernels ===")
+    print(f"Mplus = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,Pt], 1).getvalue()}")
+    print(f"Mminus = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,Pt], -1).getvalue()}")
+    print(f"Mplusreflectedps = {kernel_rational(theo,"spacelike", "modular", [P1], [-Ps,Pt], 1).getvalue()}")
+    print(f"Mminusreflectedps = {kernel_rational(theo,"spacelike", "modular", [P1], [-Ps,Pt], -1).getvalue()}")
+    print(f"Mplusreflectedpt = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,-Pt], 1).getvalue()}")
+    print(f"Mminusreflectedpt = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,-Pt], -1).getvalue()}")
+    print(f"MTV = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,Pt], 0).getvalue()}")
+    print(f"MTVreflectedps = {kernel_rational(theo,"spacelike", "modular", [P1], [-Ps,Pt], 0).getvalue()}")
+    print(f"MTVreflectedpt = {kernel_rational(theo,"spacelike", "modular", [P1], [Ps,-Pt], 0).getvalue()}")
+    print()
+
+    print("=== TIMELIKE LIOUVILLE !!! ===")
+    print()
+
+    
+    #--- Demo20: Check the reflection property of the timelike fusion kernels.
+    Fplustimelike= kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta, 1).getvalue()
+    Fminustimelike= kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta, -1).getvalue()
+    Fplusreflectedtimelike=kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta_reflected, 1).getvalue()
+    Fminusreflectedtimelike=kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta_reflected, -1).getvalue()
+    F_TVtimelike = kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta, 0).getvalue()
+    FTVreflectedtimelike= kernel_rational(theo,"timelike", "fusion", external_momenta, internal_momenta_reflected, 0).getvalue()
+    print("=== Demo: Reflection property of the plus/minus kernels ===")
+    print(f"Fplus = {Fplustimelike}")
+    print(f"Fminus   = {Fminustimelike}")
+    print(f"Fplusreflected = {Fplusreflectedtimelike}")
+    print(f"Fminusreflected   = {Fminusreflectedtimelike}")
+    print(f"FTeschnerVartanov = {F_TVtimelike}")
+    print(f"FTeschnerVartanovreflected = {FTVreflectedtimelike}")
     print()
 
 

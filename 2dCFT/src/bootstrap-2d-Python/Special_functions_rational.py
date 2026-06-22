@@ -7,7 +7,7 @@ from mpmath import mp, barnesg
 class Theory:
     m: int
     n: int
-    
+    Lambda: float = 2.5
 
     @property
     def b(self):
@@ -20,6 +20,7 @@ class Theory:
     @property
     def Q(self):
         return self.b+1/self.b
+    
     
 
 
