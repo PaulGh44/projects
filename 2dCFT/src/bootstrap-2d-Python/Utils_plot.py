@@ -1,6 +1,8 @@
 #Packages
 import matplotlib.pyplot as plt
 import numpy as np
+import mpmath as mp
+from Special_functions_rational import Theory
 
 
 # =========================================
@@ -68,6 +70,30 @@ class utils_plot:
         plt.grid(True)
         plt.show()
 
+    @staticmethod
+    def plot_realandimag(
+        Theory: Theory,
+        listreal: list[float],
+        listimag: list[float],
+        listpoints: list[float],
+        name: str = "z",
+        Parameters: list[complex] = None
+    ):
+        if len(listreal) != len(listpoints) or len(listimag) != len(listpoints):
+            raise ValueError("The lengths of the lists are not the same")
+
+        plt.figure(figsize=(8, 6))
+
+        plt.scatter(listpoints, listreal, label=r"$\Re(z)$", marker="o")
+        plt.scatter(listpoints, listimag, label=r"$\Im(z)$", marker="x")
+
+        plt.title(rf"Real and imaginary parts of the relative error for $(m,n)=({Theory.m},{Theory.n})$ as a function of the cross-ration $x$")
+        plt.xlabel(r"$x$")
+        plt.ylabel(name)
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+        
 
     
     

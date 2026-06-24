@@ -63,7 +63,7 @@ class timelike_CFT_data:
 
     @staticmethod
     def PHI_b(Theory, P1:complex, P2:complex, P3:complex):
-        return (mp.mpc(P2)*spacelike_CFT_data.Plancherel_measure_timelike(Theory, P1)*spacelike_CFT_data.timelikeC_b(Theory, P1, P2, P3))/(mp.mpc(P1))
+        return (mp.mpc(P2)*timelike_CFT_data.Plancherel_measure_timelike(Theory, P1)*timelike_CFT_data.timelikeC_b(Theory, P1, P2, P3))/(mp.mpc(P1))
 
 
 if __name__ == '__main__':

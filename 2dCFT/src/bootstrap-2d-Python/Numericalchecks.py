@@ -896,233 +896,233 @@ if DEMO:
     Psigma3 = 0.00001+0.12j
     Psigma4 = 0.00001+0.85j
 
-    #Consistency checks for the special functions
-    print("=== Demo I: Consistency checks for the special functions ===")
-    print()
-    # --- Demo 1: shift identity you’re currently testing ---
-    z = mp.mpc(0.6+0.8j)
-    z_plus = z + mp.mpf(1) / mp.mpf(theo.n)
+    # #Consistency checks for the special functions
+    # print("=== Demo I: Consistency checks for the special functions ===")
+    # print()
+    # # --- Demo 1: shift identity you’re currently testing ---
+    # z = mp.mpc(0.6+0.8j)
+    # z_plus = z + mp.mpf(1) / mp.mpf(theo.n)
 
-    ratio = Gmn(theo, z_plus) / Gmn(theo, z)
+    # ratio = Gmn(theo, z_plus) / Gmn(theo, z)
 
-    m_mp = mp.mpf(theo.m)
-    rhs = mp.power(m_mp, mp.mpf(1)/2 - m_mp * z) \
-          * mp.power(2 * mp.pi, (m_mp - mp.mpf(1)) / 2) \
-          * mp.gamma(m_mp * z)
+    # m_mp = mp.mpf(theo.m)
+    # rhs = mp.power(m_mp, mp.mpf(1)/2 - m_mp * z) \
+    #       * mp.power(2 * mp.pi, (m_mp - mp.mpf(1)) / 2) \
+    #       * mp.gamma(m_mp * z)
 
-    print("=== Demo: Gmn shift check ===")
-    print(f"ratio = {ratio}")
-    print(f"rhs   = {rhs}")
-    print()
-
-    # --- Demo 2: conjugation & inversion checks for Gtilde_mn ---
-    Gv = Gtilde_mn(theo, z)
-    print("=== Demo: Gtilde_mn checks ===")
-    print(f"conj(Gtilde_mn(z))     = {mp.conj(Gv)}")
-    print(f"Gtilde_mn(conj(z))     = {Gtilde_mn(theo, mp.conj(z))}")
-    print(f"Gtilde_mn(-z)          = {Gtilde_mn(theo, -z)}")
-    print(f"1/Gtilde_mn(z)         = {1/Gv}\n")
-    print()
-
-    # --- Demo 2bis: Identity limit for Gamma_b ---
-    Gamma_bidentity = Gamma_b(theo, (theo.b + 1/theo.b)/2)
-    print("=== Demo: Gamma_b identity limit ===")
-    print(f"Gamma_b((b + 1/b)/2) = {Gamma_bidentity}")
-    print()
-
-    # --- Demo 2ter: shift equations ---
-    LHSb, RHSb = shiftrelationsGamma_b(theo, z, 1)
-    LHSbminus1, RHSbminus1 = shiftrelationsGamma_b(theo, z, -1)
-    print("=== Demo: Gamma_b shift equations ===")
-    print(f"Gamma_b(z + b)   = {LHSb}  ||  b^((1/2) - z) * Gamma_b(z) / sqrt(2*pi) = {RHSb}")
-    print(f"Gamma_b(z - b)  = {LHSbminus1}  ||  b^((z - (1/2))) * Gamma_b(z) * sqrt(2*pi) = {RHSbminus1}")
-    print()
-
-    # --- Demo 2quad: identitylimit of the 3 point structure constants ---
-    print("=== Demo: Identity limit of the 3-point structure constants ===")
-    b =theo.b
-    Q = b + 1/b
-    Cidentity = spacelikeC_b(theo, P1, P2, Q/2+0.000001j)
-    print(f"C(P1, P2, Q/2) = {Cidentity}")
-    print()
-
-    
-    #Consistency checks for the quantum modular fusion polynomial
-    print("=== Demo II: Consistency checks for the quantum modular fusion polynomial ===")
-    print()
-    # --- Demo 3: alpha at zero point ---
-    alpha_demo = alphaf(theo, 0, 0, 0, 0, 0, 0)
-    print("=== Demo: alpha(0,0) ===")
-    print(f"alpha = {alpha_demo}")
-    print()
-
-    #--- Demo 4: Check that the roots obtained from the function roots(Theory: Theory,Ps,Pt) are the same that the ones obtain from (-beta \pm sqrt(beta^2-4*alpha*gamma)/2*alpha) ---
-    z_plus, z_minus = rootsf(theo, P1, P2, P3, P4, Ps, Pt)
-    alpha_val = alphaf(theo, P1, P2, P3, P4, Ps, Pt)
-    beta_val = betaf(theo, P1, P2, P3, P4, Ps, Pt)
-    gamma_val = gammaf(theo, P1, P2, P3, P4, Ps, Pt)
-    z_plus_check = (-beta_val + mp.sqrt(beta_val**2 - 4*alpha_val*gamma_val)) / (2 * alpha_val)
-    z_minus_check = (-beta_val - mp.sqrt(beta_val**2 - 4*alpha_val*gamma_val)) / (2 * alpha_val)
-    print("=== Demo: roots consistency check ===")
-    print(f"z_plus from roots() = {z_plus}")
-    print(f"z_plus from formula   = {z_plus_check}")
-    print(f"z_minus from roots() = {z_minus}")
-    print(f"z_minus from formula   = {z_minus_check}\n")
-    print()
-
-    #Consistency checks spacelike fusion kernels
-    print("=== Demo III: Consistency checks for the spacelike fusion kernels ===")
-    print()
-    #--- Demo 5: Check the symmetry of CurlyF under the transformation P_s\rightarrow P_3,P_3\rightarrow P_s,P_t\rightarrow P_1,P_1\rightarrow P_t ---
-    CurlyF_original = CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z)
-    CurlyF_transformed = CurlyF(theo, Pt, P2, Ps, P4, P3, P1, z)
-    print("=== Demo: CurlyF symmetry check ===")
-    print(f"CurlyF original     = {CurlyF_original  }")
-    print(f"CurlyF transformed  = {CurlyF_transformed}")
-    print()
-    # --- Demo 6: Check the single-valuedness of the sum in the Kernels function ---
-    z_plus, z_minus = rootsf(theo, P1, P2, P3, P4, Ps, Pt)
-
-    N = theo.m * theo.n
-    s = theo.s
-    ell = 3
-
-    res1 = mp.mpc(0)
-    res2 = mp.mpc(0)
-
-    u0 = mp.log(z_plus) / (2j * mp.pi * s**2)
-
-    for k in range(N):
-        z1 = u0 + mp.mpf(k) / N
-        z2 = u0 + mp.mpf(k + ell) / N
-        res1 += CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z1)
-        res2 += CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z2)
-
-    print("=== Demo: CurlyF single-valuedness check ===")
-    print(f"sum unshifted = {res1}")
-    print(f"sum shifted   = {res2}")
-    print()
-    #--- Demo7: Check the reflection property of the spacelike fusion kernels.
-    Fplus=Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
-    Fminus=Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
-    Fplusreflected=Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,1)
-    Fminusreflected=Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,-1)
-    print("=== Demo: Reflection property of the plus/minus kernels ===")
-    print(f"Fplus = {Fplus}")
-    print(f"Fminus   = {Fminus}")
-    print(f"Fplusreflected = {Fplusreflected}")
-    print(f"Fminusreflected   = {Fminusreflected}")
-    print()
-
-    #---Demo8: Check the reflection property of the Teschner-Vartanov kernel
-    print("=== Demo: Reflection property of Teschner-Vartanov kernel ===")
-    print(f"FTeschnerVartanov = {Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,0)}")
-    print(f"FTeschnerVartanovreflected = {Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,0)}")
-    print()
-
-    #---Demo9: Check the mixing symmetries of the different kernels
-    Fplusmixed=mixingsymmetrieskernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
-    Fminusmixed=mixingsymmetrieskernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
-    print("=== Demo: mixing property of the kernels ===")
-    print(f"Fplus = {Fplus}")
-    print(f"Fplusmixed = {Fplusmixed}")
-    print(f"Fminus = {Fminus}")
-    print(f"Fminusmixed = {Fminusmixed}")
-    print()
-
-    # #---Demo10: Check Ioannis/Sylvain relation for the spacelike kernels
-    # Fplusatonefourth=Kernelsf(theo,0.25,0.25,0.25,0.25,Ps,Pt,1)
-    # Fminusatonefourth=Kernelsf(theo,0.25,0.25,0.25,0.25,Ps,Pt,-1)
-    # Fplusfromrelation=RibaultTsiaresspacelikef(theo,Ps,Pt,1)
-    # Fminusfromrelation=RibaultTsiaresspacelikef(theo,Ps,Pt,-1)
-    # print("=== Demo: Ioannis/Sylvain relation for the spacelike kernels at c=25 ===")
-    # print(f"Fplusatonefourth = {Fplusatonefourth}")
-    # print(f"Fplusfromrelation = {Fplusfromrelation}")
-    # print(f"Fminusatonefourth = {Fminusatonefourth}")
-    # print(f"Fminusfromrelation = {Fminusfromrelation}")
+    # print("=== Demo: Gmn shift check ===")
+    # print(f"ratio = {ratio}")
+    # print(f"rhs   = {rhs}")
     # print()
 
-    # ---Demo11: Check pentagon for the TV kernel
-    print("=== Demo: Testing the pentagon for the + kernel ===")
-    LHSplus, RHSplus = Pentagon(theo, parPenta, 1)
-    print(f"LHSPentagonplus = {LHSplus}")
-    print(f"RHSPentagonplus = {RHSplus}")
-    LHSminus, RHSminus = Pentagon(theo, parPenta, -1)
-    print(f"LHSPentagonminus = {LHSminus}")
-    print(f"RHSPentagonminus = {RHSminus}")
-    print()
-
-    # # ---Demo12: Check Idempotency for the TV kernel
-    # print("=== Demo: Testing the Idempotency for the TeschnerVartanov kernel ===")
-    # LHS= Idempotencyf(theo, parIdem, 1)
-    # print(f"Idempotency = {LHS}")
+    # # --- Demo 2: conjugation & inversion checks for Gtilde_mn ---
+    # Gv = Gtilde_mn(theo, z)
+    # print("=== Demo: Gtilde_mn checks ===")
+    # print(f"conj(Gtilde_mn(z))     = {mp.conj(Gv)}")
+    # print(f"Gtilde_mn(conj(z))     = {Gtilde_mn(theo, mp.conj(z))}")
+    # print(f"Gtilde_mn(-z)          = {Gtilde_mn(theo, -z)}")
+    # print(f"1/Gtilde_mn(z)         = {1/Gv}\n")
     # print()
 
-    #Consistency checks spacelike modular kernels
-    print("=== Demo IV: Consistency checks for the spacelike modular kernels ===")
-    print()
-    # --- Demo 13: Check the single-valuedness of the sum in the modular Kernels function ---
-    z_plus, z_minus = rootsm(theo, P0, Ps, Pt)
+    # # --- Demo 2bis: Identity limit for Gamma_b ---
+    # Gamma_bidentity = Gamma_b(theo, (theo.b + 1/theo.b)/2)
+    # print("=== Demo: Gamma_b identity limit ===")
+    # print(f"Gamma_b((b + 1/b)/2) = {Gamma_bidentity}")
+    # print()
 
-    N = theo.m * theo.n
-    s = theo.s
-    ell = 3
+    # # --- Demo 2ter: shift equations ---
+    # LHSb, RHSb = shiftrelationsGamma_b(theo, z, 1)
+    # LHSbminus1, RHSbminus1 = shiftrelationsGamma_b(theo, z, -1)
+    # print("=== Demo: Gamma_b shift equations ===")
+    # print(f"Gamma_b(z + b)   = {LHSb}  ||  b^((1/2) - z) * Gamma_b(z) / sqrt(2*pi) = {RHSb}")
+    # print(f"Gamma_b(z - b)  = {LHSbminus1}  ||  b^((z - (1/2))) * Gamma_b(z) * sqrt(2*pi) = {RHSbminus1}")
+    # print()
 
-    res1 = mp.mpc(0)
-    res2 = mp.mpc(0)
+    # # --- Demo 2quad: identitylimit of the 3 point structure constants ---
+    # print("=== Demo: Identity limit of the 3-point structure constants ===")
+    # b =theo.b
+    # Q = b + 1/b
+    # Cidentity = spacelikeC_b(theo, P1, P2, Q/2+0.000001j)
+    # print(f"C(P1, P2, Q/2) = {Cidentity}")
+    # print()
 
-    u0 = mp.log(z_plus) / (2j * mp.pi * s**2)
+    
+    # #Consistency checks for the quantum modular fusion polynomial
+    # print("=== Demo II: Consistency checks for the quantum modular fusion polynomial ===")
+    # print()
+    # # --- Demo 3: alpha at zero point ---
+    # alpha_demo = alphaf(theo, 0, 0, 0, 0, 0, 0)
+    # print("=== Demo: alpha(0,0) ===")
+    # print(f"alpha = {alpha_demo}")
+    # print()
 
-    for k in range(N):
-        z1 = u0 + mp.mpf(k) / N
-        z2 = u0 + mp.mpf(k + ell) / N
-        res1 += CurlyM(theo, P0, Ps, Pt, z1)
-        res2 += CurlyM(theo, P0, Ps, Pt, z2)
+    # #--- Demo 4: Check that the roots obtained from the function roots(Theory: Theory,Ps,Pt) are the same that the ones obtain from (-beta \pm sqrt(beta^2-4*alpha*gamma)/2*alpha) ---
+    # z_plus, z_minus = rootsf(theo, P1, P2, P3, P4, Ps, Pt)
+    # alpha_val = alphaf(theo, P1, P2, P3, P4, Ps, Pt)
+    # beta_val = betaf(theo, P1, P2, P3, P4, Ps, Pt)
+    # gamma_val = gammaf(theo, P1, P2, P3, P4, Ps, Pt)
+    # z_plus_check = (-beta_val + mp.sqrt(beta_val**2 - 4*alpha_val*gamma_val)) / (2 * alpha_val)
+    # z_minus_check = (-beta_val - mp.sqrt(beta_val**2 - 4*alpha_val*gamma_val)) / (2 * alpha_val)
+    # print("=== Demo: roots consistency check ===")
+    # print(f"z_plus from roots() = {z_plus}")
+    # print(f"z_plus from formula   = {z_plus_check}")
+    # print(f"z_minus from roots() = {z_minus}")
+    # print(f"z_minus from formula   = {z_minus_check}\n")
+    # print()
 
-    print("=== Demo: CurlyM single-valuedness check ===")
-    print(f"sum unshifted = {res1}")
-    print(f"sum shifted   = {res2}")
-    print()
+    # #Consistency checks spacelike fusion kernels
+    # print("=== Demo III: Consistency checks for the spacelike fusion kernels ===")
+    # print()
+    # #--- Demo 5: Check the symmetry of CurlyF under the transformation P_s\rightarrow P_3,P_3\rightarrow P_s,P_t\rightarrow P_1,P_1\rightarrow P_t ---
+    # CurlyF_original = CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z)
+    # CurlyF_transformed = CurlyF(theo, Pt, P2, Ps, P4, P3, P1, z)
+    # print("=== Demo: CurlyF symmetry check ===")
+    # print(f"CurlyF original     = {CurlyF_original  }")
+    # print(f"CurlyF transformed  = {CurlyF_transformed}")
+    # print()
+    # # --- Demo 6: Check the single-valuedness of the sum in the Kernels function ---
+    # z_plus, z_minus = rootsf(theo, P1, P2, P3, P4, Ps, Pt)
 
-    # #--- Demo 14: Check the Identity limit of the Modular kernel
-    LHS, RHS = Identitylimit(theo, Ps, Pt)
-    print("=== Demo: Identity limit check ===")
-    print(f"Kernel at identity = {LHS}")
-    print(f"Value of the cos   = {RHS}")
-    print()
+    # N = theo.m * theo.n
+    # s = theo.s
+    # ell = 3
 
-    # #--- Demo 15: Check reflection properties under reflection of the external momenta
-    print("=== Demo: Reflection property of Modular kernels ===")
-    print(f"Mplus = {KernelsM(theo,P0,Ps,Pt,1)}")
-    print(f"Mminus = {KernelsM(theo,P0,Ps,Pt,-1)}")
-    print(f"Mplusreflectedps = {KernelsM(theo,P0,-Ps,Pt,1)}")
-    print(f"Mminusreflectedps = {KernelsM(theo,P0,-Ps,Pt,-1)}")
-    print(f"Mplusreflectedpt = {KernelsM(theo,P0,Ps,-Pt,1)}")
-    print(f"Mminusreflectedpt = {KernelsM(theo,P0,Ps,-Pt,-1)}")
-    print(f"MTV = {KernelsM(theo,P0,Ps,Pt,0)}")
-    print(f"MTVreflectedps = {KernelsM(theo,P0,-Ps,Pt,0)}")
-    print(f"MTVreflectedpt = {KernelsM(theo,P0,Ps,-Pt,0)}")
-    print()
+    # res1 = mp.mpc(0)
+    # res2 = mp.mpc(0)
 
-    # # #--- Demo 15: Plot the TV kernels appearing in the idempotency relation on [-3,3]
-    # Mfirst = lambda p: KernelsM(theo,P0,P1, 1j*(p+0.000001j),0)
-    # Msecond = lambda p: KernelsM(theo,P0,1j*(p+0.000001j),P2,0)
-    # integrand = lambda p: KernelsM(theo,P0,P1, 1j*(p+0.000001j),0)*KernelsM(theo,P0,1j*(p+0.000001j),P2,0)
-    # plot_module1D(Mfirst, name="Mfirst")
-    # plot_module1D(Msecond, name="Msecond")
-    # plot_module1D(integrand, name="integrand")
+    # u0 = mp.log(z_plus) / (2j * mp.pi * s**2)
+
+    # for k in range(N):
+    #     z1 = u0 + mp.mpf(k) / N
+    #     z2 = u0 + mp.mpf(k + ell) / N
+    #     res1 += CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z1)
+    #     res2 += CurlyF(theo, P1, P2, P3, P4, Ps, Pt, z2)
+
+    # print("=== Demo: CurlyF single-valuedness check ===")
+    # print(f"sum unshifted = {res1}")
+    # print(f"sum shifted   = {res2}")
+    # print()
+    # #--- Demo7: Check the reflection property of the spacelike fusion kernels.
+    # Fplus=Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
+    # Fminus=Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
+    # Fplusreflected=Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,1)
+    # Fminusreflected=Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,-1)
+    # print("=== Demo: Reflection property of the plus/minus kernels ===")
+    # print(f"Fplus = {Fplus}")
+    # print(f"Fminus   = {Fminus}")
+    # print(f"Fplusreflected = {Fplusreflected}")
+    # print(f"Fminusreflected   = {Fminusreflected}")
+    # print()
+
+    # #---Demo8: Check the reflection property of the Teschner-Vartanov kernel
+    # print("=== Demo: Reflection property of Teschner-Vartanov kernel ===")
+    # print(f"FTeschnerVartanov = {Kernelsf(theo,P1,P2,P3,P4,Ps,Pt,0)}")
+    # print(f"FTeschnerVartanovreflected = {Kernelsf(theo,P1,P2,P3,P4,-Ps,Pt,0)}")
+    # print()
+
+    # #---Demo9: Check the mixing symmetries of the different kernels
+    # Fplusmixed=mixingsymmetrieskernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
+    # Fminusmixed=mixingsymmetrieskernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
+    # print("=== Demo: mixing property of the kernels ===")
+    # print(f"Fplus = {Fplus}")
+    # print(f"Fplusmixed = {Fplusmixed}")
+    # print(f"Fminus = {Fminus}")
+    # print(f"Fminusmixed = {Fminusmixed}")
+    # print()
+
+    # # #---Demo10: Check Ioannis/Sylvain relation for the spacelike kernels
+    # # Fplusatonefourth=Kernelsf(theo,0.25,0.25,0.25,0.25,Ps,Pt,1)
+    # # Fminusatonefourth=Kernelsf(theo,0.25,0.25,0.25,0.25,Ps,Pt,-1)
+    # # Fplusfromrelation=RibaultTsiaresspacelikef(theo,Ps,Pt,1)
+    # # Fminusfromrelation=RibaultTsiaresspacelikef(theo,Ps,Pt,-1)
+    # # print("=== Demo: Ioannis/Sylvain relation for the spacelike kernels at c=25 ===")
+    # # print(f"Fplusatonefourth = {Fplusatonefourth}")
+    # # print(f"Fplusfromrelation = {Fplusfromrelation}")
+    # # print(f"Fminusatonefourth = {Fminusatonefourth}")
+    # # print(f"Fminusfromrelation = {Fminusfromrelation}")
+    # # print()
+
+    # # # ---Demo11: Check pentagon for the TV kernel
+    # # print("=== Demo: Testing the pentagon for the + kernel ===")
+    # # LHSplus, RHSplus = Pentagon(theo, parPenta, 1)
+    # # print(f"LHSPentagonplus = {LHSplus}")
+    # # print(f"RHSPentagonplus = {RHSplus}")
+    # # LHSminus, RHSminus = Pentagon(theo, parPenta, -1)
+    # # print(f"LHSPentagonminus = {LHSminus}")
+    # # print(f"RHSPentagonminus = {RHSminus}")
+    # # print()
+
+    # # # ---Demo12: Check Idempotency for the TV kernel
+    # # print("=== Demo: Testing the Idempotency for the TeschnerVartanov kernel ===")
+    # # LHS= Idempotencyf(theo, parIdem, 1)
+    # # print(f"Idempotency = {LHS}")
+    # # print()
+
+    # #Consistency checks spacelike modular kernels
+    # print("=== Demo IV: Consistency checks for the spacelike modular kernels ===")
+    # print()
+    # # --- Demo 13: Check the single-valuedness of the sum in the modular Kernels function ---
+    # z_plus, z_minus = rootsm(theo, P0, Ps, Pt)
+
+    # N = theo.m * theo.n
+    # s = theo.s
+    # ell = 3
+
+    # res1 = mp.mpc(0)
+    # res2 = mp.mpc(0)
+
+    # u0 = mp.log(z_plus) / (2j * mp.pi * s**2)
+
+    # for k in range(N):
+    #     z1 = u0 + mp.mpf(k) / N
+    #     z2 = u0 + mp.mpf(k + ell) / N
+    #     res1 += CurlyM(theo, P0, Ps, Pt, z1)
+    #     res2 += CurlyM(theo, P0, Ps, Pt, z2)
+
+    # print("=== Demo: CurlyM single-valuedness check ===")
+    # print(f"sum unshifted = {res1}")
+    # print(f"sum shifted   = {res2}")
+    # print()
+
+    # # #--- Demo 14: Check the Identity limit of the Modular kernel
+    # LHS, RHS = Identitylimit(theo, Ps, Pt)
+    # print("=== Demo: Identity limit check ===")
+    # print(f"Kernel at identity = {LHS}")
+    # print(f"Value of the cos   = {RHS}")
+    # print()
+
+    # # #--- Demo 15: Check reflection properties under reflection of the external momenta
+    # print("=== Demo: Reflection property of Modular kernels ===")
+    # print(f"Mplus = {KernelsM(theo,P0,Ps,Pt,1)}")
+    # print(f"Mminus = {KernelsM(theo,P0,Ps,Pt,-1)}")
+    # print(f"Mplusreflectedps = {KernelsM(theo,P0,-Ps,Pt,1)}")
+    # print(f"Mminusreflectedps = {KernelsM(theo,P0,-Ps,Pt,-1)}")
+    # print(f"Mplusreflectedpt = {KernelsM(theo,P0,Ps,-Pt,1)}")
+    # print(f"Mminusreflectedpt = {KernelsM(theo,P0,Ps,-Pt,-1)}")
+    # print(f"MTV = {KernelsM(theo,P0,Ps,Pt,0)}")
+    # print(f"MTVreflectedps = {KernelsM(theo,P0,-Ps,Pt,0)}")
+    # print(f"MTVreflectedpt = {KernelsM(theo,P0,Ps,-Pt,0)}")
+    # print()
+
+    # # # #--- Demo 15: Plot the TV kernels appearing in the idempotency relation on [-3,3]
+    # # Mfirst = lambda p: KernelsM(theo,P0,P1, 1j*(p+0.000001j),0)
+    # # Msecond = lambda p: KernelsM(theo,P0,1j*(p+0.000001j),P2,0)
+    # # integrand = lambda p: KernelsM(theo,P0,P1, 1j*(p+0.000001j),0)*KernelsM(theo,P0,1j*(p+0.000001j),P2,0)
+    # # plot_module1D(Mfirst, name="Mfirst")
+    # # plot_module1D(Msecond, name="Msecond")
+    # # plot_module1D(integrand, name="integrand")
     
 
-    # # #--- Demo 16: Mixing symmetry of the modular kernels
-    print("=== Demo: Mixing symmetry of the Modular kernels ===")
-    LHSmixingsymmetries, RHSmixingsymmetries = mixingsymmetriesm(theo, P0, P1, P2, -1)
-    print(f"LHS = {LHSmixingsymmetries}")
-    print(f"RHS = {RHSmixingsymmetries}")
-    print()
+    # # # #--- Demo 16: Mixing symmetry of the modular kernels
+    # print("=== Demo: Mixing symmetry of the Modular kernels ===")
+    # LHSmixingsymmetries, RHSmixingsymmetries = mixingsymmetriesm(theo, P0, P1, P2, -1)
+    # print(f"LHS = {LHSmixingsymmetries}")
+    # print(f"RHS = {RHSmixingsymmetries}")
+    # print()
 
-    # Checking the important identities involving the spacelike and the timelike kernels
-    print("=== Demo V: important identities involving the spacelike modular and fusion kernels ===")
-    print()
+    # # Checking the important identities involving the spacelike and the timelike kernels
+    # print("=== Demo V: important identities involving the spacelike modular and fusion kernels ===")
+    # print()
 
     # # #--- Demo 17: Non rational Verlinde formula
     # print("=== Demo: Non rational Verlinde formula ===")
@@ -1154,22 +1154,22 @@ if DEMO:
     # plot_module1D(IntegrandRHS, name="Integrand RHS torus 2pt relation")
     # print(KernelsM(theo,P3,P1,P2,0))
 
-    #Checking the important identities involving the spacelike and the timelike kernels
-    print("=== TIMELIKE LIOUVILLE !!! ===")
-    print()
+    # #Checking the important identities involving the spacelike and the timelike kernels
+    # print("=== TIMELIKE LIOUVILLE !!! ===")
+    # print()
 
     
-    #--- Demo20: Check the reflection property of the timelike fusion kernels.
-    FplusTimelike=TimelikeKernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
-    FminusTimelike=TimelikeKernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
-    FplusTimelikereflected=TimelikeKernelsf(theo,P1,P2,P3,P4,-Ps,Pt,1)
-    FminusTimelikereflected=TimelikeKernelsf(theo,P1,P2,P3,P4,-Ps,Pt,-1)
-    print("=== Demo: Reflection property of the plus/minus timelike fusion kernels ===")
-    print(f"FplusTimelike = {FplusTimelike}")
-    print(f"FminusTimelike   = {FminusTimelike}")
-    print(f"FplusTimelikereflected = {FplusTimelikereflected}")
-    print(f"FminusTimelikereflected   = {FminusTimelikereflected}")
-    print()
+    # #--- Demo20: Check the reflection property of the timelike fusion kernels.
+    # FplusTimelike=TimelikeKernelsf(theo,P1,P2,P3,P4,Ps,Pt,1)
+    # FminusTimelike=TimelikeKernelsf(theo,P1,P2,P3,P4,Ps,Pt,-1)
+    # FplusTimelikereflected=TimelikeKernelsf(theo,P1,P2,P3,P4,-Ps,Pt,1)
+    # FminusTimelikereflected=TimelikeKernelsf(theo,P1,P2,P3,P4,-Ps,Pt,-1)
+    # print("=== Demo: Reflection property of the plus/minus timelike fusion kernels ===")
+    # print(f"FplusTimelike = {FplusTimelike}")
+    # print(f"FminusTimelike   = {FminusTimelike}")
+    # print(f"FplusTimelikereflected = {FplusTimelikereflected}")
+    # print(f"FminusTimelikereflected   = {FminusTimelikereflected}")
+    # print()
 
     # #---Demo21: Check Ioannis/Sylvain relation for the timelike kernels
     # Fplusatonefourthj=TimelikeKernelsf(theo,0.25j,0.25j,0.25j,0.25j,Ps,Pt,1)
@@ -1190,12 +1190,12 @@ if DEMO:
     # print(f"RHSTimelikePentagonplus = {RHS}")
     # print()
 
-    # # #--- Demo 23: Mixing symmetry of the timelike fusion kernels
-    print("=== Demo: Mixing symmetry of the timelike fusion kernels ===")
-    LHSmixingsymmetriesFplus, RHSmixingsymmetriesFplus = mixingsymmetriestimelikekernelsf(theo, P1, P2, P3, P4, Ps, Pt, 1)
-    print(f"LHS = {LHSmixingsymmetriesFplus}")
-    print(f"RHS = {RHSmixingsymmetriesFplus}")
-    print()
+    # # # #--- Demo 23: Mixing symmetry of the timelike fusion kernels
+    # print("=== Demo: Mixing symmetry of the timelike fusion kernels ===")
+    # LHSmixingsymmetriesFplus, RHSmixingsymmetriesFplus = mixingsymmetriestimelikekernelsf(theo, P1, P2, P3, P4, Ps, Pt, 1)
+    # print(f"LHS = {LHSmixingsymmetriesFplus}")
+    # print(f"RHS = {RHSmixingsymmetriesFplus}")
+    # print()
 
     # IntegrandlHS = lambda p: 2*mp.sqrt(2)*16**(1+(p+0.00000001j)**2)*(mp.sinh(mp.pi*(p+0.00000001j)/2))**3*spacelikeC_b(theo, 1/4,1/4, 1j*(p+0.00000001j))/(p+0.00000001j)
     # LHS = mp.quad(IntegrandlHS, [-Theory.Lambda, Theory.Lambda])
