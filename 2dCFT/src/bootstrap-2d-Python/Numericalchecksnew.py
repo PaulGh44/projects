@@ -15,7 +15,7 @@ from datetime import datetime
 
 
 # -------- Global settings --------
-mp.dps = 20 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
+mp.dps = 8 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
 
 # =========================================
 # Conformal dimension relation
@@ -344,6 +344,44 @@ def four_point_block_crossing_bdy_generate_data(
 
     return Relist, Imlist, xlist
 
+def three_point_block_crossing_bdy(
+    Theory: Theory,
+    Palpha: complex,
+    P1: complex,
+    P2: complex,
+    Psigma1: complex,
+    Psigma2: complex,
+    q: complex = 0.05,
+    N: int = 10,
+    eps_b = 1e-5
+    # It should not be too small, otherwise it blows up near b=1
+):
+
+    b_block = complex(Theory.b)+1j*eps_b
+    charge = Charge("b", b_block)
+
+    Palpha, P1, P2 = map(complex, [Palpha, P1, P2])
+    q = complex(q)
+    dims_momenta = [
+    Dimension("P", 1j * P, charge)
+    for P in [Palpha, Palpha, P1, P2]
+    ]
+
+
+    block = Block(dims_momenta, N, t_channel=False)
+
+    num = BlockNum(block, q)
+
+
+    IntegrandLHS = lambda ps: mp.mpc(num.value((ps+0.000001j)**2, True))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, P1, 1j*(ps+0.000001j), P2, Psigma1, Psigma2, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, (ps+0.000001j), Psigma2)*mp.exp(-1j*mp.pi*(conformaldimension(Theory,(ps+0.000001j))-2*conformaldimension(Theory, Palpha))/2)
+
+    IntegrandRHS = lambda psprime: mp.mpc(num.value((psprime+0.000001j)**2, True))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, 1j*(psprime+0.000001j), P1, P2, Psigma1, Psigma1, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, (psprime+0.000001j), Psigma1)*mp.exp(1j*5*mp.pi*(conformaldimension(Theory,(psprime+0.000001j))-2*conformaldimension(Theory,Palpha))/2) * mp.exp(1j*2*mp.pi*(conformaldimension(Theory,P1)-conformaldimension(Theory,P2)))
+
+    LHS = mp.quad(IntegrandLHS, [-Theory.Lambda, Theory.Lambda])
+    RHS = mp.quad(IntegrandRHS, [-Theory.Lambda, Theory.Lambda])
+
+    return LHS, RHS, num.x
+
         
 
 
@@ -487,8 +525,15 @@ if __name__ == '__main__':
     # print(f"RHSTimelikePentagonplus = {RHS}")
     # print()
 
+    # # ---Demo13: Check pentagon for the Timelike kernel
+    # print("=== Demo: Testing the pentagon for timelike kernel===")
+    # LHS, RHS = TimelikePentagon(theo, parPenta, 0)
+    # print(f"LHSTimelikePentagonplus = {LHS}")
+    # print(f"RHSTimelikePentagonplus = {RHS}")
+    # print()
 
-    # # #--- Demo 13: Check crossing blocks
+
+    # # #--- Demo 14: Check crossing blocks
     # print("=== Demo: Check crossing blocks ===")
     # LHS, RHS, eta, one_minus_eta = four_point_block_crossing(theo, P1, P2, P3, P4, Ps)
     # print(f"Block_s = {LHS}")
@@ -497,24 +542,27 @@ if __name__ == '__main__':
     # print(f"cross-ratio_t = {one_minus_eta}")
     # print()
 
-    # # # #--- Demo 14: Check crossing blocks boundary
+    # # # #--- Demo 15: Check crossing blocks boundary 4 point
     # print("=== Demo: Check crossing blocks boundary ===")
-    # LHS, RHS = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
+    # LHS, RHS, cross_ratio = four_point_block_crossing_bdy(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4)
     # print(f"LHS = {LHS}")
     # print(f"RHS = {RHS}")
+    # print(f"cross_ratio = {cross_ratio}")
     # print()
 
-    # # ---Demo11: Check pentagon for the Timelike kernel
-    # print("=== Demo: Testing the pentagon for timelike kernel===")
-    # LHS, RHS = TimelikePentagon(theo, parPenta, 0)
-    # print(f"LHSTimelikePentagonplus = {LHS}")
-    # print(f"RHSTimelikePentagonplus = {RHS}")
-    # print()
+    # # #--- Demo 15: Check crossing blocks boundary 1 bulk 2 bdy
+    print("=== Demo: Check crossing blocks boundary 2 ===")
+    LHS, RHS, cross_ratio = three_point_block_crossing_bdy(theo, P1, P2, P3, Psigma1, Psigma2)
+    print(f"LHS = {LHS}")
+    print(f"RHS = {RHS}")
+    print(f"cross_ratio = {cross_ratio}")
+    print()
 
-    # #--- Demo 13: Check crossing blocks
-    print("=== Demo: Plot relative error ===")
-    Relist, Imlist, xlist = four_point_block_crossing_bdy_generate_data(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4, [k*0.005 for k in range (1,21)], N=10, eps_b=1e-5, save_path="crossing_bdy_data.txt")
-    utils_plot.plot_realandimag(theo, Relist, Imlist, xlist, "Relative error")
+
+    # # #--- Demo 16: Check crossing blocks
+    # print("=== Demo: Plot relative error ===")
+    # Relist, Imlist, xlist = four_point_block_crossing_bdy_generate_data(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4, [k*0.005 for k in range (1,21)], N=10, eps_b=1e-5, save_path="crossing_bdy_data.txt")
+    # utils_plot.plot_realandimag(theo, Relist, Imlist, xlist, "Relative error")
     
     
 

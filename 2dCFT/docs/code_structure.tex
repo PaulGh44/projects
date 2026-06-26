@@ -1010,6 +1010,8 @@ Finally, the idemptency relation reads
 
 \subsection{Merging the blocks with the kernels}
 
+\paragraph{Spacelike case}
+
 We use the very nice code done by Sylvain for the implementation of the blocks Blocks.py with all the other relevant classes. I passed all the tests in Sylvain's code regarding the blocks so we are ready to merge the blocks with the Kernels. The first relation we would like to check is crossing of the 4-point conformal blocks in the spacelike case which reads
 \begin{equation}
 \begin{aligned}
@@ -1041,6 +1043,27 @@ There exists a normalization scheme for which the OPE data reads
         P_{\sigma_3} & P_{\sigma_1}
     \end{bmatrix}\,.
 \end{equation}
+{\color{red}Display a plot...}
+The second check is to check the crossing equation emerging from 2 bulk and 1 boundary insertions. Denoting the invariant cross-ratio $\eta = \frac{(z-\bar{z})(x_1-x_2)}{(z-x_1)(\bar{z}-x_2)}$, we have
+\begin{equation}
+    \begin{aligned}
+        &\braket{V_{P_{\alpha}}(z,\bar{z})\Psi_{P_2}^{\sigma_1 \sigma_2}(x_2)\Psi_{P_1}^{\sigma_2 \sigma_1}(x_1)}\\
+        &= \eta^{h_1-h_2}(1-\eta)^{h_{\alpha}+\frac{h_2-h_1}{2}}\int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_2})\mathbb{C}_{P_2 P_s P_1}^{\sigma_2 \sigma_2 \sigma_1} e^{-\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta}^{(b)}(P_s, P_{\alpha \alpha 1 2})\\
+        &= (\eta')^{h_1-h_2}(1-\eta')^{h_{\alpha}+\frac{h_2-h_1}{2}}\int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_1})\mathbb{C}_{P_2 P_1 P'_s}^{\sigma_2 \sigma_1 \sigma_1} e^{\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta'}^{(b)}(P_s, P_{\alpha \alpha 1 2})\,.
+    \end{aligned}
+\end{equation}
+$\eta$ and $\eta'$ are related through the monodromy factor $\eta' = \eta e^{2\pi i}$. We can further simplify by eliminating the $\eta$ factors at the price of monodromy factors. Indeed, going around the branch point at $\eta =0$, we obtain a phase of $e^{2\pi i (h_1-h_2)}\times e^{2\pi i (h_s-2h_{\alpha})}$. 
+\begin{equation}
+    \begin{aligned}
+        & \int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_2})\mathbb{C}_{P_2 P_s P_1}^{\sigma_2 \sigma_2 \sigma_1} e^{-\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta}^{(b)}(P_s, P_{\alpha \alpha 1 2})\\
+        &= e^{2\pi i \left(h_1-h_2\right)}\int_{i\mathbb{R}} \frac{\rm{d}P'_s}{i} R(P_\alpha, P'_s | P_{\sigma_1})\mathbb{C}_{P_2 P_1 P'_s}^{\sigma_2 \sigma_1 \sigma_1} e^{\frac{5\pi}{2} i (h'_s-2h_\alpha)}\mathcal{V}_{\eta}^{(b)}(P'_s, P_{\alpha \alpha 1 2})\,.
+    \end{aligned}
+\end{equation}
+There exists a normalization scheme for which the bulk to boundary data reads
+\begin{equation}
+    R(P_1, P_2 | P_\sigma) = 2 \frac{\mathbb{M}^{TV, b}_{P_\sigma,P_1}[P_2]}{\rho_{0}(P_{\alpha})}\,,
+\end{equation}
+where $\rho_0(P_\alpha)$ corresponds the Plancheral measure of $U_q(sl_2)$.
 \section{Numerical Packages/conventions}
 Since the only library that I found that does implement Barnes G-function is mpmath, we will use mpmath for the special functions.
 \begin{itemize}[leftmargin=*]
