@@ -468,6 +468,22 @@ Zamolodchikov c-theorem states that for any local unitary QFT in 1+1d translatio
   c(\phi_L,\phi_R) = 3(\phi_R-\phi_L)\frac{\rm{d} S}{\rm{d}(\phi_R -\phi_L)}\,.
 \end{equation}
 In particular, as is it clear from the numerics, such a function would be negative at some point ruining the interpretation of the c-function as capturing the number of degrees of freedom.
+
+In Lorentz invariant field theory, the growth of the c-function is tied to the strong subadditivity property. Let us inspect the consequence of the SSA in a non translation invariant QFT. Let three spacetime regions $A,B,C$. Whatever state you start with, the SSA reads
+\begin{equation}\label{eq:SSA}
+  S(ABC)-S(BC)-\left(S(AB)-S(B)\right) \leq 0\,.
+\end{equation}
+Let $A=[\phi_L-\delta \phi_L, \phi_R - \delta \phi_R],\,B =[\phi_L, \phi_R],\, C=[\phi_L+\delta \phi_L, \phi_R + \delta \phi_R]$.
+We have
+\begin{equation}
+\begin{aligned}
+  &S(ABC)-S(BC)-\left(S(AB)-S(B)\right) \\
+  &= S[\phi_L-\delta \phi_L, \phi_R + \delta \phi_R] - S[\phi_L, \phi_R + \delta \phi_R] -\left(S[\phi_L- \delta \phi_L, \phi_R]- S[\phi_L, \phi_R]\right)\\
+  &=-\delta \phi_L \frac{\partial S}{\partial \delta \phi_L}[\phi_L,\phi_R + \delta \phi_R] + \delta \phi_L \frac{\partial S}{\partial \delta \phi_L}[\phi_l, \phi_R]\\
+  &= -\delta \phi_L \delta \phi_R \frac{\partial ^2 S}{\partial \delta \phi_L \partial \delta \phi_R}\,.
+\end{aligned}
+\end{equation} 
+In particular,~\eqref{eq:SSA} leads to the positivity of the Hessian. For the discretized lattice field theory, we can check the SSA criteria by taking $\delta \phi_L = a = \delta \phi_R$. \PG{I checked that by printing a boolean: I first construct a grid of entropy values in terms of two discretized variables $\phi_L, \phi_R$ and then I construct a matrix corresponding to the LHS of~\eqref{eq:SSA}. Then, I check non-positivity of the entries of the matrix. I can make a 3D plot if you wish...}
 \subsection{The Hilbert space structure of the truncated minisuperspace third quantized field theory.}
 \PG{We should say something at some point regarding LZ states and the fact that here we only focus on the physical states with ghost excitation = 0}
 The minisuperspace truncation consists in keeping zero-mode excitations both on the Liouville side and on the matter side. Concerning the matter side, it means that we exactly allow states mapped to pseudo-Tachyon closed-strings vertex operators $\mathcal{V}_k = e^{i k X}$. We refer to them as pseudo-Tachyon vertex opetors as they formally take the same expression as the tachyon vertex operator but here $k$ is not entirely fixed. Regarding the Liouville sector, this projects each each Verma module onto its highest weight state i.e primary state. The physical Hilbert space described by the minisuperspace quantum mechanics thus consists of a tensor products of such states submitted to the WdW constraint which is the marginality condition $\Delta_X + \Delta_L =1$

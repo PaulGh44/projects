@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.linalg import eigh, eigvalsh, cholesky
 import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 
 def Kbuilder(m: float, N: int):
@@ -85,7 +86,7 @@ def entropy_for_cut(L: int, X, P):
     return np.sum(entropy_terms)
 
 
-def entropy_as_function_of_cut(Lmin=1, Lmax=100, m=0.5, N=1000):
+def entropy_as_function_of_cut(Lmin=1, Lmax=100, m=0, N=1000):
     X, P = full_correlators(m, N)
 
     L_values = np.arange(Lmin, Lmax + 1)
@@ -107,7 +108,70 @@ def plot_entropy(Lmin=1, Lmax=50, m=0.5, N=1000):
 
     return fig, ax
 
+def fit_cft_entropy_finite_chain(L_values, S_values, N, fit_L_min=None, fit_L_max=None):
+    """
+    Fits
+
+        S(L) = (c/3) log[(N/pi) sin(pi L/N)] + s_a
+
+    for a block of length L in the middle of a finite chain.
+    """
+
+    L_values = np.asarray(L_values)
+    S_values = np.asarray(S_values)
+
+    mask = np.isfinite(S_values)
+    mask &= L_values > 0
+    mask &= L_values < N
+
+    if fit_L_min is not None:
+        mask &= L_values >= fit_L_min
+
+    if fit_L_max is not None:
+        mask &= L_values <= fit_L_max
+
+    x = np.log((N / np.pi) * np.sin(np.pi * L_values[mask] / N))
+    y = S_values[mask]
+
+    result = linregress(x, y)
+
+    slope = result.slope
+    intercept = result.intercept
+
+    return {
+        "c_fit": 3.0 * slope,
+        "s_a_fit": intercept,
+        "c_error": 3.0 * result.stderr,
+        "s_a_error": result.intercept_stderr,
+        "slope": slope,
+        "intercept": intercept,
+        "r_value": result.rvalue,
+        "p_value": result.pvalue,
+        "mask": mask,
+        "x_fit": x,
+        "S_fit_data": y,
+    }
+
 
 if __name__ == "__main__":
-    fig, ax = plot_entropy(Lmin=1, Lmax=50, m=0, N=1000)
-    plt.show()
+    N = 2000
+    m = 1e-8
+
+    L_values, S_values = entropy_as_function_of_cut(
+        Lmin=2,
+        Lmax=300,
+        m=m,
+        N=N,
+    )
+
+    fit = fit_cft_entropy_finite_chain(
+        L_values,
+        S_values,
+        N=N,
+        fit_L_min=10,
+        fit_L_max=200,
+    )
+
+    print("c =", fit["c_fit"], "+/-", fit["c_error"])
+    print("s_a =", fit["s_a_fit"], "+/-", fit["s_a_error"])
+    print("r^2 =", fit["r_value"]**2)

@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
-from EEconstructor import entropy_as_function_of_left_endpoint, entropy_as_function_of_right_endpoint, entropy_as_function_of_center_point
-
+from EEconstructor import eEconstructor
 
 def plot_entropy_left(
     phi_right: float = 5,
@@ -12,7 +11,7 @@ def plot_entropy_left(
     a: float = 0.1,
     b: float = 1.0,
 ):
-    phi_left_values, S_values = entropy_as_function_of_left_endpoint(
+    phi_left_values, S_values = eEconstructor.entropy_as_function_of_left_endpoint(
         phi_left_min = phi_left_min,
         phi_left_max = phi_left_max,
         mu = mu,
@@ -44,7 +43,7 @@ def plot_entropy_right(
     a: float = 0.1,
     b: float = 1.0,
 ):
-    phi_right_values, S_values = entropy_as_function_of_right_endpoint(
+    phi_right_values, S_values = eEconstructor.entropy_as_function_of_right_endpoint(
         phi_left=phi_left,
         phi_right_min=phi_right_min,
         phi_right_max=phi_right_max,
@@ -77,7 +76,7 @@ def plot_entropy_center(
     a: float = 0.1,
     b: float = 1.0,
 ):
-    phi_center_values, S_values = entropy_as_function_of_center_point(
+    phi_center_values, S_values = eEconstructor.entropy_as_function_of_center_point(
         phi_center_min = phi_center_min,
         phi_center_max = phi_center_max,
         Length = Length,
@@ -102,5 +101,5 @@ def plot_entropy_center(
 
 
 if __name__ == "__main__":
-    fig, ax = plot_entropy_left()
+    fig, ax = plot_entropy_right(-50, -49.5, 5, 0.1,-51, 6, 0.1, 1.0)
     plt.show()
