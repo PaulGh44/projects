@@ -484,6 +484,15 @@ We have
 \end{aligned}
 \end{equation} 
 In particular,~\eqref{eq:SSA} leads to the positivity of the Hessian. For the discretized lattice field theory, we can check the SSA criteria by taking $\delta \phi_L = a = \delta \phi_R$. \PG{I checked that by printing a boolean: I first construct a grid of entropy values in terms of two discretized variables $\phi_L, \phi_R$ and then I construct a matrix corresponding to the LHS of~\eqref{eq:SSA}. Then, I check non-positivity of the entries of the matrix. I can make a 3D plot if you wish...}
+
+\paragraph{The relation between the minisuperspace action and the Klein gordon theory in 1+1d}
+Consider $t=-iX$ as the time variable and $\phi$ as the space variable. Performing the substitution $w_+=e^{\phi + t}, \, w_-=e^{\phi-t}$ and defining the new variables $T = \frac{w_+ +w_-}{2},\,\bar{X} = \frac{w_+ - w_-}{2}$ we obtain the following action
+\begin{equation}
+\begin{aligned}
+    S_{\rm{KG}} = \int \rm{d}T \rm{d}\bar{X} \frac{1}{2}\left[\left(\partial_T \Psi\right)^2 -\left(\partial_{\bar{X}} \Psi\right)^2 - \pi \mu \Psi^2\right]\,.
+\end{aligned}
+\end{equation}
+Observe now the following correspondence. The vacuum of the original minisuperspace field theory~\eqref{eq:simpleentanglemententropy} is defined to be the unique state annhilated by the Hamiltonian which is the conserved charged associated invariance under time-translation in $t$. In other word, this is the conserved charge $H_t$ associated to the Killing vector $\xi=\partial_t$. Lines of constant $t$ are mapped to trajectories for which $T^2-X^2=\text{const}$ which describes hyperboloids. The Killing vector $\xi$ is the boost Killing vector in $T,\bar{X}$ variable as we also have $\xi \propto T\partial_T + \bar{X}\partial_{\bar{X}}$. To summurize, the pure state vacuum of the original theory is mapped to
 \subsection{The Hilbert space structure of the truncated minisuperspace third quantized field theory.}
 \PG{We should say something at some point regarding LZ states and the fact that here we only focus on the physical states with ghost excitation = 0}
 The minisuperspace truncation consists in keeping zero-mode excitations both on the Liouville side and on the matter side. Concerning the matter side, it means that we exactly allow states mapped to pseudo-Tachyon closed-strings vertex operators $\mathcal{V}_k = e^{i k X}$. We refer to them as pseudo-Tachyon vertex opetors as they formally take the same expression as the tachyon vertex operator but here $k$ is not entirely fixed. Regarding the Liouville sector, this projects each each Verma module onto its highest weight state i.e primary state. The physical Hilbert space described by the minisuperspace quantum mechanics thus consists of a tensor products of such states submitted to the WdW constraint which is the marginality condition $\Delta_X + \Delta_L =1$

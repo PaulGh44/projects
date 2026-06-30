@@ -49,10 +49,10 @@ def fit_log_entropy_as_function_of_right_endpoint(phi_right_values, S_values, ph
     slope = result.slope
     intercept = result.intercept
 
-    c_fit = 6.0 * slope
+    c_fit = 3.0 * slope
     s_a_fit = intercept
 
-    c_error = 6.0 * result.stderr
+    c_error = 3.0 * result.stderr
     s_a_error = result.intercept_stderr
 
     return {
@@ -118,31 +118,23 @@ def fit_log_entropy_as_function_of_length(
     
 
 if __name__ == "__main__":
-    phi_left = -30
-
-    phi_right_values, S_values = eEconstructor.entropy_as_function_of_right_endpoint(
-        phi_left=phi_left,
-        phi_right_min=-29.5,
-        phi_right_max=5,
-        mu=0.1,
-        phi_min=-30.5,
-        phi_max=10,
-        a=0.1,
-        b=1.0,
+    L_values, S_values = eEconstructor.entropy_as_function_of_length_with_fixed_center(
+    phi_center=-40,
+    L_min=1.0,
+    L_max=10.0,
+    mu=0.1,
+    phi_min=-100,
+    phi_max=10,
+    a=0.1,
+    b=1.0,
     )
 
-    fit = fit_log_entropy_as_function_of_right_endpoint(
-        phi_right_values,
-        S_values,
-        phi_left,
-        phi_min=-100,
-        phi_max=10,
-        a=0.1,
-        fit_phi_right_min=-29,
-        fit_phi_right_max=-28,
+    fit = fit_log_entropy_as_function_of_length(
+    L_values,
+    S_values,
+    fit_L_min=2.0,
+    fit_L_max=8.0,
     )
 
-    print("c =", fit["c_fit"], "+/-", fit["c_error"])
-    print("s_a =", fit["s_a_fit"], "+/-", fit["s_a_error"])
-    print("r^2 =", fit["r_value"]**2)
+    print(fit["c_fit"])
     

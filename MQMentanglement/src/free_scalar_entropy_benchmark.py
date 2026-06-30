@@ -439,7 +439,7 @@ if __name__ == "__main__":
         S_values,
         fit,
         N=N,
-        fit_type="periodic",
+        fit_type="infinite",
         title=rf"Free scalar EE, periodic chain, $m={m}$, $N={N}$",
     )
 

@@ -1,0 +1,52 @@
+\providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}%
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+\bibitem{boutivas2025numericalcalculationentanglemententropy}
+K.~Boutivas, D.~Katsinis, G.~Pastras and N.~Tetradis, \emph{A numerical calculation of entanglement entropy in de sitter space},  2025.
+
+\bibitem{Boutivas_2023}
+K.~Boutivas, G.~Pastras and N.~Tetradis, \emph{Entanglement and expansion}, \href{http://dx.doi.org/10.1007/jhep05(2023)199}{\emph{Journal of High Energy Physics} {\bf 2023} (May, 2023) }.
+
+\bibitem{Boutivas_2024}
+K.~Boutivas, D.~Katsinis, G.~Pastras and N.~Tetradis, \emph{Entanglement in cosmology}, \href{http://dx.doi.org/10.1088/1475-7516/2024/04/017}{\emph{Journal of Cosmology and Astroparticle Physics} {\bf 2024} (Apr., 2024) 017}.
+
+\bibitem{ginsparg1993lectures2dgravity2d}
+P.~Ginsparg and G.~Moore, \emph{Lectures on 2d gravity and 2d string theory (tasi 1992)},  1993.
+
+\bibitem{Bombelli:1986rw}
+L.~Bombelli, R.~K. Koul, J.~Lee and R.~D. Sorkin, \emph{{A Quantum Source of Entropy for Black Holes}}, \href{http://dx.doi.org/10.1103/PhysRevD.34.373}{\emph{Phys. Rev. D} {\bf 34} (1986) 373--383}.
+
+\bibitem{headrick2019lecturesentanglemententropyfield}
+M.~Headrick, \emph{Lectures on entanglement entropy in field theory and holography},  2019.
+
+\bibitem{martinec2004matrixmodels2dstring}
+E.~J. Martinec, \emph{Matrix models and 2d string theory},  2004.
+
+\bibitem{Balasubramanian_2018}
+V.~Balasubramanian and O.~Parrikar, \emph{Remarks on entanglement entropy in string theory}, \href{http://dx.doi.org/10.1103/physrevd.97.066025}{\emph{Physical Review D} {\bf 97} (Mar., 2018) }.
+
+\bibitem{teschner2000remarksliouvilletheoryboundary}
+J.~Teschner, \emph{Remarks on liouville theory with boundary},  2000.
+
+\bibitem{Pasquale_Calabrese_2004}
+P.~Calabrese and J.~Cardy, \emph{Entanglement entropy and quantum field theory}, \href{http://dx.doi.org/10.1088/1742-5468/2004/06/p06002}{\emph{Journal of Statistical Mechanics: Theory and Experiment} {\bf 2004} (2004) P06002}.
+
+\bibitem{Witten_2018}
+E.~Witten, \emph{Aps medal for exceptional achievement in research: Invited article on entanglement properties of quantum field theory}, \href{http://dx.doi.org/10.1103/revmodphys.90.045003}{\emph{Reviews of Modern Physics} {\bf 90} (Oct., 2018) }.
+
+\bibitem{Srednicki_1993}
+M.~Srednicki, \emph{Entropy and area}, \href{http://dx.doi.org/10.1103/physrevlett.71.666}{\emph{Physical Review Letters} {\bf 71} (Aug., 1993) 666–669}.
+
+\bibitem{Casini_2009}
+H.~Casini and M.~Huerta, \emph{Entanglement entropy in free quantum field theory}, \href{http://dx.doi.org/10.1088/1751-8113/42/50/504007}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 42} (Dec., 2009) 504007}.
+
+\bibitem{bellucci2026entanglemententropymassivescalar}
+S.~Bellucci, M.~Shatnev and L.~Zazunov, \emph{Entanglement entropy of massive scalar fields: Mass suppression, violation of universal mr scaling, and implications for black hole thermodynamics},  2026.
+
+\bibitem{Zamolodchikov:1986gt}
+A.~B. Zamolodchikov, \emph{{Irreversibility of the Flux of the Renormalization Group in a 2D Field Theory}}, {\emph{JETP Lett.} {\bf 43} (1986) 730--732}.
+
+\bibitem{Casini_2007}
+H.~Casini and M.~Huerta, \emph{A<i>c</i>-theorem for entanglement entropy}, \href{http://dx.doi.org/10.1088/1751-8113/40/25/s57}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 40} (2007) 7031–7036}.
+
+\end{thebibliography}\endgroup

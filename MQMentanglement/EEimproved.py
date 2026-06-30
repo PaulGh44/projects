@@ -155,7 +155,7 @@ def fit_cft_entropy_finite_chain(L_values, S_values, N, fit_L_min=None, fit_L_ma
 
 if __name__ == "__main__":
     N = 2000
-    m = 1e-8
+    m = 0
 
     L_values, S_values = entropy_as_function_of_cut(
         Lmin=2,
