@@ -353,32 +353,30 @@ where $c$ is a non universal constant and $\epsilon_{\rm UV}$ is a UV-cutoff. Si
 We consider a massive scalar field $\phi$ in 1+1d. The hamiltonian of such system is
 \begin{equation}
 \begin{aligned}
-     H &= \frac{1}{2}\int \rm{d}x \,\left[\pi_\phi^2 + (\partial_x \phi)^2 + m^2 \phi^2\right] \\
-       &= \frac{1}{2}\int \rm{d}x \left[\pi_\phi^2 - \phi \partial^2_x \phi + m^2 \phi^2\right]+\frac{1}{2}\left[\phi \,\partial_x\phi\right]_{x_{i}}^{x_f}\,.
+     H &= \frac{1}{2}\int \rm{d}x \,\left[\pi_\phi^2 + (\partial_x \phi)^2 + m^2 \phi^2\right]\,.
 \end{aligned}
 \end{equation}
-In absence of boundaries, the boundary term vanishes. This is the idealized situation that we should mimic in order to reproduce the situation in our setup where the system is initially defined on the infinitie line. Numerically, the field is represented by a finite dimensional vector whose size matches the size of the lattice. One way to retrieve the infinite line results is to consider the theory on the circle (or in other word, we impose periodic boundary conditions) and consider large radius with respect to the entanglement cut. Finite size effects were also studied and the entanglement entropy of a cut for the ground state for a system of size $L$ with periodic boundary conditions is reads~\cite{Calabrese_2009}~\cite{Pasquale_Calabrese_2004}
-\begin{equation}\label{eq:entropysizeeffects}
-  S_{A}=\frac{c}{3}\log\left(\frac{L}{\pi a}\sin\left(\frac{\pi \ell}{L}\right)\right)+c'\,,
-\end{equation}
-where $c'$ is a non universal contribution. This formula is actually very efficient when one wants to extract the central charge of a critical system in 1+1 dimension.
+
 The entanglement entropy of a quantum field theory is not well defined as the entanglement entropy between adjoining spacetime regions is UV divergent~\cite{Witten_2018}. To circumvulate such problem, we consider a discretize/lattice version of the previous model. Let $a$ be the lattice spacing in the x-direction. Note that
 \begin{equation}
   \phi(x+a)+\phi(x-a)-2\phi(x) = a^2 \frac{\partial^2 \phi}{\partial x^2}+o(a^2)\,.
 \end{equation}
-We can thus associate to the afforementionned QFT the following lattice model.
+The idealized situation that we should mimic is the infinite line. Numerically, the field is represented by a finite dimensional vector whose size matches the size of the lattice. One way to retrieve the infinite line results is to consider the theory on the circle (or in other word, we impose periodic boundary conditions) and consider large radius with respect to the entanglement cut. An other possibility is to consider open boundary conditions, that is we do not impose any boundary conditions. We can thus associate to the afforementionned QFT the following lattice model.
 \begin{equation}
-  H = \frac{1}{2a^2}\sum_n \pi_n^2 + (2+m^2 a^2)\phi_n^2 -(\phi_n\phi_{n+1}+\phi_n \phi_{n-1})\,.
+  H = \frac{1}{2a^2} \sum \pi_n^2 + \left(\phi_{n+1}-\phi_n\right)^2 + m^2 a^2 \phi_n^2\,.
 \end{equation}
-This describe a chain of nearest neighbour coupled harmonic oscillators. A method first described by Srednicky~\cite{Srednicki_1993} and Bombelli and al.~\cite{Bombelli:1986rw} can be systematically applied to such lattice system. For a recent review, see for instance~\cite{Casini_2009}\cite{bellucci2026entanglemententropymassivescalar}\cite{Boutivas_2023}\cite{Boutivas_2024}. In these preliminary works, they show that the entanglement entropy of the vacuum state for a massless scalar field in flat space is proportional to the area. The method consists in writting the Hamiltonian as
+A method first described by Srednicky~\cite{Srednicki_1993} and Bombelli and al.~\cite{Bombelli:1986rw} can be systematically applied to such lattice system. For a recent review, see for instance~\cite{Casini_2009}\cite{bellucci2026entanglemententropymassivescalar}\cite{Boutivas_2023}\cite{Boutivas_2024}. In these preliminary works, they show that the entanglement entropy of the vacuum state for a massless scalar field in flat space is proportional to the area. The method consists in writting the Hamiltonian as
 \begin{equation}
   \tilde{H} = \frac{1}{2}\sum_m \pi_n^2 + \frac{1}{2}\sum_{i\,j}\phi_i K_{ij}\phi_j\,,
 \end{equation}
 with
 \begin{equation}
-  K_{ij}= \delta_{ij}\left(\tilde{m}^2 + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)\,.
+\begin{aligned}
+  K^{\text{periodic}}_{ij}&= \delta_{ij}\left(\tilde{m}^2 + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)\,,\\
+  K^{\text{open}}_{ij}&= \delta_{ij}\left(\tilde{m}^2 + 2\right)-\left(\delta_{i j+1}+ \delta_{i j-1}\right)- \delta_{i n_i} \delta_{j n_j} - \delta_{i n_f} \delta_{j n_f}\,.
+\end{aligned}
 \end{equation}
-To simplify notations, we droped the lattice prefactor in front of the hamiltonian and we define the lattice mass $\tilde{m}^2=m^2 a^2$. The matrix $K$ is a positive definite symmetric matrix (provided $m^2>0$). The method consists in taking its square-root on a finite but large size interval (large compared to the entanglement subregion in order to prevent side effects) compared to the subregion of the entanglement entropy. Then, the Entropy is easily computed from the eigenvalues of the $C$ matrix on the spatial subregion $A$ where $C$ is defined as
+To simplify notations, we droped the lattice prefactor in front of the hamiltonian and we define the lattice mass $\tilde{m}^2=m^2 a^2$. The matrix $K$ is a positive definite symmetric matrix (provided $m^2>0$). The crucial difference is that $K^{\text{periodic}}$ is not exactly tridiagonal but has non zero elements in the corners compared to $K^{\text{open}}$ which is tridiagonal but has $1+ m^2$ in both endpoints instead of $2+m^2$. The method consists in taking its square-root on a finite but large size interval (large compared to the entanglement subregion in order to prevent side effects) compared to the subregion of the entanglement entropy. Then, the entropy is easily computed from the eigenvalues of the $C$ matrix on the spatial subregion $A$ where $C$ is defined as
 \begin{equation}
   C_{|A} = \sqrt{\braket{\phi \phi}_{|A} \braket{\pi \pi}_{|A}}  = \frac{1}{2}\sqrt{\left(K^{-1/2}\right)_{|A} \left(K^{1/2}\right)_{|A}}\,.
 \end{equation}
@@ -386,6 +384,14 @@ For numerical stability, it is easier to determine the eigenvalues of $C^2_{|A}$
 \begin{equation}
   S = \sum_k \left(\nu_k+\frac{1}{2}\right)\log\left(\nu_k +\frac{1}{2}\right) - \left(\nu_k-\frac{1}{2}\right)\log\left(\nu_k -\frac{1}{2}\right)
 \end{equation}
+Finite size effects were studied and the entanglement entropy of a cut for the ground state for a system of size $L$ with periodic boundary conditions is reads~\cite{Calabrese_2009}~\cite{Pasquale_Calabrese_2004}
+\begin{equation}\label{eq:entropysizeeffects}
+\begin{aligned}
+  S_{A,\text{periodic}}&=\frac{c}{3}\log\left(\frac{L}{\pi a}\sin\left(\frac{\pi \ell}{L}\right)\right)+c\,,\\
+  S_{A,\text{open}}&=\frac{c}{6}\log\left(\frac{L}{\pi a}\sin\left(\frac{\pi \ell}{L}\right)\right)+2g+c\,.
+\end{aligned}
+\end{equation}
+where $c$ is a non universal contribution and $g$ is the boundary entropy term found by Aﬄeck and Ludwig~\cite{Affleck:1991tk}. These formula are actually very efficient when one wants to extract the central charge of a critical system in 1+1 dimension.
 \paragraph{EE in minisuperspace genus $0$ approximation.}
 A discretized version of the action~\eqref{eq:simpleentanglemententropy} is simply given by ($\phi_n=n a$ is the lattice coordinate)
 \begin{equation}

@@ -72,6 +72,9 @@ def Kbuilder(m: float, N: int, boundary: str = "periodic"):
     if boundary == "periodic":
         K[0, -1] = -1.0
         K[-1, 0] = -1.0
+    elif boundary =="open":
+        K[0,0] = m**2 + 1.0
+        K[-1,-1] = m**2 + 1.0
 
     return K
 
@@ -256,17 +259,20 @@ def fit_log_entropy_infinite_line(
     }
 
 
-def fit_log_entropy_periodic_chain(
+def fit_log_entropy_chain(
     L_values,
     S_values,
     N: int,
     fit_L_min: int | None = None,
     fit_L_max: int | None = None,
+    boundary: str = "periodic"
 ):
     """
     Fits the periodic finite-size CFT formula
 
-        S(L) = (c/3) log[ (N/pi) sin(pi L/N) ] + s_a.
+        S(L) = (c/3) log[ (N/pi) sin(pi L/N) ] + s_a if the boundary is periodic.
+
+        S(L) = (c/6) log[ (N/pi) sin(pi L/N) ] + s_a if the boundary is open.
 
     This is the recommended benchmark for extracting c = 1.
     """
@@ -291,23 +297,41 @@ def fit_log_entropy_periodic_chain(
 
     result = linregress(x, y)
 
-    return {
-        "c_fit": 3.0 * result.slope,
-        "s_a_fit": result.intercept,
-        "c_error": 3.0 * result.stderr,
-        "s_a_error": result.intercept_stderr,
-        "slope": result.slope,
-        "intercept": result.intercept,
-        "r_value": result.rvalue,
-        "p_value": result.pvalue,
-        "r_squared": result.rvalue**2,
-        "mask": mask,
-        "x_fit": x,
-        "S_fit_data": y,
-    }
+    if (boundary == "periodic") :
+        return {
+            "c_fit": 3.0 * result.slope,
+            "s_a_fit": result.intercept,
+            "c_error": 3.0 * result.stderr,
+            "s_a_error": result.intercept_stderr,
+            "slope": result.slope,
+            "intercept": result.intercept,
+            "r_value": result.rvalue,
+            "p_value": result.pvalue,
+            "r_squared": result.rvalue**2,
+            "mask": mask,
+            "x_fit": x,
+            "S_fit_data": y,
+        }
+    elif (boundary == "open"):
+        return {
+            "c_fit": 6.0 * result.slope,
+            "s_a_fit": result.intercept,
+            "c_error": 6.0 * result.stderr,
+            "s_a_error": result.intercept_stderr,
+            "slope": result.slope,
+            "intercept": result.intercept,
+            "r_value": result.rvalue,
+            "p_value": result.pvalue,
+            "r_squared": result.rvalue**2,
+            "mask": mask,
+            "x_fit": x,
+            "S_fit_data": y,
+        }
+    else:
+        raise ValueError("Boundary must be either 'periodic' or 'open'. ")
 
 
-def local_effective_c_periodic(L_values, S_values, N: int):
+def local_effective_c(L_values, S_values, N: int, boundary: str = "periodic"):
     """
     Computes a local effective central charge using the finite-size variable
 
@@ -322,8 +346,12 @@ def local_effective_c_periodic(L_values, S_values, N: int):
 
     x = np.log((N / np.pi) * np.sin(np.pi * L_values / N))
     dS_dx = np.gradient(S_values, x)
-
-    return L_values, 3.0 * dS_dx
+    if (boundary == "periodic"):
+        return L_values, 3.0 * dS_dx
+    elif (boundary == "open"):
+        return L_values, 6.0 * dS_dx
+    else:
+        raise ValueError("Boundary must be either 'periodic' or 'open'. ")
 
 
 def plot_entropy_with_fit(
@@ -331,27 +359,26 @@ def plot_entropy_with_fit(
     S_values,
     fit,
     N: int | None = None,
-    fit_type: str = "periodic",
+    boundary: str = "periodic",
     title: str | None = None,
 ):
     """
     Plots S(L) and the fitted curve.
 
     fit_type:
-        "periodic" uses x = log[(N/pi) sin(pi L/N)].
+        "finite size" uses x = log[(N/pi) sin(pi L/N)].
         "infinite" uses x = log(L).
     """
     L_values = np.asarray(L_values)
     S_values = np.asarray(S_values)
 
-    if fit_type == "periodic":
+    if (boundary == "periodic" or boundary == "open"):
         if N is None:
             raise ValueError("N must be supplied for periodic fit plot.")
         x_all = np.log((N / np.pi) * np.sin(np.pi * L_values / N))
-    elif fit_type == "infinite":
-        x_all = np.log(L_values)
+    
     else:
-        raise ValueError("fit_type must be 'periodic' or 'infinite'.")
+        raise ValueError("boundary must be 'periodic' or 'open'.")
 
     S_fit_all = fit["slope"] * x_all + fit["intercept"]
 
@@ -380,11 +407,11 @@ def plot_entropy_with_fit(
     return fig, ax
 
 
-def plot_local_effective_c(L_values, S_values, N: int):
+def plot_local_effective_c(L_values, S_values, N:int, boundary:str = "periodic"):
     """
     Plots c_eff(L) for the periodic finite-size variable.
     """
-    L, c_eff = local_effective_c_periodic(L_values, S_values, N)
+    L, c_eff = local_effective_c(L_values, S_values, N, boundary)
 
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.plot(L, c_eff)
@@ -409,7 +436,7 @@ if __name__ == "__main__":
     Lmin = 2
     Lmax = 100
 
-    fit_L_min = 10
+    fit_L_min = 15
     fit_L_max = 80
 
     L_values, S_values = entropy_as_function_of_cut(
@@ -420,7 +447,7 @@ if __name__ == "__main__":
         boundary=boundary,
     )
 
-    fit = fit_log_entropy_periodic_chain(
+    fit = fit_log_entropy_chain(
         L_values,
         S_values,
         N=N,
@@ -428,7 +455,7 @@ if __name__ == "__main__":
         fit_L_max=fit_L_max,
     )
 
-    print("Periodic finite-size CFT fit")
+    print(f"{boundary} finite-size CFT fit")
     print("--------------------------------")
     print("c =", fit["c_fit"], "+/-", fit["c_error"])
     print("s_a =", fit["s_a_fit"], "+/-", fit["s_a_error"])
@@ -439,10 +466,10 @@ if __name__ == "__main__":
         S_values,
         fit,
         N=N,
-        fit_type="infinite",
-        title=rf"Free scalar EE, periodic chain, $m={m}$, $N={N}$",
+        boundary=boundary,
+        title=rf"Free scalar EE, {boundary} chain, $m={m}$, $N={N}$",
     )
 
-    fig2, ax2 = plot_local_effective_c(L_values, S_values, N=N)
+    fig2, ax2 = plot_local_effective_c(L_values, S_values, N=N, boundary=boundary)
 
     plt.show()
