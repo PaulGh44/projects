@@ -7,45 +7,45 @@ Warning--string name "june" is undefined
 --line 48 of file biblio.bib
 Warning--string name "june" is undefined
 --line 159 of file biblio.bib
-You've used 16 entries,
+You've used 17 entries,
             2188 wiz_defined-function locations,
-            633 strings with 6287 characters,
-and the built_in function-call counts, 3972 in all, are:
-= -- 401
-> -- 162
+            639 strings with 6433 characters,
+and the built_in function-call counts, 4299 in all, are:
+= -- 438
+> -- 172
 < -- 0
-+ -- 50
-- -- 34
-* -- 264
-:= -- 554
-add.period$ -- 16
-call.type$ -- 16
-change.case$ -- 16
++ -- 53
+- -- 36
+* -- 285
+:= -- 596
+add.period$ -- 17
+call.type$ -- 17
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 206
-empty$ -- 377
-format.name$ -- 34
-if$ -- 1039
+cite$ -- 17
+duplicate$ -- 227
+empty$ -- 403
+format.name$ -- 36
+if$ -- 1128
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 40
-newline$ -- 52
-num.names$ -- 16
-pop$ -- 73
+int.to.str$ -- 17
+missing$ -- 44
+newline$ -- 55
+num.names$ -- 17
+pop$ -- 76
 preamble$ -- 2
 purify$ -- 0
 quote$ -- 0
-skip$ -- 168
+skip$ -- 188
 stack$ -- 0
-substring$ -- 134
-swap$ -- 96
+substring$ -- 146
+swap$ -- 109
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 27
-width$ -- 18
-write$ -- 145
+while$ -- 29
+width$ -- 19
+write$ -- 155
 (There were 2 warnings)

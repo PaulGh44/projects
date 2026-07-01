@@ -357,7 +357,11 @@ We consider a massive scalar field $\phi$ in 1+1d. The hamiltonian of such syste
        &= \frac{1}{2}\int \rm{d}x \left[\pi_\phi^2 - \phi \partial^2_x \phi + m^2 \phi^2\right]+\frac{1}{2}\left[\phi \,\partial_x\phi\right]_{x_{i}}^{x_f}\,.
 \end{aligned}
 \end{equation}
-In absence of boundaries, the boundary term vanishes. This term is acutally relevant when discussing about the numerical computation  for the discretized as it induces important side effects. If we impose Neumann boundary condition at the endpoints, this trivially vanishes. It also vanishes providing we impose periodic boundary conditions.
+In absence of boundaries, the boundary term vanishes. This is the idealized situation that we should mimic in order to reproduce the situation in our setup where the system is initially defined on the infinitie line. Numerically, the field is represented by a finite dimensional vector whose size matches the size of the lattice. One way to retrieve the infinite line results is to consider the theory on the circle (or in other word, we impose periodic boundary conditions) and consider large radius with respect to the entanglement cut. Finite size effects were also studied and the entanglement entropy of a cut for the ground state for a system of size $L$ with periodic boundary conditions is reads~\cite{Calabrese_2009}~\cite{Pasquale_Calabrese_2004}
+\begin{equation}\label{eq:entropysizeeffects}
+  S_{A}=\frac{c}{3}\log\left(\frac{L}{\pi a}\sin\left(\frac{\pi \ell}{L}\right)\right)+c'\,,
+\end{equation}
+where $c'$ is a non universal contribution. This formula is actually very efficient when one wants to extract the central charge of a critical system in 1+1 dimension.
 The entanglement entropy of a quantum field theory is not well defined as the entanglement entropy between adjoining spacetime regions is UV divergent~\cite{Witten_2018}. To circumvulate such problem, we consider a discretize/lattice version of the previous model. Let $a$ be the lattice spacing in the x-direction. Note that
 \begin{equation}
   \phi(x+a)+\phi(x-a)-2\phi(x) = a^2 \frac{\partial^2 \phi}{\partial x^2}+o(a^2)\,.
