@@ -31,9 +31,6 @@ J.~Teschner, \emph{Remarks on liouville theory with boundary},  2000.
 \bibitem{Pasquale_Calabrese_2004}
 P.~Calabrese and J.~Cardy, \emph{Entanglement entropy and quantum field theory}, \href{http://dx.doi.org/10.1088/1742-5468/2004/06/p06002}{\emph{Journal of Statistical Mechanics: Theory and Experiment} {\bf 2004} (2004) P06002}.
 
-\bibitem{Calabrese_2009}
-P.~Calabrese and J.~Cardy, \emph{Entanglement entropy and conformal field theory}, \href{http://dx.doi.org/10.1088/1751-8113/42/50/504005}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 42} (Dec., 2009) 504005}.
-
 \bibitem{Witten_2018}
 E.~Witten, \emph{Aps medal for exceptional achievement in research: Invited article on entanglement properties of quantum field theory}, \href{http://dx.doi.org/10.1103/revmodphys.90.045003}{\emph{Reviews of Modern Physics} {\bf 90} (Oct., 2018) }.
 
@@ -46,10 +43,32 @@ H.~Casini and M.~Huerta, \emph{Entanglement entropy in free quantum field theory
 \bibitem{bellucci2026entanglemententropymassivescalar}
 S.~Bellucci, M.~Shatnev and L.~Zazunov, \emph{Entanglement entropy of massive scalar fields: Mass suppression, violation of universal mr scaling, and implications for black hole thermodynamics},  2026.
 
+\bibitem{Calabrese_2009}
+P.~Calabrese and J.~Cardy, \emph{Entanglement entropy and conformal field theory}, \href{http://dx.doi.org/10.1088/1751-8113/42/50/504005}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 42} (Dec., 2009) 504005}.
+
+\bibitem{Affleck:1991tk}
+I.~Affleck and A.~W.~W. Ludwig, \emph{Universal noninteger ``ground state degeneracy'' in critical quantum systems}, \href{http://dx.doi.org/10.1103/PhysRevLett.67.161}{\emph{Phys. Rev. Lett.} {\bf 67} (1991) 161--164}.
+
 \bibitem{Zamolodchikov:1986gt}
 A.~B. Zamolodchikov, \emph{{Irreversibility of the Flux of the Renormalization Group in a 2D Field Theory}}, {\emph{JETP Lett.} {\bf 43} (1986) 730--732}.
 
 \bibitem{Casini_2007}
 H.~Casini and M.~Huerta, \emph{A<i>c</i>-theorem for entanglement entropy}, \href{http://dx.doi.org/10.1088/1751-8113/40/25/s57}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 40} (2007) 7031–7036}.
+
+\bibitem{Crispino_2008}
+L.~C.~B. Crispino, A.~Higuchi and G.~E.~A. Matsas, \emph{The unruh effect and its applications}, \href{http://dx.doi.org/10.1103/RevModPhys.80.787}{\emph{Reviews of Modern Physics} {\bf 80} (July, 2008) 787--838}.
+
+\bibitem{Higuchi_2017}
+A.~Higuchi, S.~Iso, K.~Ueda and K.~Yamamoto, \emph{Entanglement of the vacuum between left, right, future, and past: The origin of entanglement-induced quantum radiation}, \href{http://dx.doi.org/10.1103/PhysRevD.96.083531}{\emph{Physical Review D} {\bf 96} (October, 2017) }.
+
+\bibitem{Birrell:1982ix}
+N.~D. Birrell and P.~C.~W. Davies, \emph{Quantum Fields in Curved Space}.
+\newblock Cambridge Monographs on Mathematical Physics. Cambridge University Press, Cambridge, UK, 1982, \href{http://dx.doi.org/10.1017/CBO9780511622632}{10.1017/CBO9780511622632}.
+
+\bibitem{Callan_1994}
+C.~Callan and F.~Wilczek, \emph{On geometric entropy}, \href{http://dx.doi.org/10.1016/0370-2693(94)91007-3}{\emph{Physics Letters B} {\bf 333} (1994) 55–61}.
+
+\bibitem{Holzhey_1994}
+C.~Holzhey, F.~Larsen and F.~Wilczek, \emph{Geometric and renormalized entropy in conformal field theory}, \href{http://dx.doi.org/10.1016/0550-3213(94)90402-2}{\emph{Nuclear Physics B} {\bf 424} (Aug., 1994) 443–467}.
 
 \end{thebibliography}\endgroup

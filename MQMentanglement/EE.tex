@@ -289,7 +289,7 @@ Consider now the theory on the cylinder. Minisuperspace consists in imposing tha
     \phi(\tau,\sigma)=\phi_0(\tau)\, \qquad X(\tau,\sigma)=X(\tau)\,.
 \end{equation}
 At the level of the Hilbert space, this means on the matter side that we discuss only the level $0$ space spanned by operators of the form~\eqref{eq:pseudo-tachyon} and on the Liouville side we consider projecting each Verma module onto its highest weight state. Consider now the case of a tensor product state of primaries
-\begin{equation}
+\begin{equation}\label{eq:tensorprimaries}
     \ket{\Psi} = \ket{\mathcal{O}_{k}}\otimes \ket{\Psi_{p_L}}\,.
 \end{equation}
 The marginality condition imposes $\Delta_X+\Delta_L =1 \Rightarrow k = 2ip_L$. Hence the truncation of the physical Hilbert space to minisuperspace leads to (focusing on the left moving part only)
@@ -359,7 +359,7 @@ We consider a massive scalar field $\phi$ in 1+1d. The hamiltonian of such syste
 
 The entanglement entropy of a quantum field theory is not well defined as the entanglement entropy between adjoining spacetime regions is UV divergent~\cite{Witten_2018}. To circumvulate such problem, we consider a discretize/lattice version of the previous model. Let $a$ be the lattice spacing in the x-direction. Note that
 \begin{equation}
-  \phi(x+a)+\phi(x-a)-2\phi(x) = a^2 \frac{\partial^2 \phi}{\partial x^2}+o(a^2)\,.
+  \phi(x+a) - \phi(x) = a \partial_x \phi + \mathcal{O}(a^2)\,.
 \end{equation}
 The idealized situation that we should mimic is the infinite line. Numerically, the field is represented by a finite dimensional vector whose size matches the size of the lattice. One way to retrieve the infinite line results is to consider the theory on the circle (or in other word, we impose periodic boundary conditions) and consider large radius with respect to the entanglement cut. An other possibility is to consider open boundary conditions, that is we do not impose any boundary conditions. We can thus associate to the afforementionned QFT the following lattice model.
 \begin{equation}
@@ -391,7 +391,24 @@ Finite size effects were studied and the entanglement entropy of a cut for the g
   S_{A,\text{open}}&=\frac{c}{6}\log\left(\frac{L}{\pi a}\sin\left(\frac{\pi \ell}{L}\right)\right)+2g+c\,.
 \end{aligned}
 \end{equation}
-where $c$ is a non universal contribution and $g$ is the boundary entropy term found by Aﬄeck and Ludwig~\cite{Affleck:1991tk}. These formula are actually very efficient when one wants to extract the central charge of a critical system in 1+1 dimension.
+where $c$ is a non universal contribution and $g$ is the boundary entropy term found by Aﬄeck and Ludwig~\cite{Affleck:1991tk}. These formula are actually very efficient when one wants to extract the central charge of a critical system in 1+1 dimension. By fitting the numerical data with~\eqref{eq:entropysizeeffects}, we can extract the central charge. The following plots show the results of such a procedure for both boundary conditions.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{open_freescalar.png}
+  \caption{Fit of the entanglement entropy curve as a function of the size of the cut imposing open boundary conditions}
+  \label{fig:open_freescalar}
+\end{figure}
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{periodic_freescalar.png}
+  \caption{Fit of the entanglement entropy curve as a function of the size of the cut imposing periodic boundary conditions}
+  \label{fig:periodic_freescalar}
+\end{figure}
+
+
 \paragraph{EE in minisuperspace genus $0$ approximation.}
 A discretized version of the action~\eqref{eq:simpleentanglemententropy} is simply given by ($\phi_n=n a$ is the lattice coordinate)
 \begin{equation}
@@ -430,14 +447,28 @@ We have
 \end{equation} 
 In particular,~\eqref{eq:SSA} leads to the positivity of the Hessian. For the discretized lattice field theory, we can check the SSA criteria by taking $\delta \phi_L = a = \delta \phi_R$. \PG{I checked that by printing a boolean: I first construct a grid of entropy values in terms of two discretized variables $\phi_L, \phi_R$ and then I construct a matrix corresponding to the LHS of~\eqref{eq:SSA}. Then, I check non-positivity of the entries of the matrix. I can make a 3D plot if you wish...}
 
-\paragraph{The relation between the minisuperspace action and the Klein gordon theory in 1+1d}
-Consider $t=-iX$ as the time variable and $\phi$ as the space variable. Performing the substitution $w_+=e^{\phi + t}, \, w_-=e^{\phi-t}$ and defining the new variables $T = \frac{w_+ +w_-}{2},\,\bar{X} = \frac{w_+ - w_-}{2}$ we obtain the following action
+\paragraph{The relation between the minisuperspace action and the Klein gordon theory in 1+1 dimension}\label{par:relationminiKG}
+Consider $t=-iX$ as the time variable and $\phi$ as the space variable. The minisuperspace Lorentzian action is obtained from the Euclidean action~\eqref{eq:simpleentanglemententropy} and reads
+\begin{equation}
+  \mathcal{S}_{\rm{L,\,third}} = \frac{1}{2} \int \rm{d}\phi \rm{d}X \left[\left(\partial_t \Psi\right)^2-\left(\partial_\phi \Psi\right)^2 -4\pi \mu e^{2b\phi}\Psi^2\right]\,.
+\end{equation}
+Perform now the substitution $T = e^{\phi}\sinh(t),\,\bar{X} = e^{\phi}\cosh(t)$. We obtain the following action
 \begin{equation}
 \begin{aligned}
-    S_{\rm{KG}} = \int \rm{d}T \rm{d}\bar{X} \frac{1}{2}\left[\left(\partial_T \Psi\right)^2 -\left(\partial_{\bar{X}} \Psi\right)^2 - \pi \mu \Psi^2\right]\,.
+    S_{\rm{KG}} = \frac{1}{2}\int \rm{d}T \rm{d}\bar{X} \left[\left(\partial_T \Psi\right)^2 -\left(\partial_{\bar{X}} \Psi\right)^2 - 4\pi \mu \Psi^2\right]\,.
 \end{aligned}
 \end{equation}
-Observe now the following correspondence. The vacuum of the original minisuperspace field theory~\eqref{eq:simpleentanglemententropy} is defined to be the unique state annhilated by the Hamiltonian which is the conserved charged associated invariance under time-translation in $t$. In other word, this is the conserved charge $H_t$ associated to the Killing vector $\xi=\partial_t$. Lines of constant $t$ are mapped to trajectories for which $T^2-X^2=\text{const}$ which describes hyperboloids. The Killing vector $\xi$ is the boost Killing vector in $T,\bar{X}$ variable as we also have $\xi \propto T\partial_T + \bar{X}\partial_{\bar{X}}$. To summurize, the pure state vacuum of the original theory is mapped to
+We land on a massive Klein-Gordon theory in 1+1 dimension with mass $m^2 = 4\pi \mu = \frac{4\pi}{g_{s}(\phi = \phi_\star)}$. As a check of such correspondence, we can observe that the Klein-Gordon equation expressed in terms of $(\phi,\,t)$ reproduces the minisuperspace Wheeler-De-Witt equation~\eqref{eq:Wheeler-De-Witt-spacelike} providing we identified the frequency of the Klein-Gordon mode $\omega$ with $2p_L$ as was suggested by the marginality condition see~\eqref{eq:minihilbert}. It has been argued that the problems of the Wheeler-De-Witt equation are very similar to the Klein-Gordon equation. Here such correspondence is made explicit.\PG{Include citations here}.
+
+The vacuum of the original minisuperspace field theory~\eqref{eq:simpleentanglemententropy} is defined to be the unique state annhilated by the Hamiltonian which is the conserved charged associated with invariance under time-translation in $t$. Lines of constant $\phi$ are mapped to trajectories for which $X^2-T^2=\text{const}$ which describes hyperboloids. The Killing vector $\xi$ is the boost Killing vector in $T,\bar{X}$ variable as we also have $\xi = T\partial_{\bar{X}} + T\partial_{\bar{X}}$. To summurize, the pure state vacuum of the original theory is obtained by tracing out the left-wedge degrees of freedom of the pure state Rindler vaccum of the Klein-Gordon theory in 1+1d. 
+\begin{equation}
+  \rho_{\rm{KG}} = \underset{\beta \to +\infty}{\lim}\frac{e^{-\beta H_{R}}}{\text{Tr}\left[e^{-\beta H_{R}}\right]} = \ket{0_R}_{\rm{R}} {}_{\rm{R}}\bra{0_R}\,.
+\end{equation}
+$\ket{0_R}_{\rm{R}}$ is the right Rindler vacuum and $H_{R}$ is the modular boost Hamiltonian restricted to the right Rindler wedge
+\begin{equation}
+  H_R = \int_{0}^{+\infty} X T_{00}(T=0,X) \rm{d}X = \int_{0}^{+\infty} \rm{d}\omega \,\omega b_{\omega}^{\dagger, R} b_{\omega}^{R}\,. 
+\end{equation}
+For a recent review on the the Rindler vacuum and the Unruh effect, see~\cite{Crispino_2008}~\cite{Higuchi_2017}~\cite{Birrell:1982ix}.
 \subsection{The Hilbert space structure of the truncated minisuperspace third quantized field theory.}
 \PG{We should say something at some point regarding LZ states and the fact that here we only focus on the physical states with ghost excitation = 0}
 The minisuperspace truncation consists in keeping zero-mode excitations both on the Liouville side and on the matter side. Concerning the matter side, it means that we exactly allow states mapped to pseudo-Tachyon closed-strings vertex operators $\mathcal{V}_k = e^{i k X}$. We refer to them as pseudo-Tachyon vertex opetors as they formally take the same expression as the tachyon vertex operator but here $k$ is not entirely fixed. Regarding the Liouville sector, this projects each each Verma module onto its highest weight state i.e primary state. The physical Hilbert space described by the minisuperspace quantum mechanics thus consists of a tensor products of such states submitted to the WdW constraint which is the marginality condition $\Delta_X + \Delta_L =1$
@@ -472,16 +503,38 @@ The vacuum $\ket{0}$ is uniquely defined (up to a phase) to be the state annihil
   \bra{0}\Psi(\ell,t)\Psi(\ell',t)\ket{0} =\int_0^{+\infty} \frac{dE}{2E} \Psi_E(\ell) \Psi_E'(\ell') = \frac{1}{2}\left(-\mathcal{H}_\ell\right)^{-1/2} (\ell,\ell')\,.
 \end{equation}
 If one describes the system in angular variable $w=e^{\phi +i X}$, define $T = \frac{w+\bar{w}}{2}, Y = \frac{w - \bar{w}}{2}$ so that to rewrite the action in the form of a KG action and subsequently define the new vacuum by asking the Haniltonian with flow parameter T to annihilated such a state, you compute EE of a different state.
-\paragraph{Adding a boundary to the manifold}
-Consider now the possibility of adding a boundary and a non trivial interaction.
-\begin{equation}
-  \mathcal{S}^{\rm bound .}_L = \frac{1}{4\pi}\int d^2x \sqrt{\hat{g}_h}\left(\hat{g}^{\mu \nu}_h \partial_\mu \phi \partial_\nu \phi +Q \hat{\mathcal{R}}\phi+4\pi\mu e^{2b\phi}\right) + \frac{1}{2\pi}\int_{\partial M}ds \sqrt{\hat{h}}\hat{K}\phi + \mu_b\int_{\partial M} ds \sqrt{\hat{h}}e^{b\phi}\,.
-\end{equation}
-$h$ is the physical metric at the boundary and is related to the fiducial metric via $\sqrt{h}=e^{b\phi}\sqrt{\hat{h}}$ and $\hat{K}$ is the extrinsic curvature at the boundary. $\mu_b$ is the boundary cosmological constant but should also be understood as the tension/charge of the associated brane. The variational principle is well defined as long as it satisfies Dirichlet boundary conditions at the boundary. It can also satisfies Neumann boundary conditions if
-\begin{equation}
-  n^{\mu}\partial_\mu\phi + \hat{K} +2\pi b \mu_b =0\,.
-\end{equation}
 
+\appendix
+\section{Replica trick}
+The replica trick is a method used to compute the von-Neumann entropy of a quantum system defined by the density matrix $\rho$. This was initially developped in~\cite{Callan_1994}\cite{Holzhey_1994} and later generalized in~\cite{Calabrese_2009}. The idea is to compute the Renyi-entropy of order $n$ defined as
+\begin{equation}
+  S_A^{(n)} = \frac{1}{1-n}\log\left(\text{Tr}\left[\rho_A^n\right]\right)\,.
+\end{equation}
+and then take the limit $n\to1$ to obtain the Von-Neumann entropy. It takes its name from the fact that the computation of $\text{Tr}\left[\rho_A^n\right]$ can be interpreted as a path-integral over an $n$-sheeted Riemann surface $\mathcal{R}_n$ with branch cuts along the entanglement region $A$. Consider the original theory defined on the complex plane. For a single interval $A=[u,v]$, the partition function on the $n$-sheeted Riemann surface is expressed in terms of a two-point function of twist fields $\mathcal{T}_{n},\mathcal{\tilde{T}}_{n}$ on the upper-half plane $\mathbb{H}$
+\begin{equation}
+  \text{Tr}\rho_A^n = \frac{Z_n(A)}{Z^n} \propto \braket{\mathcal{T}_{n}(u,0)\mathcal{\tilde{T}}_{n}(v,0)}_{\mathbb{H}}\,.
+\end{equation}
+The recipe consists in noting that the twists operators are primaries with conformal dimensions $\Delta_{n} = \frac{c}{12}\left(n-\frac{1}{n}\right)$. 
+
+\subsection{Replica trick for the minisuperspace third quantized field theory}
+Consider the theory defined by the action~\eqref{eq:simpleentanglemententropy}. In the weak coupling region, this theory describes a CFT in 1+1 dimension with central charge $c=1$. We thus expect to obtain the universal Cardy-Calabrese law
+\begin{equation}
+  S_{A} = \frac{1}{3}\log\left(\frac{\phi_1-\phi_2}{\epsilon_{UV}}\right)\,,
+\end{equation}
+if $\phi$ is far way from the Liouville wall. 
+
+But we can gain more information through the map described in~\ref{par:relationminiKG}. We may further assume that $\mu \ll 1$ which is essentially true at genus $0$. Then, Both theories can be considered as a CFT in 1+1 dimension. While this statement may be seen to be trivial, it is actually a way to compute corrections to the previous formula. Defining, $z = \phi + i X$ and $w = e^{z}$, we obtain 
+\begin{equation}
+  \braket{\mathcal{T}_{n}(\phi_1,0)\mathcal{\tilde{T}}_{n}(\phi_2,0)}_{\text{mini}} = |w'(\phi_1)w'(\phi_2)|^{\Delta_n} \braket{\mathcal{T}_{n}(w(\phi_1),0)\mathcal{\tilde{T}}_{n}(w(\phi_2),0)}_{\text{KG}}\,.
+\end{equation}
+Hence
+\begin{equation}
+  \braket{\mathcal{T}_{n}(w(\phi_1),0)\mathcal{\tilde{T}}_{n}(w(\phi_2),0)}_{\text{KG}} = \frac{(\phi_1-\phi_2)^{2\Delta_n}}{\left(e^{\phi_1}e^{\phi_2}\right)^{\Delta_n}}\,.
+\end{equation}
+With $g_{s}= e^{2\phi}$, we obtain
+\begin{equation}
+  S_{A} = \frac{1}{3}\log\left(\frac{\phi_1-\phi_2}{(g_s(\phi_1)g_{s}(\phi_2))^{1/4}}\right)\,.
+\end{equation}
 
 \bibliographystyle{JHEP}
 \bibliography{biblio}

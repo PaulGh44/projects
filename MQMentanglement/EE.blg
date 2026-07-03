@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: EE.aux
+The style file: JHEP.bst
+Database file #1: biblio.bib
+Warning--string name "june" is undefined
+--line 48 of file biblio.bib
+Warning--string name "june" is undefined
+--line 159 of file biblio.bib
+Warning--string name "july" is undefined
+--line 309 of file biblio.bib
+You've used 23 entries,
+            2188 wiz_defined-function locations,
+            692 strings with 7592 characters,
+and the built_in function-call counts, 6224 in all, are:
+= -- 649
+> -- 248
+< -- 0
++ -- 75
+- -- 52
+* -- 427
+:= -- 857
+add.period$ -- 25
+call.type$ -- 23
+change.case$ -- 22
+chr.to.int$ -- 0
+cite$ -- 23
+duplicate$ -- 331
+empty$ -- 565
+format.name$ -- 52
+if$ -- 1633
+int.to.chr$ -- 0
+int.to.str$ -- 23
+missing$ -- 66
+newline$ -- 74
+num.names$ -- 23
+pop$ -- 92
+preamble$ -- 2
+purify$ -- 0
+quote$ -- 0
+skip$ -- 272
+stack$ -- 0
+substring$ -- 242
+swap$ -- 163
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 43
+width$ -- 25
+write$ -- 217
+(There were 3 warnings)
