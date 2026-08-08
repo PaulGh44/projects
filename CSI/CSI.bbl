@@ -1,0 +1,22 @@
+\providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}%
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+
+\bibitem{PhysRevD.28.2960}
+J.~B. Hartle and S.~W. Hawking, \emph{Wave function of the universe}, \href{http://dx.doi.org/10.1103/PhysRevD.28.2960}{\emph{Phys. Rev. D} {\bf 28} (Dec, 1983) 2960--2975}.
+
+\bibitem{Lehners_2023}
+J.-L. Lehners, \emph{Review of the no-boundary wave function}, \href{http://dx.doi.org/10.1016/j.physrep.2023.06.002}{\emph{Physics Reports} {\bf 1022} (2023) 1–82}.
+
+\bibitem{maldacena2024commentsboundarywavefunctionslow}
+J.~Maldacena, \emph{Comments on the no boundary wavefunction and slow roll inflation},  2024.
+
+\bibitem{betzios2024inflationarycosmologyantidesitter}
+P.~Betzios and O.~Papadoulaki, \emph{An inflationary cosmology from anti-de sitter wormholes},  2024.
+
+\bibitem{Betzios:2024zhf}
+P.~Betzios, I.~D. Gialamas and O.~Papadoulaki, \emph{{Magnetic anti{\textendash}de Sitter wormholes as seeds for Higgs inflation}}, \href{http://dx.doi.org/10.1103/9w85-fyhs}{\emph{Phys. Rev. D} {\bf 111} (2025) 123542}, [\href{https://arxiv.org/abs/2412.03639}{{\tt 2412.03639}}].
+
+\bibitem{Betzios_2026}
+P.~Betzios, P.~Ghiringhelli, I.~D. Gialamas and O.~Papadoulaki, \emph{A menagerie of wormholes and cosmologies in the gravitational path integral}, \href{http://dx.doi.org/10.1007/jhep06(2026)171}{\emph{Journal of High Energy Physics} {\bf 2026} (2026) }.
+
+\end{thebibliography}\endgroup
