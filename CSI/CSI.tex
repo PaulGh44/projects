@@ -198,24 +198,25 @@
 
 The objective of the present report is to provide an overview of the current status of the research projects pursued over the past year. The work I have conducted so far has focused on aspects of quantum cosmology in four dimensions, as well as on well-defined lower-dimensional toy models. Although the tools employed in these two settings are quite different, I believe that they share a common feature: they allow us to sharpen our understanding of the issues and features associated with quantizing a theory of gravity.
 
-In the context of cosmology, the problem of quantizing gravity in Einstein's theory is nicely encapsulated by the Hartle–Hawking proposal for the wavefunction of the universe~\cite{PhysRevD.28.2960}. In 1983, Hartle and Hawking postulated that the wavefunction of the universe should be computed as a path integral over compact geometries in the Euclidean past,
+In the context of cosmology, the problem of quantizing gravity in Einstein's theory is nicely encapsulated by the wavefunction of the universe obeyinh the Wheeler-DeWitt equation. In 1983~\cite{PhysRevD.28.2960}, Hartle and Hawking postulated that the wavefunction of the universe should be computed as a path integral over compact geometries in the Euclidean past,
 \begin{equation}
-\Psi_{\rm N.B} [h_{ij}, \phi_0] = \int ^{g_{ij}|_{\partial \mathcal{M}} = h_{ij}} \rm{D}g \int ^{\phi|_{\partial \mathcal{M}}= \phi_0} \rm{D}\phi \, e^{-\mathcal{S}_{E}[g,\phi]} , .
+\Psi_{\rm N.B} [h_{ij}, \phi_0] = \int ^{g_{ij}|_{\partial \mathcal{M}} = h_{ij}} \rm{D}g \int ^{\phi|_{\partial \mathcal{M}}= \phi_0} \rm{D}\phi \, e^{-\mathcal{S}_{E}[g,\phi]} \,.
 \end{equation}
-Here, $\partial \mathcal{M}$ denotes the boundary of themanifold $\mathcal{M}$, $h_{ij}$ is the induced metric on the boundary, and $\phi_0$ is the value of the matter field there. The path integral is taken over all compact Euclidean geometries with a single boundary on which the induced metric and matter field are respectively $h_{ij}$ and $\phi_0$. Owing to the complexity of such an object, the path integral cannot be computed exactly, and one must resort to a series of truncations and approximations in order to evaluate it.
+The path integral is taken over all compact Euclidean geometries with a single boundary $\partial \mathcal{M}$ on which the induced metric and matter field are respectively $h_{ij}$ and $\phi_0$. Owing to the complexity of such an object, the path integral cannot be computed exactly, and one must resort to a series of truncations and approximations in order to evaluate it.
 
 A well-known result in the context of single-field slow-roll inflation is obtained from the WKB evaluation of the minisuperspace truncation of the path integral. The modulus of the no-boundary instanton wavefunction\footnote{In the context of quantum cosmology, the relevant manifold descrbing the no-boundary instanton is a complex geometry that smoothly interpolates between a Euclidean geometry and a Lorentzian geometry. The Lorentizan evolution gives a multiplicative oscillatory term.} is proportional to 
-\begin{equation}
+\begin{equation}\label{eq:nobound}
 |\Psi_{\rm N.B}[h_{ij}, \phi_0]| \propto \exp\left[+\frac{12\pi^2}{\kappa^2 V(\phi_\star)}\right], \qquad \kappa = 8 \pi G_{N} \,,
 \end{equation}
 where $\phi_\star$ is the value of the inflaton field at the turning point of the geometry, corresponding to the onset of inflation. Famously, this result is plagued by the fact that the wavefunction is non-normalizable and that it favors the smallest possible number of e-folds. This raises both a theoretical puzzle concerning how such a result should be interpreted and a phenomenological tension, since it does not explain why the universe is observed in its present state rather than being essentially empty. This has been the subject of many studies for the last 40 years. For a recent review, see~\cite{Lehners_2023,maldacena2024commentsboundarywavefunctionslow} and the references therein. In what follows, I will summurize a new paradigm that has been developed to adress the issues affected by the Hartle-Hawking proposal~\cite{betzios2024inflationarycosmologyantidesitter,Betzios:2024zhf,Betzios_2026}.
 
-\begin{itemize}
-  \item On the purpose of the present report
-  \item Cosnmology and toy models of quantum gravity in 2d/Holography and conformal field theories: despite the facts that the tools are very different, all of these topics have the common point that they allow one to sharpen the issues and the features of a what would be to quantize a theory of gravity. In this paragrpah, it is important to stress why cosmology is a prefered playground to discuss the apparent tensions between the principle of quantum mechanics apllied to dynamical spacetimes. In particular, state the WKB result of the Hartle-Hawing wavefunction in the context of slow-roll inflation with the non-normalizability issue and the fact that it favors the smallest number of e-folds. 
-  \item End this part by giving the structure of the report
-\end{itemize}
-\section{Wineglass wormholes and cosmology}
+One of the central lessons of the AdS/CFT correspondence is the deep connection between spacetime geometry and quantum entanglement, most notably illustrated by the Ryu–Takayanagi formula~\cite{headrick2019lecturesentanglemententropyfield,Nishioka_2009,Jacobson_2016}. Understanding the origin and generality of this connection therefore calls for studying entanglement in controlled models of quantum gravity, and in particular in string theory. This is, however, a subtle problem: because strings are extended objects, the usual notion of spatial entanglement does not admit a straightforward generalization. Motivated by this question, we have investigated entanglement entropy in (c=1) non-critical string theory, a particularly tractable setting that admits a dual description in terms of Matrix Quantum Mechanics (MQM).
+
+In parallel, another aspect of my work concerns two-dimensional conformal field theories and Liouville theory. Away from the critical central charge, Liouville theory naturally emerges through the conformal anomaly. The bootstrap program has led to a remarkably detailed understanding of spacelike Liouville theory, including exact results for CFT data both on the sphere and on the upper half-plane. By contrast, timelike Liouville theory, with $c_L \leq 1$, remains much less understood, particularly in the presence of a boundary. Addressing this gap, and developing a better understanding of timelike Liouville theory on the upper half-plane, is the focus of my ongoing work with Ioannis Tsiares.
+
+The report is structured as follows. In Section~\ref{sec:wineglass}, I will review the work on wineglass wormholes and their applications to cosmology. In Section~\ref{sec:updates}, I will provide an executive summary of the ongoing projects, focusing on the main results obtained so far and on the remaining open questions. I will also use this *comité de suivi* as an opportunity to assess the work that remains to be done on these projects.
+
+\section{Wineglass wormholes and cosmology}\label{sec:wineglass}
 \subsection{A paradigm that tends to tackle the issues encountered in the Hartle-Hawking proposal}
 \begin{figure}[!h]
   \centering
@@ -223,18 +224,101 @@ where $\phi_\star$ is the value of the inflaton field at the turning point of th
   \caption{Schematic representation of the desired potential that leads to inflationnary cosmology from a half-wineglass euclidean geometry. Figure from~\cite{betzios2024inflationarycosmologyantidesitter}. }
   \label{fig:potentialhistory}
 \end{figure}
-\subsection{Phase diagram of homogeneous and isotropic euclidean solutions in a concrete Einstein-Maxwell-dilaton model}
+The proposal comes from the observation that the issue afflicting the no-boundary proposal~\eqref{eq:nobound} stems from the fact that the euclidean action of an Euclidean de Sitter spacetime is negative. This sign issue is naturally tackled by considering the possibility of an euclidean preparation interpolating a region for which the potential is negative to a region where the potential is positive (see Fig.~\ref{fig:potentialhistory}). This typical fine tuned shape of the potential is motivated by Higgs inflation scenario~\cite{Betzios:2024zhf}. The no-boundary solution can be thought as the euclidean sphere which we cut in half and analytically continue to a Lorentzian de Sitter spacetime. The analog of such $\mathbb{Z}_2$ symmetric solutions in the case of the potential depicted in Fig.\ref{fig:potentialhistory} correspond to euclidean wormholes. For the euclidean wormholes to support interesting cosmologies without crunch, the $Z_2$ symmetric point should be a local maximum of the scale factor (see Fig.~\ref{fig:wavefunctions}). The proposal can be incorporated in a concrete Einstein-Maxwell$(U(1)^3)$-dilaton $(g_{\mu \nu}, F^{(I)}_{\mu \nu}, \phi)$ model~\cite{Betzios_2026}\footnote{Euclidean wormholes with spherical slices need to be supported by a negative euclidean energy density. This can be achieved by considering a magnetically dominated Maxwell field or an axion field for examples. Here we will focus on the first possibility. More details can be found in~\cite{Betzios_2019}.}.
+\begin{equation}\label{eq:background_action}
+\begin{aligned}
+  \mathcal{S}_E &= \int {\rm d}^4x \sqrt{g_E} \left(-\frac{1}{2\kappa}\mathcal{R} + \frac12 (\partial_\mu{\phi})^2 +V(\phi) + \mathcal{L}_{\rm rad}^E \right)+\mathcal{S}_{\rm GHY}\,,\\
+  \mathcal{S}^E_{\rm rad} &= \int {\rm d}^4 x \sqrt{g_E} \frac{1}{4} \sum_{I=1}^3 F^{(I) \, \m \n} F^{(I)}_{\m \n} \, .
+\end{aligned}
+\end{equation}
+The objective of the paper~\cite{Betzios_2026} was to study the holographic properties and the phase diagram of homogeneous and isotropic euclidean solutions as a fonction of the source parameters turned on at the EAdS boundary. Such phase diagram ultimately informs on which euclidean preparation of the state is the most plausible. In what follows, I will only focus on describing specific characteristics of the solutions and on the results. All the computational details can be found in the paper.
 \begin{figure}[!h]
   \centering
+  \includegraphics[width=0.6\linewidth]{Figures/wavefunctions.pdf}
+  \caption{\textbf{Left}: the analytic continuation of the euclidean de Sitter sphere leads to the no-boundary proposal. \textbf{Center}: Analytic continuation of wineglass wormhole leading to an half-wineglass geometry. \textbf{Right}: The analytic continuation of a wormhole whose $\mathbb{Z}_2$ symmetric point is a minimum leads to a cosmological crunch. Figure from~\cite{betzios2024inflationarycosmologyantidesitter}. }
+  \label{fig:wavefunctions}
+\end{figure}
+\subsection{Phase diagram of homogeneous and isotropic euclidean solutions in a concrete Einstein-Maxwell-dilaton model}
+We are looking for an isotropic and homogenous solution ($\omega^I$ denotes the Maurer-Cartan forms on $S^3$)
+\be
+\label{eq:ansatz}
+{\rm d} s^2_{\rm EFLRW} =  {\rm d} \tau^2 +a^2(\tau)  {\rm d} \Omega_3^ 2\, , \quad \phi =\phi(\tau) \, , \quad A^{(I)}(\tau)=H(\tau) \omega^I \, ,
+\ee
+to the equations of motion (EOMs)
+\begin{align}
+\tilde{\phi}''+3\frac{a'\tilde{\phi}'}{a}-\frac{{\rm d}\tilde{V}(\phi)}{{\rm d} \tilde{\phi}} &= 0\,, \nonumber
+\\
+\frac{2a''}{a}+\frac{a'^2}{a^2}-\frac{1}{a^2}  + 3 \left(\tilde{V}(\phi)+\frac{\tilde{\phi}'^2}{2} \right) +  \frac{\tilde{\rho}^E_{\rm rad}}{a^4} & =0  \,, \nonumber
+\\
+\frac{a'^2}{a^2} -\frac{1}{a^2}  + \left(\tilde{V}(\phi)-\frac{\tilde{\phi}'^2}{2} \right) - \frac{\tilde{\rho}^E_{\rm rad}}{a^4} & =0 \,, \nonumber
+\\
+\tilde{\rho}^E_{\rm rad} = 2\kappa a^4 \left[ \left(\frac{H'}{a} \right)^2 - \frac{4H^2}{a^4} \right] &= \rm const
+\,.
+\label{eq:eoms1}
+\end{align}
+\begin{figure}[t!]
+    \centering
+    \begin{overpic}[width=0.9\linewidth]{Figures/wormall.pdf}
+\put(16,40){\textcolor{black}{\textbf{Disconnected}}}
+\put(70,40){\textcolor{black}{\textbf{Connected}}}
+\put(17,8){\textcolor{black}{\textbf{Wineglass}}}
+\put(63,8){\textcolor{black}{\textbf{Oscillatory wineglass}}}
+    \end{overpic}
+    \caption{The different types of Euclidean AdS gravitational saddles that we analyze and compare in~\cite{Betzios_2026}. \textbf{Top}: non-running solutions. \textbf{Bottom}: More complicated running solutions. }
+    \label{fig:wormholes}
+\end{figure}
+For convenience, we defined rescaled quantities $\tilde{V}(\phi) = \k V(\phi)/3$, $\tilde{\phi} = \sqrt{\k/3}\phi$. There are two sets of solutions (see Fig.\ref{fig:wormholes}) for a given potential of the form depicted in Fig.\ref{fig:potentialhistory} (we focus on the euclidean part only):
+\begin{itemize}
+  \item Non-running solutions for which the field $\phi$ sits at the EAdS maximum. The disconnected solution is particular as it is a self-dual solution for which the euclidean energy density vanishes.
+  \item Running solutions interpolating from the EAdS maximum to the positive region of the potential. From the holographic point of view, these solutions are characterized by a renormalization group flow driven by a relevant operator.
+\end{itemize}
+Let me also mention that, for wormholes, the electromagnetic energy density can be naturally expressed in terms of the electromagnetic field at the center of the wormhole $H_{0}$
+\begin{equation}\label{eq:energydensitywormhole}
+    \tilde{\rho}^E_{\rm rad} = -8\kappa H_0^2\,.
+\end{equation}
+This implies that holographically the electromagnetic energy density is an IR quantity and not a UV parameter of the model, so that backgrounds with different E/M density can be compared, as long as the gauge field has the same UV (source) asymptotics.
+
+Since it is very hard to analytically solve the EOMs for a given potential that supports wineglass wormhole solutions\footnote{Concerning oscilatory wineglass solutions, there are easily obtain by duplicating the central region of the potential.}, let alone to do this for a class of potentials with the wanted characteristics, we proceeded in a reverse manner in finding the solutions of interest. Remark that from the equations of motion, once the scale factor is known, eveyrything including the potential is known. We thus first proposed an analytic $\mathbb{Z}_2$ symmetric ansatz for the scale factor comprised out of three regions\footnote{In the paper, a more general ansatz was proposed but I decided to restrict myself to the case where everything is analytically solvable. Once the scale factor is known the potential can be inferred and is presented in Appendix B of the paper.}: (\textbf{I}) for $-\infty<\t<\tau_{\rm min}$ and (\textbf{II}) for $\tau_{\rm min} \leq \t \leq  - \tau_{\rm min}$ and $(\textbf{I}')$ for $-\tau_{\rm min} < \tau < \infty$ where the scale factor is similar to that in region (\textbf{I})
+\begin{equation}
+ a_{WG}^2(\tau) = 
+    \begin{cases}
+   \displaystyle   \frac{1}{4 H_{\rm AdS}^2\cosh(2H_{\rm AdS}(\tau-\tau_{\rm min}))}\left(\sqrt{A_{\rm AdS}}\cosh(2H_{\rm AdS}(\tau-\tau_{\rm min}))+\frac{c_{\rm AdS}}{2\sqrt{A_{\rm AdS}}}\right)^2\,, &  (\textbf{I})
+\\[0.3cm]
+   \displaystyle     \frac{1}{4 H_{\rm dS}^2} \left(\cos{(2H_{\rm dS}\tau)}+ c_{\rm dS}\right)\,, & (\textbf{II}) 
+\\[0.3cm]
+  \displaystyle   \frac{1}{4 H_{\rm AdS}^2\cosh{(2H_{\rm AdS}(\tau+\tau_{\rm min}))}}\left(\sqrt{A_{\rm AdS}}\cosh{(2H_{\rm AdS}(\tau+\tau_{\rm min}))}+\frac{c_{\rm AdS}}{2\sqrt{A_{\rm AdS}}}\right)^2\,. &  (\textbf{I}')
+    \end{cases}
+\label{eq:background_ans_simple}
+\end{equation}
+with $A_{\rm AdS}, H_{\rm (A)dS}, c_{\rm dS}>0$. We also have $\t_{\rm min} = -\pi/2H_{\rm dS}$, when the scale factor reaches its minimum size. The parameters $ H_{\rm (A)dS}$ have dimensions of mass, while all other quantities are dimensionless. Few remarks are in order concerning these wineglass solutions:
+\begin{itemize}
+  \item The running solutions are characterized by a scalar field with conformal dimension $\Delta_+=2$. $c_{AdS}$ is a parameter that drives the presence of a source for the scalar field (in Dirichlet boundary condition). If $c_{AdS}\neq 2$, the source of the scalar field is turned off.
+  \item There are $5$ free parameters in this ansatz but three constraints. Two are obtained by asking the scale factor to be $\mathcal{C}^2$ and the other one is obtained by requiring the velocity of the scalar field to vanish. This condition relates the parameters to the euclidean energy density. We effectively have a model with one additional parameter compared to the non-running solutions which only have $H_{AdS}$ and the euclidean energy density.
+\end{itemize}
+As it is well known, for asymptotically (E)AdS spacetimes, the on-shell action is divergent and one has to renormalize it in order to obtain a final result. In our case, we decided to implement background substraction computing the difference of on-shell actions after regularizing them (the procedure is explained in section 3.2 of our paper). In the paper, we analyse both Dirichlet or Neumann boundary conditions (BCs) for the scalar field (we also analysed Dirichlet or Neumann BCs for the gauge field). Some results are displayed in Fig.\ref{fig:phasediagram_Neumannbdy}. As can be seen, the wineglass wormhole can become the dominant wormhole contribution. In the paper, it was argued that the disconnected solution should be discarded in discussing the probability of nucleating a universe with certain conditions at the start of inflation. Upon this assumption, we thus conclude that depending on the values of the free parameters, the nucleation of the universe can be explained by a certain wineglass shape geometry in this model.
+\begin{figure}[!t]
+  \centering
   \includegraphics[width=0.8\linewidth]{Figures/Neumannphasediagram.pdf}
-  \caption{Dominant saddles in the gravitational path integral across a range of $h_{\rm UV} \equiv (\k |\tilde{V}_{\rm AdS}|)^{1/2}H_{\rm UV}$. Some saddles cease to exist below certain minimum values $h_{\rm UV}^{\rm min}$. The labels \textit{large} and {\textit{small}} denote the two connected wormhole branches. Figure from~\cite{Betzios_2026}. }
+  \caption{Dominant saddles in the gravitational path integral across a range of $h_{\rm UV} \equiv (\k |\tilde{V}_{\rm AdS}|)^{1/2}H_{\rm UV}$ for $A_{AdS}=10^6$. Dirichlet BCs are imposed for the gauge field and Neumann BCS for the scalar field. Some saddles cease to exist below certain minimum values $h_{\rm UV}^{\rm min}$. The labels \textit{large} and {\textit{small}} denote the two connected wormhole branches. Figure from~\cite{Betzios_2026}. }
   \label{fig:phasediagram_Neumannbdy}
 \end{figure}
 \subsection{Inclusion of perturbations}
+The work achieved so far is a zeroth order discussion which concerns the possibility of having an euclidean preperation corresponding to a half-wineglass geometry. Cosmology is about the fluctuations of the background. The natural question to ask is whether cosmological correlators in the wineglass background are the same as in the no-boundary background\footnote{Here, we do not ask about the euclidean stability of such solutions which is also a crucial point. However, discussing possible negative modes is very difficult question (if not impossible) in view of the difficulty of such solutions. In the meantime, there is also a notion of stability arising in cosmological correlators which has to do with the positivity of the power spectrum (equal time two point function). It would be interesting to understand the relation between the two notions of stability.}. The most direct way to settle such question is through the wave-function formalism~\cite{PhysRevD.31.1777,halliwell2009introductorylecturesquantumcosmology,Wada:1986uy}. Once the wavefunction is known, all equal-time correlators can be derived. Suppose we consider a free massless scalar probe $\Phi$ on top of the background. Since we are dealing with a free theory, the path-integral is Gaussian and reduces to a boundary term on the spacelike hypersurface. As previously mentioned, the two constructions differ primarily in the Euclidean geometry used to prepare the state and in the condition imposed at its initial end. In the no-boundary geometry, regularity is imposed at the south pole which we set at $\tau_i=-\pi/2H$
+\begin{equation}\label{eq:no-boundary}
+    \Psi_{N.B}[\Phi(t_f,\Omega)]=\mathcal{N}\exp\left[i\int \rm{d} \Omega \frac{a_{NB}^3(t_f)}{2}\Phi_{\rm cl}(t_f,\Omega) \partial_t\Phi_{\rm cl}(t_f,\Omega)\right]\,.
+\end{equation}
+Here the subscript ``$\rm cl$'' indicates that $\Phi_{\rm cl}$ should be a solution of the classical Klein-Gordon equations of motion while $a_{NB} = \frac{1}{H}\cos(H\tau) = \frac{1}{H}\cosh(Ht)$ denotes the no-boundary background scale factor. It is well known that such path-integral prepares the Bunch-Davies vacuum in de Sitter space.
+In the wineglass geometry the geometry asymptotes to EAdS and the scale factor $a_{WG}(\tau)$ diverges there. For the path-integral to be well defined, this selects the normalizable mode solution. The wave-function has formally the same expression as in the no-boundary case
+\begin{equation}\label{eq:Wineglass}
+    \Psi_{WG}[\Phi(t_f,\Omega)]=\mathcal{N}\exp\left[i\int \rm{d} \Omega \frac{a_{WG}^3(t_f)}{2}\Phi_{\rm cl}(t_f,\Omega) \partial_t\Phi_{\rm cl}(t_f,\Omega)\right]\,.
+\end{equation}
+It remains to solve the Klein-Gordon equation for $\Phi$ for each background to compute the wavefunction. In the case of the no-boundary proposal, exact results are known~\cite{Lehners_2023,maldacena2024commentsboundarywavefunctionslow}. In the case of the wineglass proposal, we have to resort to numerical tecniques to obtain the two-point function\footnote{The equations of motion in the no-boundary case are hypergeometric while in the case of the wineglass proposal, these are Fuchsian equations of higher degree. I believe that we could find analytic results in the case of large harmonic number using WKB matching procedure methods.}. This was achieved in~\cite{Lavrelashvili:2026nib} for specific wineglass solutions. The results are that the power spectrum differs only for small values of the harmonic number $n$ of the 3-sphere. We do not expect to be able to see such effects in the CMB data because probing such effect is tantamount to probing the size of the curvature of the universe at the end of inflation. This is a striking conclusion that two different euclidean preparations of the state, although geometrically very different can not be disguished in the data!
 
+\textbf{Future directions}: Find the power spectrum numerically and possibly analytically using a WKB matching procedure.
+\textbf{Distance to the end}: 3 to 6 months.
 
-\section{Updates of the current projects}
-\subsection{Entanglement entropy in $c=1$ string theory}
+\section{Updates of the current projects}\label{sec:updates}
+\subsection{Entanglement entropy in $c=1$ string theory}\label{subsec:EE}
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.6\linewidth]{Figures/open_freescalar.png}
@@ -249,8 +333,8 @@ where $\phi_\star$ is the value of the inflaton field at the turning point of th
 \label{fig:entropybutleftrightnear}
 \end{figure}
 
-\subsection{The bootstrap program of Timelike Liouville theory}
-\subsection{Axion wormholes and Holography with the tools of dynamical system}
+\subsection{The bootstrap program of Timelike Liouville theory}\label{subsec:TimelikeLiouville}
+\subsection{Axion wormholes and Holography with the tools of dynamical system}\label{subsec:Axion}
 
 \begin{figure}[h!]
 \centering
@@ -266,7 +350,6 @@ where $\phi_\star$ is the value of the inflaton field at the turning point of th
 \label{fig:phaseportrait3}
 \end{figure}
 
-\subsection{Quantum effects of a Detector crossing the horizon of near extremal black hole}
 \section{Conclusion}
 
 

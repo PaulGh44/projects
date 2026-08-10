@@ -1,5 +1,5 @@
 \providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}%
-\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
 
 \bibitem{PhysRevD.28.2960}
 J.~B. Hartle and S.~W. Hawking, \emph{Wave function of the universe}, \href{http://dx.doi.org/10.1103/PhysRevD.28.2960}{\emph{Phys. Rev. D} {\bf 28} (Dec, 1983) 2960--2975}.
@@ -18,5 +18,29 @@ P.~Betzios, I.~D. Gialamas and O.~Papadoulaki, \emph{{Magnetic anti{\textendash}
 
 \bibitem{Betzios_2026}
 P.~Betzios, P.~Ghiringhelli, I.~D. Gialamas and O.~Papadoulaki, \emph{A menagerie of wormholes and cosmologies in the gravitational path integral}, \href{http://dx.doi.org/10.1007/jhep06(2026)171}{\emph{Journal of High Energy Physics} {\bf 2026} (2026) }.
+
+\bibitem{headrick2019lecturesentanglemententropyfield}
+M.~Headrick, \emph{Lectures on entanglement entropy in field theory and holography},  2019.
+
+\bibitem{Nishioka_2009}
+T.~Nishioka, S.~Ryu and T.~Takayanagi, \emph{Holographic entanglement entropy: an overview}, \href{http://dx.doi.org/10.1088/1751-8113/42/50/504008}{\emph{Journal of Physics A: Mathematical and Theoretical} {\bf 42} (Dec., 2009) 504008}.
+
+\bibitem{Jacobson_2016}
+T.~Jacobson, \emph{Entanglement equilibrium and the einstein equation}, \href{http://dx.doi.org/10.1103/physrevlett.116.201101}{\emph{Physical Review Letters} {\bf 116} (May, 2016) }.
+
+\bibitem{Betzios_2019}
+P.~Betzios, E.~Kiritsis and O.~Papadoulaki, \emph{Euclidean wormholes and holography}, \href{http://dx.doi.org/10.1007/jhep06(2019)042}{\emph{Journal of High Energy Physics} {\bf 2019} (2019) }.
+
+\bibitem{PhysRevD.31.1777}
+J.~J. Halliwell and S.~W. Hawking, \emph{Origin of structure in the universe}, \href{http://dx.doi.org/10.1103/PhysRevD.31.1777}{\emph{Phys. Rev. D} {\bf 31} (Apr, 1985) 1777--1791}.
+
+\bibitem{halliwell2009introductorylecturesquantumcosmology}
+J.~J. Halliwell, \emph{Introductory lectures on quantum cosmology (1990)},  2009.
+
+\bibitem{Wada:1986uy}
+S.~Wada, \emph{{Quantum Cosmological Perturbations in Pure Gravity}}, \href{http://dx.doi.org/10.1016/0550-3213(86)90073-8}{\emph{Nucl. Phys. B} {\bf 276} (1986) 729--743}.
+
+\bibitem{Lavrelashvili:2026nib}
+G.~Lavrelashvili and J.-L. Lehners, \emph{{Quantum States Prepared by Wormholes: Long-Wavelength Deviations from Bunch-Davies}},  \href{https://arxiv.org/abs/2607.12772}{{\tt 2607.12772}}.
 
 \end{thebibliography}\endgroup
