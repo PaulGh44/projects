@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import numpy as np
 from scipy.integrate import solve_ivp
+from Model import WineglassModel
 
 from Model import Model, ContourSegment
 

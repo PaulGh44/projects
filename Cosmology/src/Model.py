@@ -107,31 +107,39 @@ class NoBoundaryModel(Model):
 
         return [euclidean, lorentzian]
 
-    def initial_W(
-        self,
-        n: int,
-        delta: float
-    ) -> complex:
+def initial_W(
+    self,
+    n: int,
+    delta: float
+) -> complex:
 
-        tau_initial = self.tau_SP + delta
-        a_initial = self.scale_factor_euclidean(tau_initial)
+    tau_initial = self.tau_SP + delta / self.H
 
-        # Regular solution near the South Pole:
-        #
-        # Phi_n ~ (tau - tau_SP)^(n - 1)
-        #
-        # therefore
-        #
-        # Phi'/Phi ~ (n - 1)/delta
+    a_initial = self.scale_factor_euclidean(
+        tau_initial
+    )
 
-        R_initial = (n - 1) / delta
+    # delta = H (tau_initial - tau_SP)
+    #
+    # Phi_n ~ delta^(n - 1)
+    #
+    # therefore
+    #
+    # Phi'/Phi ~ H (n - 1) / delta
 
-        return a_initial**3 * R_initial
-    
+    R_initial = (
+        self.H
+        * (n - 1)
+        / delta
+    )
+
+    return a_initial**3 * R_initial
+
 @dataclass
 class WineglassModel(Model):
     H_II: float
     rho_rad: float
+    model_name = "Wineglass" 
 
     def __post_init__(self):
 
@@ -378,21 +386,11 @@ class WineglassModel(Model):
         a_initial = self._scale_factor_region_I(
             tau_initial
         )
-
-        k2 = self.k2(n)
-
-        b_n = (
-            2.0 * (2.0 * k2 + 9.0)
-            / (5.0 * self.A_I)
-        )
-
+        
         R_initial = (
-            2.0
+            3
             * self.H_I
-            * (
-                1.5
-                + b_n * u / (1.0 + b_n * u)
-            )
         )
 
         return a_initial**3 * R_initial
+
