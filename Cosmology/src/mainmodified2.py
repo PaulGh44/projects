@@ -1,0 +1,527 @@
+# main.py
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from Model import NoBoundaryModel
+from Model import WineglassModel
+from Solveur import Solveur
+from Power_spectrum import PowerSpectrum
+
+
+def main():
+
+    # # --------------------------------------------------
+    # # 1. Define the background
+    # # --------------------------------------------------
+
+    # H = 1.0
+
+    # model = NoBoundaryModel(
+    #     H=H
+    # )
+
+    # # --------------------------------------------------
+    # # 2. Numerical parameters
+    # # --------------------------------------------------
+
+    # delta = 1e-4
+    # t_final = 10.0*H
+
+    # n_min = 2
+    # n_max = 80
+
+    # # --------------------------------------------------
+    # # 3. Create solver
+    # # --------------------------------------------------
+
+    # solver = Solveur(
+    #     model=model,
+    #     N_eval=1000,
+    #     rtol=1e-10,
+    #     atol=1e-12,
+    #     method="DOP853",
+    # )
+
+    # # --------------------------------------------------
+    # # 4. Solve modes and extract power spectrum
+    # # --------------------------------------------------
+
+    # results = []
+
+    # for n in range(n_min, n_max + 1):
+
+    #     solution = solver.solve_W(
+    #         n=n,
+    #         delta=delta,
+    #         t_final=t_final,
+    #     )
+
+    #     spectrum_point = PowerSpectrum.extract(solution)
+
+    #     results.append(spectrum_point)
+
+    # # --------------------------------------------------
+    # # 5. Convert results to arrays
+    # # --------------------------------------------------
+
+    # n_values = np.array([
+    #     result.n
+    #     for result in results
+    # ])
+
+    # power = np.array([
+    #     result.power
+    #     for result in results
+    # ])
+
+    # dimensionless_power = np.array([
+    #     result.dimensionless_power
+    #     for result in results
+    # ])
+
+    # # --------------------------------------------------
+    # # 6. Compare with exact no-boundary result
+    # # --------------------------------------------------
+
+    # exact_power = (
+    #     H**2
+    #     / (2.0 * n_values * (n_values**2 - 1))
+    # )
+
+    # exact_dimensionless_power = (
+    #     H**2 / (4.0 * np.pi**2)
+    # )
+
+    # print(" n       numerical P(n)       exact P(n)")
+
+    # for n, P_num, P_exact in zip(
+    #     n_values,
+    #     power,
+    #     exact_power,
+    # ):
+    #     print(
+    #         f"{n:2d}    "
+    #         f"{P_num:.12e}    "
+    #         f"{P_exact:.12e}"
+    #     )
+
+    # # --------------------------------------------------
+    # # 7. Plot dimensionless power spectrum
+    # # --------------------------------------------------
+
+
+
+    # # Exact no-boundary result
+    # Delta_exact = H**2 / (4.0 * np.pi**2)
+
+    # # Relative error
+    # relative_error = (
+    #     dimensionless_power - Delta_exact
+    # ) / Delta_exact
+
+
+    # fig, (ax1, ax2) = plt.subplots(
+    #     2, 1,
+    #     figsize=(6.5, 5.5),
+    #     sharex=True,
+    #     gridspec_kw={
+    #         "height_ratios": [3, 1],
+    #         "hspace": 0.08
+    #     }
+    # )
+
+    # # ============================================================
+    # # Upper panel: power spectrum
+    # # ============================================================
+
+    # ax1.plot(
+    #     n_values,
+    #     dimensionless_power,
+    #     "o",
+    #     markersize=5,
+    #     label="Numerical"
+    # )
+
+    # ax1.axhline(
+    #     Delta_exact,
+    #     linestyle="--",
+    #     linewidth=1.8,
+    #     label="Analytic"
+    # )
+
+    # ax1.set_ylabel(r"$\Delta_n^\Phi$")
+
+    # # Important: prevent misleading offset notation
+    # ax1.ticklabel_format(
+    #     axis="y",
+    #     style="plain",
+    #     useOffset=False
+    # )
+
+    # # Show a physically sensible window around the exact value
+    # ax1.set_ylim(
+    #     0.99 * Delta_exact,
+    #     1.01 * Delta_exact
+    # )
+
+    # ax1.legend(frameon=False)
+    # ax1.grid(alpha=0.2)
+
+
+    # # ============================================================
+    # # Lower panel: relative numerical error
+    # # ============================================================
+
+    # ax2.plot(
+    #     n_values,
+    #     1e6 * relative_error,
+    #     "o",
+    #     markersize=4
+    # )
+
+    # ax2.axhline(
+    #     0.0,
+    #     linestyle="--",
+    #     linewidth=1.2
+    # )
+
+    # ax2.set_xlabel(r"$n$")
+    # ax2.set_ylabel(
+    #     r"$10^6\,(\Delta_n^\Phi/\Delta_{\rm exact}^\Phi-1)$"
+    # )
+
+    # ax2.grid(alpha=0.2)
+
+
+    # plt.tight_layout()
+    # plt.show()
+
+    # ============================================================
+    # 1. Wineglass model parameters
+    # ============================================================
+
+    H_II = 10
+    rho_rad = 3/16
+
+    model = WineglassModel(
+        H_II=H_II,
+        rho_rad=rho_rad,
+    )
+
+    print("Wineglass parameters")
+    print("--------------------")
+    print(f"H_II    = {model.H_II:.8f}")
+    print(f"H_I     = {model.H_I:.8f}")
+    print(f"H       = {model.H:.8f}")
+    print(f"A_I     = {model.A_I:.8f}")
+    print(f"c_II    = {model.c_II:.8f}")
+    print(f"tau_min = {model.tau_min:.8f}")
+    print()
+
+    # ============================================================
+    # 2. Numerical parameters
+    # ============================================================
+
+    delta = 1e-4
+    t_final = 10.0
+
+    n_min = 2
+    n_max = 80
+
+    # ============================================================
+    # 3. Solver
+    # ============================================================
+
+    solver = Solveur(
+        model=model,
+        N_eval=1000,
+        rtol=1e-10,
+        atol=1e-12,
+        method="DOP853",
+    )
+
+    # ============================================================
+    # 4. Compute wineglass power spectrum
+    # ============================================================
+
+    results = []
+    W0_values = []
+
+    for n in range(n_min, n_max + 1):
+
+        solution = solver.solve_W(
+            n=n,
+            delta=delta,
+            t_final=t_final,
+        )
+
+        spectrum_point = PowerSpectrum.extract(solution)
+
+        results.append(spectrum_point)
+
+        # Riccati variable at the start of inflation t = 0.
+        # For the wineglass contour this is the end of Euclidean region II.
+        W0_values.append(solution.segments[1].W[-1])
+
+        print(
+            f"n = {n:2d}   "
+            f"Delta = {spectrum_point.dimensionless_power:.10e}"
+        )
+
+    # ============================================================
+    # 5. Convert results to arrays
+    # ============================================================
+
+    n_values = np.array([
+        result.n
+        for result in results
+    ])
+
+    Delta_WG = np.array([
+        result.dimensionless_power
+        for result in results
+    ])
+
+    # ============================================================
+    # 6. Bunch-Davies spectrum
+    #
+    # Same late-time Hubble constant H as the wineglass universe.
+    #
+    # Delta_BD = H^2 / (4 pi^2)
+    # ============================================================
+
+    Delta_BD = model.H**2 / (4.0 * np.pi**2)
+
+    ratio_BD = Delta_WG / Delta_BD
+
+    # ============================================================
+    # 7. Plot
+    # ============================================================
+
+    fig, (ax1, ax2) = plt.subplots(
+        2,
+        1,
+        figsize=(7.0, 6.0),
+        sharex=True,
+        gridspec_kw={
+            "height_ratios": [3, 1],
+            "hspace": 0.08,
+        },
+    )
+
+    # ------------------------------------------------------------
+    # Upper panel: dimensionless power spectrum
+    # ------------------------------------------------------------
+
+    ax1.plot(
+        n_values,
+        Delta_WG,
+        "o-",
+        markersize=4,
+        linewidth=1.2,
+        label="Wineglass",
+    )
+
+    ax1.axhline(
+        Delta_BD,
+        linestyle="--",
+        linewidth=1.8,
+        label="Bunch-Davies",
+    )
+
+    ax1.set_ylabel(
+        r"$\Delta^\Phi_n$"
+    )
+
+    ax1.ticklabel_format(
+        axis="y",
+        style="plain",
+        useOffset=False,
+    )
+
+    ax1.legend(
+        frameon=False
+    )
+
+    # Wineglass background parameters used for this spectrum.
+    parameter_text = (
+        rf"$H_{{\rm I}}={model.H_I:.4g}$" "\n"
+        rf"$H_{{\rm II}}={model.H_II:.4g}$" "\n"
+        rf"$H={model.H:.4g}$" "\n"
+        rf"$\tilde{{\rho}}_{{\rm rad}}^L={model.rho_rad:.4g}$"
+    )
+
+    ax1.text(
+        0.7,
+        0.5,
+        parameter_text,
+        transform=ax1.transAxes,
+        ha="left",
+        va="top",
+        bbox={
+            "boxstyle": "round",
+            "facecolor": "white",
+            "edgecolor": "0.8",
+            "alpha": 0.85,
+        },
+    )
+
+    ax1.grid(
+        alpha=0.2
+    )
+
+    # ------------------------------------------------------------
+    # Lower panel: ratio to Bunch-Davies
+    # ------------------------------------------------------------
+
+    ax2.plot(
+        n_values,
+        ratio_BD,
+        "o-",
+        markersize=4,
+        linewidth=1.2,
+    )
+
+    ax2.axhline(
+        1.0,
+        linestyle="--",
+        linewidth=1.5,
+    )
+
+    ax2.set_xlabel(
+        r"$n$"
+    )
+
+    ax2.set_ylabel(
+        r"$\Delta^\Phi_n/\Delta^\Phi_{\rm BD}$"
+    )
+
+    ax2.grid(
+        alpha=0.2
+    )
+
+    plt.tight_layout()
+
+    # # ============================================================
+    # # 8. Discrepancy with Bunch-Davies at the start of inflation
+    # #
+    # # Keep H_I fixed and vary the radiation energy density.
+    # # From the definition of H_I in WineglassModel,
+    # #
+    # # H_II^2 = 2 H_I^2 /
+    # #          [16 rho_rad H_I^2 - (sqrt(5) - 2)].
+    # # ============================================================
+
+    # H_I_fixed = model.H_I
+
+    # rho_rad_values = [
+    #     3.0 / 16.0,
+    #     1.0 / 4.0,
+    #     3.0 / 8.0,
+    #     1.0 / 2.0,
+    # ]
+
+    # fig_discrepancy, ax_discrepancy = plt.subplots(
+    #     figsize=(7.0, 4.5)
+    # )
+
+    # for rho in rho_rad_values:
+
+    #     if np.isclose(rho, rho_rad):
+    #         # Reuse the values already computed for the baseline model.
+    #         W0 = np.array(W0_values, dtype=complex)
+
+    #     else:
+    #         denominator = (
+    #             16.0 * rho * H_I_fixed**2
+    #             - (np.sqrt(5.0) - 2.0)
+    #         )
+
+    #         if denominator <= 0.0:
+    #             raise ValueError(
+    #                 "Chosen rho_rad is incompatible with the fixed H_I."
+    #             )
+
+    #         H_II_rho = np.sqrt(
+    #             2.0 * H_I_fixed**2 / denominator
+    #         )
+
+    #         model_rho = WineglassModel(
+    #             H_II=H_II_rho,
+    #             rho_rad=rho,
+    #         )
+
+    #         solver_rho = Solveur(
+    #             model=model_rho,
+    #             N_eval=1000,
+    #             rtol=1e-10,
+    #             atol=1e-12,
+    #             method="DOP853",
+    #         )
+
+    #         W0 = []
+
+    #         for n in range(n_min, n_max + 1):
+    #             solution_rho = solver_rho.solve_W(
+    #                 n=n,
+    #                 delta=delta,
+    #                 # Only W_n(0) is needed here.
+    #                 t_final=1e-8,
+    #             )
+
+    #             W0.append(
+    #                 solution_rho.segments[1].W[-1]
+    #             )
+
+    #         W0 = np.array(W0, dtype=complex)
+
+    #     # W_n^BD(0) = (n^2 - 1)/(n H^2), with
+    #     # H^2 = 3/(16 rho_rad).
+    #     W_BD_0 = (
+    #         4
+    #         * rho
+    #         * (n_values**2 - 1.0)
+    #         / (n_values)
+    #     )
+
+    #     discrepancy = (W0 - W_BD_0) / W0
+
+    #     ax_discrepancy.plot(
+    #         n_values,
+    #         discrepancy.real,
+    #         "o-",
+    #         markersize=3,
+    #         linewidth=1.1,
+    #         label=rf"$\tilde{{\rho}}_{{\rm rad}}^L={rho:.4g}$",
+    #     )
+
+    # ax_discrepancy.text(
+    #     0.7,
+    #     0.5,
+    #     rf"$H_{{\rm I}}={H_I_fixed:.4g}$",
+    #     transform=ax_discrepancy.transAxes,
+    #     ha="left",
+    #     va="top",
+    #     bbox={
+    #         "boxstyle": "round",
+    #         "facecolor": "white",
+    #         "edgecolor": "0.8",
+    #         "alpha": 0.85,
+    #     },
+    # )
+
+    # ax_discrepancy.set_xlabel(r"$n$")
+    # ax_discrepancy.set_ylabel(
+    #     r"$\left.\Delta\mathcal{W}_n/\mathcal{W}_n\right|_{t=0}$"
+    # )
+    # ax_discrepancy.legend(frameon=False)
+    # ax_discrepancy.grid(alpha=0.2)
+
+    # fig_discrepancy.tight_layout()
+
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

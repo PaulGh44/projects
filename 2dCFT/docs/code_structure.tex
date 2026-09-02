@@ -1045,25 +1045,19 @@ There exists a normalization scheme for which the OPE data reads
 \end{equation}
 {\color{red}Display a plot...}
 The second check is to check the crossing equation emerging from 2 bulk and 1 boundary insertions. Denoting the invariant cross-ratio $\eta = \frac{(z-\bar{z})(x_1-x_2)}{(z-x_1)(\bar{z}-x_2)}$, we have
-\begin{equation}
+\begin{equation}\label{eq:spacelikebulktobdy}
     \begin{aligned}
         &\braket{V_{P_{\alpha}}(z,\bar{z})\Psi_{P_2}^{\sigma_1 \sigma_2}(x_2)\Psi_{P_1}^{\sigma_2 \sigma_1}(x_1)}\\
         &= \eta^{h_1-h_2}(1-\eta)^{h_{\alpha}+\frac{h_2-h_1}{2}}\int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_2})\mathbb{C}_{P_2 P_s P_1}^{\sigma_2 \sigma_2 \sigma_1} e^{-\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta}^{(b)}(P_s, P_{\alpha \alpha 1 2})\\
         &= (\eta')^{h_1-h_2}(1-\eta')^{h_{\alpha}+\frac{h_2-h_1}{2}}\int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_1})\mathbb{C}_{P_2 P_1 P'_s}^{\sigma_2 \sigma_1 \sigma_1} e^{\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta'}^{(b)}(P_s, P_{\alpha \alpha 1 2})\,.
     \end{aligned}
 \end{equation}
-$\eta$ and $\eta'$ are related through the monodromy factor $\eta' = \eta e^{2\pi i}$. We can further simplify by eliminating the $\eta$ factors at the price of monodromy factors. Indeed, going around the branch point at $\eta =0$, we obtain a phase of $e^{2\pi i (h_1-h_2)}\times e^{2\pi i (h_s-2h_{\alpha})}$. 
-\begin{equation}
-    \begin{aligned}
-        & \int_{i\mathbb{R}} \frac{\rm{d}P_s}{i} R(P_\alpha, P_s | P_{\sigma_2})\mathbb{C}_{P_2 P_s P_1}^{\sigma_2 \sigma_2 \sigma_1} e^{-\frac{i\pi}{2}(h_s-2h_{\alpha})}\mathcal{V}_{\eta}^{(b)}(P_s, P_{\alpha \alpha 1 2})\\
-        &= e^{2\pi i \left(h_1-h_2\right)}\int_{i\mathbb{R}} \frac{\rm{d}P'_s}{i} R(P_\alpha, P'_s | P_{\sigma_1})\mathbb{C}_{P_2 P_1 P'_s}^{\sigma_2 \sigma_1 \sigma_1} e^{\frac{5\pi}{2} i (h'_s-2h_\alpha)}\mathcal{V}_{\eta}^{(b)}(P'_s, P_{\alpha \alpha 1 2})\,.
-    \end{aligned}
-\end{equation}
-There exists a normalization scheme for which the bulk to boundary data reads
+$\eta$ and $\eta'$ are related by the monodromy factor $\eta' = \eta \exp(2\pi i)$. There exists a normalization scheme for which the bulk to boundary data reads
 \begin{equation}
     R(P_1, P_2 | P_\sigma) = 2 \frac{\mathbb{M}^{TV, b}_{P_\sigma,P_1}[P_2]}{\rho_{0}(P_{\alpha})}\,,
 \end{equation}
-where $\rho_0(P_\alpha)$ corresponds the Plancheral measure of $U_q(sl_2)$.
+where $\rho_0(P_\alpha)$ corresponds the Plancheral measure of $U_q(sl_2)$.~\eqref{eq:spacelikebulktobdy} is the relation we would like to check at this stage. How to handle that numerically ? I guess the best way is to do the following. Take $\eta = 1+ i \epsilon$ and $\eta' = 1 - i \epsilon$ with $\epsilon$ small so that we evaluate each line at each side of the branch cut.
+\paragraph{Timelime case}
 \section{Numerical Packages/conventions}
 Since the only library that I found that does implement Barnes G-function is mpmath, we will use mpmath for the special functions.
 \begin{itemize}[leftmargin=*]

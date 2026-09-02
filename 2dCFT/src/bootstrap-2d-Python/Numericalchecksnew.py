@@ -15,7 +15,7 @@ from datetime import datetime
 
 
 # -------- Global settings --------
-mp.dps = 8 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
+mp.dps = 10 #be careful with the precision, if the precision is not enough you might raise "Zero Division error"
 
 # =========================================
 # Conformal dimension relation
@@ -163,6 +163,8 @@ def mixingsymmetriestimelikekernelsf(Theory: Theory, P1: complex, P2: complex, P
 
 def four_point_block_crossing(
     Theory: Theory,
+    Liouville_type: str,
+    kernel_code: int,
     P1: complex,
     P2: complex,
     P3: complex,
@@ -175,7 +177,14 @@ def four_point_block_crossing(
 ):
 
     b_block = complex(Theory.b)+1j*eps_b
-    charge = Charge("b", b_block)
+    if (Liouville_type == "spacelike"):
+        charge = Charge("b", b_block)
+        contour_shift = 0.00001
+    elif (Liouville_type == "timelike"):
+        charge = Charge("b", 1j*b_block)
+        contour_shift = 0.3
+    else:
+        raise ValueError("Invalid Liouville_type. It should be either 'spacelike' or 'timelike'.")
 
     P1, P2, P3, P4, Ps = map(complex, [P1, P2, P3, P4, Ps])
     q = complex(q)
@@ -201,7 +210,7 @@ def four_point_block_crossing(
     val_s = num_s.value(-Ps**2, True)
     # There is a thing in Sylvain's code which is $\delta = -P**2$ which is an important parameter
 
-    Integrand = lambda pt: mp.mpc(num_t.value((pt+0.000001j)**2, True))*kernel_rational(Theory, "spacelike", "fusion", [P1, P2, P3, P4], [Ps, 1j*(pt+0.000001j)], 0).getvalue()
+    Integrand = lambda pt: mp.mpc(num_t.value((pt+contour_shift)**2, True))*kernel_rational(Theory, Liouville_type, "fusion", [P1, P2, P3, P4], [Ps, 1j*(pt+contour_shift)], kernel_code).getvalue()
 
     RHS = mp.quad(Integrand, [-Theory.Lambda, Theory.Lambda])
 
@@ -344,43 +353,48 @@ def four_point_block_crossing_bdy_generate_data(
 
     return Relist, Imlist, xlist
 
-def three_point_block_crossing_bdy(
-    Theory: Theory,
-    Palpha: complex,
-    P1: complex,
-    P2: complex,
-    Psigma1: complex,
-    Psigma2: complex,
-    q: complex = 0.05,
-    N: int = 10,
-    eps_b = 1e-5
-    # It should not be too small, otherwise it blows up near b=1
-):
+# def three_point_block_crossing_bdy(
+#     Theory: Theory,
+#     Palpha: complex,
+#     P1: complex,
+#     P2: complex,
+#     Psigma1: complex,
+#     Psigma2: complex,
+#     eta: complex,
+#     N: int = 10,
+#     eps_b = 1e-5
+#     # It should not be too small, otherwise it blows up near b=1
+# ):
 
-    b_block = complex(Theory.b)+1j*eps_b
-    charge = Charge("b", b_block)
+#     b_block = complex(Theory.b)+1j*eps_b
+#     charge = Charge("b", b_block)
+    
 
-    Palpha, P1, P2 = map(complex, [Palpha, P1, P2])
-    q = complex(q)
-    dims_momenta = [
-    Dimension("P", 1j * P, charge)
-    for P in [Palpha, Palpha, P1, P2]
-    ]
+#     Palpha, P1, P2 = map(complex, [Palpha, P1, P2])
+#     q = complex(mp.qfrom(m=eta))
+#     etaprime = eta.conjugate()
+#     qprime = complex(mp.qfrom(m=etaprime))
+
+#     dims_momenta = [
+#     Dimension("P", 1j * P, charge)
+#     for P in [Palpha, Palpha, P1, P2]
+#     ]
 
 
-    block = Block(dims_momenta, N, t_channel=False)
+#     block = Block(dims_momenta, N, t_channel=False)
 
-    num = BlockNum(block, q)
+#     num_q = BlockNum(block, q)
+#     num_qprime = BlockNum(block, qprime)
 
 
-    IntegrandLHS = lambda ps: mp.mpc(num.value((ps+0.000001j)**2, True))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, P1, 1j*(ps+0.000001j), P2, Psigma1, Psigma2, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, (ps+0.000001j), Psigma2)*mp.exp(-1j*mp.pi*(conformaldimension(Theory,(ps+0.000001j))-2*conformaldimension(Theory, Palpha))/2)
+#     IntegrandLHS = lambda ps: mp.mpc(num_q.value((ps+0.000001j)**2, False))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, P1, 1j*(ps+0.000001j), P2, Psigma1, Psigma2, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, 1j*(ps+0.000001j), Psigma2)*mp.exp(-1j*mp.pi*(conformaldimension(Theory,1j*(ps+0.000001j))-2*conformaldimension(Theory, Palpha))/2)
 
-    IntegrandRHS = lambda psprime: mp.mpc(num.value((psprime+0.000001j)**2, True))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, 1j*(psprime+0.000001j), P1, P2, Psigma1, Psigma1, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, (psprime+0.000001j), Psigma1)*mp.exp(1j*5*mp.pi*(conformaldimension(Theory,(psprime+0.000001j))-2*conformaldimension(Theory,Palpha))/2) * mp.exp(1j*2*mp.pi*(conformaldimension(Theory,P1)-conformaldimension(Theory,P2)))
+#     IntegrandRHS = lambda psprime: mp.mpc(num_qprime.value((psprime+0.000001j)**2, False))*spacelikebdy_CFT_data.OPEdata_spacelikeC_b(Theory, 1j*(psprime+0.000001j), P1, P2, Psigma1, Psigma1, Psigma2)*spacelikebdy_CFT_data.bdy_to_bulk_data_spacelikeR_b(Theory, Palpha, 1j*(psprime+0.000001j), Psigma1)*mp.exp(1j*mp.pi*(conformaldimension(Theory,1j*(psprime+0.000001j))-2*conformaldimension(Theory,Palpha))/2)
 
-    LHS = mp.quad(IntegrandLHS, [-Theory.Lambda, Theory.Lambda])
-    RHS = mp.quad(IntegrandRHS, [-Theory.Lambda, Theory.Lambda])
+#     LHS = mp.quad(IntegrandLHS, [-Theory.Lambda, Theory.Lambda])*(eta)**(conformaldimension(Theory,P1)-conformaldimension(Theory,P2))*(1-eta)**(conformaldimension(Theory, Palpha)+(conformaldimension(Theory,P2)-conformaldimension(Theory,P1))/2)
+#     RHS = mp.quad(IntegrandRHS, [-Theory.Lambda, Theory.Lambda])*(etaprime)**(conformaldimension(Theory,P1)-conformaldimension(Theory,P2))*(1-etaprime)**(conformaldimension(Theory, Palpha)+(conformaldimension(Theory,P2)-conformaldimension(Theory,P1))/2)
 
-    return LHS, RHS, num.x
+#     return LHS, RHS, num_q.x, eta, etaprime
 
         
 
@@ -533,14 +547,14 @@ if __name__ == '__main__':
     # print()
 
 
-    # # #--- Demo 14: Check crossing blocks
-    # print("=== Demo: Check crossing blocks ===")
-    # LHS, RHS, eta, one_minus_eta = four_point_block_crossing(theo, P1, P2, P3, P4, Ps)
-    # print(f"Block_s = {LHS}")
-    # print(f"RHS = {RHS}")
-    # print(f"cross-ratio_s = {eta}")
-    # print(f"cross-ratio_t = {one_minus_eta}")
-    # print()
+    # #--- Demo 14: Check crossing blocks
+    print("=== Demo: Check crossing blocks spacelike ===")
+    LHS, RHS, eta, one_minus_eta = four_point_block_crossing(theo, "spacelike", 0, P1, P2, P3, P4, Ps)
+    print(f"Block_s = {LHS}")
+    print(f"RHS = {RHS}")
+    print(f"cross-ratio_s = {eta}")
+    print(f"cross-ratio_t = {one_minus_eta}")
+    print()
 
     # # # #--- Demo 15: Check crossing blocks boundary 4 point
     # print("=== Demo: Check crossing blocks boundary ===")
@@ -550,19 +564,30 @@ if __name__ == '__main__':
     # print(f"cross_ratio = {cross_ratio}")
     # print()
 
-    # # #--- Demo 15: Check crossing blocks boundary 1 bulk 2 bdy
-    print("=== Demo: Check crossing blocks boundary 2 ===")
-    LHS, RHS, cross_ratio = three_point_block_crossing_bdy(theo, P1, P2, P3, Psigma1, Psigma2)
-    print(f"LHS = {LHS}")
-    print(f"RHS = {RHS}")
-    print(f"cross_ratio = {cross_ratio}")
-    print()
+    # # # #--- Demo 16: Check crossing blocks boundary 1 bulk 2 bdy
+    # print("=== Demo: Check crossing blocks boundary 2 ===")
+    # LHS, RHS, cross_ratio, eta, etaprime = three_point_block_crossing_bdy(theo, P1, P2, P3, Psigma1, Psigma2, 1.05+0.000001j)
+    # print(f"LHS = {LHS}")
+    # print(f"RHS = {RHS}")
+    # print(f"cross_ratio = {cross_ratio}")
+    # print(f"cross_ratio_eta = {eta}")
+    # print(f"cross_ratio_etaprime = {etaprime}")
+    # print()
 
 
     # # #--- Demo 16: Check crossing blocks
     # print("=== Demo: Plot relative error ===")
     # Relist, Imlist, xlist = four_point_block_crossing_bdy_generate_data(theo, P1, P2, P3, P4, Psigma1, Psigma2, Psigma3, Psigma4, [k*0.005 for k in range (1,21)], N=10, eps_b=1e-5, save_path="crossing_bdy_data.txt")
     # utils_plot.plot_realandimag(theo, Relist, Imlist, xlist, "Relative error")
+
+    # #--- Demo 14: Check crossing blocks
+    print("=== Demo: Check crossing blocks timelike ===")
+    LHS, RHS, eta, one_minus_eta = four_point_block_crossing(theo, "timelike", 0, P1, P2, P3, P4, Ps)
+    print(f"Block_s = {LHS}")
+    print(f"RHS = {RHS}")
+    print(f"cross-ratio_s = {eta}")
+    print(f"cross-ratio_t = {one_minus_eta}")
+    print()
     
     
 
