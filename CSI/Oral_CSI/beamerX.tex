@@ -1,0 +1,211 @@
+%======================================================================================================
+%
+% BEAMER PACKAGES FILE (A. FIORUCCI)
+% AFFILIATION : ECOLE POLYTECHNIQUE
+%
+%======================================================================================================
+
+%======================================================================================================
+% LATEX PACKAGES
+%======================================================================================================
+
+% Typesetting packages
+	\usefonttheme{professionalfonts}
+	\usepackage[UKenglish]{babel}
+	\usepackage[T1]{fontenc}
+	\usepackage{libertine}
+	\usepackage[libertine]{newtxmath}
+	\usepackage[cal=euler,scr=boondoxo]{mathalfa}
+		
+%% Math and symbols
+	\usepackage{amssymb}
+	\usepackage{amsmath}
+	\usepackage{amsfonts}
+	\usepackage{mathtools}
+	\usepackage{bm}
+	\usepackage{upgreek}
+	\usepackage{cancel}
+	\usepackage{fontawesome}
+	\usepackage{wasysym}
+	\usepackage{bigints}
+	\usepackage{slashed}
+	
+% Layout
+	\usepackage[absolute,overlay]{textpos}
+	\usepackage{graphicx}
+	\usepackage{float}
+	\usepackage{graphbox}
+	
+% Tikz drawings
+	\usepackage{xcolor}
+	\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{decorations.pathreplacing}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{arrows.meta}
+	\usetikzlibrary{positioning}
+	\usetikzlibrary{shadows,shadings}
+	\usepackage{tikzsymbols}
+	\usepackage{pgf-pie}
+	
+% Arrays
+	\usepackage{array}
+	\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	
+	
+% Page format
+	\usepackage[toc,page]{appendix}
+	\usepackage{caption}
+	\usepackage{changepage}
+	\usepackage{setspace}
+	\usepackage[labelformat=simple]{subfig}
+	\renewcommand{\thesubfigure}{\relax}
+	\usepackage[export]{adjustbox}
+	\usepackage{appendixnumberbeamer}
+	\usepackage{multirow}
+
+% Multimedia content
+	\usepackage{multimedia}
+	
+% References
+	\usepackage{hyperref}
+
+	\usepackage{comment}
+	
+%======================================================================================================
+% BEAMER SPECIFIC SETTINGS
+%======================================================================================================
+
+% Define institute colors
+	\definecolor{xblue}{RGB}{1,66,106}
+	\definecolor{xlightblue}{RGB}{184,211,225}
+	\definecolor{xgray}{RGB}{150,150,150}
+	\definecolor{xsepia}{RGB}{166,139,78}
+	\definecolor{xred}{RGB}{200,32,33} %{169,32,33}
+	\definecolor{xorange}{RGB}{254,80,0}
+	\definecolor{xgreen}{RGB}{67,176,42}
+	\definecolor{xpurple}{RGB}{77,22,84}
+	\definecolor{xpink}{RGB}{227,28,121}
+
+% Main theme
+	\usetheme{Madrid}
+	\setbeamersize{text margin left=20pt,text margin right=20pt} 
+
+% Main colour
+	\usecolortheme[named=xblue]{structure}
+
+% Layout of the slide
+	\setbeamertemplate{navigation symbols}{} % No navigation symbol at the bottom of the page
+	\setbeamercolor{frametitle}{fg=xblue,bg=gray!20}
+	\setbeamerfont{frametitle}{family=\rmfamily,shape=\scshape}
+	
+% Layout of the blocks
+\setbeamercolor{block title}{fg=xblue,bg=gray!20}
+	\setbeamerfont{block title}{family=\rmfamily,shape=\scshape}
+
+
+% Item bullets
+	\setbeamertemplate{enumerate items}[square]
+	\setbeamertemplate{sections/subsections in toc}[square]
+	
+\newcommand{\sectionframe}{
+\begingroup
+\setbeamercolor{page number in head/foot}{fg=xblue}
+\begin{frame}{Outline of the talk}
+	\tableofcontents[currentsection]
+\end{frame}
+\endgroup
+\addtocounter{framenumber}{-1}
+}
+
+%======================================================================================================
+% PERSONAL COMMANDS
+%======================================================================================================
+
+\usepackage{appendixnumberbeamer}
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+% Custom colours
+	\definecolor{darkred}{RGB}{192,0,0} 
+	\definecolor{Cgreen}{RGB}{0,153,0}
+	\definecolor{oldbook}{RGB}{255,222,117}
+
+% Custom symbols
+	\newcommand{\D}{\text{d}}
+	\newcommand{\indep}{\raisebox{0.05em}{\rotatebox[origin=c]{90}{$\models$}}}
+	\newcommand{\ndelta}{\delta\hspace{-0.50em}\slash\hspace{-0.05em} }
+
+% Semi-direct sum
+	\usepackage{pict2e}
+	\makeatletter
+		\newcommand{\loplus}{\mathbin{\mathpalette\dog@lsemi{+}}}
+		\newcommand{\dog@lsemi}[2]{\dog@semi{#1}{#2}{270,90}}
+		\newcommand{\dog@semi}[3]{%
+  		\begingroup
+  			\sbox\z@{$\m@th#1#2$}%
+  			\setlength{\unitlength}{\dimexpr\ht\z@+\dp\z@\relax}%
+  			\makebox[\wd\z@]{\raisebox{-\dp\z@}{%
+    		\begin{picture}(1,1)
+    			\linethickness{\variable@rule{#1}}
+    			\roundcap
+    			\put(0.5,0.5){\makebox(0,0){\raisebox{\dp\z@}{$\m@th#1#2$}}}
+    			\put(0.5,0.5){\arc[#3]{0.5}}
+    		\end{picture}%
+  		}}%
+  		\endgroup
+		}
+		\newcommand{\variable@rule}[1]{%
+ 		\fontdimen8  
+  		\ifx#1\displaystyle\textfont3\else
+    	\ifx#1\textstyle\textfont3\else
+      	\ifx#1\scriptstyle\scriptfont3\else
+        \scriptscriptfont3\relax
+  		\fi\fi\fi
+		}
+	\makeatother
+
+% Text article references
+	\newcommand{\cit}[1]{{\footnotesize \color{xsepia} \normalfont{[#1]}}}
+% Text talks
+	\newcommand{\cittalk}[1]{{\footnotesize \color{xorange} \normalfont{[#1]}}}
+	
+% Small quotations
+	\newcommand{\quot}[1]{{\footnotesize \color{gray} \normalfont{#1}}}
+		
+% Important results
+	\usepackage{mdframed}
+	\global\mdfdefinestyle{HL}{
+		linecolor=xblue, linewidth=1pt,%
+		topline=false, bottomline=false, rightline=false,%
+		align=left, backgroundcolor=xblue!20, userdefinedwidth=\textwidth,%
+		innerleftmargin=5, innertopmargin=5, innerbottommargin=5, innerrightmargin=5, skipabove=5}
+		
+	\global\mdfdefinestyle{HLrelax}{
+		linecolor=xblue, linewidth=1pt,%
+		topline=false, bottomline=false, rightline=false,%
+		align=left, backgroundcolor=xblue!20,%
+		innerleftmargin=5, innertopmargin=5, innerbottommargin=5, innerrightmargin=5, skipabove=5}
+
+	\newcommand{\hl}[1]{
+		\begin{mdframed}[style=HL]
+		#1
+		\end{mdframed}
+		\vspace{8pt}
+	}
+	
+	\newcommand{\hlrelax}[1]{
+		\begin{mdframed}[style=HLrelax]
+		#1
+		\end{mdframed}
+		\vspace{8pt}
+	}
+
+	
+%======================================================================================================

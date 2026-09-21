@@ -1,0 +1,58 @@
+\begingroup
+% Remove header and footline
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+% Plain frame
+\begin{frame}[plain]
+
+\begin{tikzpicture}[remember picture,overlay]
+    % Outer frame
+    \draw [draw=xlightblue,thick] ($(current page.north west)+(.3,-.3)$) rectangle ($(current page.south east)+(-.3,.3)$);
+    % Title
+    \node[align=center,text width=0.9\textwidth,inner sep=0.3cm] (title) at ($(current page.center)!0.65!(current page.north)$) {{\Large \color{xblue} \sc \inserttitle}};
+    % Author
+	 \node[align=center,black] (author) at ($(title)-(0,40pt)$) {\bfseries\insertauthor};
+	 % Institute
+	 \node[align=center,black] (institute) at ($(author)-(0,30pt)$) {\small\insertinstitute};
+	 % Location
+	 \node[align=center,black] (location) at ($(institute)-(0,30pt)$) {\small\bfseries\insertsubtitle};
+	 % Reference
+	 \node[align=center,black] (reference) at ($(location)-(0,45pt)$) {\small\insertreference};
+	 % Date
+	 \node[align=center,black,below,yshift=-5pt] (date) at (location) {\small\insertdate};
+	 % Institution logo
+	 \node[anchor=south west] (llogo) at ($(current page.south west)+(.5,.5)$) {\includegraphics[height=1.2cm]{RVB}};
+	 \node[anchor=south] (clogo) at ($(current page.south)+(0,.5)$) {\includegraphics[height=1.2cm]{cnrs}};
+%	 \node[] (mlogo) at ($(llogo)!0.5!(clogo)$) {\includegraphics[height=.9cm]{cnrs}};
+	 \node[anchor=south east] (rlogo) at ($(current page.south east)+(-.5,.5)$) {\includegraphics[height=1.2cm]{cpht}};
+\end{tikzpicture}
+\addtocounter{framenumber}{-1}
+\end{frame}
+%
+%
+%
+%\begin{frame}[plain]
+%
+%\begin{tikzpicture}[remember picture,overlay]
+%    % Outer frame
+%    \draw [draw=xlightblue,thick] ($(current page.north west)+(.3,-.3)$) rectangle ($(current page.south east)+(-.3,.3)$);
+%\end{tikzpicture}
+%
+%\begin{center}
+%    \textsc{Based on}\\[4pt]
+%	A. Fiorucci, S. Pekar, P. M. Petropoulos and M. Vilatte,\\[4pt] {\bfseries \color{xblue} Carrollian-holographic Derivation of \\ Gravitational Flux-balance Laws}\\[4pt]
+%	Phys. Rev. Lett. \textbf{135} (2025) 26, 261602\\[2pt]
+%	\texttt{[arXiv:2505.00077]}	\\[5pt]
+%	
+%	\bigskip
+%	\bigskip
+%	
+%	\textsc{Work supported by}\\[2pt]
+%	\textbf{Centre National de la Recherche Scientifique} (France) \\
+%	\textbf{Fondation de l'École polytechnique} (France) \\
+%	\textbf{Solvay Fund granted to Prof. Henneaux} (Belgium)
+%\end{center}
+%
+%\addtocounter{framenumber}{-1}
+%\end{frame}
+\endgroup

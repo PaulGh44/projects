@@ -1,0 +1,686 @@
+\documentclass[a4paper]{article}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage{jheppub}
+\usepackage{overpic}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{pdflscape}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings}
+
+\tikzset{
+  mid arrow/.style={
+    postaction={
+      decorate,
+      decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{Stealth[length=6pt,width=6pt]}}
+      }
+    }
+  }
+}
+
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{braket}
+\usepackage{empheq}
+\usepackage{graphicx} % Allows including images
+\usepackage{tikz-3dplot}
+% réglage de la vue 3D : élévation=20°, azimut=110°
+\tdplotsetmaincoords{20}{110}
+\usetikzlibrary{decorations.pathreplacing,calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+\definecolor{blue5}{rgb}{0, 0, 0.66666}
+\definecolor{red4}{rgb}{0.8, 0, 0}
+\definecolor{navyblue}{rgb}{0, 0.2745, 0.67843}
+\definecolor{cornflowerblue}{rgb}{0.388235, 0.6941176, 0.898039}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usetikzlibrary{decorations.text,decorations.pathmorphing}
+
+
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{figure}[t!]
+% \centering
+
+% \begin{subfigure}{0.48\textwidth}
+% \centering
+% \resizebox{!}{2.8cm}{
+% \begin{tikzpicture}[xscale=0.35, yscale=0.4]
+% \hspace{0.3cm}
+
+% \path[fill=cyan!10, opacity=0.25]
+%   (-7.1,0)
+% arc[start angle=180,end angle=270,x radius=1,y radius=3] 
+%   .. controls (-5.,-2.2) and (-3.,-0.8) .. (-0.5,-0.8)
+%   .. controls (0.1,-0.8) and (1.4,-2) .. (2.,-2)     
+% arc[start angle=-90,end angle=-270,x radius=0.6,y radius=2]
+%   .. controls (1.4,2) and (0.1,0.8) .. (-0.5,0.8)
+%   .. controls (-3.,0.8) and (-5.,2.2) .. (-6.1,3)
+% arc[start angle=90,end angle=180,x radius=1,y radius=3]
+%   -- cycle;
+
+% \path[fill=cyan!10, opacity=0.25]
+%   (10.1,-3)
+%   .. controls (9.,-2.2) and (7.,-0.8) .. (4.5,-0.8)
+%   .. controls (3.9,-0.8) and (2.6,-2.) .. (2,-2)
+% arc[start angle=-90,end angle=-270,x radius=0.6,y radius=2]
+%   .. controls (2.6,2.) and (3.9,0.8) .. (4.5,0.8)
+%   .. controls (7.,0.8) and (9.,2.2) .. (10.1,3)
+% arc[start angle=90,end angle=-90,x radius=1,y radius=3]
+%   -- cycle;
+
+% \draw[thick, cornflowerblue, dotted] (-6.1,0) ellipse (1 and 3);
+% \draw[thick,  cornflowerblue, dotted] (2,0) ellipse (0.6 and 2);
+% \draw[thick,  cornflowerblue, dotted] (10.1,0) ellipse (1 and 3);
+
+
+% \draw[thick, navyblue, decorate,
+%       decoration={
+%           text along path,
+%           text={|\scriptsize|EAdS boundary},
+%           text align=center,
+%           text color=navyblue,
+%           reverse path,
+%           raise=3.5pt,
+%           text format delimiters={|}{|}
+%       }
+% ]
+% (-6.1,3) arc[start angle=90,end angle=270,x radius=1,y radius=3];
+
+
+% \draw[thick, navyblue, decorate,
+%       decoration={
+%           text along path,
+%           text={|\scriptsize|EAdS boundary},
+%           text align=center,
+%           text color=navyblue,
+%           reverse path,
+%           raise=0.pt,
+%           text format delimiters={|}{|}
+%       }
+% ]
+% (10.8,3) arc[start angle=90,end angle=-90,x radius=1,y radius=3];
+
+
+% \draw[thick, cornflowerblue]
+%   (-6,3) .. controls (-5.,2.2) and (-3,0.8) .. (-0.5,0.8)
+%         .. controls (.1,0.8) and (1.4,2.) .. (2,2);
+
+% \draw[thick, cornflowerblue]
+%   (10,3) .. controls (9,2.2) and (7.,0.8) .. (4.5,0.8)
+%         .. controls (3.9,0.8) and (2.6,2.) .. (2,2);
+
+% \draw[thick, cornflowerblue]
+%   (-6,-3) .. controls (-5.,-2) and (-3,-0.8) .. (-0.5,-0.8)
+%          .. controls (0.1,-0.8) and (1.4,-2.) ..(2,-2);
+
+% \draw[thick, cornflowerblue]
+%   (10,-3) .. controls (9.,-2.2) and (7.,-0.8) .. (4.5,-0.8)
+%         .. controls (3.9,-0.8) and (2.6,-2.) .. (2,-2);
+
+% \draw[->,  line width=0.9pt,  opacity=0.2] (-6,0) -- (10.2,0);
+% \node[above] at (9.7,0.) {\scriptsize\color{gray}$\tau$};
+
+% \end{tikzpicture}
+% }
+% \end{subfigure}
+% \hfill
+% \begin{subfigure}{0.4\textwidth}
+% \centering
+% \resizebox{!}{2.8cm}{
+% \begin{tikzpicture}[xscale=0.35, yscale=0.4]
+
+% \path[fill=cyan!10, opacity=0.25]
+%   (-7.1,0)
+%   arc[start angle=180,end angle=270,x radius=1,y radius=3] 
+%   .. controls (-5,-2.2) and (-3,-0.8) .. (-0.5,-0.8)
+%   .. controls (0.1,-0.8) and (1.4,-2) .. (2,-2)     
+%   arc[start angle=-90,end angle=-270,x radius=0.6,y radius=2]
+%   .. controls (1.4,1.95) and (0.6,1.4) .. (0,0.8)
+%   .. controls (-3,1) and (-4.8,2) .. (-6.1,3)
+%   arc[start angle=90,end angle=180,x radius=1,y radius=3]
+%   -- cycle;
+
+% \path[fill=red, opacity=0.08]
+%   (1.4,0)
+%   arc[start angle=180,end angle=-90,x radius=0.6,y radius=2] 
+%   .. controls (3.5,-2) .. (6.1,-3)                    
+%   arc[start angle=-90,end angle=90,x radius=1,y radius=3]  
+%   .. controls (3.5,2) .. (2,2)                        
+%   arc[start angle=90,end angle=180,x radius=0.6,y radius=2]  
+%   -- cycle;
+
+% \pgfdeclareradialshading{inflationellipse}{\pgfpoint{0cm}{0cm}}{
+%   color(0cm)=(red4!80);
+%   color(0.6cm)=(orange!40);
+%   color(0.9cm)=(yellow!10)
+% }
+
+% \shade[shading=inflationellipse, opacity=0.6] (2,0) ellipse (0.6 and 2);
+
+
+% \draw[thick, navyblue, decorate,
+%       decoration={
+%           text along path,
+%           text={|\scriptsize|EAdS boundary},
+%           text align=center,
+%           text color=navyblue,
+%           reverse path,
+%           raise=3.5pt,
+%           text format delimiters={|}{|}
+%       }
+% ]
+% (-6.1,3) arc[start angle=90,end angle=270,x radius=1,y radius=3];
+
+% \draw[thick, red4, decorate,
+%       decoration={
+%           text along path,
+%           text={|\scriptsize|Inflation},
+%           text align=center,
+%           text color=red4,
+%           reverse path,
+%           raise=0.pt,
+%           text format delimiters={|}{|}
+%       }
+% ]
+% (2.2,3) arc[start angle=95,end angle=-90,x radius=1,y radius=3];
+
+
+
+% \draw[thick, red4, decorate,
+%       decoration={
+%           text along path,
+%           text={|\tiny|Lorentzian evolution},
+%           text align=center,
+%           text color=red4,
+%           reverse path,
+%           raise=0.pt,
+%           text format delimiters={|}{|}
+%       }
+% ]
+% (6.8,3) arc[start angle=90,end angle=-90,x radius=1,y radius=3];
+
+
+
+% \draw[thick, cornflowerblue, dotted] (-6.1,0) ellipse (1 and 3);
+% \draw[thick, red4] (6.1,0) ellipse (1 and 3);
+% \draw[thick, red4, dotted] (2,0) ellipse (0.6 and 2);
+
+% \draw[thick, cornflowerblue]
+%   (-6,3) .. controls (-5.,2.2) and (-3,0.8) .. (-0.5,0.8)
+%         .. controls (.1,0.8) and (1.4,2.) .. (2,2);
+
+% \draw[thick, red4] (2,2) .. controls (3.5,2) .. (6,3);
+
+% \draw[thick, cornflowerblue]
+%   (-6,-3) .. controls (-5.,-2) and (-3,-0.8) .. (-0.5,-0.8)
+%          .. controls (0.1,-0.8) and (1.4,-2.) .. (2,-2);
+
+% \draw[thick, red4] (2,-2) .. controls (3.5,-2) .. (6,-3);
+
+% \draw[->,  line width=0.9pt,  opacity=0.2] (-6,0) -- (2,0);
+% \node[above] at (1.1,0.) {\scriptsize\color{gray}$\tau$};
+
+% \draw[->,  line width=0.9pt,  opacity=0.2] (2.2,0) -- (6.6,0);
+% \node[above] at (6.,0.) {\scriptsize\color{gray}$t$};
+
+% \end{tikzpicture}
+% }
+% \end{subfigure}
+% \label{fig:wormholes}
+% \end{figure}
+
+% \begin{figure}[t]
+% \centering
+
+% % ============================================================
+% % LEFT PANEL: complex t plane
+% % ============================================================
+% \begin{subfigure}[c]{0.42\textwidth}
+% \centering
+
+% \begin{tikzpicture}[
+%     scale=0.68,
+%     baseline=(current bounding box.center),
+%     mid arrow/.style={
+%         postaction={
+%             decorate,
+%             decoration={
+%                 markings,
+%                 mark=at position 0.5 with
+%                 {\arrow{Stealth[length=6pt,width=6pt]}}
+%             }
+%         }
+%     }
+% ]
+
+% \pgfdeclareradialshading{inflationellipse}{\pgfpoint{0cm}{0cm}}{
+%   color(0cm)=(red4!80);
+%   color(0.6cm)=(orange!40);
+%   color(0.9cm)=(yellow!10)
+% }
+
+% % Axes
+% \draw[->] (-3.1,0) -- (3.5,0)
+% node[right] {$\Re\,(t)$};
+
+% \draw[->] (0,-3.2) -- (0,3.2)
+% node[above] {$\Im\,(t)$};
+
+% % Upper Euclidean contour: (sigma,eta)=(+,+)
+% \draw[
+%     thick,
+%     cornflowerblue,
+%     postaction={
+%         decorate,
+%         decoration={
+%             markings,
+%             mark=at position 0.55 with
+%             {\arrow{Stealth[length=6pt,width=6pt]}}
+%         }
+%     }
+% ]
+% (0,2.6) -- (0,0);
+
+% % Lower alternative Euclidean contour: (sigma,eta)=(-,-)
+% \draw[
+%     thick,
+%     cornflowerblue,
+%     dashed,
+%     postaction={
+%         decorate,
+%         decoration={
+%             markings,
+%             mark=at position 0.55 with
+%             {\arrow{Stealth[length=6pt,width=6pt]}}
+%         }
+%     }
+% ]
+% (0,-2.6) -- (0,0);
+
+% %Lorentzian segment
+% \draw[
+%     thick,
+%     red4,
+%     mid arrow
+% ]
+% (0,0) -- (2.8,0);
+
+
+% % End points
+% \fill[cornflowerblue] (0,2.6) circle (2.2pt);
+% \fill[cornflowerblue] (0,-2.6) circle (2.2pt);
+% \fill[red4] (2.8,0) circle (2.2pt);
+
+% % Endpoint labels
+% \node[left=5pt] at (0,2.6)
+% {\small $\displaystyle \frac{i\pi}{2H}$};
+
+% \node[left=5pt] at (0,-2.6)
+% {\small $\displaystyle -\frac{i\pi}{2H}$};
+
+% \node[below=5pt] at (2.8,0)
+% {\small $t_f>0$};
+
+% % Origin
+% \node[below left=4pt] at (0,0)
+% {\small $0$};
+
+% % Region labels
+% \node[cornflowerblue,left] at (-0.18,1.25)
+% {\small Euclidean};
+
+% \node[cornflowerblue,left,align=right] at (-0.18,-1.30)
+% {\small alternative\\[-1mm]\small Euclidean};
+
+% \node[red4,above] at (2.2,0.18)
+% {\small Lorentzian};
+
+% % Saddle labels
+% \node[cornflowerblue,right] at (0.18,2.15)
+% {\scriptsize $(\sigma,\eta)=(+,+)$};
+
+% \node[cornflowerblue,right] at (0.18,-2.15)
+% {\scriptsize $(\sigma,\eta)=(-,-)$};
+
+% \end{tikzpicture}
+
+% \end{subfigure}
+% \hfill
+% % ============================================================
+% % RIGHT PANEL
+% % ============================================================
+% \begin{subfigure}[c]{0.54\textwidth}
+% \centering
+
+% \raisebox{-1.1\height}{
+% \resizebox{0.6\linewidth}{!}{
+% \begin{tikzpicture}[xscale=0.35,yscale=0.4]
+
+% % Euclidean hemisphere
+% \path[fill=cyan!10, opacity=0.3]
+%     (2,2)
+%     arc[  start angle=90,  end angle=270,  x radius=2,  y radius=2 ]
+%     -- (2,-2) -- cycle;
+
+% \draw[thick,cornflowerblue]
+%     (2,2)
+%     arc[ start angle=90, end angle=270,  x radius=2,  y radius=2 ];
+
+% % no-boundary label
+% \draw[ thick, navyblue, decorate, decoration={
+%         text along path,
+%         text={|\tiny|no-boundary},
+%         text align=center,
+%         text color=navyblue,
+%         reverse path,
+%         raise=3.5pt,
+%         text format delimiters={|}{|}
+%     }
+% ]
+% (2,2)
+% arc[start angle=90, end angle=270, x radius=2, y radius=2];
+
+% % Lorentzian region
+% \path[fill=red,opacity=0.08]
+%  (1.4,0)
+%  arc[ start angle=180, end angle=-90, x radius=0.6, y radius=2]
+%  .. controls (3.5,-2) .. (6.1,-3)
+%  arc[ start angle=-90, end angle=90, x radius=1, y radius=3
+%  ]
+%  .. controls (3.5,2) .. (2,2)
+%  arc[ start angle=90,  end angle=180,  x radius=0.6,  y radius=2 ]
+%  -- cycle;
+
+% % Matching surface
+% \shade[
+%     shading=inflationellipse,
+%     opacity=0.6
+% ]
+% (2,0) ellipse (0.6 and 2);
+
+% % Lorentzian boundaries
+% \draw[thick,red4]
+% (6.1,0) ellipse (1 and 3);
+
+% \draw[thick,red4,dotted]
+% (2,0) ellipse (0.6 and 2);
+
+% \draw[thick,red4]
+% (2,2)
+% .. controls (3.5,2) ..
+% (6,3);
+
+% \draw[thick,red4]
+% (2,-2)
+% .. controls (3.5,-2) ..
+% (6,-3);
+
+% % Inflation label
+% \draw[thick, red4, decorate, decoration={
+%         text along path,
+%         text={|\scriptsize|Inflation},
+%         text align=center,
+%         text color=red4,
+%         reverse path,
+%         raise=0pt,
+%         text format delimiters={|}{|}
+%     }
+% ]
+% (2.2,3)
+% arc[
+%     start angle=95,
+%     end angle=-90,
+%     x radius=1,
+%     y radius=3
+% ];
+
+% % Lorentzian evolution label
+% \draw[ thick, red4, decorate, decoration={
+%         text along path,
+%         text={|\tiny|Lorentzian evolution},
+%         text align=center,
+%         text color=red4,
+%         reverse path,
+%         raise=0pt,
+%         text format delimiters={|}{|}
+%     }
+% ]
+% (6.8,3)
+% arc[ start angle=90, end angle=-90,  x radius=1,  y radius=3
+% ];
+
+% % Horizontal Euclidean time line
+% \draw[->, line width=0.9pt, opacity=0.2]
+% (0,0) -- (2,0);
+
+% \node[above] at (1.1,0)
+% {\scriptsize\color{gray}$\tau$};
+
+% % Horizontal Lorentzian time line
+% \draw[
+%     ->,
+%     line width=0.9pt,
+%     opacity=0.2
+% ]
+% (2.2,0) -- (6.6,0);
+
+% \node[above] at (6,0)
+% {\scriptsize\color{gray}$t$};
+
+% \end{tikzpicture}
+% }}
+% \end{subfigure}
+
+% \label{fig:no-boundary-contour}
+
+% \end{figure}
+
+% \begin{figure}[htb]
+% \centering
+% \begin{tikzpicture}
+
+
+% \path[fill=cyan!10, opacity=0.25]
+%   (-7.1,0)
+%   arc[start angle=180,end angle=270,x radius=1,y radius=3] 
+%   .. controls (-4.8,-2) and (-3,-1) .. (0,-0.8)
+%   .. controls (0.6,-1.4) and (1.4,-1.95) .. (2,-2)     
+%   arc[start angle=-90,end angle=-270,x radius=0.6,y radius=2]
+%    % change this angle=270 to  angle=90
+%   .. controls (1.4,1.95) and (0.6,1.4) .. (0,0.8)
+%   .. controls (-3,1) and (-4.8,2) .. (-6.1,3)
+%   arc[start angle=90,end angle=180,x radius=1,y radius=3]
+%   -- cycle;
+
+% \path[fill=red, opacity=0.08]
+%   (1.4,0)
+%   arc[start angle=180,end angle=-90,x radius=0.6,y radius=2] 
+%    % change this angle=-90 to  angle=270
+%   .. controls (3.5,-2) .. (6.1,-3)                    
+%   arc[start angle=-90,end angle=90,x radius=1,y radius=3]  
+%   .. controls (3.5,2) .. (2,2)                        
+%   arc[start angle=90,end angle=180,x radius=0.6,y radius=2]  
+%   -- cycle;
+
+% % \shade[inner color=red4!60,  outer color=orange!40, opacity=0.6] 
+% %   (2,0) ellipse (0.6 and 2);
+
+% \pgfdeclareradialshading{inflationellipse}{\pgfpoint{0cm}{0cm}}{
+%   color(0cm)=(red4!80);
+%   color(0.6cm)=(orange!40);
+%   color(0.9cm)=(yellow!10)
+% }
+% \shade[shading=inflationellipse, opacity=0.6] (2,0) ellipse (0.6 and 2);
+
+
+
+% % horizontal axis
+% \draw[->] (-6,0) -- (6.2,0);
+
+% % Points
+% \filldraw[fill=navyblue] (-6,0) circle (2pt) node[below] {$\begin{array}{c} \color{navyblue}{z_n^E \to 0}\\ \tau \to -\infty\end{array}$};
+% \filldraw[fill=red4] (2,0) circle (2pt);
+% \filldraw[fill=red4] (6,0) circle (2pt) node[below] {$\begin{array}{c} \color{red4}{z_n^L \to 0} \\ t \to +\infty \end{array}$};
+
+
+% \draw[thick, red4, decorate, 
+%       decoration={text along path, text={Lorentzian evolution}, text align=center, text color=red4}] 
+%       (2,2.1) .. controls  (3.5,2.1) .. (6,3.1);
+% \draw[thick, navyblue, decorate, 
+%       decoration={text along path, 
+%                   text={Euclidean past}, 
+%                   text align=center,
+%                   text color=navyblue}] 
+%       (-5.9,3.1) .. controls (-4.8,2.1) and (-3,1.1) .. (0,0.8);
+% \draw[thick, navyblue, decorate,
+%       decoration={
+%       text along path,
+%                   text={EAdS boundary},
+%                   text align=center,
+%                   text color=navyblue, reverse path, raise=3.5pt}
+%                 ] 
+%        (-6,3) .. controls (-7.4,2.8) and (-7.4,-2.8)  .. (-6,-3);
+% \draw[thick, red4, decorate,
+%       decoration={
+%       text along path,
+%                   text={Inflation},
+%                   text align=center,
+%                   text color=red4
+%                    ,  raise=3pt
+%                   }
+%                 ] 
+%        (2,2) .. controls (2.8,1.8) and (2.8,-1.8)  .. (2,-2);
+
+
+% % Regions
+% \node[above] at (-4,0.5) {\Large\color{cornflowerblue}{I}};
+% \node[above] at (0.8,0.5) {\Large\color{navyblue}{II}};
+
+
+% % Legend points
+% \node[below] at (2.2,-2.2) {$t =0 = \tau$};
+
+% % Waves
+
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, navyblue] (-5,-1) -- (-4,-1) node[midway, above] {$\Phi^\star_{n}(\tau)$};
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, navyblue] (-5,-1.3) -- (-4,-1.3);
+
+
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, red4] (0.5,-1) -- (1.5,-1) node[midway, above] {$\Phi^\star_{n}(\tau)$};
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, red4] (0.5,-1.3) -- (1.5,-1.3);
+
+
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, red4] (3.7,-1) -- (4.7,-1) node[midway, above] {$\Phi^\star_{n}(t)$};
+% \draw[->, decorate, decoration={snake, amplitude=0.4mm, segment length=3mm}, thick, red4] (3.7,-1.3) -- (4.7,-1.3);
+
+% \draw[thick, cornflowerblue, dotted] (-6.1,0) ellipse (1 and 3);   %
+% \draw[thick, red4] (6.1,0) ellipse (1 and 3);   % 
+% \draw[thick, red4, dotted] (2,0) ellipse (0.6 and 2);
+
+% % 
+% % \draw[thick, navyblue]
+% %   (-6,3) .. controls (-4.8,2) and (-3,1) .. (0,0.8)
+% %         .. controls   (0.6,1.4) and (1.4,1.95) .. (2,2);
+
+% % \draw[thick, navyblue]
+% %   (-6,-3) .. controls (-4.8,-2) and (-3,-1) .. (0,-0.8)
+% %          .. controls (0.6,-1.4) and (1.4,-1.95) ..(2,-2);
+
+% \draw[thick, cornflowerblue]
+%   (-6,3) .. controls (-4.8,2) and (-3,1) .. (0,0.8);
+
+% \draw[thick, cornflowerblue]
+%   (-6,-3) .. controls (-4.8,-2) and (-3,-1) .. (0,-0.8);
+
+% % Δεξί (γαλάζιο) κομμάτι
+% \draw[thick, dashed, navyblue]
+%   (0,0.8) .. controls (0.6,1.4) and (1.4,1.95) .. (2,2);
+
+% \draw[thick, dashed, navyblue]
+%   (0,-0.8) .. controls (0.6,-1.4) and (1.4,-1.95) .. (2,-2);
+
+
+% \draw[thick, red4] (2,2) .. controls  (3.5,2) .. (6,3);
+% \draw[thick, red4] (2,-2) .. controls (3.5,-2) .. (6,-3);
+
+% \draw[<->,thick, navyblue] (-6,-3.8) -- (-4,-3.8);
+% \node[below] at (-5,-4) {\color{navyblue} \text{Bessel}};
+
+% \draw[<->,thick, navyblue] (-4.5,-3.4) -- (2,-3.4);
+% \node[below] at (-1,-3.6) {\color{navyblue} \text{WKB approximation}};
+
+% \draw[<->,thick, red4] (2,-3.4) -- (5,-3.4);
+% \node[below] at (3.3,-3.4) {$\begin{array}{c} {\color{red4}\text{WKB}}\\{\color{red4} \text{Approximation}}\end{array}$};
+
+% \draw[<->,thick, red4] (4.5,-3.8) -- (6,-3.8);
+% \node[below] at (5.3,-4) {\color{red4} \text{Bessel}};
+
+% \draw[-, dashed, green] (2, -2.8) -- (2, -4.2) ;
+
+
+% \end{tikzpicture}
+% \caption{Schematic view of the WKB matching problem.}
+% \label{fig:waves_WKB}
+% \end{figure}
+
+%   \begin{equation*}  
+% U(P|\sigma) \sim \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}, scale=0.7]
+% \draw[fill=cyan!40!white,opacity=0.5] (0,0) ellipse (1.5 and 1.5);
+% \draw[fill] (0,0) circle (0.06);
+% \node at (1.9,0.5) {\small $\sigma$};
+% \node at (0.5,0) {\small $\mathcal{V}_{P}$};
+% \end{tikzpicture} \qquad 
+% R(P,\tilde{P}|\sigma) \sim \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}, scale=0.7]
+% \draw[fill=cyan!40!white,opacity=0.5] (0,0) ellipse (1.5 and 1.5);
+% \draw[fill] (1.5,0) circle (0.06); 
+% \node at (0,-1.985) {};
+% \node at (0,1.8) {\small $\sigma$};
+% \draw[fill] (0,0) circle (0.06);
+% \node at (-0.5,0) {\small $\mathcal{V}_P$};
+% \node at (2.1,0) {\small $\Psi^{\sigma \sigma}_{\tilde{P}}$};
+% \end{tikzpicture}
+% \vspace{-0.4cm}
+% \end{equation*}
+
+% \begin{equation*}
+% C^{\sigma_1 \sigma_2 \sigma_3}_{\tilde{P}_1 \tilde{P}_2 \tilde{P}_3} \sim  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}, scale=0.7]
+% \draw[fill=cyan!40!white,opacity=0.5] (0,0) ellipse (1.5 and 1.5);
+% \draw[fill] (0,1.5) circle (0.06);
+% \draw[fill] (-1.3,-0.75) circle (0.06); 
+% \draw[fill] (1.3,-0.75) circle (0.06); 
+% %\draw (-1.3,-0.75) -- (0,0) -- (1.3,-0.75);
+% %\draw (0,0) -- (0,1.5); 
+% \node at (-2,-0.8) {\small $\Psi^{\sigma_3 \sigma_1}_{\tilde{P}_{3}}$};
+% \node at (2.1,-0.8) {\small $\Psi^{\sigma_2 \sigma_3}_{\tilde{P}_{2}}$};
+% \node at (0,-1.85) {\small $\sigma_3$};
+% \node at (-1.9,1) {\small $\sigma_1$};
+% \node at (1.9,1) {\small $\sigma_2$};
+% \node at (0,1.9) {\small $\Psi^{\sigma_1 \sigma_2}_{\tilde{P}_{1}}$};
+% \end{tikzpicture}
+% \vspace{-0.4cm} 
+% \end{equation*}
+
+\end{document}
+
