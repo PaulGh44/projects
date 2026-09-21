@@ -21,11 +21,11 @@ class PowerSpectrum:
 
         n = solution.n
 
-        if n == 1:
-            raise ValueError(
-                "The n = 1 homogeneous mode is singular "
-                "for a massless scalar field."
-            )
+        # if n == 1:
+        #     raise ValueError(
+        #         "The n = 1 homogeneous mode is singular "
+        #         "for a massless scalar field."
+        #     )
 
         W_final = solution.W_final
         Re_W = W_final.real
