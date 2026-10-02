@@ -227,7 +227,7 @@ def main():
     t_final = 10.0
 
     n_min = 2
-    n_max = 15
+    n_max = 30
 
     # ============================================================
     # 3. Solver
@@ -283,6 +283,24 @@ def main():
         for result in results
     ])
 
+    # Analytic large-n/WKB prediction from eq. (B.29).
+    # Analytic_power_spectrum returns P(n; t_final), so convert it
+    # to the dimensionless spectrum using eq. (3.18).
+    P_WG_analytic = np.array([
+        model.Analytic_power_spectrum(
+            n=int(n),
+            t_final=t_final,
+        )
+        for n in n_values
+    ])
+
+    Delta_WG_analytic = (
+        n_values
+        * (n_values**2 - 1.0)
+        / (2.0 * np.pi**2)
+        * P_WG_analytic
+    )
+
     # ============================================================
     # 6. Bunch-Davies spectrum
     #
@@ -294,6 +312,7 @@ def main():
     Delta_BD = model.H**2 / (4.0 * np.pi**2)
 
     ratio_BD = Delta_WG / Delta_BD
+    ratio_BD_analytic = Delta_WG_analytic / Delta_BD
 
     # ============================================================
     # 7. Plot
@@ -317,17 +336,23 @@ def main():
     ax1.plot(
         n_values,
         Delta_WG,
-        "o-",
+        "o",
         markersize=4,
-        linewidth=1.2,
-        label="Wineglass",
+        label="Numerical",
+    )
+
+    ax1.plot(
+        n_values,
+        Delta_WG_analytic,
+        linewidth=1.5,
+        label="Analytic (B.29)",
     )
 
     ax1.axhline(
         Delta_BD,
         linestyle="--",
         linewidth=1.8,
-        label="Bunch-Davies",
+        label=r"$H^2/(4\pi^2)$",
     )
 
     ax1.set_ylabel(
@@ -344,6 +369,29 @@ def main():
         frameon=False
     )
 
+    # Wineglass background parameters used for this spectrum.
+    parameter_text = (
+        rf"$H_{{\rm I}}={model.H_I:.4g}$" "\n"
+        rf"$H_{{\rm II}}={model.H_II:.4g}$" "\n"
+        rf"$H={model.H:.4g}$" "\n"
+        rf"$\tilde{{\rho}}_{{\rm rad}}^L={model.rho_rad:.4g}$"
+    )
+
+    ax1.text(
+        0.7,
+        0.5,
+        parameter_text,
+        transform=ax1.transAxes,
+        ha="left",
+        va="top",
+        bbox={
+            "boxstyle": "round",
+            "facecolor": "white",
+            "edgecolor": "0.8",
+            "alpha": 0.85,
+        },
+    )
+
     ax1.grid(
         alpha=0.2
     )
@@ -355,9 +403,16 @@ def main():
     ax2.plot(
         n_values,
         ratio_BD,
-        "o-",
+        "o",
         markersize=4,
-        linewidth=1.2,
+        label="Numerical",
+    )
+
+    ax2.plot(
+        n_values,
+        ratio_BD_analytic,
+        linewidth=1.5,
+        label="Analytic (B.29)",
     )
 
     ax2.axhline(
@@ -456,13 +511,13 @@ def main():
         # W_n^BD(0) = (n^2 - 1)/(n H^2), with
         # H^2 = 3/(16 rho_rad).
         W_BD_0 = (
-            16.0
+            4
             * rho
             * (n_values**2 - 1.0)
-            / (3.0 * n_values)
+            / (n_values)
         )
 
-        discrepancy = (W0 - W_BD_0) / W_BD_0
+        discrepancy = (W0 - W_BD_0) / W0
 
         ax_discrepancy.plot(
             n_values,
@@ -473,6 +528,21 @@ def main():
             label=rf"$\tilde{{\rho}}_{{\rm rad}}^L={rho:.4g}$",
         )
 
+    ax_discrepancy.text(
+        0.7,
+        0.5,
+        rf"$H_{{\rm I}}={H_I_fixed:.4g}$",
+        transform=ax_discrepancy.transAxes,
+        ha="left",
+        va="top",
+        bbox={
+            "boxstyle": "round",
+            "facecolor": "white",
+            "edgecolor": "0.8",
+            "alpha": 0.85,
+        },
+    )
+
     ax_discrepancy.set_xlabel(r"$n$")
     ax_discrepancy.set_ylabel(
         r"$\left.\Delta\mathcal{W}_n/\mathcal{W}_n\right|_{t=0}$"
@@ -481,8 +551,6 @@ def main():
     ax_discrepancy.grid(alpha=0.2)
 
     fig_discrepancy.tight_layout()
-
-    
 
     plt.show()
 
