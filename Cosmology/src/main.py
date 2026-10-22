@@ -11,6 +11,8 @@ from Power_spectrum import PowerSpectrum
 
 def main():
 
+    # # No boundary proposal part
+
     # # --------------------------------------------------
     # # 1. Define the background
     # # --------------------------------------------------
@@ -29,7 +31,7 @@ def main():
     # t_final = 10.0 / H
 
     # n_min = 2
-    # n_max = 80
+    # n_max = 30
 
     # # --------------------------------------------------
     # # 3. Create solver
@@ -283,12 +285,14 @@ def main():
 
     # plt.show()
 
+    #End of no-boundary part
+
     # ============================================================
     # 1. Wineglass model parameters
     # ============================================================
 
     H_II = 10
-    rho_rad = 3/16
+    rho_rad = 3 /16
 
     model = WineglassModel(
         H_II=H_II,
@@ -313,7 +317,7 @@ def main():
     t_final = 10.0
 
     n_min = 2
-    n_max = 30
+    n_max = 15
 
     # ============================================================
     # 3. Solver
@@ -373,9 +377,9 @@ def main():
         for result in results
     ])
 
-    # Analytic large-n/WKB prediction from eq. (B.29).
+    # Analytic large-n/WKB prediction.
     # Analytic_power_spectrum returns P(n; t_final), so convert it
-    # to the dimensionless spectrum using eq. (3.18).
+    # to the dimensionless spectrum.
     P_WG_analytic = np.array([
         model.Analytic_power_spectrum(
             n=int(n),
@@ -392,7 +396,7 @@ def main():
     )
 
     # ============================================================
-    # 6. Bunch-Davies spectrum
+    # 6. Euclidean vacuum spectrum
     #
     # Same late-time Hubble constant H as the wineglass universe.
     #
@@ -401,22 +405,19 @@ def main():
 
     Delta_BD = model.H**2 / (4.0 * np.pi**2)
 
-    ratio_BD = Delta_WG / Delta_BD
-    ratio_BD_analytic = Delta_WG_analytic / Delta_BD
-
     # ============================================================
     # 7. Plot
     # ============================================================
 
-    fig, (ax1, ax2) = plt.subplots(
-        2,
+    fig, ax1 = plt.subplots(
+        1,
         1,
         figsize=(7.0, 6.0),
         sharex=True,
-        gridspec_kw={
-            "height_ratios": [3, 1],
-            "hspace": 0.08,
-        },
+        # gridspec_kw={
+        #     "height_ratios": [3, 1],
+        #     "hspace": 0.08,
+        # },
     )
 
     # ------------------------------------------------------------
@@ -431,12 +432,12 @@ def main():
         label="Numerical",
     )
 
-    ax1.plot(
-        n_values,
-        Delta_WG_analytic,
-        linewidth=1.5,
-        label="Analytic (B.29)",
-    )
+    # ax1.plot(
+    #     n_values,
+    #     Delta_WG_analytic,
+    #     linewidth=1.5,
+    #     label="Analytic (B.29)",
+    # )
 
     ax1.axhline(
         Delta_BD,
@@ -483,43 +484,6 @@ def main():
     )
 
     ax1.grid(
-        alpha=0.2
-    )
-
-    # ------------------------------------------------------------
-    # Lower panel: ratio to Bunch-Davies
-    # ------------------------------------------------------------
-
-    ax2.plot(
-        n_values,
-        ratio_BD,
-        "o",
-        markersize=4,
-        label="Numerical",
-    )
-
-    ax2.plot(
-        n_values,
-        ratio_BD_analytic,
-        linewidth=1.5,
-        label="Analytic (B.29)",
-    )
-
-    ax2.axhline(
-        1.0,
-        linestyle="--",
-        linewidth=1.5,
-    )
-
-    ax2.set_xlabel(
-        r"$n$"
-    )
-
-    ax2.set_ylabel(
-        r"$\Delta^\Phi_n/\Delta^\Phi_{\rm BD}$"
-    )
-
-    ax2.grid(
         alpha=0.2
     )
 
@@ -589,10 +553,12 @@ def main():
         )
         axes_modes = axes_modes.ravel()
 
+        # mode_data_blocks = []
+
         for ax, n in zip(axes_modes, selected_n_values):
 
             ax.set_xlim(-5.0, 5.0)
-            
+
             solution = mode_solutions[n]
             chi_segments = solution.chi_numerical
 
@@ -639,6 +605,16 @@ def main():
                 chi_analytic_II[1:],
                 chi_analytic_L[1:],
             ])
+
+            data = np.column_stack((
+                s_mode,
+                chi_numerical.real,
+                chi_numerical.imag,
+                chi_analytic.real,
+                chi_analytic.imag,
+            ))
+
+            # mode_data_blocks.append((n, data))
 
             line_re, = ax.plot(
                 s_mode,
@@ -694,6 +670,33 @@ def main():
             ax.set_ylabel(r"$\chi_n$")
             ax.grid(alpha=0.2)
 
+        # with open("mode_functions.dat", "w") as f:
+
+        #     # General model parameters
+        #     f.write("# Wineglass model\n")
+        #     f.write(f"# H_I = {model.H_I:.16e}\n")
+        #     f.write(f"# H_II = {model.H_II:.16e}\n")
+        #     f.write(f"# H = {model.H:.16e}\n")
+        #     f.write(f"# rho_rad = {model.rho_rad:.16e}\n")
+        #     f.write(f"# tau_WKB_start = {model.tau_WKB_start:.16e}\n")
+        #     f.write(f"# t_WKB_end = {model.t_WKB_end:.16e}\n")
+        #     f.write("\n")
+
+        #     for n, data in mode_data_blocks:
+
+        #         f.write(f"# n = {n}\n")
+
+        #         np.savetxt(
+        #             f,
+        #             data,
+        #             delimiter=",",
+        #             header="s,Re_chi_num,Im_chi_num,Re_chi_analytic,Im_chi_analytic",
+        #             comments="",
+        #             fmt="%.16e",
+        #         )
+
+        #         f.write("\n")
+
         for ax in axes_modes[n_panels:]:
             ax.set_visible(False)
 
@@ -711,10 +714,9 @@ def main():
         fig_modes.tight_layout()
 
     # ============================================================
-    # 9. Discrepancy with Bunch-Davies at the start of inflation
+    # 9. Discrepancy with Euclidean at the start of inflation
     #
-    # Keep H_I fixed and vary the radiation energy density.
-    # From the definition of H_I in WineglassModel,
+    # To display on a single plot the dependence on the radiation density rho_rad, add more values of rho_rad to the list below.
     #
     # H_II^2 = 2 H_I^2 /
     #          [16 rho_rad H_I^2 - (sqrt(5) - 2)].
@@ -724,90 +726,127 @@ def main():
 
     rho_rad_values = [
         3.0 / 16.0,
-        1.0 / 4.0,
-        3.0 / 8.0,
-        1.0 / 2.0,
+        0.2,
+        1,
     ]
 
     fig_discrepancy, ax_discrepancy = plt.subplots(
         figsize=(7.0, 4.5)
     )
 
+    # with open("discrepancy.csv", "w") as f:
+
     for rho in rho_rad_values:
 
-        if np.isclose(rho, rho_rad):
-            # Reuse the values already computed for the baseline model.
-            W0 = np.array(W0_values, dtype=complex)
+            if np.isclose(rho, rho_rad):
+                # # Parameters of the current model
+                # f.write(f"# rho_rad = {rho:.16e}\n")
+                # f.write(f"# H_I = {H_I_fixed:.16e}\n")
+                # f.write(f"# H_II = {model.H_II:.16e}\n")
+                # f.write(f"# H = {model.H:.16e}\n")
+                
+                # Reuse the values already computed for the baseline model.
+                W0 = np.array(W0_values, dtype=complex)
 
-        else:
-            denominator = (
-                16.0 * rho * H_I_fixed**2
-                - (np.sqrt(5.0) - 2.0)
-            )
-
-            if denominator <= 0.0:
-                raise ValueError(
-                    "Chosen rho_rad is incompatible with the fixed H_I."
+            else:
+                denominator = (
+                    16.0 * rho * H_I_fixed**2
+                    - (np.sqrt(5.0) - 2.0)
                 )
 
-            H_II_rho = np.sqrt(
-                2.0 * H_I_fixed**2 / denominator
-            )
+                if denominator <= 0.0:
+                    raise ValueError(
+                        "Chosen rho_rad is incompatible with the fixed H_I."
+                    )
 
-            model_rho = WineglassModel(
-                H_II=H_II_rho,
-                rho_rad=rho,
-            )
-
-            solver_rho = Solveur(
-                model=model_rho,
-                N_eval=1000,
-                rtol=1e-10,
-                atol=1e-12,
-                method="DOP853",
-                mode_function_n_values=[],
-            )
-
-            W0 = []
-
-            for n in range(n_min, n_max + 1):
-                solution_rho = solver_rho.solve_W(
-                    n=n,
-                    delta=delta,
-                    # Only W_n(0) is needed here.
-                    t_final=1e-8,
+                H_II_rho = np.sqrt(
+                    2.0 * H_I_fixed**2 / denominator
                 )
 
-                W0.append(
-                    solution_rho.segments[1].W[-1]
+                model_rho = WineglassModel(
+                    H_II=H_II_rho,
+                    rho_rad=rho,
                 )
 
-            W0 = np.array(W0, dtype=complex)
+                # # Parameters of the current model
+                # f.write(f"# rho_rad = {rho:.16e}\n")
+                # f.write(f"# H_I = {H_I_fixed:.16e}\n")
+                # f.write(f"# H_II = {model_rho.H_II:.16e}\n")
+                # f.write(f"# H = {model_rho.H:.16e}\n")
 
-        # W_n^BD(0) = (n^2 - 1)/(n H^2), with
-        # H^2 = 3/(16 rho_rad).
-        W_BD_0 = (
-            4
-            * rho
-            * (n_values**2 - 1.0)
-            / (n_values)
+
+                solver_rho = Solveur(
+                    model=model_rho,
+                    N_eval=1000,
+                    rtol=1e-10,
+                    atol=1e-12,
+                    method="DOP853",
+                    mode_function_n_values=[],
+                )
+
+                W0 = []
+
+                for n in range(n_min, n_max + 1):
+                    solution_rho = solver_rho.solve_W(
+                        n=n,
+                        delta=delta,
+                        # Only W_n(0) is needed here.
+                        t_final=1e-8,
+                    )
+
+                    W0.append(
+                        solution_rho.segments[1].W[-1]
+                    )
+
+                W0 = np.array(W0, dtype=complex)
+
+            # W_n^BD(0) = (n^2 - 1)/(n H^2), with
+            # H^2 = 3/(16 rho_rad).
+            W_BD_0 = (
+                4
+                * rho
+                * (n_values**2 - 1.0)
+                / (n_values)
+            )
+
+            discrepancy = (W0 - W_BD_0) / W0
+
+            # data = np.column_stack((
+            #                 n_values,
+            #                 discrepancy.real,
+            #                 discrepancy.imag
+            # ))
+
+            # # Numerical data
+            # np.savetxt(
+            #     f,
+            #     data,
+            #     delimiter=",",
+            #     header="n,discrepancy_real,discrepancy_imag",
+            #     comments="",
+            #     fmt=["%d", "%.16e", "%.16e"]
+            # )
+
+            # # Separate successive blocks
+            # f.write("\n")
+            
+            ax_discrepancy.plot(
+                n_values,
+                discrepancy.real,
+                "o-",
+                markersize=3,
+                linewidth=1.1,
+                label=rf"$\tilde{{\rho}}_{{\rm rad}}^L={rho:.4g}$",
+            )
+
+    parameter_text = (
+            rf"$H_{{\rm II}}={model.H_II:.4g}$"
         )
-
-        discrepancy = (W0 - W_BD_0) / W0
-
-        ax_discrepancy.plot(
-            n_values,
-            discrepancy.real,
-            "o-",
-            markersize=3,
-            linewidth=1.1,
-            label=rf"$\tilde{{\rho}}_{{\rm rad}}^L={rho:.4g}$",
-        )
-
+    
     ax_discrepancy.text(
         0.7,
         0.5,
-        rf"$H_{{\rm I}}={H_I_fixed:.4g}$",
+        parameter_text,
         transform=ax_discrepancy.transAxes,
         ha="left",
         va="top",
@@ -829,6 +868,40 @@ def main():
     fig_discrepancy.tight_layout()
 
     plt.show()
+
+
+    # ============================================================
+        # 10. Optional: save the power spectrum data points in csv files for later analysis 
+    # ============================================================
+
+    # data = np.column_stack((
+    #     n_values,
+    #     Delta_WG,
+    #     np.full_like(n_values, Delta_BD, dtype=float),
+    # ))
+    
+    # header = (
+    #     f"Model: Wineglass\n"
+    #     f"H_I = {model.H_I:.16e}\n"
+    #     f"H_II = {model.H_II:.16e}\n"
+    #     f"H = {model.H:.16e}\n"
+    #     f"rho_rad = {model.rho_rad:.16e}\n"
+    #     f"delta = {delta:.16e}\n"
+    #     f"t_final = {t_final:.16e}\n"
+    #     f"rtol = {solver.rtol:.1e}\n"
+    #     f"atol = {solver.atol:.1e}\n"
+    #     f"n,Delta_WG,Delta_BD"
+    # )
+
+    # np.savetxt(
+    #     "wineglass_spectrum.csv",
+    #     data,
+    #     delimiter=",",
+    #     header=header,
+    #     comments="# ",
+    #     fmt=["%d", "%.16e", "%.16e"]
+    # )
+    
 
 
 if __name__ == "__main__":

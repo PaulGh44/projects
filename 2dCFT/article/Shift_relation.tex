@@ -1,0 +1,370 @@
+\documentclass[a4paper]{article}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage{jheppub}
+\usepackage{overpic}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{pdflscape}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings}
+
+\tikzset{
+  mid arrow/.style={
+    postaction={
+      decorate,
+      decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{Stealth[length=6pt,width=6pt]}}
+      }
+    }
+  }
+}
+
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{braket}
+\usepackage{empheq}
+\usepackage{graphicx} % Allows including images
+\usepackage{tikz-3dplot}
+% réglage de la vue 3D : élévation=20°, azimut=110°
+\tdplotsetmaincoords{20}{110}
+\usetikzlibrary{decorations.pathreplacing,calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+\definecolor{blue5}{rgb}{0, 0, 0.66666}
+\definecolor{red4}{rgb}{0.8, 0, 0}
+\definecolor{navyblue}{rgb}{0, 0.2745, 0.67843}
+\definecolor{cornflowerblue}{rgb}{0.388235, 0.6941176, 0.898039}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usetikzlibrary{decorations.text,decorations.pathmorphing}
+
+%Removes Header------------------------------------
+\makeatletter
+\def\@fpheader{\relax}
+\makeatother
+
+
+
+\usepackage{orcidlink}
+
+%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\pf}{pf}
+\DeclareMathOperator{\Ai}{Ai}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\DeclareMathOperator{\cd}{cd}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\sech}{sech}
+% \DeclareMathOperator{\tr}{tr}
+
+\newcommand{\beq}{\begin{eqnarray}}
+\newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+\newcommand{\unit}{1\!\!1}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\no}{\nonumber}
+\def\tb{\tilde{\beta}}
+\newcommand{\mpl}{M_{\rm Pl}}
+\def\k{\kappa}
+
+\newcommand{\bto}{\bar{\tau}^{\textbf{I}}}
+\newcommand{\btt}{\bar{\tau}^{\textbf{II}}}
+
+
+
+
+%%% Other definitions
+
+
+\def\sp{\;\;\;,\;\;\;}
+\def\l{\lambda}
+%\def\z{\zeta}
+\def\lab{\label}
+\def\f{H}
+\def\La{\Lambda}
+\def\z{\zeta}
+\def\t{\tau}
+\def\e{\epsilon}
+\def\o{\omega}
+\def\le{\left}
+\def\ri{\right}
+\def\y{\psi}
+\def\half{\frac12}
+\def\q{\theta}
+\def\cO{{\cal O}}
+\def\m{\mu}
+\def\n{\nu}
+\def\td{\tilde}
+\def\d{\delta}
+\def\6{\partial}
+\def\de{\partial}
+\def\del{\nabla}
+\def\ls{\ell_s}
+\def\a{\alpha}
+\def\b{\beta}
+\def\lab{\label}
+\def\parl{\parallel}
+\def\tom{\tilde{\o}}
+\def\dA{\dot{A}}
+\def\dh{\dot{h}}
+\def\df{\dot{f}}
+\def\dX{\dot{X}}
+\def\bo{\bar{\o}}
+\def\r{x}
+\def\bo{b_0}
+\def\br{\bar{r}}
+\def\dx{\delta X^\parl}
+\def\dxy{\delta X^2}
+\def\dxz{\delta X^3}
+\def\ol{\overline}
+\def\GM#1{\textit{[GM: #1]}}
+\def\g{\gamma}
+\def\s{\sigma}
+\def\tr{{\rm Tr}}
+\def\eps{\epsilon}
+\def\fb{f}
+\def\rd{\rm d}
+\newcommand{\bom}[1]{\fboxsep2mm\fbox{
+           $ \displaystyle{ #1} $}}
+           
+           \newcommand{\rar}{\rightarrow}
+\newcommand{\bb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\mi}{\sqrt{|\mathcal{I}_4|}}
+
+
+\def\lab{\label}
+\def\le{\left}
+\def\ri{\right}
+\def\6{\partial}
+\def\eps{\epsilon}
+
+
+% Color definitions
+\newcommand{\red}[1]{{\color{red} #1 \color{black}}}
+\newcommand{\blue}[1]{{\color{blue} #1 \color{black}}}
+\newcommand{\green}[1]{{\color{green} #1 \color{black}}}
+\newcommand{\yellow}[1]{{\color{yellow} #1 \color{black}}}
+\newcommand{\purple}[1]{{\color{purple} #1 \color{black}}}
+
+
+% Comment Abbreviations
+\newcommand{\IT}[1]{{\red{IG: #1}}} %Ioannis
+\newcommand{\PB}[1]{{\blue{PB: #1}}} % Panos
+\newcommand{\OP}[1]{{\green{OP: #1}}} % Olga
+\newcommand{\PG}[1]{{\purple{PG: #1}}} % Paul
+
+\title{Shift relations}
+
+\author[a]{Panos Betzios\orcidlink{0000-0002-5350-9404},}
+\author[b]{Paul Ghiringhelli,}
+\author[b]{Olga Papadoulaki\orcidlink{0000-0001-5302-2930}}
+\affiliation[a]{\href{https://www.ugent.be/we/physics-astronomy/en}{Department of Physics and Astronomy},
+Ghent University, \\ Krijgslaan, 281-S9, 9000 Gent, Belgium}
+\affiliation[b]{\href{https://www.cpht.polytechnique.fr/?q=en}{CPHT, CNRS, École polytechnique, Institut Polytechnique de Paris},  91120 Palaiseau, France}
+
+\emailAdd{panos.betzios@ugent.be}
+\emailAdd{paul.ghiringhelli@polytechnique.edu}
+\emailAdd{olga.papadoulaki@polytechnique.edu}
+
+
+
+
+
+\abstract{...}
+
+\keywords{...}
+
+
+\begin{document}
+\maketitle
+\flushbottom
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The normalization invariant shift relation for the one-point function}
+\subsection{Notations and Setup}
+\paragraph{Central charge} We parametrize the central charge as
+\begin{equation}
+    c=1+6\,Q^2\,, \quad Q=b+b^{-1}\,.
+\end{equation}
+We do not assume a particular range for the central charge. We want to obtain the shift equations as a functions of the momenta and the central charge.
+\paragraph{Bulk conformal dimensions} We parametrize the conformal dimension of bulk primary fields $V_{P}(z,\bar{z})$ as 
+\begin{equation}\label{eq:def_conf}
+  \Delta = \frac{Q^2}{4} - P^2\,, \quad P\in \mathcal{S}\,,
+\end{equation}
+and $\mathcal{S}$ is an unspecified set of complex numbers at this stage which will soon be identified with the spectrum of the theory. (The theory contains only scalar fields so $\Delta=\bar{\Delta}$.) Somewhere in the litterature, the parameter $\alpha$ is used
+\begin{equation}
+  \alpha = \frac{Q}{2}+ P\,.
+\end{equation}
+\paragraph{Boundary conformal dimensions} We work on the upper half-plane. Boundary primary fields are denoted as $\Psi_{P}(x)^{\sigma_1\,\sigma_2}$ where $P$ is the momentum, $\sigma_{1,2}$ corresponds to the boundary conditions on the two sides of the puncture and $x$ is the coordinate on the real line. We do not assume any particular rules for $\sigma_{i}$. The same relation~\eqref{eq:def_conf} holds.
+
+\paragraph{Normalization} We work with normalizations of the two point functions/three point functions which are symmetric. Precisely, we write
+\begin{equation}\label{eq:Normalizations}
+\begin{aligned}
+  \braket{V_{P_1}(0)V_{P_2}(1)}&=B(P_1)\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
+  \braket{V_{P_1}(0)V_{P_2}(1)V_{P_3}(\infty)}&= C_{P_1,P_2,P_3}\,,\\
+  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_1}(1)}&= S_{P_1}^{\sigma_1 \sigma_2}\, (\delta(P_1-P_2)+\delta(P_1+P_2))\,,\\
+  \braket{\Psi_{P_1}^{\sigma_1 \sigma_2}(0)\Psi_{P_2}^{\sigma_2 \sigma_3}(1)\Psi_{P_3}^{\sigma_3 \sigma_1}(\infty)} &= C_{P_1,P_2,P_3}^{\sigma_1 \sigma_2 \sigma_3}\,,\\
+\end{aligned}
+\end{equation}
+and also 
+\begin{equation}\label{eq:Normalizationsbis}
+\begin{aligned}
+  \braket{V_{P}(z,\bar{z})}&=\frac{U(P|\,\sigma)}{|z-\bar{z}|^{2\Delta}}\,.\\
+  \braket{V_{P}(z,\bar{z})\Psi_{P'}^{\sigma \sigma}(x)}&=\frac{R(P;P'|\,\sigma)}{|z-\bar{z}|^{2\Delta -\Delta'}|z-x|^{2\Delta'}}
+\end{aligned}
+\end{equation}
+
+\paragraph{Existence of OPE} We assume the existence of an operator product expansion of bulk fields
+\begin{equation}\label{eq:OPE_convention}
+  V_{P_1}(0,0)V_{P_2}(z,\bar{z}) = \int_{\mathcal{S}} \frac{\rm{d}P'}{i} \mathbb{C}_{P_1,P_2,P' }|z|^{2(\Delta'-\Delta_1-\Delta_2)}V_{P'}(z,\bar{z})\left(1+ \text{descendants}\right)\,,
+\end{equation}
+where we introduce the OPE data $\mathbb{C}_{P_1,P_2,P' }$. Note that the last parenthesis for each $P$ constitutes the so-called $P$-conformal block. Assuming that, the OPE data can easily be expressed in terms of the three point and the two point function CFT data
+\begin{equation}
+  \mathbb{C}_{P_1,P_2,P'} = \frac{C_{P_1,P_2,P'}}{B(P')}\,.
+\end{equation}
+Similarly, we assume that the bulk field can be expressed in terms of boundary operators when approaching the boundary ($\Im(z)=0$)
+\begin{equation}\label{eq:expansion_boundary}
+  V_{P}(z,\bar{z}) = \int_{\mathcal{S}} \frac{\rm{d}P'}{i} |z-\bar{z}|^{\Delta_{P'}-2\Delta_{P}}\mathbb{D}_{P ; P'}^{\sigma \sigma} \Psi_{P'}^{\sigma \sigma}(\Re(z))\left(1+ \text{descendants}\right)\,.
+\end{equation}
+We introduced here the bulk-boundary OPE data $\mathbb{D}_{P ; P'}^{\sigma \sigma}$. One easily finds
+\begin{equation}
+  \mathbb{D}_{P ; P'}^{\sigma \sigma} = \frac{R(P;P'|\sigma)}{S_{P'}^{\sigma \sigma}}\,.
+\end{equation}
+
+\subsection{1 point function / Shift relation}
+We insert a bulk degenerate field. The degenerate fusion rules give
+\begin{equation}\label{eq:crossing}
+  \begin{aligned}
+    \braket{V_{\braket{2,1}}(z,\bar{z})V_{P}(z_1,\bar{z_1})}
+    &=\sum_{\epsilon = \pm} \frac{C_{P,P_{\braket{2,1}},P+\frac{\epsilon b }{2}}}{B(P+\frac{\epsilon b}{2})} U(P+\frac{\epsilon b}{2}|\sigma) \mathcal{G}^{(\epsilon)}(z,z_1)\\
+    &=\frac{R(P_{\braket{2,1}};P_{\braket{3,1}}|\sigma)}{S_{P_{\braket{3,1}}}^{\sigma \sigma}} R(P;P_{\braket{3,1}}|\sigma)\mathcal{G}_{\braket{3,1}}(z,z_1)\\
+    &+\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}}R(P;P_{\braket{1,1}}|\sigma)\mathcal{G}_{\braket{1,1}}(z,z_1)\,.
+  \end{aligned}
+\end{equation}
+The first channel correspond to fusing the two bulk fields (``s-channel")together while the second one correspond to expanding the bulk field in terms of boundary operators. Similarly to the case of degenerate bulk four point conformal blocks, $\mathcal{G}^{\pm}$ can be expressed in terms of hypergeometric functions as they solve a second order BPZ equation. Following the FZZ paper https://arxiv.org/pdf/hep-th/0001012, we introduce the cross-ratio $\eta$ to be
+\begin{equation}\label{eq:cross_ratio}
+  \eta = \frac{|z-z_1|^2}{|z-\bar{z_1}|^2}\,.
+\end{equation}
+One then obtains
+\begin{equation}\label{eq:hypergeomblock}
+  \begin{aligned}
+    \mathcal{G}^{\pm}(z,z_1) = \frac{|z_1-\bar{z}_1|^{2(\Delta_{\braket{2,1}}-\Delta_{P})}}{|z-\bar{z}_1|^{4\Delta_{\braket{2,1}}}}\mathcal{F}_{\pm}(\eta)\,,
+  \end{aligned}
+\end{equation}
+and $\mathcal{F}_{\pm}(\eta)$ are expressed in terms of hypergeometric function
+\begin{equation}\label{eq:hypergeom}
+  \begin{aligned}
+    \mathcal{F}_{+}(\eta) &= \eta^{\frac{1}{2}-b\left(P-\frac{b}{2}\right)}(1-\eta)^{-b^2/2} {}_2 F_1 \left(-b^2, -2b\left(P+\frac{b}{2}\right), 1-2bP; \eta\right)\,,\\
+    \mathcal{F}_{-}(\eta) &= \eta^{\frac{1}{2}+b\left(P+\frac{b}{2}\right)}(1-\eta)^{-b^2/2} {}_2 F_1 \left(2b\left(P-\frac{b}{2}\right), -b^2, 1+2bP; \eta\right)\,.
+  \end{aligned}
+\end{equation}
+As a simple check, from~\eqref{eq:OPE_convention},\eqref{eq:Normalizationsbis} and the first line of~\eqref{eq:crossing}, one expects that as $z \to z_1$, we should have
+\begin{equation}
+  \mathcal{G}^{\pm}(z,z_1) \underset{z \to z_1}{\sim} \frac{|z-z_1|^{2(\Delta_{P\pm\frac{b}{2}}-\Delta_P -\Delta_{\braket{2,1}})}}{|z_1-\bar{z}_1|^{2\Delta_{P\pm\frac{b}{2}}}}\,.
+\end{equation}
+Using the fact that in such limit $\eta \to 0$, one can explicitly verify using~\eqref{eq:hypergeomblock},~\eqref{eq:cross_ratio}~\eqref{eq:hypergeom} (for instance, $\mathcal{F}_+(\eta)$ behaves as $\eta^{\frac{1}{2}-b\left(P-\frac{b}{2}\right)}$ near $\eta =0$) that it is indeed the case.
+
+For the blocks $\mathcal{G}_{\braket{3,1}}$ and $\mathcal{G}_{\braket{1,1}}$, we can derive them easily by noting that they should have the same form suggested by~\eqref{eq:hypergeomblock} since they should solve the same BPZ equation arising from the null vector decoupling. Precisely, one can  write
+\begin{equation}
+  \begin{aligned}
+    \mathcal{G}_{\braket{3,1}} &= \frac{|z_1-\bar{z}_1|^{2(\Delta_{\braket{2,1}}-\Delta_{P})}}{|z-\bar{z}_1|^{4\Delta_{\braket{2,1}}}} \mathcal{F}_{\braket{3,1}}(\eta)\,,\\
+    \mathcal{G}_{\braket{1,1}} &= \frac{|z_1-\bar{z}_1|^{2(\Delta_{\braket{2,1}}-\Delta_{P})}}{|z-\bar{z}_1|^{4\Delta_{\braket{2,1}}}} \mathcal{F}_{\braket{1,1}}(\eta)\,,
+  \end{aligned}
+\end{equation}
+where $\mathcal{F}_{\braket{3,1}}(\eta)$ and $\mathcal{F}_{\braket{1,1}}(\eta)$ solve the same Fuchsian equation as $\mathcal{F}_{\pm}(\eta)$. The only difference resides in the fact they correspond to the $t$-channel basis decomposition. Thus the remaining thing is to match the expected behavior as $z \to \bar{z}$. From~\eqref{eq:expansion_boundary},\eqref{eq:Normalizationsbis} and the first line of~\eqref{eq:crossing}, one expects that as $z \to \bar{z}$, we should have
+\begin{equation}
+  \begin{aligned}
+    \mathcal{G}_{\braket{3,1}}(z,z_1) &\underset{z \to \bar{z}}{\sim} \frac{|z-\bar{z}|^{\Delta_{\braket{3,1}}-2\Delta_{\braket{2,1}}}}{|z_1-\bar{z}_1|^{2\Delta_P - \Delta_{\braket{3,1}}}|z_1-\Re(z)|^{2\Delta_{\braket{3,1}}}}\,,\\
+    \mathcal{G}_{\braket{1,1}}(z,z_1) &\underset{z \to \bar{z}}{\sim} \frac{|z-\bar{z}|^{-2\Delta_{\braket{2,1}}}}{|z_1-\bar{z}_1|^{2\Delta_P}}\,.
+  \end{aligned}
+\end{equation}
+At the same time, the two caracteristic exponents at $1$ for the Fuchsian equation solved by $\mathcal{F}_{\braket{3,1}}$ and $\mathcal{F}_{\braket{1,1}}$ are $-b^2/2 = \Delta_{\braket{3,1}}-2\Delta_{\braket{2,1}}$ and $1+\frac{3b^2}{2} = -2\Delta_{\braket{2,1}}$. Thus, we can immediatly write
+\begin{equation}
+  \begin{aligned}
+    \mathcal{F}_{\braket{3,1}}(\eta) &= \eta^{\frac{1}{2}-b\left(P-\frac{b}{2}\right)}(1-\eta)^{-b^2/2} {}_2 F_1\left(-b^2,-2b\left(P+\frac{b}{2}\right),-2b^2;1-\eta\right)\,,\\
+    \mathcal{F}_{\braket{1,1}}(\eta) &= \eta^{\frac{1}{2}-b\left(P-\frac{b}{2}\right)}(1-\eta)^{1+3b^2/2} {}_2 F_1\left(1-2bP+b^2,1+b^2,2+2b^2;1-\eta\right)\,.
+  \end{aligned}
+\end{equation}
+
+\paragraph{Crossing-symmetry}
+We are now ready to derive the shift relation imposing crossing-symmetry~\eqref{eq:crossing}. For that, we use the standard hypergeometric connection formulae to extract forom $\mathcal{G}_{\pm}$ the coefficient in terms of the $\mathcal{G}_{\braket{1,1}}$\footnote{There are two crossing identities but we will only focus on one.}.
+After a bit of work, one derives
+\begin{equation}\label{eq:general_shift_relation}
+  \begin{aligned}
+    &\frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}^{\sigma \sigma}}R(P;P_{\braket{1,1}}|\sigma) =\frac{C_{P,P_{\braket{2,1}},P+\frac{ b }{2}}}{B(P+\frac{b}{2})} U(P+\frac{b}{2}|\sigma)\frac{\Gamma(1-2bP)\Gamma(-1-2b^2)}{\Gamma(-b^2)\Gamma\left(-2b\left(P+\frac{b}{2}\right)\right)} \\
+    &+ \frac{C_{P,P_{\braket{2,1}},P-\frac{ b }{2}}}{B(P-\frac{b}{2})} U(P-\frac{b}{2}|\sigma)\frac{\Gamma(1+2bP)\Gamma(-1-2b^2)}{\Gamma(-b^2)\Gamma\left(2b\left(P-\frac{b}{2}\right)\right)}\,.
+  \end{aligned}
+\end{equation}
+\PG{This equation is normalization invariant both correct for spacelike and timelike upon replacing the correct structure constants! Observe that once we know the boundary to bulk CFT data and the bulk structure constants, this provide a shift relation for U}
+\paragraph{Translations to FZZ conventions}
+Recall $\alpha = \frac{Q}{2}+P$. We also introduce the quantity $\kappa(b) :=\frac{\Gamma(-1-2b^2)}{\Gamma(-b^2)} $. In the FZZ paper, we have the following identities derived
+\begin{equation}
+\begin{aligned}
+    C_{+}(\alpha) &=  \frac{C_{P,P_{\braket{2,1}}, P - \frac{b}{2}}}{B(P-\frac{b}{2})} = 1\,,\\
+    C_{-}(\alpha) &= \frac{C_{P,P_{\braket{2,1}}, P + \frac{b}{2}}}{B(P+\frac{b}{2})} =-\pi \mu \frac{\gamma(2bP)}{\gamma(-b^2)\gamma(1+b^2+2bP)}\,,\qquad \gamma(x) = \frac{\Gamma(x)}{\Gamma(1-x)}\,,\\
+    D_{P_{\braket{2,1};P_{\braket{1,1}}}}^\sigma &= \frac{R(P_{\braket{2,1}};P_{\braket{1,1}}|\sigma)}{S_{P_{\braket{1,1}}}} = -2\pi\mu_b \kappa(b)\frac{1}{\Gamma(-b^2)} \,.
+\end{aligned}
+\end{equation}
+$\kappa(b)$ can thus be factored out from~\eqref{eq:general_shift_relation}. After identifying $R(P;P_{\braket{1,1}}|\sigma)$ with $U(\alpha)$ \PG{Can we do this in Timelike, that is a first question!} and substituting $P$ by $\alpha$, we obtain
+\begin{equation}
+  \frac{-2\pi\mu_b}{\Gamma(-b^2)}U(\alpha) = C_{-}(\alpha)\frac{\Gamma(2+b^2-2b\alpha)}{\Gamma(1-2b\alpha)}U(\alpha+\frac{b}{2})+\frac{\Gamma(-b^2+2b\alpha)}{\Gamma(2b\alpha-1-2b^2)}U\left(\alpha-\frac{b}{2}\right)\,.
+\end{equation}
+After Gamma algebra, this simplifies to the FZZ shift relation
+\begin{equation}
+  \frac{-2\pi\mu_b}{\Gamma(-b^2)}U(\alpha) = -\pi \mu \frac{\Gamma(2b\alpha-1-b^2)}{\gamma(-b^2)\Gamma(2b\alpha)}U(\alpha+\frac{b}{2})+\frac{\Gamma(2b\alpha-b^2)}{\Gamma(2b\alpha-1-2b^2)}U\left(\alpha-\frac{b}{2}\right)\,.
+\end{equation}
+\PG{Crucially, this relation only holds in spacelike since we used the bulk spacelike structure constants!!}
+
+\subsection{Relation with the path-integral perspective and KPZ scaling}
+
+For a generic orientable surface $\mathcal{M}$ with $b$ boundaries of genus $h$, let $\chi = 2 -2h -b$. Consider adding a single boundary deformation to the Liouville Bulk action at fixed genus $h$ (we do not specify any values of $b$ so formally, our discussion will apply both for Timelike and Spacelike Liouville)
+\begin{equation}
+  \mathcal{S}_L = \frac{1}{4\pi}\int_{\mathcal{M}} \rm{d}^2 x \sqrt{\hat{g}}\left(\hat{g}^{\mu \nu}\partial_\mu \phi \partial_\nu \phi + Q \hat{\mathcal{R}} \phi + 4\pi \mu e^{2 b\phi}\right) +  \int_{\partial \mathcal{M}}  \sqrt{\hat{h}}\rm{d}\xi  \left(\frac{Q \hat{K}}{2\pi} \phi + \mu_B e^{b \phi}\right)\,.
+\end{equation}
+The partition function at fixed genus $h$ reads then
+\begin{equation}
+  \mathcal{Z}_h(\mu,\mu_B) = \int \rm{D}\phi e^{-S_L(\mu,\mu_B)}\,.
+\end{equation}
+Consider substituting $\phi \to \phi + \frac{\epsilon}{2 b}$ and take $\epsilon = \mu^{-1}$, then one obtains the KPZ relation for boundary Liouville
+\begin{equation}
+  \mathcal{Z}_h(\mu,\mu_B) = \mu^{\frac{Q\chi_h}{2b}}\mathcal{Z}_h\left(1,\frac{\mu_B}{\sqrt{\mu}}\right)\,.
+\end{equation}
+When adding a boundary deformation parametrized by $\mu_B$, we observe that the theory (i.e all its correlation functions) is uniquely specified by the ratio $\frac{\mu_B}{\sqrt{\mu}}$. This is in stark constrast with bulk Liouville theory: bulk Liouville theory with $\mu \neq 0$ is trivially connected to bulk Liouville theory with $\mu =1$. This actually explains why there exists a normalization scheme for which $\mu$ is absent in contrast with DOZZ normalization.
+
+When adding a boundary deformation, the CFT data should be expressed in terms of $\mu_B / \sqrt{\mu}$. In our work, this ratio does not appear because we took a purely bootstrap perspective. But, if one has to connect with the path-integral perspective, certainly we have $P_{\sigma} = f\left(\frac{\mu_B}{\sqrt{\mu}}\right)$. This relation should easily be obtained semi-classically but deriving it at the non-perturbative level remains a challenge in the Timelike case. Note however that in the spacelike, FZZ were able to derive this relation at the non-perturbative level. Precisely, they find
+\begin{equation}
+  \cos^2\left(2\pi b P_{\sigma}\right) = \frac{\mu_B^2}{\mu}\sin\left(\pi b^2\right)\,.
+\end{equation}
+The reason is that the computation in the spacelike case was made using the help of Coulomb gas integrals which remembers the path-integral formulation.
+
+
+\end{document}
+

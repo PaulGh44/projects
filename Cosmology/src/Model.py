@@ -217,12 +217,19 @@ class WineglassModel(Model):
             )
 
         rho_min = 1.0 / (8.0 * self.H_II**2)
+        rho_max = 3.0 / (16.0 * self.H_II**2)
 
         if self.rho_rad <= rho_min:
             raise ValueError(
                 f"Wineglass solution requires "
                 f"rho_rad > 1/(8 H_II^2) = {rho_min}."
             )
+
+        # if self.rho_rad >= rho_max:
+        #     raise ValueError(
+        #         f"Wineglass solution requires "
+        #         f"rho_rad < 3/(16 H_II^2) = {rho_max}."
+        #     )
 
     # =========================================================
     # Model parameters derived from H_II and rho_rad
@@ -553,7 +560,7 @@ class WineglassModel(Model):
 
         return (
             self.H**2
-            / (2.0 * k_n**3)
+            / (2.0 * n*(n**2 -1))
             / np.real(coth)
             * (
                 1.0
@@ -754,7 +761,6 @@ class WineglassModel(Model):
     @property
     def t_WKB_end(self) -> float:
         """Heuristic end of the central Lorentzian WKB region."""
-
         return 2 / self.H
 
     def Analytic_mode_function_Euclidean(
